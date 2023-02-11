@@ -6,14 +6,12 @@ has_children: true
 has_toc: false
 ---
 
-# Japanese Notes 📚
+# Notes 📚
 
-A collection of notes and references for self-studying Japanese.
+A collection of notes from my daily studies.
 
 ## Topics
 
-- Lesson 1
-- Lesson 2
 
 ## References
 
