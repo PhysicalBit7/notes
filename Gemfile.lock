@@ -33,10 +33,10 @@ GEM
       jekyll (>= 3.8, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
-    just-the-docs (0.4.0)
-      jekyll (>= 3.8.5)
-      jekyll-seo-tag (>= 2.0)
-      rake (>= 12.3.1)
+    just-the-docs (0.2.9)
+      jekyll (>= 3.8.5, < 4.1.0)
+      jekyll-seo-tag (~> 2.0)
+      rake (>= 12.3.1, < 13.1.0)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -70,7 +70,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (~> 3.9)
-  just-the-docs (= 0.4.0)
+  just-the-docs (~> 0.2.6)
   kramdown-parser-gfm
 
 BUNDLED WITH
