@@ -4,7 +4,7 @@ title: Operating systems
 description: An introduction to operating systems.
 has_children: true
 has_toc: false
-nav_order: 3
+nav_order: 2
 permalink: /operating-systems
 ---
 
@@ -30,7 +30,7 @@ An OS must provide **isolation**. A bug in one program shouldn't bring down the 
 
 Sometimes isolated programs need to communicate with each other. An OS provides mechanisms for **communication** between running programs.
 
-- All credit to https://notes.eddyerburgh.me/operating-systems and his respective citations, this was an invaluable resource for me in Grad school.
+- __All credit to https://notes.eddyerburgh.me/operating-systems and his respective citations, this was an invaluable resource for me in Grad school.__
 
 
 
