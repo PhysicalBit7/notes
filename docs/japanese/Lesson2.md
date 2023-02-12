@@ -44,7 +44,9 @@ permalink: /japanese/Lesson2
 4. -ね　and -よ
     - Statements often end with tags ne or yo, depending on the way the speaker views the interaction with the listener. If you are seeking the listeners confirmation or agreement you add _-ne_.
     - If you want to tell the listener that you are fully confident of what you are saying and the listener had better believe it, use _-yo_.
+
 ## Expression notes
+
 - _kudasai_ is "Please give me X". You can use it to request (concrete) items in general
 - _onegaishimasu_ is also used to request for item X. It is slightly more upscale than _kudasai_ and can be used when ordering food or also when ordering abstract objects like repairs, explanations, understanding.
 - _doozo_ is used when an offer is made with respect to item X. A restaurant attendant uses it when they are about to hand the menu to the customer.

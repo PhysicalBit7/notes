@@ -1,11 +1,11 @@
-title: Tanner's Notes
+title: Notes
 description: A website dedicated to notes I take as a student and other studies
 remote_theme: pmarsceill/just-the-docs
 
 url: https://physicalbit7.github.io/notes
 
 aux_links:
-  Template Repository: https://physicalbit7.github.io/notes
+  Git Repository: https://github.com/PhysicalBit7/notes
 
 # Back to top link
 back_to_top: true

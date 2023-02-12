@@ -13,6 +13,7 @@ A collection of notes from my daily studies.
 ## Topics
 - Computer Networks
 - Software Security
+- Operating Systems
 - Japanese
 
 

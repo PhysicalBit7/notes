@@ -108,8 +108,8 @@ An adjective type sentence describes something. Adjectives often have the verb p
 -- pay attention to the nouns in the sentence and make sure it is a 's relationship or a __"of"__ relationship. (Tanner's mother or student of Arkansas State University)
 ---
 ### Expression notes
-- anoo indicates that you have some reservations about saying what you are going to say next
-- -san is a generic title places after a name, either first or last. Children are referred to as -chan( boys are specifically -kun )
+   - anoo indicates that you have some reservations about saying what you are going to say next
+   - -san is a generic title places after a name, either first or last. Children are referred to as -chan( boys are specifically kun )
 
 ___
 # Time
