@@ -11,8 +11,10 @@ has_toc: false
 A collection of notes from my daily studies.
 
 ## Topics
+- Computer Networks
+- Software Security
+- Japanese
 
 
-## References
 
 
