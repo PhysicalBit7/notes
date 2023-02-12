@@ -3,7 +3,7 @@ layout: default
 title: Lesson 1
 description: Lesson 1 Notes
 has_toc: false
-nav_order: 2
+nav_order: 1
 parent: 日本語
 permalink: /japanese/Lesson1
 ---

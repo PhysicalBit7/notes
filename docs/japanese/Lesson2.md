@@ -3,7 +3,7 @@ layout: default
 title: Lesson 2
 description: Lesson 1 Notes
 has_toc: false
-nav_order: 3
+nav_order: 2
 parent: 日本語
 permalink: /japanese/Lesson2
 ---
@@ -20,7 +20,7 @@ permalink: /japanese/Lesson2
     -- _kono_ - "this"
     -- _sono_ - "that"
     -- _ano_ - "that" (over there)
-    <img src="/assets/Japanese/grammer.png"  width="70%" height="30%">
+    <img src="{{site.baseurl}}/assets/Japanese/grammer.png"  width="70%" height="30%">
     - __Summary__, it is okay to use the __re__ series for humans if you are referring to people that have appeared in an earlier passage, or if you are just pointing at a picture of a person.
 3. ここ　/ そこ　/ あそこ　/ どこ
  - ko-so-a-do set
