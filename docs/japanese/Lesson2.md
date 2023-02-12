@@ -29,7 +29,7 @@ permalink: /japanese/Lesson2
        3. _asoko_ - over there
        4. _doko_ - where
 
-        <img src="/assets/Japanese/grammer2.png" >
+        <img src="{{site.baseurl}}/assets/Japanese/grammer2.png" >
 1. だれの noun
     - __dare__ can be used to say "who", to say "whose" you add the particle _no_
 2.  も　noun
@@ -38,7 +38,7 @@ permalink: /japanese/Lesson2
 3. じゃないです noun
     - To negate a statement of the form X _wa_ Y _desu_, where Y is a noun, you replace _desu_ with _ja nai desu_
     - _Ja nai desu_ is used mostly in spoken manner and is loose. The more formal replacement is _ja arimasen_. Used formally in writing is _de wa arimasen_
-        <img src="/assets/Japanese/grammer3.png"  width="70%" height="30%">
+        <img src="{{site.baseurl}}/assets/Japanese/grammer3.png"  width="70%" height="30%">
 
     --**Desu and ja nai must always be accompanied by a noun.**
 4. -ね　and -よ
