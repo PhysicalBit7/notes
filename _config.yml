@@ -21,6 +21,4 @@ exclude:
 - Gemfile.lock
 - node_modules
 
-scholar:
-  style: bibliography/custom
-  source: bibliography
+
