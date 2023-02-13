@@ -129,6 +129,7 @@ End systems, access networks, links
         - Wireless LAN - 54Mbps
         - WAN - 10Mbps
         - Satellite - Kbps to 45Mbps, 270 msec delay
+
 ### The network core
 Mesh of interconnected routers, hosts send data by breaking down application layer messages into packets. Packets are forwarded from one router to the next across links.
 - __Store and Forward__
@@ -136,6 +137,8 @@ Mesh of interconnected routers, hosts send data by breaking down application lay
     - L = 7.5 Mbits
     - R = 1.5 Mbps
     - one hop transmission delay = 5 sec
+  - Queueing delay and loss
+    - if arrival
 
 
 
