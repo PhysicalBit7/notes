@@ -14,7 +14,7 @@ permalink: /japanese/Lesson2
     - _kore_ means - "this one" as in a thing that is close to you.
     - _sore_ means - "that one" as in a thing that is close to the person you are talking to.
     - _are_ means - "that one" (over there) as in something that is neither close to the speaker or the listener.
-    -- there is also __-dore__ for "which"
+    - there is also __-dore__ for "which"
 2. この / その　/ あの　/ どの
     - the -re series stand alone and are directly followed by _wa_ as they more or less translate to "this thing" or "that thing", while the _no_ series must be followed by a noun before it gets connected to _wa_.
     -- _kono_ - "this"

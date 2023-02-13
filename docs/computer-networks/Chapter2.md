@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Networking Layers
-description: Notes on compiler optimizations.
+title: Chapter 2
+description: Chapter 2 notes
 has_toc: false
 nav_order: 2
 parent: Computer Networks
