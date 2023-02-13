@@ -80,13 +80,13 @@ _What is the internet?_
 
 End systems, access networks, links
 ### Access networks
-  - Digital Subscriber Line(DSL) - voice, data transmitted at different frequencies over __dedicated line__ to central office
+  - __Digital Subscriber Line(DSL)__ - voice, data transmitted at different frequencies over __dedicated line__ to central office
     - an existing telephone line network was used to run to DSLAM (DSL access multiplier)
     - Data over DSL goes to Internet
     - Voice over DSL goes to telephone net
     - < 2.5 Mbps upstream transmission rate (typically < 1 Mbps)
     - < 24 Mbps downstream transmission rate (typically < 10 Mbps)
-  - Cable Networks
+  - __Cable Networks__
     - Data and TV are transmitted at different frequencies over __shared__ cable distribution network
       - many houses connect to CMTS(cable modem termination system)
       - HFC - hybrid fiber coax
@@ -94,20 +94,20 @@ End systems, access networks, links
       - Consists of a network of cable, fiber attaches homes to ISP router
         - homes _share access network_ to cable headend unlike DSL which has dedicated access to central office
   - Other networks include Home Networks and Enterprise Networks(large organizations such as Universities and companies)
-  - Wireless access networks
-    - Wireless LANS - typically within buildings. Uses 802.11b/g/n at 11/54/450 Mbps respectfully
-    - Wide Area wireless access - Provided by a telco, transmission consists between 1 and 10 Mbps using 3G, 4G:LTE, and 5G
+  - __Wireless access networks__
+      - _Wireless LANS_ - typically within buildings. Uses 802.11b/g/n at 11/54/450 Mbps respectfully
+      - _Wide Area wireless access_ - Provided by a telco, transmission consists between 1 and 10 Mbps using 3G, 4G:LTE, and 5G
 ### Sending Packets
-- Host sending function 
+- _Host sending function_
   - Takes an application message and breaks into smaller chunks know as _packets_ of length __L__ bits
   - Transmits packets onto access network at a transmission rate of __R__
     - transmission rate also known as bandwidth
-    - function below
+    - _function below_
 
 <img src="{{site.baseurl}}/assets/computer-networks/transmission-rate.png"  width="60%" height="30%">
 
 ### Physical media
-- Vocab
+- __Vocab__
   - bit - propagates between transmitter/receiver pairs
   - physical link - what lies between transmitter and receiver
   - guided media - signals propagate on a solid media like coax, copper, fiber, etc
@@ -115,14 +115,14 @@ End systems, access networks, links
   - twisted pair - insulated copper wires
     - Cat 5: 100Mbps - 1Gbps Ethernet
     - Cat 6: 10Gbps Ethernet
-- Physical Media Examples
-  - Coax - built with two concentric copper conductors
+- __Physical Media Examples__
+  - _Coax_ - built with two concentric copper conductors
     - bidirectional broadband - multiple channels on cable, HFC(Hybrid fiber coax)
-  - Fiber Optic Cable
+  - _Fiber Optic Cable_
     - glass fiber carrying light pulses, each pulse is a bit
       - high speeds in 10's to 100's Gbps
       - low error rate and immune to EMI
-  - Radio
+  - _Radio_
     - signal is carried on electromagnetic spectrum
       - signal is affected by environment however (reflection, obstruction, and interference)
         - terrestrial microwave - 45Mbps
@@ -132,13 +132,31 @@ End systems, access networks, links
 
 ### The network core
 Mesh of interconnected routers, hosts send data by breaking down application layer messages into packets. Packets are forwarded from one router to the next across links.
-- __Store and Forward__
+- __Packet Switching__
   - takes L/R seconds to transmit an L-bit packet onto link at R bps
     - L = 7.5 Mbits
     - R = 1.5 Mbps
     - one hop transmission delay = 5 sec
-  - Queueing delay and loss
-    - if arrival
+  - _Queueing delay and loss_
+    - if arrival rate (in bits) to link exceeds transmission rate of link for a period of time
+      - packets will __queue__ or wait to be transmitted on the link
+      - packets can be __dropped__ if memory buffer fills up
+  - _Routing_
+    - determines where to send packet based on the source's __destination__
+  - _Forwarding_
+    - move packets from router's input to appropriate output
+- __Circuit Switching__
+  - End to End resources are allocated to or reserved for a "call" between source and destination
+    - _Dedicated Resources_ - no sharing, circuit like guaranteed performance
+      - circuit is idle if not being used
+      - commonly used in traditional telephone networks
+  - ***Circuit Switching: FDM vs. TDM***
+    - _FDM_ - Frequency Division Multiplexing
+      - users are given a specific frequency on the media to operate within
+      - <img src="{{site.baseurl}}/assets/computer-networks/FDM.png"  width="60%" height="30%">
+    - _TDM_ - Time Division Multiplexing
+      - users are given a slice of time on a single frequency to operate
+      - <img src="{{site.baseurl}}/assets/computer-networks/TDM.png"  width="60%" height="30%">
 
 
 
