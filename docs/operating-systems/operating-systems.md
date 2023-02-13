@@ -9,9 +9,15 @@ permalink: /operating-systems
 ---
 
 
+# Operating Systems
+Fall 2022
+{:.no_toc}
 
-# Operating systems
--  Fall 2022
+## Table of contents
+{: .no_toc }
+
+1. TOC
+{:toc}
 
 
 ## Introduction
