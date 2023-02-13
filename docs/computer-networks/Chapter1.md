@@ -24,7 +24,7 @@ _What is the internet?_
       - RFC: Request for comments
   - Protocols - all communication activity in Internet is governed by protocols
     - protocols define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt 
-    - Internet protocol stack
+### Internet protocol stack OSI/TCP-IP
   
 | Layer | Description | Protocols
 | ------ | ------ | -----
@@ -43,7 +43,7 @@ _What is the internet?_
 | session | synchronization, checkpointing, recovery of data exchange
 
 
-## Encapsulation
+### Encapsulation
  <img src="{{site.baseurl}}/assets/computer-networks/encapsulation.png"  width="70%" height="30%">
   
 - Connecting to the Internet
@@ -79,14 +79,63 @@ _What is the internet?_
 # Lecture 2
 
 End systems, access networks, links
-- Access networks
-  - Digital Subscriber Line(DSL) - voice, data transmitted at different frequencies over dedicated line to central office
+### Access networks
+  - Digital Subscriber Line(DSL) - voice, data transmitted at different frequencies over __dedicated line__ to central office
     - an existing telephone line network was used to run to DSLAM (DSL access multiplier)
     - Data over DSL goes to Internet
     - Voice over DSL goes to telephone net
     - < 2.5 Mbps upstream transmission rate (typically < 1 Mbps)
     - < 24 Mbps downstream transmission rate (typically < 10 Mbps)
+  - Cable Networks
+    - Data and TV are transmitted at different frequencies over __shared__ cable distribution network
+      - many houses connect to CMTS(cable modem termination system)
+      - HFC - hybrid fiber coax
+        - asymmetric: up to 30 Mbps downstream transmission rate and 2 Mbps upstream transmission rate
+      - Consists of a network of cable, fiber attaches homes to ISP router
+        - homes _share access network_ to cable headend unlike DSL which has dedicated access to central office
+  - Other networks include Home Networks and Enterprise Networks(large organizations such as Universities and companies)
+  - Wireless access networks
+    - Wireless LANS - typically within buildings. Uses 802.11b/g/n at 11/54/450 Mbps respectfully
+    - Wide Area wireless access - Provided by a telco, transmission consists between 1 and 10 Mbps using 3G, 4G:LTE, and 5G
+### Sending Packets
+- Host sending function 
+  - Takes an application message and breaks into smaller chunks know as _packets_ of length __L__ bits
+  - Transmits packets onto access network at a transmission rate of __R__
+    - transmission rate also known as bandwidth
+    - function below
 
+<img src="{{site.baseurl}}/assets/computer-networks/transmission-rate.png"  width="60%" height="30%">
+
+### Physical media
+- Vocab
+  - bit - propagates between transmitter/receiver pairs
+  - physical link - what lies between transmitter and receiver
+  - guided media - signals propagate on a solid media like coax, copper, fiber, etc
+  - unguided media - signals propagate freely such as radio waves
+  - twisted pair - insulated copper wires
+    - Cat 5: 100Mbps - 1Gbps Ethernet
+    - Cat 6: 10Gbps Ethernet
+- Physical Media Examples
+  - Coax - built with two concentric copper conductors
+    - bidirectional broadband - multiple channels on cable, HFC(Hybrid fiber coax)
+  - Fiber Optic Cable
+    - glass fiber carrying light pulses, each pulse is a bit
+      - high speeds in 10's to 100's Gbps
+      - low error rate and immune to EMI
+  - Radio
+    - signal is carried on electromagnetic spectrum
+      - signal is affected by environment however (reflection, obstruction, and interference)
+        - terrestrial microwave - 45Mbps
+        - Wireless LAN - 54Mbps
+        - WAN - 10Mbps
+        - Satellite - Kbps to 45Mbps, 270 msec delay
+### The network core
+Mesh of interconnected routers, hosts send data by breaking down application layer messages into packets. Packets are forwarded from one router to the next across links.
+- __Store and Forward__
+  - takes L/R seconds to transmit an L-bit packet onto link at R bps
+    - L = 7.5 Mbits
+    - R = 1.5 Mbps
+    - one hop transmission delay = 5 sec
 
 
 
