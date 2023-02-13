@@ -7,14 +7,22 @@ nav_order: 1
 parent: Computer Networks
 permalink: /computer-networks/Chapter1
 ---
+# Chapter 1
+{: .no_toc }
 
-# Lecture 1
+## Table of contents
+{: .no_toc }
+
+1. TOC
+{:toc}
+
+## Lecture 1
 
 _What is the internet?_ 
 - The internet is a connected collection of computing devices 
     -  hosts(endpoint devices)
        -   running network apps
-  - Communication links
+  - _Communication links_
     - Fiber, copper, radio, satellite
     - transmission rate = bandwidth
   - The internet is a "Network of networks"
@@ -22,8 +30,9 @@ _What is the internet?_
     - Internet Standards
       - IETF: Internet Engineering Task Force
       - RFC: Request for comments
-  - Protocols - all communication activity in Internet is governed by protocols
-    - protocols define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt 
+  - _Protocols_ - all communication activity in Internet is governed by protocols
+    - protocols define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt
+
 ### Internet protocol stack OSI/TCP-IP
   
 | Layer | Description | Protocols
@@ -46,37 +55,37 @@ _What is the internet?_
 ### Encapsulation
  <img src="{{site.baseurl}}/assets/computer-networks/encapsulation.png"  width="70%" height="30%">
   
-- Connecting to the Internet
+- ***Connecting to the Internet***
   - connecting laptop needs to get its own IP address, address of first-hop router, address of DNS server: use DHCP
   - DHCP request encapsulated in UDP, encapsulated in IP, encapsulated in 802.3 Ethernet
   - Ethernet frame broadcast (dest: FF-FF-FF-FF-FF-FF) on LAN, received at router running DHCP server
   - Ethernet demuxed to IP demuxed, UDP demuxed to DHCP 
-- DHCP
+- ***DHCP***
   - DHCP server formulates DHCP ACK containing client’s IP address, IP address of first-hop router for client, name & IP address of DNS server
   - encapsulation at DHCP server, frame forwarded (switch learning) through LAN, demultiplexing at client
   - DHCP client receives DHCP ACK reply
-- ARP - before DNS,HTTP
+- ***ARP*** - before DNS,HTTP
   - before sending HTTP request, need IP address of www.google.com:  DNS
   - DNS query created, encapsulated in UDP, encapsulated in IP, encapsulated in Eth.  To send frame to router, need MAC address of router interface: ARP
   - ARP query broadcast, received by router, which replies with ARP reply giving MAC address of router interface
   - client now knows MAC address of first hop router, so can now send frame containing DNS query 
-- Using DNS
+- ***Using DNS***
   - IP datagram containing DNS query forwarded via LAN switch from client to 1st hop router
   - IP datagram forwarded from campus network into comcast network, routed (tables created by RIP, OSPF, IS-IS and/or BGP routing protocols) to DNS server
   - demux’ed to DNS server
   - DNS server replies to client with IP address of www.google.com 
-- TCP connection carrying HTTP
+- ***TCP connection carrying HTTP***
   - to send HTTP request, client first opens TCP socket to web server
   - TCP SYN segment (step 1 in 3-way handshake) inter-domain routed to web server
   - web server responds with TCP SYNACK (step 2 in 3-way handshake)
   - TCP connection established!
-- HTTP request/reply
+- ***HTTP request/reply***
   - _HTTP request_ sent into TCP socket
   - IP datagram containing HTTP request routed to www.google.com
   - web server responds with _HTTP reply_ (containing web page)
   - IP datagram containing HTTP reply routed back to client
 
-# Lecture 2
+## Lecture 2
 
 End systems, access networks, links
 ### Access networks
@@ -171,6 +180,10 @@ Today many ISP's exist. At the backbone are Tier 1 ISP's (AT&T, NTT, ), spanning
 
 <img src="{{site.baseurl}}/assets/computer-networks/ISP.png"  width="60%" height="40%">
 
+## Lecture 3
+
+### Delay, loss, and throughput
+Packets queue in router buffers when the packet arrival rate to the link exceeds output link capacity
 
 
 
