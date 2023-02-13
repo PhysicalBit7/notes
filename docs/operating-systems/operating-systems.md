@@ -38,7 +38,7 @@ An OS must provide **isolation**. A bug in one program shouldn't bring down the 
 Sometimes isolated programs need to communicate with each other. An OS provides mechanisms for **communication** between running programs.
 
 # Reference
-- __All credit to https://notes.eddyerburgh.me/operating-systems and his respective citations, this was an invaluable resource for me in Grad school.__
+- __All credit to [eddyerburgh](https://github.com/eddyerburgh/notes/tree/master/docs/operating-systems) and his respective citations, this was an invaluable resource for me in Grad school.__
 
 
 

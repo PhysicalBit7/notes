@@ -168,6 +168,7 @@ Mesh of interconnected routers, hosts send data by breaking down application lay
       - users are given a slice of time on a single frequency to operate
       - <img src="{{site.baseurl}}/assets/computer-networks/TDM.png"  width="60%" height="30%">
 
+
 ### Packet Switching vs. Circuit Switching
 - __Packet switching__ allows more users
   - also great for bursty data
@@ -175,7 +176,7 @@ Mesh of interconnected routers, hosts send data by breaking down application lay
     - protocols are needed for reliable data transfer and congestion control
 
 ### Internet Structure
-Today many ISP's exist. At the backbone are Tier 1 ISP's (AT&T, NTT, ), spanning across the country. Below them are regional ISP's connecting to Tier 1 ISP's through IXP(internet exchange point) and peering links
+Today many ISP's exist. At the backbone are Tier 1 ISP's (AT&T, NTT), spanning across the country. Below them are regional ISP's connecting to Tier 1 ISP's through IXP(internet exchange point) and peering links
 - At the center with Tier 1 ISP's reside Content Provider Networks (Google, Microsoft, etc.). They consist of a private network that connects its data centers to the Internet, often bypassing Tier 1 ISP's and regional ISP's
 
 <img src="{{site.baseurl}}/assets/computer-networks/ISP.png"  width="60%" height="40%">

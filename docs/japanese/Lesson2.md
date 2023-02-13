@@ -20,8 +20,11 @@ permalink: /japanese/Lesson2
       - _kono_ - "this"
       - _sono_ - "that"
       - _ano_ - "that" (over there)
+
     <img src="{{site.baseurl}}/assets/Japanese/grammer.png"  width="70%" height="30%">
+
     - __Summary__, it is okay to use the __re__ series for humans if you are referring to people that have appeared in an earlier passage, or if you are just pointing at a picture of a person.
+  
 2. ここ　/ そこ　/ あそこ　/ どこ
  - ko-so-a-do set
        1. _koko_ - here, near me
@@ -29,7 +32,8 @@ permalink: /japanese/Lesson2
        3. _asoko_ - over there
        4. _doko_ - where
 
-        <img src="{{site.baseurl}}/assets/Japanese/grammer2.png" >
+    <img src="{{site.baseurl}}/assets/Japanese/grammer2.png" >
+
 1. だれの noun
     - __dare__ can be used to say "who", to say "whose" you add the particle _no_
 2.  も　noun
@@ -38,9 +42,10 @@ permalink: /japanese/Lesson2
 3. じゃないです noun
     - To negate a statement of the form X _wa_ Y _desu_, where Y is a noun, you replace _desu_ with _ja nai desu_
     - _Ja nai desu_ is used mostly in spoken manner and is loose. The more formal replacement is _ja arimasen_. Used formally in writing is _de wa arimasen_
-        <img src="{{site.baseurl}}/assets/Japanese/grammer3.png"  width="70%" height="30%">
+  
+    <img src="{{site.baseurl}}/assets/Japanese/grammer3.png"  width="70%" height="30%">
 
-    --**Desu and ja nai must always be accompanied by a noun.**
+   - **Desu and ja nai must always be accompanied by a noun.**
 4. -ね　and -よ
     - Statements often end with tags ne or yo, depending on the way the speaker views the interaction with the listener. If you are seeking the listeners confirmation or agreement you add _-ne_.
     - If you want to tell the listener that you are fully confident of what you are saying and the listener had better believe it, use _-yo_.
