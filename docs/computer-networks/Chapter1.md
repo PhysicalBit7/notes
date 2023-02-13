@@ -97,6 +97,7 @@ End systems, access networks, links
   - __Wireless access networks__
       - _Wireless LANS_ - typically within buildings. Uses 802.11b/g/n at 11/54/450 Mbps respectfully
       - _Wide Area wireless access_ - Provided by a telco, transmission consists between 1 and 10 Mbps using 3G, 4G:LTE, and 5G
+
 ### Sending Packets
 - _Host sending function_
   - Takes an application message and breaks into smaller chunks know as _packets_ of length __L__ bits
@@ -132,7 +133,7 @@ End systems, access networks, links
 
 ### The network core
 Mesh of interconnected routers, hosts send data by breaking down application layer messages into packets. Packets are forwarded from one router to the next across links.
-- __Packet Switching__
+1. __Packet Switching__
   - takes L/R seconds to transmit an L-bit packet onto link at R bps
     - L = 7.5 Mbits
     - R = 1.5 Mbps
@@ -145,7 +146,7 @@ Mesh of interconnected routers, hosts send data by breaking down application lay
     - determines where to send packet based on the source's __destination__
   - _Forwarding_
     - move packets from router's input to appropriate output
-- __Circuit Switching__
+2. __Circuit Switching__
   - End to End resources are allocated to or reserved for a "call" between source and destination
     - _Dedicated Resources_ - no sharing, circuit like guaranteed performance
       - circuit is idle if not being used
@@ -157,6 +158,19 @@ Mesh of interconnected routers, hosts send data by breaking down application lay
     - _TDM_ - Time Division Multiplexing
       - users are given a slice of time on a single frequency to operate
       - <img src="{{site.baseurl}}/assets/computer-networks/TDM.png"  width="60%" height="30%">
+
+### Packet Switching vs. Circuit Switching
+- __Packet switching__ allows more users
+  - also great for bursty data
+  - however network congestion can occur: packet delay and loss
+    - protocols are needed for reliable data transfer and congestion control
+
+### Internet Structure
+Today many ISP's exist. At the backbone are Tier 1 ISP's (AT&T, NTT, ), spanning across the country. Below them are regional ISP's connecting to Tier 1 ISP's through IXP(internet exchange point) and peering links
+- At the center with Tier 1 ISP's reside Content Provider Networks (Google, Microsoft, etc.). They consist of a private network that connects its data centers to the Internet, often bypassing Tier 1 ISP's and regional ISP's
+
+<img src="{{site.baseurl}}/assets/computer-networks/ISP.png"  width="60%" height="40%">
+
 
 
 
