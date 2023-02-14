@@ -9,12 +9,21 @@ permalink: /ccna
 ---
 
 # CCNA Cheat Sheet
+CCNA Cheat Sheets, forked for studying purposes
+
+### Resources
 {: .no_toc}
+- [Credit Repo](https://github.com/grplyler/cisco-cheatsheet)
+- [Credit Repo 2](https://github.com/HerrSpace/CCNA-Cheat-Sheet)
+- [Anki Deck](https://ankiweb.net/shared/info/591991787)
+
+
 # Table of Contents
 
 <!-- MarkdownTOC lowercase_only_ascii="true" depth=3 autolink="true" bracket="round" -->
 
 - [CCNA Cheat Sheet](#ccna-cheat-sheet)
+		- [Resources](#resources)
 - [Table of Contents](#table-of-contents)
 	- [Configure basic Networking](#configure-basic-networking)
 		- [Troubleshoot basic Networking](#troubleshoot-basic-networking)

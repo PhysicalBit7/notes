@@ -10,7 +10,11 @@ permalink: /misc/bash
 
 # Bash Cheat Sheet
 {: .no_toc }
-A cheat sheet for bash commands.
+A cheat sheet for bash commands, forked for studying purposes.
+
+### Resources
+{: .no_toc}
+- [Credit Repo](https://github.com/RehanSaeed/Bash-Cheat-Sheet)
 
 ---
 

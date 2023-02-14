@@ -8,7 +8,22 @@ nav_order: 7
 permalink: /misc
 ---
 
-# Miscellaneous documents, links, or articles for future reference
+# Miscellaneous
+{: .no_toc}
+Documents, links, or articles for future reference
+
+---
+
+## Table of contents
+{: .no_toc }
+
+1. TOC
+{:toc}
+
+
+---
+## Python
+
 - [selenium-python](https://selenium-python.readthedocs.io/navigating.html)
 
 ---
