@@ -20,7 +20,7 @@ permalink: /oop/27_virtual_and_polymorphism
 
 ## Redefining Base Class Methods
 
-* A method is said to be _redefined_] in a derived class when it has the same name (and perhaps parameter list) as a method in the base class.
+* A method is said to be _redefined_ in a derived class when it has the same name (and perhaps parameter list) as a method in the base class.
   * This is not the same thing as _overloading_.
 
 * Base class objects use the base class method... derived class objects use the derived class method.
@@ -31,13 +31,13 @@ permalink: /oop/27_virtual_and_polymorphism
 
 Consider this situation:
 
-* Class .highlight-orange[`BaseClass`] defines methods `x()` and `y()`.<br />   `x()` calls `y()`. 
+* Class `BaseClass` defines methods `x()` and `y()`.<br />   `x()` calls `y()`. 
 
-* Class .highlight-blue[`DerivedClass`] inherits from .highlight-orange[`BaseClass`] and redefines method `y()`.
+* Class `DerivedClass` inherits from `BaseClass` and redefines method `y()`.
 
-* An object `D` of class .highlight-blue[`DerivedClass`] is created and method `x()` is called.
+* An object `D` of class `DerivedClass` is created and method `x()` is called.
 
-* When `x()` is called, which `y()` is used; the one defined in .highlight-orange[`BaseClass`] or the the redefined one in .highlight-blue[`DerivedClass`]?
+* When `x()` is called, which `y()` is used; the one defined in `BaseClass` or the the redefined one in `DerivedClass`?
 
 ---
 
@@ -79,22 +79,22 @@ int main() {
 
 Answer to the riddle:
 
-* The .highlight-orange[BASE] class’s `y()` method is called!
+* The BASE class’s `y()` method is called!
   
-  * This isn’t what you .highlight-red[_want_]...
-  *  but it should be what you .highlight[_expect_]...
+  * This isn’t what you _want_...
+  *  but it should be what you _expect_...
 
---
+---
 
 * From `x()` in the base class’s point-of-view (at compile time), the only available `y()` is its own.
 
---
+---
 
 * Compiler binds the method call in `x()` to the base class `y()` at compile time... Once it’s done, it’s done.
 
---
+---
 
-* This is called _static binding_]
+* This is called _static binding_
 
 ---
 
@@ -108,18 +108,17 @@ Answer to the riddle:
 
 ## Virtual Methods
 
-_**Virtual Method**_]: a method in a base class that _expects_ to be redefined in derived classes.
+_**Virtual Method**_: a method in a base class that _expects_ to be redefined in derived classes.
 
 * Defined with keyword   `    virtual   `
 ```cpp
 virtual void y();
 ```
-* Allows _dynamic binding_] – method name bound _at runtime_ to the corresponding code. ( as opposed to static binding )
+* Allows _dynamic binding_ – method name bound _at runtime_ to the corresponding code. ( as opposed to static binding )
     - Dynamic binding is based on the _type_ of the object actually initiating the call at runtime.
 
 ---
 
-<small style="font-size: 80%;">
 
 ```cpp
 #include <iostream>
@@ -149,32 +148,31 @@ int main() {
 }
 ```
 
-</small>
+
 
 ---
 
 ## Polymorphism
 
-A pointer of the .highlight-orange[base-class type] may be "pointed" to a .highlight-blue[derived class object].
+A pointer of the base-class type] may be "pointed" to a derived class object].
 
 * Remember the "is-a" relationship...
 
   * Base-class pointers can only access members defined in the base class.
   * This won’t work in reverse!
 
---
+---
 
 * When the base class uses dynamic binding... 
   * Base class pointer to derived class object behaves appropriately for the derived class.
   * This is called _polymorphism_].
 
---
+---
 
 * Polymorphism requires a pointer or reference.
 
 ---
 
-<small style="font-size: 75%;">
 
 ```cpp
 #include <iostream>
@@ -216,9 +214,9 @@ _**Overriding**_: refers to dynamically-bound methods.
 
 <br>
 
-* Redefined methods _**do not**_] exhibit polymorphic behavior
+* Redefined methods _**do not**_ exhibit polymorphic behavior
 
-* Overridden methods _**do**_] exhibit polymorphic behavior.
+* Overridden methods _**do**_ exhibit polymorphic behavior.
 
 ---
 
@@ -236,7 +234,7 @@ Whenever you think a derived class might want to override a method!
 
 ## Pure `virtual` Methods
 
-[_**Pure `virtual` method**_]: a method that is not implemented (at all) in the base class, and is thus _required_ to be overridden in derived classes.
+_**Pure `virtual` method**_: a method that is not implemented (at all) in the base class, and is thus _required_ to be overridden in derived classes.
 
 * Created by using "assignment"-style syntax:
 
@@ -250,7 +248,7 @@ virtual void y() = 0;
 
 ## Abstract Base Classes
 
-_**Abstract base class**_]: a base class that contains at least one pure virtual method.
+_**Abstract base class**_: a base class that contains at least one pure virtual method.
 
 * Useful for factoring out common behavior from a _family_ of objects.
   
@@ -290,7 +288,7 @@ public:                        | public:
 
 Notice the overlap - both classes need a `name` (and maybe other things as well).
 
-.blue[Good programming practice would say we should "factor out" the common code...]
+Good programming practice would say we should "factor out" the common code...
 
 ---
 
@@ -308,15 +306,15 @@ public:                        | public:
 };                             | };
 ```
 
-Now, we have the common code collected in a base class `Person`.  Good!]
+Now, we have the common code collected in a base class `Person`.  Good!
 
---
+---
 
 But what if we want to add graduate assistants (_GA's_)?
 
---
+---
 
-A GA is a student who also has some responsibilities similar to faculty.  .blue[Could we use multiple inheritance?]
+A GA is a student who also has some responsibilities similar to faculty.  Could we use multiple inheritance?
 
 ---
 
@@ -341,7 +339,7 @@ public:
 };
 ```
 
---
+---
 
 ```cpp
 int main() {
@@ -364,7 +362,7 @@ Then we changed it so that a `GA` inherited from both `Student` and `Faculty` (w
 
 ![:scale Person, Student, Faculty, 80%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/multiple_inheritance_diamond_of_death.svg)
 
---
+---
 
 Notice the "diamond" shape this created, with `Person` as a _common ancestor_ of both parent classes. 
 
@@ -372,9 +370,9 @@ Notice the "diamond" shape this created, with `Person` as a _common ancestor_ of
 
 Notice the "diamond" shape this created, with `Person` as a _common ancestor_ of both parent classes.  
 
-![:scale Person, Student, Faculty, 80%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/multiple_inheritance_diamond_of_death.svg)]
+![:scale Person, Student, Faculty, 80%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/multiple_inheritance_diamond_of_death.svg)
 
-This situation creates several challenges, and is known in programming circles as the Diamond of Death]].
+This situation creates several challenges, and is known in programming circles as the Diamond of Death.
 
 ---
 
@@ -486,10 +484,10 @@ int main() {
 }
 ```
 
-Ouch.]
+Ouch.
 
 ---
-### The solution: **Virtual Inheritance**].
+### The solution: **Virtual Inheritance**.
 
 ``` cpp
 class Person{
@@ -519,8 +517,8 @@ int main() {
 
 **Without `virtual` Inheritance:**
 
-![:scale Diamond Problem in a Physical Object, 33%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/ga_example_physical_object.svg)]
+![:scale Diamond Problem in a Physical Object, 33%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/ga_example_physical_object.svg)
 
 **With `virtual` Inheritance**
 
-![:scale Diamond Problem in a Physical Object, 33%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/ga_example_physical_object_virtual_inheritance.svg)]
+![:scale Diamond Problem in a Physical Object, 33%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/ga_example_physical_object_virtual_inheritance.svg)

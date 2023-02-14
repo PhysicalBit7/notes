@@ -43,9 +43,9 @@ Application areas:  Machine learning, data mining, financial analysis, artificia
 
 ## Example:  Determine letter grade given a score: C++
 
-.left-column[
 
-.center[ **Code** ]
+
+ **Code** 
 
 ```cpp
 // Assume `score` is an integer, 
@@ -65,12 +65,12 @@ else if( score >= 60 )
 else
     grade = 'F';
 ```
-]
-.right-column[
-.center[ **Decision Tree** ]
 
-.center[![A decision tree for a grading scale.]({{site.baseurl}}/assets/CS50pics/decision_trees/grading_scale_dt.svg)]
-]
+
+ **Decision Tree** 
+
+![A decision tree for a grading scale.]({{site.baseurl}}/assets/CS50pics/decision_trees/grading_scale_dt.svg)
+
 
 ---
 
@@ -78,15 +78,14 @@ else
 
 Notice that we could optimize the search tree a bit.  Here is an alternate version (and corresponding code):
 
-.left-column[
-.center[ **Decision Tree** ]
 
-.center[![A decision tree for a grading scale.]({{site.baseurl}}/assets/CS50pics/decision_trees/grading_scale_dt_optim.svg)]
-]
+ **Decision Tree** 
 
-.right-column[
+![A decision tree for a grading scale.]({{site.baseurl}}/assets/CS50pics/decision_trees/grading_scale_dt_optim.svg)
 
-.center[ **Code** ]
+
+
+ **Code** 
 
 ```cpp
 if( score >= 70 )
@@ -102,7 +101,6 @@ else if( score >= 60 )
 else
     grade = 'F';
 ```
-]
 
 ---
 
@@ -112,51 +110,47 @@ In the book, Drozdek uses the relationship between decision trees and search alg
 
 Here is "insertion sort" as one possible decision tree (sorting three values in variables `a`, `b`, and `c`):
 
-.center[![Insertion sort as a DT.]({{site.baseurl}}/assets/CS50pics/decision_trees/fig_9.4a.png)]
-
-.footnote[Ref: Drozdek, Figure 9.4]
+![Insertion sort as a DT.]({{site.baseurl}}/assets/CS50pics/decision_trees/fig_9.4a.png)
 
 ---
 
 ## How many leaves?
 
-In general for an array of $n$ elements, there are $n!$ possible orderings.
+In general for an array of __n__ elements, there are __n!__ possible orderings.
 
-That corresponds to _at least_ $n!$ leaf nodes in the decision tree! There could be more...]
+That corresponds to _at least_ __n!__ leaf nodes in the decision tree! There could be more...
 
 ---
 
 Here is a possible decision tree for "Bubble Sort":
 
-.center[![Bubble Sort as a DT.]({{site.baseurl}}/assets/CS50pics/decision_trees/fig_9.4b.png)]
-
-.footnote[Ref: Drozdek, Figure 9.4]
+![Bubble Sort as a DT.]({{site.baseurl}}/assets/CS50pics/decision_trees/fig_9.4b.png)
 
 ---
 
 Notice that there are some impossible states that must still be represented as leaf nodes.  (Well, we could optimize this decision tree to remove them, but if you insist on including every decision, there they are.)
 
-So, the total number of leaves in a decision tree representing a sort will be **at least** $n!$ (never less).
+So, the total number of leaves in a decision tree representing a sort will be **at least** __n!__ (never less).
 
 Given that, what is the _optimal_ height of the tree (which corresponds to the optimal sorting algorithm)?
 
---
+---
 
-We know that a complete binary tree with $k$ leaves contains $k-1$ interior nodes for a total of $2k-1$ nodes, and the height of a complete binary tree is $&#8968; lf(N)&#8969;$.  We can express that in terms of the leaves alone by saying a complete tree's height is $lg(k) + 1$, or in general (for non-complete but balanced trees) $&#8968; lg(k) + 1&#8969;$.
+We know that a complete binary tree with __k__ leaves contains __k-1__ interior nodes for a total of __2k-1__ nodes, and the height of a complete binary tree is __&#8968; lf(N)&#8969;__.  We can express that in terms of the leaves alone by saying a complete tree's height is __lg(k) + 1__, or in general (for non-complete but balanced trees) __&#8968; lg(k) + 1&#8969;__.
 
 ---
 
-We know that a complete binary tree with $k$ leaves contains $k-1$ interior nodes for a total of $2k-1$ nodes, and the height of a complete binary tree is $&#8968; lf(N)&#8969;$.  We can express that in terms of the leaves alone by saying a complete tree's height is $lg(k) + 1$, or in general (for non-complete but balanced trees) $&#8968; lg(k) + 1&#8969;$.
+We know that a complete binary tree with __k__ leaves contains __k-1__ interior nodes for a total of __2k-1__ nodes, and the height of a complete binary tree is __&#8968; lf(N)&#8969;__.  We can express that in terms of the leaves alone by saying a complete tree's height is __lg(k) + 1__, or in general (for non-complete but balanced trees) __&#8968; lg(k) + 1&#8969;__.
 
-So what is the height of an decision tree representing an optimal search?  There are $k = n!$ leaves (at least), so it will be at least $lg(n!)$ ... But what is the log of $n!$?
-
---
-
-The log of $n!$ turns out to be $O(n \lg(n))$..ref[1]
-
-.footnote[[1]: See Drozdek, Appendix A, section A.2 <br>Related: https://en.m.wikipedia.org/wiki/Stirling%27s_approximation]
+So what is the height of an decision tree representing an optimal search?  There are __k = n!__ leaves (at least), so it will be at least __lg(n!)__ ... But what is the log of __n!__?
 
 --
 
-So, the best sorting algorithm we could possibly hope for would be $O(n \lg(n))$.
+The log of __n!__ turns out to be __O(n \lg(n))__.
+
+Related: https://en.m.wikipedia.org/wiki/Stirling%27s_approximation]
+
+---
+
+So, the best sorting algorithm we could possibly hope for would be __O(n / lg(n))__.
 

@@ -51,7 +51,7 @@ Numeric times10(Numeric num){
 
 ---
 
-## Function Template Notes
+### Function Template Notes
 
 * Multiple type parameters can be defined.
     - All type parameters specified in template prefix must be used in the definition.
@@ -84,7 +84,7 @@ void add(ValueType v1, ValueType v2, ValueType v3);
 
 ---
 
-## Function Template Notes
+### Function Template Notes
 
 * A function template is just a pattern:  No actual code is generated until the function is called.
     - A function template uses no memory.
@@ -140,7 +140,7 @@ GradeType Grade<GradeType>::getGrade() const {
 
 ---
 
-## Class Template Notes
+### Class Template Notes
 
 * All references to the class as a type must include the type argument list.
     - When declaring/instantiating objects
@@ -158,7 +158,7 @@ Remember that templates provide a _pattern_ from which the compiler will generat
 
 ---
 
-## Example
+### Example
 
 A linked list node just joins a "payload" value to a pointer to the next node...  We don't really care about what _type_ the payload is...
 

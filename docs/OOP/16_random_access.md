@@ -187,7 +187,7 @@ Every record in a (simple) random-access file needs to be the same _size_ (in by
 
 * Avoid using any attributes that are pointers.
 * Avoid using any attribute type that is not _trivially copyable_:
-    * http://en.cppreference.com/w/cpp/types/is_trivially_copyable 
+    * [CPP Reference](http://en.cppreference.com/w/cpp/types/is_trivially_copyable)
 
 ```cpp
 #include <iostream>
@@ -201,7 +201,7 @@ std::cout << std::is_trivially_copyable<A>::value << '\n';
 
 ---
 
-.small-60[
+
 
 ```cpp
 #include <iostream>
@@ -248,7 +248,7 @@ int main(){
     return 0;
 }
 ```
-]
+
 
 ---
 

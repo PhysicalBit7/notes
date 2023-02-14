@@ -20,7 +20,7 @@ permalink: /oop/22_Operator_Overloading
 
 ## Operators as Functions
 
-.small-90[
+
 
 Operators in C++ are actually just symbolic shorthand for function calls.
 
@@ -46,7 +46,7 @@ The entire expression could be written as:
 ``` cpp
 operator= ( operator*( operator*( pi, r ), r ));
 ```
-]
+
 
 ---
 

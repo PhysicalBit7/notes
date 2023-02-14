@@ -123,7 +123,7 @@ std::cin.getline(name, SIZE);
 
 ## C-String Functions
 
-.small-90[
+
 The `<cstring>` header file contains functions that are useful for dealing with c-style strings:
 
         Function                    Description 
@@ -147,7 +147,7 @@ The `<cstring>` header file contains functions that are useful for dealing with 
                                     characters from `src` to end 
                                     of `dst`, plus the 
                                     null-terminator  
-]
+
 
 ---
 
@@ -294,7 +294,7 @@ std::cout << destination << "\n";  // what prints?
 <!-- .slide: data-background="aliceblue" -->
 ### Example: `strncat()`
 
-<small style="font-size: 90%;">
+
 
 ```cpp
 const int DESTMAX   = 16;
@@ -318,7 +318,7 @@ strncat(destination, river, remaining);
 std::cout << destination << "\n";  // What prints?
 ```
 
-</small>
+
 
 ---
 

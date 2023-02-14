@@ -28,7 +28,7 @@ We will look at (or review) the following "simple" sorting algorithms:
 
 ---
 
-class: algorithm
+
 
 ### Bubble Sort
 
@@ -51,16 +51,16 @@ Let __N__ represent the size of the array.
   * The inner loop (without any optimizations) will run __N-1__ times.
 
 --
-       Thus, there will be at most __(N-1) *\times* (N-1) ~= N^2__ swaps.
+       Thus, there will be at most __(N-1) * (N-1) ~= N^2__ swaps.
 
-**Overall complexity:  __O(N^2)__**
+**Overall complexity:  O(N^2)**
 
 Note: The inner loop can be optimized to run one less comparison for each iteration of the outer loop.  This doesn't change the overall complexity though.  The _outer_ loop contains an "early-out" option in case the array is determined to be sorted at any step, so it is possible the outer loop could run only once (if the array were already sorted).   This, in the best case, you can get linear time __O(N)__ performance.  This early-out option can be useful if there is a pre-processing step that often leaves the array either sorted or nearly-sorted.  **_Know your data._**]
 
 
 ---
 
-class: algorithm
+
 
 ### Selection Sort
 
@@ -83,15 +83,16 @@ Let __N__ represent the size of the array.
 * The outer loop in will run at most __N-1__ times.
   * The inner loop runs one fewer times each time the outer loop iterates.  So, the inner loop's total iterations is the series  __{ N-1, N-2, ... , 2, 1 }__
 
---
-      * Thus, there will be about __{m(m+1)}/{2}__ swaps, where __m=(N-1)__.  Getting rid of the constant factors, we can see that the largest contribution is approximated by __N^2__.
+---
 
-**Overall complexity:  __O(N^2)__**
+Thus, there will be about __{m(m+1)}/{2}__ swaps, where __m=(N-1)__.  Getting rid of the constant factors, we can see that the largest contribution is approximated by __N^2__.
+
+**Overall complexity:  O(N^2)**
 
 
 ---
 
-class: algorithm
+
 
 ### Insertion Sort
 
@@ -101,7 +102,7 @@ class: algorithm
 > 		    `data[i]` right by one position;
 > 	    place `data[i]` in its proper position;
 
---
+---
 
 More specifically
 
@@ -146,7 +147,7 @@ Now, let's consider the following more efficient sorting algorithms:
 
 ---
 
-class: algorithm
+
 
 ### Heap Sort
 
@@ -166,7 +167,7 @@ Expanding the `heap_remove` function inline, we get:
 
 ---
 
-class: algorithm
+
 
 #### Make Max-Heap algorithm:
 
@@ -180,7 +181,7 @@ class: algorithm
 
 ---
 
-class: algorithm
+
 
 #### Sift-down algorithm
 
@@ -200,12 +201,12 @@ Let __N__ represent the size of the array.
 
 * The bottom-up make heap algorithm has __O(N)__ asymtotic complexity.
 * The loop runs __N-1__ times.
-  * for each iteration of the loop, the _heap remove_ algorithm needs to perform a swap and a _sift-down_.  The complexity of _sift-down_ is __O(lf(N))__.
+  * for each iteration of the loop, the _heap remove_ algorithm needs to perform a swap and a _sift-down_.  The complexity of _sift-down_ is __O(lg(N))__.
 
---
-     * Thus, overall complexity is __O(N) + N * lf(N)__ steps, which is dominated by the __N* lf(N)__ term.
 
-**Overall complexity:  __O(N* lf(N))__**
+ * Thus, overall complexity is __O(N) + N * lg(N)__ steps, which is dominated by the __N* lg(N)__ term.
+
+**Overall complexity:  __O(N* lg(N))__**
 
 ---
 
@@ -219,7 +220,7 @@ Takes advantage of divide-and-conquer, and the fact that sorting fewer elements 
 
 ---
 
-class: algorithm
+
 
 #### Merge Sort Algorithm
 
@@ -242,7 +243,7 @@ class: algorithm
 
 ---
 
-class: algorithm
+
 
 #### Merge algorithm
 
@@ -301,7 +302,7 @@ Although in practice we often aren't merging the _whole array_ - we are merging 
 
 If we split an array of __N__ items in "half" - how many times can we do this?  How many times can you divide an integer by 2 (integer arithmetic) before it becomes 1?
 
---
+---
 
 This is the base-2 logarithm.  You can split an array of __N__ elements in half __lf(N)__ times before it becomes trivially small.
 
@@ -337,7 +338,7 @@ The left and right sub-arrays are then sorted recursively.
 
 ---
 
-class: algorithm
+
 
 #### Algorithm
 
@@ -351,7 +352,7 @@ class: algorithm
 
 ---
 
-class: algorithm
+
 
 #### Algorithm (more detailed)
 
@@ -370,7 +371,7 @@ class: algorithm
 
 ---
 
-class: algorithm
+
 
 #### In-place Partitioning
 
@@ -388,21 +389,21 @@ class: algorithm
 >    return split_index;
 
 
-There are other correct ways to write the in-place partitioning algorithm.  The Drozdek book uses a method in which markers move from both ends of the array toward the middle, swapping elements when they are found to be in the wrong order relative to each other and the pivot.  .blue[Choose the method that you understand best!]
+There are other correct ways to write the in-place partitioning algorithm.  The Drozdek book uses a method in which markers move from both ends of the array toward the middle, swapping elements when they are found to be in the wrong order relative to each other and the pivot.  Choose the method that you understand best!
 
 
 ---
 
 **In-place Partitioning**]
 
-![:height Partitioning, 20em]({{site.baseurl}}/assets/CS50pics/Quicksort/partitioning.svg)]
+![:height Partitioning, 20em]({{site.baseurl}}/assets/CS50pics/Quicksort/partitioning.svg)
 
 This figure shows the first element being chosen for _pivot_ for simplicity.  We will see in later slides that this might not be a good choice.
 
 
 ---
 
-class: algorithm
+
 
 #### In-place Quicksort (detailed with comments)
 
@@ -458,7 +459,7 @@ The partition step needs to perform well, and that depends mostly on the choice 
 
 ---
 
-class: algorithm
+
 
 ### Radix Sort
 
@@ -469,7 +470,7 @@ class: algorithm
 
 ---
 
-The idea is to maintain 10 "piles" (for base-10 numbers, use __k__ piles for base-__k__).
+The idea is to maintain 10 "piles" (for base-10 numbers, use __k__ piles for base - __k__).
 
 Each "pile" is usually implemented as a _queue_.
 
@@ -484,7 +485,7 @@ So, this algorithm requires an _array of piles_ as a secondary data structure to
 
 ---
 
-class: algorithm
+
 
 #### Radix Sort - More precise algorithm
 
@@ -516,7 +517,7 @@ Let __N__ represent the size of the array.
     * The second inner loop runs `radix` times (we can also assume this is a very small number, so assume __O(1)__ (constant time)).
         * The loop inside the second inner loop runs an unknown number of times, but it must necessarily be less than __N__ (worst case is all elements are in the same pile).
 
-So, radix sort's complexity is __O( N * d )__.   Assuming __d << N__, performance characteristics approach constant time as __N -> _infty___.]
+So, radix sort's complexity is __O( N * d )__.   Assuming __d << N__, performance characteristics approach constant time as __N -> _inf___.]
 
 **Overall complexity:  __O(N * d )__**
 

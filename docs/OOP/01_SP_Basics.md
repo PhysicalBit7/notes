@@ -126,14 +126,14 @@ int main()
 ``` cpp
     std::cout << "Hello, World\n";
 ```
-.small-95[
+
 * This _statement_ sends the words "Hello, World" to the screen.
 * `std::cout` is the name of the _standard output_ _stream_
     - A _stream_ is a one-way flow of data from the point of view of the program.
 * `<<` is the _stream insertion operator_, used to place things into a stream.
 * `"Hello, World!\n"` is a _string literal_; a _string_ is just a collection of characters that are treated as a single unit.
     - String literals are always surrounded by double-quotes.
-]
+
 
 * **_literal_**: A literal is a value that is typed directly into the source code, in a representation that the programming language recognizes as a value of a recognized type.  Literal values must be formatted according to the syntax rules of the language.
 
@@ -145,7 +145,7 @@ int main()
     std::cout << "Hello, World\n";
 ```
 
-<small>We often want to include _control characters_ in our string literals, but we don't have the ability to type these in directly.  C++ allows the use of _escape characters_ for this purpose.</small>
+<small>We often want to include _control characters_ in our string literals, but we don't have the ability to type these in directly.  C++ allows the use of _escape characters_ for this purpose.
 
 * __escape character__ - any character combination beginning with "`\`", used to represent a character that cannot otherwise be represented in a string literal.
 
@@ -160,7 +160,6 @@ __Examples:__
      \\      allows a backslash in a string literal
      \r      carriage-return (used in Windows line endings: "\r\n")
 
-]
 
 ---
 ### Program Parts

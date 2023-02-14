@@ -113,8 +113,8 @@ How do you choose between Binary Search and Linear Search?
 
 ## Search Summary
 
-* Linear search is slow ( $O(n)$ ), but does not require ordered values.
-* Binary search is fast ( $O(log_2(n))$ ), but requires that the array is ordered.
+* Linear search is slow ( __O(n)__ ), but does not require ordered values.
+* Binary search is fast ( __O(log_2(n))__ ), but requires that the array is ordered.
 
 ---
 
@@ -181,12 +181,12 @@ To get an array `A` into ascending order:
 
 **Searching**
 
-* Linear search: slow ( $O(n)$ ), no ordering required.
-* Binary search: fast ( $O(log_2(n))$ ), requires ordered data.
+* Linear search: slow  __O(n)__ , no ordering required.
+* Binary search: fast  __O(log&#8322;(n))__ , requires ordered data.
 
 **Sorting**
 
-* Bubble Sort and Selection sort are _very_ slow ( $O(n^2)$ ).
+* Bubble Sort and Selection sort are _very_ slow  __O(n&#178;)__ .
     - Result: A trade-off when choosing a search algorithm:
         - Search often and need performance? Sort the data, Binary search.
         - Search rarely or can't afford delay to sort? Linear search.

@@ -93,17 +93,17 @@ Elements are identified by an integer _index_, starting from 0.
 
 ## Initial Values
 
-.small-80[Array elements start out _uninitialized_ if their base types do (primitive types, for example).]
+Array elements start out _uninitialized_ if their base types do (primitive types, for example).
 
 ![Array elements are uninitialized.]({{site.baseurl}}/assets/CS50pics/shared/integer_array_uninitialized.svg)
 
-.small-80[
+
 Use the element's _index number_ and _array index syntax_ to access individual elements:
 
 ``` cpp
 tests[0] = 88;
 ```
-]
+
 ![Array with first value initialized.]({{site.baseurl}}/assets/CS50pics/shared/integer_array_first_element_initialized.svg)
 
 ---

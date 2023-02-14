@@ -35,7 +35,7 @@ But what if the value you are searching for is at (or near) the "front" of the l
 
 **Re-organize** the values over time!
 
-[Self-Organizing Lists] change the order of the values they contain so the values that are deemed more likely to be searched will appear nearer to the beginning of the list.
+__[Self-Organizing Lists]__ change the order of the values they contain so the values that are deemed more likely to be searched will appear nearer to the beginning of the list.
 
 There are different ways to re-organize the list according to which values are searched for (and located).  Here are the most common four:
 
@@ -49,19 +49,19 @@ There are different ways to re-organize the list according to which values are s
 
 ---
 
-1. [Move-to-front method].  Each time an element is located, it is immediately moved to the front of the list.
+1. __[Move-to-front method]__.  Each time an element is located, it is immediately moved to the front of the list.
 
---
 
-2. [Transpose method].  Each time an element is located, it is swapped with its immediate predecessor in the list (unless it is already at the front).
 
---
+2. __[Transpose method]__.  Each time an element is located, it is swapped with its immediate predecessor in the list (unless it is already at the front).
 
-3. [Count method].  A _count_ is stored in each node, indicating the number of times the node has been targeted by a search.  The list is maintained in order by decreasing count; nodes are re-ordered after each successful search, which may require swapping the located node "forward" 1 or more times.
 
---
 
-4. [Ordering method].  Order the list according to a criteria natural for the information being represented, so that values more likely to be searched would be stored nearer to the "front" of the list.
+3. __[Count method]__.  A _count_ is stored in each node, indicating the number of times the node has been targeted by a search.  The list is maintained in order by decreasing count; nodes are re-ordered after each successful search, which may require swapping the located node "forward" 1 or more times.
+
+
+
+4. __[Ordering method]__.  Order the list according to a criteria natural for the information being represented, so that values more likely to be searched would be stored nearer to the "front" of the list.
 
 ---
 

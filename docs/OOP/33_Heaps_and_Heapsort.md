@@ -23,10 +23,10 @@ permalink: /oop/33_Heaps_And_Heapsort
 
 A heap] is a kind of (usually binary) tree.  They normally come in two varieties:
 
-* Min-Heaps] always maintain the smallest value at the root.
-* Max-Heaps] always maintain the largest value at the root.
+* Min-Heaps always maintain the smallest value at the root.
+* Max-Heaps always maintain the largest value at the root.
 
---
+---
 <br/><br/><br/>
 _There is also a more exotic heap called a "min-max-heap]" that allows you
 to find the smallest and largest values in constant time, but we won't consider
@@ -53,9 +53,9 @@ The heap property], for any node in a tree, states:
 
 * A node with no children satisfies the heap property.
 * A node with one or more children satisfies the heap property if and only if: 
-    *  (for a _min-heap_) The subtree rooted at node $R$ is a min-heap if each of $R$'s child subtrees are min-heaps and the values of each of $R$'s direct descendants (if they exist) are greater than or equal to the value at $R$. 
+    *  (for a _min-heap_) The subtree rooted at node __R__ is a min-heap if each of __R__'s child subtrees are min-heaps and the values of each of __R__'s direct descendants (if they exist) are greater than or equal to the value at __R__. 
     
-    *  (for a _max-heap_) The subtree rooted at node $R$ is a max-heap if each of $R$'s child subtrees are max-heaps and the values of each of $R$'s direct descendants (if they exist) are less than or equal to the value at $R$. 
+    *  (for a _max-heap_) The subtree rooted at node __R__ is a max-heap if each of __R__'s child subtrees are max-heaps and the values of each of __R__'s direct descendants (if they exist) are less than or equal to the value at __R__. 
 
 
 ---
@@ -63,14 +63,14 @@ The heap property], for any node in a tree, states:
 
 ## Binary Max Heap
 
-![:scale Complete Binary Max Heap, 80%]({{site.baseurl}}/assets/CS50pics/HeapSort/complete_binary_max_heap.png)]
+![:scale Complete Binary Max Heap, 80%]({{site.baseurl}}/assets/CS50pics/HeapSort/complete_binary_max_heap.png)
 
 ---
 
 
 ## Binary Min Heap
 
-![:scale Complete Binary Min Heap, 80%]({{site.baseurl}}/assets/CS50pics/HeapSort/incomplete_binary_min_heap.png)]
+![:scale Complete Binary Min Heap, 80%]({{site.baseurl}}/assets/CS50pics/HeapSort/incomplete_binary_min_heap.png)
 
 ---
 
@@ -79,11 +79,11 @@ The heap property], for any node in a tree, states:
 
 It is convention (not strictly a requirement) that heaps "fill in" at the leaf level from left-to-right, as shown in the image below.
 
-+ All leaves are on the tree at level $h$ or $h-1$ where $h$ is the tree height.
++ All leaves are on the tree at level __h__ or __h-1__ where __h__ is the tree height.
 + The tree is balanced.
-+ Leaves are added at level $h$ from left-to-right.
++ Leaves are added at level __h__ from left-to-right.
 
-![:height Complete Binary Max Heap, 10em]({{site.baseurl}}/assets/CS50pics/HeapSort/complete_binary_max_heap.png)]
+![:height Complete Binary Max Heap, 10em]({{site.baseurl}}/assets/CS50pics/HeapSort/complete_binary_max_heap.png)
 
 ---
 
@@ -91,9 +91,9 @@ It is convention (not strictly a requirement) that heaps "fill in" at the leaf l
 
 It is convention (not strictly a requirement) that heaps "fill in" at the leaf level from left-to-right, as shown in the image below.
 
-+ All leaves are on the tree at level $h$ or $h-1$ where $h$ is the tree height.
++ All leaves are on the tree at level __h__ or __h-1__ where __h__ is the tree height.
 + The tree is balanced.
-+ Leaves are added at level $h$ from left-to-right.
++ Leaves are added at level __h__ from left-to-right.
 
 <table><tr>
 <td>![Complete Binary Max Heap, 100%]({{site.baseurl}}/assets/CS50pics/HeapSort/complete_binary_max_heap.png)</td>
@@ -106,9 +106,9 @@ It is convention (not strictly a requirement) that heaps "fill in" at the leaf l
 
 This allows us to make an easy representation of a heap in an array, by applying the following rules:
 
-- The first item in the array (index $0$) is the root.
-- An item at any index $i$ can find its left-child at index $2i+1$ and its right-child at index $2i+2$.
-    - By inverse relation, the parent of any node is at index $(i-1)/2$ using integer division.
+- The first item in the array (index __0__) is the root.
+- An item at any index __i__ can find its left-child at index __2i+1__ and its right-child at index __2i+2__.
+    - By inverse relation, the parent of any node is at index __(i-1)/2__ using integer division.
 
 ![:scale Max Heap in Array, 80%]({{site.baseurl}}/assets/CS50pics/HeapSort/heap_in_array_both_views.svg)
 
@@ -180,7 +180,7 @@ If an array can be represented as a tree, then it should be possible to convert 
 
 ## Uses for Heaps
 
-- Priorty Queue
+- Priority Queue
     + More space-efficient VS a linked-list Pri. Queue.
 - As the underlying data structure for _Heapsort_.
 
@@ -201,23 +201,23 @@ If an array can be represented as a tree, then it should be possible to convert 
 
 ## Heapsort Complexity
 
-- _Heapify_ (bottom-up) takes $O(n)$ steps.
-    + (top-down) takes $O(n\lg(n))$ steps.
+- _Heapify_ (bottom-up) takes __O(n)__ steps.
+    + (top-down) takes __O(nlg(n))__ steps.
 - Each "pass" yields 1 value in the right place.
-- $n$ passes are required to sort all items.
-- _Sift-Down_ takes $O(\lg(n))$ steps.
+- __n__ passes are required to sort all items.
+- _Sift-Down_ takes __O(lg(n))__ steps.
 
 ---
 
 ## Heapsort Complexity
 
-- _Heapify_ (bottom-up) takes $O(n)$ steps.
-    + (top-down) takes $O(n\lg(n))$ steps.
+- _Heapify_ (bottom-up) takes __O(n)__ steps.
+    + (top-down) takes __O(nlg(n))__ steps.
         * (done once) 
 - Each "pass" yields 1 value in the right place.
-- $n$ passes are required to sort all items.
-- _Sift-Down_ takes $O(\lg(n))$ steps. <br /><br />
-- Overall:  $O(n\lg(n))$
+- __n__ passes are required to sort all items.
+- _Sift-Down_ takes __O(lg(n))__ steps. <br /><br />
+- Overall:  __O(nlg(n))__
 
 
 

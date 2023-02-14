@@ -47,11 +47,10 @@ _What if we could do some kind of non-sequential search on a linked list?_
 A special kind of linked list that allows just such a search is called a  _skip list_ .
 
 ---
-layout: true
+
 
 ## Skip List
 
----
 
 By making different nodes hold different numbers of pointers, you can search non-sequentially:
 
@@ -68,7 +67,7 @@ By making different nodes hold different numbers of pointers, you can search non
 
 ---
 
-The “level” of a node refers to the number of pointers it has.  The highest level is given by  __\lg(n) + 1__ (1-indexed), or __\lg(n)__ (0-indexed).
+The “level” of a node refers to the number of pointers it has.  The highest level is given by  __lg(n) + 1__ (1-indexed), or __lg(n)__ (0-indexed).
 
 ![:scale Skip List Levels, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists2.png)
 
@@ -130,7 +129,7 @@ Space: ?
 
 ### Skip List Efficiency
 
-Searching: __O(\log_2(n))__
+Searching: __O(log_2(n))__
 
 Insert (random): ?
 
@@ -142,9 +141,9 @@ Space: ?
 
 ### Skip List Efficiency
 
-Searching: __O(\log_2(n))__
+Searching: __O(log_2(n))__
 
-Insert (random): __O(\log_2(n))__ 
+Insert (random): __O(log_2(n))__ 
 
 Space: ?
 
@@ -154,11 +153,11 @@ Space: ?
 
 ### Skip List Efficiency
 
-Searching:  __O(\log_2(n))__ 
+Searching:  __O(log_2(n))__ 
 
-Insert (random): __O(\log_2(n))__ 
+Insert (random): __O(log_2(n))__ 
 
-Space:  __O(n * \log_2(n))__
+Space:  __O(n * log_2(n))__
 
 ![:scale Imperfect Skip List, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists3.png)
 

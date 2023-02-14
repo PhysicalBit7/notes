@@ -20,13 +20,13 @@ permalink: /oop/34_Multiway_Trees
 
 ## Definition
 
-* A multiway tree of order $m$ is a generalized tree in which each node may have up to $m$ children (each of which may also be trees).
+* A multiway tree of order __m__ is a generalized tree in which each node may have up to __m__ children (each of which may also be trees).
 
-* A multiway search tree of order $m$ is a multiway tree in which:
-    - Each node has $m$ children and $m-1$ keys.
+* A multiway search tree of order __m__ is a multiway tree in which:
+    - Each node has __m__ children and __m-1__ keys.
     - The keys in each node are in ascending order
-    - The keys in the first $i$ children are less than the $i$th key.
-    - The keys in the last $m-i$ children are greater than the $i$th key.
+    - The keys in the first __i__ children are less than the __i__ th key.
+    - The keys in the last __m-i__ children are greater than the __i__ th key.
 
 ---
 
@@ -41,11 +41,11 @@ permalink: /oop/34_Multiway_Trees
 ## B-Trees
 
 * In a B-Tree], the node size is designed the same as a disk block.
-* B-Trees (of order $m$) follow these rules:
+* B-Trees (of order __m__) follow these rules:
     - The root has at least two subtrees unless it is a leaf.
-    - Each non-root and non-leaf node holds $k-1$ keys and $k$ pointers to subtrees where $k$ is between `ceil(m/2)` and $m$.
-    - Each leaf node holds $k-1$ keys where $k$ is between 
-    `ceil(m/2)` and $m$.
+    - Each non-root and non-leaf node holds __k-1__ keys and __k__ pointers to subtrees where __k__ is between `ceil(m/2)` and __m__.
+    - Each leaf node holds __k-1__ keys where __k__ is between 
+    `ceil(m/2)` and __m__.
     - All leaves are on the same level.
 
 ---
@@ -54,7 +54,7 @@ permalink: /oop/34_Multiway_Trees
 
 Example of a B-tree of order 5:
 
-![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree.png)]
+![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree.png)
 
 
 
@@ -100,7 +100,7 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 ---
 
-## Insert key into a B-Tree : Example
+### Insert key into a B-Tree : Example
 
 ![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_insert_fig_7.8_a-c.png)
 
@@ -108,7 +108,7 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 ---
 
-## Insert key into a B-Tree : Example
+### Insert key into a B-Tree : Example
 
 ![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_insert_fig_7.8_d-e.png)
 
@@ -116,7 +116,7 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 ---
 
-## Insert key into a B-Tree : Example
+### Insert key into a B-Tree : Example
 
 ![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_insert_fig_7.8_f.png)
 
@@ -149,28 +149,25 @@ _Could cause problems with the organization of the tree, so it is avoided by red
 
 ---
 
-## Delete key from a B-Tree : Example
+### Delete key from a B-Tree : Example
 
 ![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_delete_fig_7.9_a-b.png)
 
-.footnote[Drozdek Figure 7.9]
-
+Drozdek Figure 7.9]
 ---
 
-## Delete key from a B-Tree : Example
+### Delete key from a B-Tree : Example
 
 ![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_delete_fig_7.9_c-d.png)
 
-.footnote[Drozdek Figure 7.9]
-
+Drozdek Figure 7.9]
 ---
 
-## Delete key from a B-Tree : Example
+### Delete key from a B-Tree : Example
 
 ![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_delete_fig_7.9_e-f.png)
 
-.footnote[Drozdek Figure 7.9]
-
+Drozdek Figure 7.9]
 ---
 
 
@@ -204,7 +201,7 @@ _Could cause problems with the organization of the tree, so it is avoided by red
 
 ![:scale 2-3-4 vs. Red-Black Trees, 80%]({{site.baseurl}}/assets/CS50pics/multiway_trees/2-3-4_red-black_h-v_trees.svg)
 
-.footnote[Drozdek Figure 7.23]
+Drozdek Figure 7.23
 
 ---
 
@@ -213,7 +210,7 @@ _Could cause problems with the organization of the tree, so it is avoided by red
 ![:scale Complete 2-3-4 vs. Red-Black Trees, 75%]({{site.baseurl}}/assets/CS50pics/multiway_trees/2-3-4_red-black_h-v_trees_complete.svg)
 
 
-.footnote[Drozdek Figure 7.23]
+Drozdek Figure 7.23
 
 ---
 

@@ -153,7 +153,7 @@ for(vector<string>::size_type i=0;  // size type is unsigned
 
 <!-- .slide: data-transition="linear", data-background="aliceblue" -->
 
-<small style="font-size: 90%;">
+
 
 ### `std::vector` Example 2
     
@@ -174,7 +174,7 @@ for(auto it = v.begin();            // iterator
 }                                   // print the value
 ```
 
-</small>
+
 
 * Think of an iterator as an arrow pointing to a value in the container.
 * The _dereference operator_ (`*`) is used to "follow the arrow" to get the value an iterator is pointing to.

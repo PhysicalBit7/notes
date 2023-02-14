@@ -54,7 +54,7 @@ When can this be a problem???  (Let's look at a similar case...)
 
 ---
 
-## Memberwise Assignment in Initialization
+### Memberwise Assignment in Initialization
 
 What happens when you do:
 
@@ -65,7 +65,7 @@ Rectangle r2 = r1;  // what happens here?
 
 ---
 
-## Memberwise Assignment in Initialization
+### Memberwise Assignment in Initialization
 
 What happens when you do:
 
@@ -111,7 +111,7 @@ When can this be a problem???
 
 ---
 
-## Overloaded Assignment Operator
+### Overloaded Assignment Operator
 
 Most operators in C++ can be _overloaded_ to work with custom object types.  The assignment operator is one of them.
 
@@ -129,7 +129,7 @@ x.operator=(y);  // Assume x and y are object types.
 
 ---
 
-## Overloaded Assignment Operator
+### Overloaded Assignment Operator
 
 If we create a method matching the prototype for the assignment operator, we can take control of how assignment happens for our object.  This is necessary whenever the _physical object_ and _logical object_ differ.   Here is the general prototype pattern:
 
@@ -138,7 +138,7 @@ _`ObjTypeName`_ `& operator=( const ` _`ObjTypeName`_`& source );`
 
 ---
 
-## Overloaded Assignment Operator
+### Overloaded Assignment Operator
 
 Example with `MyClass`:
 

@@ -25,25 +25,25 @@ background-size: 45%
 
 + A graph] is a data structure containing nodes and connections between them (much like a tree), but with no requirement for hierarchical ordering.
    + We often call the nodes vertices], and the connections between them edges].
-   + A simple graph], then is the non-empty set of vertices and edges $G=(V,E)$.
+   + A simple graph, then is the non-empty set of vertices and edges __G=(V,E)__.
 
-.center[
+
 ![:scale A graph, 300px]({{site.baseurl}}/assets/CS50pics/graphs/undirected_graph_with_6_nodes.svg)
 ![:scale A directed graph, 200px]({{site.baseurl}}/assets/CS50pics/graphs/directed_graph_with_6_nodes.svg)
 ![:scale A weighted graph, 250px]({{site.baseurl}}/assets/CS50pics/graphs/undirected_graph_with_weighted_edges.svg)
-]
+
 
 
 ---
 
 ##  Terminology 
 
-+ A directed graph] (or "digraph") is the non-empty set of vertices and edges $G=(V,E)$ where the edges $E={v_i, v_j}$ have a direction associated with them.
-   + Neither simple graphs nor digraphs allow pairs of vertices to have more than one edge connecting them.  A multigraph] relaxes this restriction.
-   + A pseudograph] allows an edge to connect a single vertex to itself (a loop).
++ A directed graph] (or "digraph") is the non-empty set of vertices and edges __G=(V,E)__ where the edges __E={v&#7522;, v&#11388;}__ have a direction associated with them.
+   + Neither simple graphs nor digraphs allow pairs of vertices to have more than one edge connecting them.  A multigraphrelaxes this restriction.
+   + A pseudograph allows an edge to connect a single vertex to itself (a loop).
 
 
-.center[![:scale A directed graph, 220px]({{site.baseurl}}/assets/CS50pics/graphs/directed_graph_with_6_nodes.svg)]
+![:scale A directed graph, 220px]({{site.baseurl}}/assets/CS50pics/graphs/directed_graph_with_6_nodes.svg)
 
 ---
 
@@ -54,30 +54,30 @@ background-size: 45%
 
 + A graph is complete] if for each pair of distinct vertices, there is exactly one edge connecting them.
 
-.center[![:scale A weighted graph, 300px]({{site.baseurl}}/assets/CS50pics/graphs/undirected_graph_with_weighted_edges.svg)]
+![:scale A weighted graph, 300px]({{site.baseurl}}/assets/CS50pics/graphs/undirected_graph_with_weighted_edges.svg)
 
 ---
 
 ##  Terminology 
 
 + A subgraph] is a set of edges and vertices that are themselves subsets of the edges and vertices of a larger graph.
-    + A subgraph induced by] vertices $V'$ is a graph such that any edges in the subgraph $(V', E')$ are also in the larger graph.
+    + A subgraph induced by] vertices __V'__ is a graph such that any edges in the subgraph __(V', E')__ are also in the larger graph.
     + Two vertices are adjacent] if there is an edge connecting them that is a member of the same graph.
     + The edge connecting them is said to be incident] with them.
 
-.center[![:scale A Subgraph (in blue), 300px]({{site.baseurl}}/assets/CS50pics/graphs/subgraph.svg)]
+![:scale A Subgraph (in blue), 300px]({{site.baseurl}}/assets/CS50pics/graphs/subgraph.svg)
 
 ---
 
 ##  Terminology 
 
-+ The degree] of a vertex $v$ is the number of edges incident with $v$.
++ The degree] of a vertex __v__ is the number of edges incident with __v__.
 
    + A vertex with no incident edges is called an isolated vertex].
 
-      + It is possible to have a graph $G$ containing only isolated vertices.  ($E$ can be empty).
+      + It is possible to have a graph __G__ containing only isolated vertices.  (__E__ can be empty).
 
-.center[![:scale Vertex Degrees, 300px]({{site.baseurl}}/assets/CS50pics/graphs/vertex_degrees.svg)]
+![:scale Vertex Degrees, 300px]({{site.baseurl}}/assets/CS50pics/graphs/vertex_degrees.svg)
 
 ---
 
@@ -93,35 +93,32 @@ background-size: 45%
 
 ##  Representation: Adjacency List
 
-.footnote[Drozdek, Figure 8.2]
 
-.left-column[
+
 ![:scale Graph, 10.5em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2a_graph.svg)
 
 ![:scale Adjacency Table, 10.5em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2b_adjacency_list_table.svg)
-]
 
-.right-column[![:scale , 11.5em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2c_adjacency_list_logical.svg)]
+
+![:scale , 11.5em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2c_adjacency_list_logical.svg)
 
 ---
 
 ##  Representation: Adjacency matrix
 
-.footnote[Drozdek, Figure 8.2]
 
-.center[![:scale , 260px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2a_graph.svg)]
+![:scale , 260px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2a_graph.svg)
 
-.center[![:scale , 450px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2d_adjacency_matrix.svg)]
+![:scale , 450px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2d_adjacency_matrix.svg)
 
 ---
 
 ##  Representation: Incidence matrix
 
-.footnote[Drozdek, Figure 8.2]
 
-.center[![:scale , 260px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2a_graph.svg)]
+![:scale , 260px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2a_graph.svg)
 
-.center[![:scale , 490px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2e_incidence_matrix.svg)]
+![:scale , 490px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2e_incidence_matrix.svg)
 
 ---
 
@@ -130,147 +127,147 @@ background-size: 45%
 * Much like tree traversals, vertices are "visited" one at a time.
    
 * Unlike trees, graphs have cycles], so tree traversal algorithms would result in infinite loops.
-  * A cycle] is a path from one vertex $v_i$ through one or more edges such that the path returns to $v_i$.
+  * A cycle] is a path from one vertex __v&#7522;__ through one or more edges such that the path returns to __v&#7522;__.
 
 * Vertices must be "marked" to avoid re-visiting the same vertex.
 * Isolated vertices must also be visited in some way.
 
 ---
 
-##  Depth-First Traversal: Example
+###  Depth-First Traversal: Example
 
-+ Starting with the list $V$  of vertices, the next available vertex v is visited
-    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
-    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
++ Starting with the list __V__  of vertices, the next available vertex v is visited
+    + Create the list of vertices adjacent to __v__ , and perform depth-first traversal on them.
+    + If v has no adjacent vertices, backtrack to the predecessor of __v__ .
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3a_undirected_graph.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3a_undirected_graph.svg)
 
 ---
 
-##  Depth-First Traversal: Example
+###  Depth-First Traversal: Example
 
-+ Starting with the list $V$  of vertices, the next available vertex v is visited
-    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
-    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
++ Starting with the list __V__  of vertices, the next available vertex v is visited
+    + Create the list of vertices adjacent to __v__ , and perform depth-first traversal on them.
+    + If v has no adjacent vertices, backtrack to the predecessor of __v__ .
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_1.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_1.svg)
 
 ---
 
-##  Depth-First Traversal: Example
+###  Depth-First Traversal: Example
 
-+ Starting with the list $V$  of vertices, the next available vertex v is visited
-    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
-    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
++ Starting with the list __V__  of vertices, the next available vertex v is visited
+    + Create the list of vertices adjacent to __v__ , and perform depth-first traversal on them.
+    + If v has no adjacent vertices, backtrack to the predecessor of __v__ .
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_2.svg)]
-
----
-
-
-##  Depth-First Traversal: Example
-
-+ Starting with the list $V$  of vertices, the next available vertex v is visited
-    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
-    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
-    + When you backtrack to the vertex where you started, you are done.
-    + Repeat as long as there are unvisited vertices
-
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_3.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_2.svg)
 
 ---
 
 
-##  Depth-First Traversal: Example
+###  Depth-First Traversal: Example
 
-+ Starting with the list $V$  of vertices, the next available vertex v is visited
-    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
-    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
++ Starting with the list __V__  of vertices, the next available vertex v is visited
+    + Create the list of vertices adjacent to __v__ , and perform depth-first traversal on them.
+    + If v has no adjacent vertices, backtrack to the predecessor of __v__ .
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_4.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_3.svg)
 
 ---
 
 
-##  Depth-First Traversal: Example
+###  Depth-First Traversal: Example
 
-+ Starting with the list $V$  of vertices, the next available vertex v is visited
-    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
-    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
++ Starting with the list __V__  of vertices, the next available vertex v is visited
+    + Create the list of vertices adjacent to __v__ , and perform depth-first traversal on them.
+    + If v has no adjacent vertices, backtrack to the predecessor of __v__ .
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_5.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_4.svg)
 
 ---
 
 
-##  Depth-First Traversal: Example
+###  Depth-First Traversal: Example
 
-+ Starting with the list $V$  of vertices, the next available vertex v is visited
-    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
-    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
++ Starting with the list __V__  of vertices, the next available vertex v is visited
+    + Create the list of vertices adjacent to __v__ , and perform depth-first traversal on them.
+    + If v has no adjacent vertices, backtrack to the predecessor of __v__ .
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_6.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_5.svg)
 
 ---
 
 
-##  Depth-First Traversal: Example
+###  Depth-First Traversal: Example
 
-+ Starting with the list $V$  of vertices, the next available vertex v is visited
-    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
-    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
++ Starting with the list __V__  of vertices, the next available vertex v is visited
+    + Create the list of vertices adjacent to __v__ , and perform depth-first traversal on them.
+    + If v has no adjacent vertices, backtrack to the predecessor of __v__ .
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_7.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_6.svg)
 
 ---
 
 
-##  Depth-First Traversal: Example
+###  Depth-First Traversal: Example
 
-+ Starting with the list $V$  of vertices, the next available vertex v is visited
-    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
-    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
++ Starting with the list __V__  of vertices, the next available vertex v is visited
+    + Create the list of vertices adjacent to __v__ , and perform depth-first traversal on them.
+    + If v has no adjacent vertices, backtrack to the predecessor of __v__ .
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_8.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_7.svg)
 
 ---
 
 
-##  Depth-First Traversal: Example
+###  Depth-First Traversal: Example
 
-+ Starting with the list $V$  of vertices, the next available vertex v is visited
-    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
-    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
++ Starting with the list __V__  of vertices, the next available vertex v is visited
+    + Create the list of vertices adjacent to __v__ , and perform depth-first traversal on them.
+    + If v has no adjacent vertices, backtrack to the predecessor of __v__ .
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_9.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_8.svg)
 
 ---
 
-##  Depth-First Traversal: Example
+
+###  Depth-First Traversal: Example
+
++ Starting with the list __V__  of vertices, the next available vertex v is visited
+    + Create the list of vertices adjacent to __v__ , and perform depth-first traversal on them.
+    + If v has no adjacent vertices, backtrack to the predecessor of __v__ .
+    + When you backtrack to the vertex where you started, you are done.
+    + Repeat as long as there are unvisited vertices
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_9.svg)
+
+---
+
+###  Depth-First Traversal: Example
 
 * This algorithm generates a tree (or forest , a set of trees) called a spanning tree].
 
    * A spanning tree includes all vertices of the original graph, but does not contain any cycles.
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_finished.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_finished.svg)
 
 ---
 
@@ -307,15 +304,15 @@ function breadthFirstSearch(graph G):
     return edges
 ```
 
-.footnote[See also: Drozdek pg. 397]
+
 
 ---
 
 ### Breadth-First traversal: Example
 
-.footnote[Drozdek Fig. 8.5]
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5a_undirected_graph.svg)]
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5a_undirected_graph.svg)
 
 We'll start traversing from (a).
 
@@ -323,9 +320,9 @@ We'll start traversing from (a).
 
 ### Breadth-First traversal: Example
 
-.footnote[Drozdek Fig. 8.5]
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_1.svg)]
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_1.svg)
 
 We see the nodes with edges from (a) and queue them up...
 
@@ -333,9 +330,9 @@ We see the nodes with edges from (a) and queue them up...
 
 ### Breadth-First traversal: Example
 
-.footnote[Drozdek Fig. 8.5]
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_2.svg)]
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_2.svg)
 
 From (e) we don't discover anything new; just mark it and continue.
 
@@ -343,9 +340,9 @@ From (e) we don't discover anything new; just mark it and continue.
 
 ### Breadth-First traversal: Example
 
-.footnote[Drozdek Fig. 8.5]
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_3.svg)]
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_3.svg)
 
 
 From (f) we don't discover anything new; just mark it and continue.
@@ -354,9 +351,9 @@ From (f) we don't discover anything new; just mark it and continue.
 
 ### Breadth-First traversal: Example
 
-.footnote[Drozdek Fig. 8.5]
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_4.svg)]
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_4.svg)
 
 
 From (g) we discover (b) and add it to the queue.
@@ -365,9 +362,9 @@ From (g) we discover (b) and add it to the queue.
 
 ### Breadth-First traversal: Example
 
-.footnote[Drozdek Fig. 8.5]
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_5.svg)]
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_5.svg)
 
 
 From (i) we don't discover anything new; just mark it and continue.
@@ -378,9 +375,9 @@ Notice that the edges (ef), (ei), (fi) will not be traversed at this point.
 
 ### Breadth-First traversal: Example
 
-.footnote[Drozdek Fig. 8.5]
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_6.svg)]
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_6.svg)
 
 
 From (b) we don't discover anything new; just mark it and continue.
@@ -392,9 +389,9 @@ and continue.
 
 ### Breadth-First traversal: Example
 
-.footnote[Drozdek Fig. 8.5]
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_7.svg)]
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_7.svg)
 
 
 From (b) we discover (h) and add it to the queue.
@@ -403,9 +400,9 @@ From (b) we discover (h) and add it to the queue.
 
 ### Breadth-First traversal: Example
 
-.footnote[Drozdek Fig. 8.5]
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_8.svg)]
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_8.svg)
 
 
 From (h) we discover (d) and add it to the queue.
@@ -414,9 +411,9 @@ From (h) we discover (d) and add it to the queue.
 
 ### Breadth-First traversal: Example
 
-.footnote[Drozdek Fig. 8.5]
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_9.svg)]
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_9.svg)
 
 
 From (d) we don't discover anything new.
@@ -429,9 +426,9 @@ But there are none.  That means we are finished.
 
 ### Breadth-First traversal: Example
 
-.footnote[Drozdek Fig. 8.5]
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_finished.svg)]
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_finished.svg)
 
 Final state, with visit ordering shown.  
 
@@ -441,7 +438,7 @@ Edges that were traversed are shown in solid black; edges not traversed are show
 
 ##  Dijkstra's Algorithm 
 
-* Let the node at which we are starting be called the _initial node_. Let the distance of node $Y$ be the distance from the initial node to $Y$.  Dijkstra's algorithm will assign some initial distance values and will try to improve them step by step.
+* Let the node at which we are starting be called the _initial node_. Let the distance of node __Y__ be the distance from the initial node to __Y__.  Dijkstra's algorithm will assign some initial distance values and will try to improve them step by step.
 
 ---
 
@@ -456,7 +453,7 @@ Edges that were traversed are shown in solid black; edges not traversed are show
 ##  Dijkstra's Algorithm 
 
 (3) For the current node, consider all of its unvisited neighbors and calculate their tentative distances.
-* For example, if the current node $A$ is marked with a distance of 6, and the edge connecting it with a neighbor $B$ has length 2, then the distance to $B$ (through $A$) will be $6+2=8$. 
+* For example, if the current node __A__ is marked with a distance of 6, and the edge connecting it with a neighbor __B__ has length 2, then the distance to __B__ (through __A__) will be __6+2=8__. 
 * If this distance is less than the previously recorded distance, then overwrite that distance. Even though a neighbor has been examined, it is not marked as visited at this time, and it remains in the unvisited set .
 
 ---
@@ -493,125 +490,124 @@ function Dijkstra(Graph, source):
     return dist[], prev[]
 ```
 
-.footnote[Source: <https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm>]
 
 ---
 
-.footnote[Drozdek, Figure 8.7]
 
-## Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+### Dijkstra's Algorithm Example
 
----
-
-.footnote[Drozdek, Figure 8.7]
-
-## Dijkstra's Algorithm Example
-
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
-
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_0.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
 
 ---
 
-.footnote[Drozdek, Figure 8.7]
 
-## Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+### Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_1.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
 
----
-
-.footnote[Drozdek, Figure 8.7]
-
-## Dijkstra's Algorithm Example
-
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
-
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_2.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_0.svg)
 
 ---
 
-.footnote[Drozdek, Figure 8.7]
 
-## Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+### Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_3.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
 
----
-
-.footnote[Drozdek, Figure 8.7]
-
-## Dijkstra's Algorithm Example
-
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
-
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_4.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_1.svg)
 
 ---
 
-.footnote[Drozdek, Figure 8.7]
 
-## Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+### Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_5.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
 
----
-
-.footnote[Drozdek, Figure 8.7]
-
-## Dijkstra's Algorithm Example
-
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
-
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_6.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_2.svg)
 
 ---
 
-.footnote[Drozdek, Figure 8.7]
 
-## Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+### Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_7.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
 
----
-
-.footnote[Drozdek, Figure 8.7]
-
-## Dijkstra's Algorithm Example
-
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
-
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_8.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_3.svg)
 
 ---
 
-.footnote[Drozdek, Figure 8.7]
 
-## Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+### Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_9.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_4.svg)
 
 ---
 
-.footnote[Drozdek, Figure 8.7]
 
-## Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+### Dijkstra's Algorithm Example
 
-.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_10.svg)]
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_5.svg)
+
+---
+
+
+
+### Dijkstra's Algorithm Example
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_6.svg)
+
+---
+
+
+
+### Dijkstra's Algorithm Example
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_7.svg)
+
+---
+
+
+
+### Dijkstra's Algorithm Example
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_8.svg)
+
+---
+
+
+
+### Dijkstra's Algorithm Example
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_9.svg)
+
+---
+
+
+
+### Dijkstra's Algorithm Example
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)
+
+![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_10.svg)
 
 You can find the shortest path by backtracking to the points where the "best"
 assigned distance updated to the final value.
@@ -656,15 +652,15 @@ function BellmanFord(list vertices, list edges, vertex source) is
     return distance, predecessor
 ```
 
-.footnote[Source: <https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm>]
+[Source: <https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm>]
 
 
 ---
 
 ##  General Label-Correcting Algorithm 
 
-.footnote[Based on Drozdek, Chapter 8.3]
-.small-90[
+[Based on Drozdek, Chapter 8.3]
+
 ```text
 function labelCorrectingAlgorithm (weighted simple digraph Graph, vertex first)
     for all vertices v in Graph do      // Step 1: initialize graph
@@ -680,14 +676,14 @@ function labelCorrectingAlgorithm (weighted simple digraph Graph, vertex first)
                 predecessor[u] := v
                 add u to toBeChecked if it is not there
 ```
-]
+
 Efficiency hinges on the data structured used for `toBeChecked`
 
 ---
 
 ##  All-To-All Shortest PathsThe WFI Algorithm 
 
-.footnote[Based on Drozdek, Chapter 8.3]
+[Based on Drozdek, Chapter 8.3]
 
 ```text
 function WFI(matrix weights):
@@ -711,7 +707,7 @@ function WFI(matrix weights):
 
 We often need to detect cycles in both directed and undirected graphs.
 
-Depth-First Traversalcan be used for this.
+Depth-First Traversal can be used for this.
 
 ---
 
@@ -761,11 +757,11 @@ function detectDigraphCyclesDFS(vertex v, Graph G):
 
 _(Euler is pronounced very much like "oiler".)_]
 
-* An .trail[Eulerian trail] is a path that includes all edges of the graph only once.
+* An Eulerian trail is a path that includes all edges of the graph only once.
 
-* An .trail[Eulerian cycle] is a cycle that is also an Eulerian trail.
+* An Eulerian cycle is a cycle that is also an Eulerian trail.
 
-* An .trail[Eulerian graph] is a graph that has an Eulerian cycle.
+* An Eulerian graph is a graph that has an Eulerian cycle.
     * A graph is Eulerian if every vertex is incident to an even number of edges.
 
 ---
@@ -798,24 +794,24 @@ function FleuryAlgorithm(undirected graph G):
 
 ## Eularian graph and cycle
 
-.footnote[Drozdek, Figure 8.34]
+[Drozdek, Figure 8.34]
 
-.left-column[
-.small-80[.center[.blue[
+
+
 <br>
 <br>
 An Eulerian graph
-]]]
 
-.center[![:scale Eulerian Graph, 11em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.34_a_Eulerian_graph.svg)]
-]
 
-.right-column[
-.small-80[.center[.blue[
+![:scale Eulerian Graph, 11em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.34_a_Eulerian_graph.svg)
+
+
+
+
 An Eulerian path illustrated (numbers indicate traversal order from **b**)
-]]]
 
-.center[![:scale Eulerian Path, 11em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.34_c_Eulerian_path.svg)]
+
+![:scale Eulerian Path, 11em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.34_c_Eulerian_path.svg)
 ]
 
 ---
@@ -827,17 +823,17 @@ An Eulerian path illustrated (numbers indicate traversal order from **b**)
    * All complete graphs are Hamiltonian.
       * As a consequence, an algorithm of first create a complete graph using false edges, then reducing it can be used to find Hamiltonian cycles in incomplete graphs.
 
-.center[![:scale Hamiltonian Graph, 11em]({{site.baseurl}}/assets/CS50pics/graphs/Hamiltonian_graph.svg)]
+![:scale Hamiltonian Graph, 11em]({{site.baseurl}}/assets/CS50pics/graphs/Hamiltonian_graph.svg)
 
-.footnote[Image: https://commons.wikimedia.org/wiki/File:Hamiltonian_path.svg]
+[Image: https://commons.wikimedia.org/wiki/File:Hamiltonian_path.svg]
 
 ---
 
 ##  The Traveling Salesman Problem (TSP) 
 
-Given a set of $n$ cities, find the minimum length tour in which each city is visited exactly once, then you return home.
+Given a set of __n__ cities, find the minimum length tour in which each city is visited exactly once, then you return home.
 
 * This is equivalent to finding the minimum Hamiltonian cycle.
-* If distances between each of the $n$ cities are known, there are $(n - 1)!$ possible routes.
-    * Eliminating reverse routes, you get $\frac{(n - 1)!}{2}$
-    * Clever algorithms can do it in a polynomial factor of $2^n$  steps...
+* If distances between each of the __n__ cities are known, there are __(n - 1)!__ possible routes.
+    * Eliminating reverse routes, you get __{(n - 1)!} / {2}__
+    * Clever algorithms can do it in a polynomial factor of __2^n__  steps...

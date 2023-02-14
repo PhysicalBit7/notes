@@ -142,9 +142,9 @@ This is a sharp contrast to cryptographic hash functions, where speed is _not_ a
 To assign positions to __n__ items in a table of __m__ positions (with __n <= m__),
 there are __m^n__ possible hash functions.
 
-The number of perfect hash functions is $m! \over (m-n)!$.  This is the number of placements of the items in the table.
+The number of perfect hash functions is __m! / (m-n)!__.  This is the number of placements of the items in the table.
 
-For 50 elements in a 100-element table,  there are __100^{50}__ = __10^{100}__ hash
+For 50 elements in a 100-element table,  there are __100^{50} = 10^{100}__ hash
 functions, of which only __10^{94}__ are perfect.
 
 Sounds like it would be easy to find one... right?
@@ -295,9 +295,9 @@ Some method of dealing with collisions must be found.
 If the address returned by the hash function is in use, probe other
 addresses until an empty one is found.
 
-Sequence is __norm(h(K) + p(1))__, __norm(h(K) + p(2))__
+Sequence is __norm(_h(K)_ + _p(1))_, _norm(h(K)_ + _p(2)_)__
 
-__norm__ is a normalization (most likely __\bmod {TSize}__)
+__norm__ is a normalization (most likely __% {TSize}__)
 
 __p(n)__ is the probing function, which could just be the series of counting
 numbers __{1,2, ... , n}__; this is called _linear probing_.
@@ -334,14 +334,14 @@ See <https://en.cppreference.com/w/cpp/header/random>
 
 ## Handling Collisions : Double hashing
 
-Uses two hash functions, __h__ for primary location and __h_p__ to resolve conflicts.  Sequence:
+Uses two hash functions, __h__ for primary location and __h&#8346;__ to resolve conflicts.  Sequence:
 
 
-**h(K), h(K) + h_p(K), ... ,h(K)+ i * h_p(K), ...**
+**h(K), h(K) + h&#8346;(K), ... ,h(K)+ i * h&#8346;(K), ...**
 
 Requires you to find not one but _two_ hash functions.
 
-Both need to be fast.   Second may be a function of the first, e.g. __h_p(K) = i * h(K) + 1__.
+Both need to be fast.   Second may be a function of the first, e.g. __h&#8346;(K) = i * h(K) + 1__.
 
 If the second hash function is chosen well, it will generally eliminate
 secondary clustering.
@@ -497,5 +497,4 @@ See section 10.4.2 in the textbook.
 If the size of the hash table may change, additional complexity is added
 to the hashing algorithms.
 
-See the book pgs. 571-573.
 

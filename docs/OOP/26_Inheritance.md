@@ -50,14 +50,14 @@ _... Infinite examples:  The real world works this way!_
 
 The derived class object "**is a**(n)" object of the base class.
 
---
+---
 
 * Has all characteristics of base class!
 
     - All members defined in base class.
     - Plus all members defined in derived class.
 
---
+---
 
 * Derived class objects can "use" (access):
 
@@ -70,7 +70,7 @@ The derived class object "**is a**(n)" object of the base class.
 
 ![:scale Base and derived class., 80%]({{site.baseurl}}/assets/CS50pics/Inheritance/base_and_derived_class_diagram.svg )
 
-The _physical object_ for a derived class object includes .blue[_all parts_] of the base class, even though the `private` base class members are not directly accessible to derived class methods.
+The _physical object_ for a derived class object includes _all parts_ of the base class, even though the `private` base class members are not directly accessible to derived class methods.
 
 ---
 
@@ -78,7 +78,7 @@ The _physical object_ for a derived class object includes .blue[_all parts_] of 
 ## Wait... `protected`?
 
 * `protected` : _access specifier_, similar to `private`
-  * Except:  `protected` members .blue[_can_] be accessed by derived classes!
+  * Except:  `protected` members _can_] be accessed by derived classes!
   * Useful when you know you are writing a base class.
 
 * `private` data from base class is part of derived class, but _cannot be accessed_.
@@ -88,18 +88,18 @@ The _physical object_ for a derived class object includes .blue[_all parts_] of 
 ## Class Access Specifiers
 
 You may also inherit with a selected maximum level of access:
---
+---
 
 - `public`
     + True "is-a" relationship.
     + Does not change any member's downstream access level.
 
---
+---
 
 - `protected`
     + `public` items from base class become `protected` in derived class.
 
---
+---
 
 - `private`
     + `public` and `protected` items from base class become `private` in derived class.
@@ -276,7 +276,7 @@ s1.print();   // "w=4, h=4" Better...
 *s1.print();   // "w=5, h=5" FIXED!
 ```
 
-Now, we are .blue[able] to interact with the object in any way we expect, but it will always do the "right" thing].  It prevents us from ending up in an inconsistent state.
+Now, we are able] to interact with the object in any way we expect, but it will always do the "right" thing].  It prevents us from ending up in an inconsistent state.
 
 ---
 
@@ -335,7 +335,7 @@ public:
 
 Are there any remaining problems?
 
---
+---
 
 Maybe `print()` needs to be customized:
 
@@ -345,8 +345,8 @@ void Square::print() const{
 }
 ```
 
---
+---
 
-.blue[There might still be a monster lurking in the bushes...  
+There might still be a monster lurking in the bushes...  
 
-But we'll see more about that soon...]
+But we'll see more about that soon...

@@ -40,7 +40,7 @@ void countDown(int timer) {
 
 **Tracing a Recursive Call**
 
-[
+
 ```cpp
 void countDown(int timer) {   
     if (timer == 0) {
@@ -52,10 +52,9 @@ void countDown(int timer) {
     }
 }
 ```
-]
-[Assuming the function is called as in **`countDown(2);`**:]
+
+Assuming the function is called as in **`countDown(2);`**:
 <pre>
-[
 <b>countdown(2):</b>
     Generates output "2..."
     Calls `countdown(1)`
@@ -67,7 +66,7 @@ void countDown(int timer) {
                     returns
             returns
     returns
-]</pre>
+</pre>
 
 ---
 
@@ -161,38 +160,10 @@ bool is_even(int n){
 
 ---
 
-
-### Example: Factorial (formula)
-<br /><br /><br />
-
-$x!$ is defined as follows:
-
-$$
-    x! = 
-    \begin{cases}
-    1 & \text{ if } x = 1 \\\\
-    x * (x-1)! & \text{ otherwise. }
-    \end{cases}
-$$
-
----
-
 <!-- .slide data-state="code-example" -->
 
 ### Example: Factorial (implementation)
-<br /><br />
 
-<small>
-$$
-x! = 
-\begin{cases}
-1 & \text{ if } x = 1 \\\\
-x * (x-1)! & \text{ otherwise. }
-\end{cases}
-$$
-</small>
-
-<br />
 
 ```cpp
 int factorial(int x){
@@ -241,9 +212,9 @@ How do you break down a new and difficult problem to find a solution?
 
 **Algorithm**
 
-1. Move $n-1$ plates from _start_ to _temp_ (using _goal_ for storage).
+1. Move __n-1__ plates from _start_ to _temp_ (using _goal_ for storage).
 2. Move the final plate from _start_ to _goal_.
-3. Move $n-1$ plates from _temp_ to _goal_ (using _start_ for storage).
+3. Move __n-1__ plates from _temp_ to _goal_ (using _start_ for storage).
 
 
 ---
@@ -252,9 +223,9 @@ How do you break down a new and difficult problem to find a solution?
 
 **Algorithm**
 
-1. Move $n-1$ plates from _start_ to _temp_ (using _goal_ for storage).
+1. Move __n-1__ plates from _start_ to _temp_ (using _goal_ for storage).
 2. Move the final plate from _start_ to _goal_.
-3. Move $n-1$ plates from _temp_ to _goal_ (using _start_ for storage).
+3. Move __n-1__ plates from _temp_ to _goal_ (using _start_ for storage).
 
 ```cpp
 void towers(int n, char start='A', char goal='C', char temp='B'){

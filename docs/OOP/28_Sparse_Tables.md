@@ -28,7 +28,7 @@ Imagine storing ratings for movies.
     * Every movie may be reviewed on a "5-star" scale.
     * Every user may rate any movie they want... or may not.
     * Let's say we have 8000 users and 500 movies.
-      * Table size is $8000 \times 500 = 4,000,000$ cells.
+      * Table size is __8000 * 500 = 4,000,000__ cells.
       * If each cell is an `int` (4 bytes), we need ~15.3MiB of storage.
         * Using `int` is silly for "5-star" ratings; we could use 1-byte per rating.  We still need 4MiB to store it that way.
 
@@ -39,7 +39,7 @@ How many "cells" in the table will have a rating entered?
     * Every movie may be reviewed on a "5-star" scale.
     * Every user may rate any movie they want... or may not.
     * Let's say we have 8000 users and 500 movies.
-      * Table size is $8000 \times 500 = 4,000,000$ cells.
+      * Table size is __8000 * 500 = 4,000,000__ cells.
       * If each cell is an `int` (4 bytes), we need ~15.3MiB of storage.
         * Using `int` is silly for "5-star" ratings; we could use 1-byte per rating.  We still need 4MiB to store it that way.
 
@@ -55,7 +55,7 @@ Most of the space in the table will remain unused.
 
 ![:scale Sparse table with 17% populated cells. 80%]({{site.baseurl}}/assets/CS50pics/sparse_table/sparse_content_in_normal_table.svg)
 
-In the table above, about 17% of the cells are used.  (This is actually quite high for this kind of data...)]
+In the table above, about 17% of the cells are used.  (This is actually quite high for this kind of data...)
 
 That means we waste 83% of the space we are using for the table... (about 2.8MiB)
 
@@ -109,13 +109,13 @@ In addition, we need 8 bytes for each element of the two arrays to point to the 
 
 ---
 
-In total, assuming 17% of the cells ($N = (8000 \times 500) \times 0.17 = 680000$)] in a dense table are used, this implementation would require about $(680000 \times 21) + (500 \times 8) + (8000 \times 8) = 13.7\textrm{MiB}$.
+In total, assuming 17% of the cells (__N = (8000 * 500) * 0.17 = 680000__) in a dense table are used, this implementation would require about __(680000 * 21) + (500 * 8) + (8000 * 8) = 13.7MiB__.
 
 This is not better than the full table of type `int` in this case, due to overhead from the pointers.  However, what if we had 1,000,000 users and 3,600 movies?
 
 --
 
-Then, the usage is $1000000 \times 3600 \times 0.17 \times 21 + 1000000 \times 8 + 3600 \times 8$] $= 12\textrm{GiB}$ versus 3.4GiB for the full (dense) table.
+Then, the usage is __1000000 * 3600 * 0.17 * 21 + 1000000 * 8 + 3600 * 8__] __= 12GiB__ versus 3.4GiB for the full (dense) table.
 
 ---
 
@@ -123,7 +123,7 @@ Then, the usage is $1000000 \times 3600 \times 0.17 \times 21 + 1000000 \times 8
 
 Assume that there are values in only 1% of the possible cells... (This is the case for e.g. Netflix ratings.)
 
-Now, we require $1000000 \times 3600 \times 0.01 \times 21 + 1000000 \times 8 + 3600 \times 8$]  $= 0.17\textrm{GiB}$, versus 3.4GiB for the dense table.
+Now, we require __1000000 * 3600 * 0.01 * 21 + 1000000 * 8 + 3600 * 8__  __= 0.17GiB__, versus 3.4GiB for the dense table.
 
 **This time, it is 5% the size of the full table!  A 95% savings!**]
 
