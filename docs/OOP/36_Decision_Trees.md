@@ -20,14 +20,14 @@ permalink: /oop/36_Decision_Trees
 
 ## Decision Trees
 
-A .term[decision tree] is a special form of tree with the following properties:
+A decision tree] is a special form of tree with the following properties:
 
 * Every node has either zero or two children.
   * i.e. they are strict binary trees.
-* Nodes represent a .term[decision], which is a _condition_ or _query_ on some value in a dataset of interest.  The decision must evaluate to a Boolean result.
+* Nodes represent a decision], which is a _condition_ or _query_ on some value in a dataset of interest.  The decision must evaluate to a Boolean result.
 * Edges represent the value of the result from the originating node: either _True_ or _False_.
   * (or "yes/no", or other binary synonym)
-* Leaf nodes contain a .term[result], which is the value selected by the sequence of decisions represented by the path followed from the root to arrive at the leaf.
+* Leaf nodes contain a result], which is the value selected by the sequence of decisions represented by the path followed from the root to arrive at the leaf.
 
 ---
 
@@ -37,7 +37,7 @@ There are many uses for decision trees as a logical representation.  Any problem
 
 Evaluating a decision tree is functionally equivalent to executing an "_if-else chain_" control structure, where each control path is required to eventually produce a value (which may be e.g. "None") and is not allowed to perform any additional computation beyond the conditional expressions themselves (but these can be arbitrarily complex).
 
-.green[Application areas:  Machine learning, data mining, financial analysis, artificial intelligence, business process control, personnel management, ...  (your imagination is the limit)]
+Application areas:  Machine learning, data mining, financial analysis, artificial intelligence, business process control, personnel management, ...  (your imagination is the limit)]
 
 ---
 
@@ -122,7 +122,7 @@ Here is "insertion sort" as one possible decision tree (sorting three values in 
 
 In general for an array of $n$ elements, there are $n!$ possible orderings.
 
-That corresponds to _at least_ $n!$ leaf nodes in the decision tree! .red[There could be more...]
+That corresponds to _at least_ $n!$ leaf nodes in the decision tree! There could be more...]
 
 ---
 
@@ -142,11 +142,11 @@ Given that, what is the _optimal_ height of the tree (which corresponds to the o
 
 --
 
-We know that a complete binary tree with $k$ leaves contains $k-1$ interior nodes for a total of $2k-1$ nodes, and the height of a complete binary tree is $\lceil \lg(N)\rceil$.  We can express that in terms of the leaves alone by saying a complete tree's height is $lg(k) + 1$, or in general (for non-complete but balanced trees) $\lceil lg(k) + 1\rceil$.
+We know that a complete binary tree with $k$ leaves contains $k-1$ interior nodes for a total of $2k-1$ nodes, and the height of a complete binary tree is $&#8968; lf(N)&#8969;$.  We can express that in terms of the leaves alone by saying a complete tree's height is $lg(k) + 1$, or in general (for non-complete but balanced trees) $&#8968; lg(k) + 1&#8969;$.
 
 ---
 
-We know that a complete binary tree with $k$ leaves contains $k-1$ interior nodes for a total of $2k-1$ nodes, and the height of a complete binary tree is $\lceil \lg(N)\rceil$.  We can express that in terms of the leaves alone by saying a complete tree's height is $lg(k) + 1$, or in general (for non-complete but balanced trees) $\lceil lg(k) + 1\rceil$.
+We know that a complete binary tree with $k$ leaves contains $k-1$ interior nodes for a total of $2k-1$ nodes, and the height of a complete binary tree is $&#8968; lf(N)&#8969;$.  We can express that in terms of the leaves alone by saying a complete tree's height is $lg(k) + 1$, or in general (for non-complete but balanced trees) $&#8968; lg(k) + 1&#8969;$.
 
 So what is the height of an decision tree representing an optimal search?  There are $k = n!$ leaves (at least), so it will be at least $lg(n!)$ ... But what is the log of $n!$?
 

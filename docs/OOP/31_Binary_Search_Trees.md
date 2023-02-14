@@ -21,9 +21,9 @@ permalink: /oop/31_Binary_Search_Trees
 
 ## Trees
 
-In the computer science sense, .term[trees] are simply non-linear linked structures where each node may link to two or more other nodes, in a _hierarchical_ fashion.
+In the computer science sense, trees] are simply non-linear linked structures where each node may link to two or more other nodes, in a _hierarchical_ fashion.
 
-* The entry point into a tree is called the .term[root].
+* The entry point into a tree is called the root].
 * Trees are (usually) drawn "upside down", with the root at the top.
 * Normally, we don’t draw the null pointers when we draw a tree... but we must remember that they are there.
 
@@ -32,12 +32,12 @@ In the computer science sense, .term[trees] are simply non-linear linked structu
 ## Trees
 We use terms borrowed from family trees to describe the hierarchical relationships between nodes in CS trees.<br />  (parent, child, grandparent, sibling, etc.)
 
-* .term[Interior nodes] – have at least one child
-* .term[Leaf nodes] – have no children
-* .term[Edge] - A non-null outgoing link from a node to its child node.
-* .term[Height] - Longest path along edges from root to any leaf, plus one.
+* Interior nodes] – have at least one child
+* Leaf nodes] – have no children
+* Edge] - A non-null outgoing link from a node to its child node.
+* Height] - Longest path along edges from root to any leaf, plus one.
     - (The empty tree is height 0, a single node is height 1.)
-* .term[Subtree] - any node in the tree, and all its descendants.
+* Subtree] - any node in the tree, and all its descendants.
 
 ---
 
@@ -70,7 +70,7 @@ The "Tree" object must store an owning pointer to the root of the tree.  The tre
 
 ## Binary Search Trees
 
-A .term[Binary Search Tree] is a binary tree that has the following additional properties: 
+A Binary Search Tree] is a binary tree that has the following additional properties: 
 
 * From any node in the tree, the left child (if non-null) has a smaller value than the parent.
 * From any node in the tree, the right child (if non-null) has a larger value than the parent.

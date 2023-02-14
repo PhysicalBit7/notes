@@ -63,9 +63,9 @@ int main(){
 ## Irrational Numbers
 
 * Even in base-10, we have many numbers that are _irrational_  (they are non-terminating and non-repeating decimals).  You cannot represent these exactly with any finite number of digits.
-    - Examples:  $\pi$, $e$
+    - Examples:  __&#960;__, __e__
 * Some numbers that _can_ be expressed precisely in base-10 _cannot_ be expressed precisely in binary:
-    - Examples:  $0.1$, $0.3$
+    - Examples:  __0.1__, __0.3__
 * We are forced to _round_ such numbers.  The computer does the same.
 
 ---
@@ -134,7 +134,7 @@ The values 3.1415926535897931 and 3.1415926535897927 are _very nearly equal_.
 
 In most disciplines, a difference in the 15<sup>th</sup> decimal position would not be unacceptable.
 
-The problem is that the `==` operator is often .red[_too strict a test_].  What we really want to know is whether the values are "equal" to _within an acceptable tolerance_.
+The problem is that the `==` operator is often _too strict a test_.  What we really want to know is whether the values are "equal" to _within an acceptable tolerance_.
 
 ---
 

@@ -158,7 +158,7 @@ Searching:  __O(\log_2(n))__
 
 Insert (random): __O(\log_2(n))__ 
 
-Space:  __O(n \cdot \log_2(n))__
+Space:  __O(n * \log_2(n))__
 
 ![:scale Imperfect Skip List, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists3.png)
 

@@ -21,14 +21,14 @@ permalink: /oop/33_Heaps_And_Heapsort
 
 ## Heaps
 
-A .term[heap] is a kind of (usually binary) tree.  They normally come in two varieties:
+A heap] is a kind of (usually binary) tree.  They normally come in two varieties:
 
-* .term[Min-Heaps] always maintain the smallest value at the root.
-* .term[Max-Heaps] always maintain the largest value at the root.
+* Min-Heaps] always maintain the smallest value at the root.
+* Max-Heaps] always maintain the largest value at the root.
 
 --
 <br/><br/><br/>
-_There is also a more exotic heap called a ".term[min-max-heap]" that allows you
+_There is also a more exotic heap called a "min-max-heap]" that allows you
 to find the smallest and largest values in constant time, but we won't consider
 that variation here._
 
@@ -41,7 +41,7 @@ that variation here._
 In order to be a Heap, the following properties must hold (a _min heap_ is used as an example; for a _max heap_ just reverse the comparison operator).
 
 * The empty tree is a heap.
-* A non-empty tree is a heap if and only if the .term[heap property] is satisfied for all nodes in the tree.
+* A non-empty tree is a heap if and only if the heap property] is satisfied for all nodes in the tree.
 
 
 ---
@@ -49,7 +49,7 @@ In order to be a Heap, the following properties must hold (a _min heap_ is used 
 
 ## The _Heap Property_
 
-The .term[heap property], for any node in a tree, states:
+The heap property], for any node in a tree, states:
 
 * A node with no children satisfies the heap property.
 * A node with one or more children satisfies the heap property if and only if: 

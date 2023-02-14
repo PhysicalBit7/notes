@@ -196,7 +196,7 @@ s1.print();   // "w=4, h=3" ERROR
 
 We inherited by `public` from `Rectangle`, so we can use any `Rectangle` method.
 
-Bad news - this lets us make a .red[mistake] by setting width/height _independently_.
+Bad news - this lets us make a mistake] by setting width/height _independently_.
 
 How can we fix this problem?
 
@@ -250,7 +250,7 @@ s1.print();   // "w=4, h=4" Better...
 *s1.print();   // "w=5, h=4" ERROR STILL!
 ```
 
-The new method .green[allows us] to do the right thing, but it does not .red[prevent us] from doing the wrong thing.  We can do better...
+The new method allows us] to do the right thing, but it does not prevent us] from doing the wrong thing.  We can do better...
 
 ---
 
@@ -276,7 +276,7 @@ s1.print();   // "w=4, h=4" Better...
 *s1.print();   // "w=5, h=5" FIXED!
 ```
 
-Now, we are .blue[able] to interact with the object in any way we expect, but it will .green[always do the "right" thing].  It prevents us from ending up in an inconsistent state.
+Now, we are .blue[able] to interact with the object in any way we expect, but it will always do the "right" thing].  It prevents us from ending up in an inconsistent state.
 
 ---
 

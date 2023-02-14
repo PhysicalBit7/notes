@@ -171,7 +171,7 @@ $$
     x! = 
     \begin{cases}
     1 & \text{ if } x = 1 \\\\
-    x \cdot (x-1)! & \text{ otherwise. }
+    x * (x-1)! & \text{ otherwise. }
     \end{cases}
 $$
 
@@ -187,7 +187,7 @@ $$
 x! = 
 \begin{cases}
 1 & \text{ if } x = 1 \\\\
-x \cdot (x-1)! & \text{ otherwise. }
+x * (x-1)! & \text{ otherwise. }
 \end{cases}
 $$
 </small>

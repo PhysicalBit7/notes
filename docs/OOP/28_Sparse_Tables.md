@@ -55,7 +55,7 @@ Most of the space in the table will remain unused.
 
 ![:scale Sparse table with 17% populated cells. 80%]({{site.baseurl}}/assets/CS50pics/sparse_table/sparse_content_in_normal_table.svg)
 
-In the table above, about 17% of the cells are used.  .tiny[(This is actually quite high for this kind of data...)]
+In the table above, about 17% of the cells are used.  (This is actually quite high for this kind of data...)]
 
 That means we waste 83% of the space we are using for the table... (about 2.8MiB)
 
@@ -109,13 +109,13 @@ In addition, we need 8 bytes for each element of the two arrays to point to the 
 
 ---
 
-In total, assuming 17% of the cells .small[($N = (8000 \times 500) \times 0.17 = 680000$)] in a dense table are used, this implementation would require about $(680000 \times 21) + (500 \times 8) + (8000 \times 8) = 13.7\textrm{MiB}$.
+In total, assuming 17% of the cells ($N = (8000 \times 500) \times 0.17 = 680000$)] in a dense table are used, this implementation would require about $(680000 \times 21) + (500 \times 8) + (8000 \times 8) = 13.7\textrm{MiB}$.
 
 This is not better than the full table of type `int` in this case, due to overhead from the pointers.  However, what if we had 1,000,000 users and 3,600 movies?
 
 --
 
-Then, the usage is .small[$1000000 \times 3600 \times 0.17 \times 21 + 1000000 \times 8 + 3600 \times 8$] $= 12\textrm{GiB}$ versus 3.4GiB for the full (dense) table.
+Then, the usage is $1000000 \times 3600 \times 0.17 \times 21 + 1000000 \times 8 + 3600 \times 8$] $= 12\textrm{GiB}$ versus 3.4GiB for the full (dense) table.
 
 ---
 
@@ -123,9 +123,9 @@ Then, the usage is .small[$1000000 \times 3600 \times 0.17 \times 21 + 1000000 \
 
 Assume that there are values in only 1% of the possible cells... (This is the case for e.g. Netflix ratings.)
 
-Now, we require .small[$1000000 \times 3600 \times 0.01 \times 21 + 1000000 \times 8 + 3600 \times 8$]  $= 0.17\textrm{GiB}$, versus 3.4GiB for the dense table.
+Now, we require $1000000 \times 3600 \times 0.01 \times 21 + 1000000 \times 8 + 3600 \times 8$]  $= 0.17\textrm{GiB}$, versus 3.4GiB for the dense table.
 
-.green[**This time, it is 5% the size of the full table!  A 95% savings!**]
+**This time, it is 5% the size of the full table!  A 95% savings!**]
 
 **The sparsity matters.**  
 

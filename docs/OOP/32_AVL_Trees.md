@@ -44,12 +44,12 @@ If the magnitude of any node's balance factor becomes $>1$, the tree must be bal
 ## Fixing the Balance
 
 When the balance factor rule is broken, we must correct the balance.  That can be done
-by applying a transformation to the tree's shape called a .term[rotation].  The rotation
+by applying a transformation to the tree's shape called a rotation].  The rotation
 can be performed either in a clockwise (_right_) direction, or counter-clockwise 
 (_left_) direction.
 
 A single rotation will have the effect of shifting some of the "weight" from one side 
-of the node about which we are rotating (we call this node the .term[pivot] node) to
+of the node about which we are rotating (we call this node the pivot] node) to
 the other.
 
 ---
@@ -65,7 +65,7 @@ the other.
 
 (b) A value is added to the subtree on the right of _Q_, increasing its height by one. This causes the balance factor at _P_ to become +2, which is no longer considered balanced.
 
-(c) A single .term[left rotation] is performed at node _P_.  This results in _Q_ becoming the parent of _P_, and the tree is again balanced.  (Note that _Q_'s left subtree became _P_'s right subtree in the rotation.)
+(c) A single left rotation] is performed at node _P_.  This results in _Q_ becoming the parent of _P_, and the tree is again balanced.  (Note that _Q_'s left subtree became _P_'s right subtree in the rotation.)
 
 ---
 

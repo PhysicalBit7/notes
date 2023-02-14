@@ -23,9 +23,9 @@ background-size: 45%
 
 ##  Definition and Terminology 
 
-+ A .term[graph] is a data structure containing nodes and connections between them (much like a tree), but with no requirement for hierarchical ordering.
-   + We often call the nodes .term[vertices], and the connections between them .term[edges].
-   + A .term[simple graph], then is the non-empty set of vertices and edges $G=(V,E)$.
++ A graph] is a data structure containing nodes and connections between them (much like a tree), but with no requirement for hierarchical ordering.
+   + We often call the nodes vertices], and the connections between them edges].
+   + A simple graph], then is the non-empty set of vertices and edges $G=(V,E)$.
 
 .center[
 ![:scale A graph, 300px]({{site.baseurl}}/assets/CS50pics/graphs/undirected_graph_with_6_nodes.svg)
@@ -38,9 +38,9 @@ background-size: 45%
 
 ##  Terminology 
 
-+ A .term[directed graph] (or "digraph") is the non-empty set of vertices and edges $G=(V,E)$ where the edges $E={v_i, v_j}$ have a direction associated with them.
-   + Neither simple graphs nor digraphs allow pairs of vertices to have more than one edge connecting them.  A .term[multigraph] relaxes this restriction.
-   + A .term[pseudograph] allows an edge to connect a single vertex to itself (a loop).
++ A directed graph] (or "digraph") is the non-empty set of vertices and edges $G=(V,E)$ where the edges $E={v_i, v_j}$ have a direction associated with them.
+   + Neither simple graphs nor digraphs allow pairs of vertices to have more than one edge connecting them.  A multigraph] relaxes this restriction.
+   + A pseudograph] allows an edge to connect a single vertex to itself (a loop).
 
 
 .center[![:scale A directed graph, 220px]({{site.baseurl}}/assets/CS50pics/graphs/directed_graph_with_6_nodes.svg)]
@@ -49,10 +49,10 @@ background-size: 45%
 
 ##  Terminology 
 
-+ A .term[weighted graph] is a graph in which each edge has a number (or .term[weight]) assigned.
++ A weighted graph] is a graph in which each edge has a number (or weight]) assigned.
     + Depending on context, weight is also called "cost", "distance", "length", or some other name.
 
-+ A graph is .term[complete] if for each pair of distinct vertices, there is exactly one edge connecting them.
++ A graph is complete] if for each pair of distinct vertices, there is exactly one edge connecting them.
 
 .center[![:scale A weighted graph, 300px]({{site.baseurl}}/assets/CS50pics/graphs/undirected_graph_with_weighted_edges.svg)]
 
@@ -60,10 +60,10 @@ background-size: 45%
 
 ##  Terminology 
 
-+ A .term[subgraph] is a set of edges and vertices that are themselves subsets of the edges and vertices of a larger graph.
-    + A subgraph .term[induced by] vertices $V'$ is a graph such that any edges in the subgraph $(V', E')$ are also in the larger graph.
-    + Two vertices are .term[adjacent] if there is an edge connecting them that is a member of the same graph.
-    + The edge connecting them is said to be .term[incident] with them.
++ A subgraph] is a set of edges and vertices that are themselves subsets of the edges and vertices of a larger graph.
+    + A subgraph induced by] vertices $V'$ is a graph such that any edges in the subgraph $(V', E')$ are also in the larger graph.
+    + Two vertices are adjacent] if there is an edge connecting them that is a member of the same graph.
+    + The edge connecting them is said to be incident] with them.
 
 .center[![:scale A Subgraph (in blue), 300px]({{site.baseurl}}/assets/CS50pics/graphs/subgraph.svg)]
 
@@ -71,9 +71,9 @@ background-size: 45%
 
 ##  Terminology 
 
-+ The .term[degree] of a vertex $v$ is the number of edges incident with $v$.
++ The degree] of a vertex $v$ is the number of edges incident with $v$.
 
-   + A vertex with no incident edges is called an .term[isolated vertex].
+   + A vertex with no incident edges is called an isolated vertex].
 
       + It is possible to have a graph $G$ containing only isolated vertices.  ($E$ can be empty).
 
@@ -84,9 +84,9 @@ background-size: 45%
 ##  Representations 
 
 + Aside from drawings: Graphs may be represented by
-   + .term[Adjacency lists]
-   + .term[Adjacency matrices]
-   + .term[Incidence matrices]
+   + Adjacency lists]
+   + Adjacency matrices]
+   + Incidence matrices]
       + See Drozdek pg 378-379
 
 ---
@@ -129,8 +129,8 @@ background-size: 45%
 
 * Much like tree traversals, vertices are "visited" one at a time.
    
-* Unlike trees, graphs have .term[cycles], so tree traversal algorithms would result in infinite loops.
-  * A .term[cycle] is a path from one vertex $v_i$ through one or more edges such that the path returns to $v_i$.
+* Unlike trees, graphs have cycles], so tree traversal algorithms would result in infinite loops.
+  * A cycle] is a path from one vertex $v_i$ through one or more edges such that the path returns to $v_i$.
 
 * Vertices must be "marked" to avoid re-visiting the same vertex.
 * Isolated vertices must also be visited in some way.
@@ -266,7 +266,7 @@ background-size: 45%
 
 ##  Depth-First Traversal: Example
 
-* This algorithm generates a tree (or forest , a set of trees) called a .term[spanning tree].
+* This algorithm generates a tree (or forest , a set of trees) called a spanning tree].
 
    * A spanning tree includes all vertices of the original graph, but does not contain any cycles.
 
@@ -278,7 +278,7 @@ background-size: 45%
 
 We have discussed Depth-First traversals, where the traversal choose one path and "follows" it as far as possible before returning to try other paths.  
 
-The .term[Breadth-First Traversal] instead focuses on visiting all neighboring vertices before proceeding to other vertices.  
+The Breadth-First Traversal] instead focuses on visiting all neighboring vertices before proceeding to other vertices.  
 
 In a tree-like structure, we could visualize this as working across each level of the tree before proceeding further "down" toward the leaves.  
 
@@ -759,7 +759,7 @@ function detectDigraphCyclesDFS(vertex v, Graph G):
 
 ##  Eulerian Graphs 
 
-.small[_(Euler is pronounced very much like "oiler".)_]
+_(Euler is pronounced very much like "oiler".)_]
 
 * An .trail[Eulerian trail] is a path that includes all edges of the graph only once.
 
@@ -772,7 +772,7 @@ function detectDigraphCyclesDFS(vertex v, Graph G):
 
 ##  Finding Eulerian Cycles : Fleury's Algorithm
 
-.green["_Only take a bridge when there is no other path to take._"]
+"_Only take a bridge when there is no other path to take._"]
 
 ```text
 function FleuryAlgorithm(undirected graph G):
@@ -822,8 +822,8 @@ An Eulerian path illustrated (numbers indicate traversal order from **b**)
 
 ##  Hamiltonian Graphs
 
-* A .term[Hamiltonian cycle] is a cycle that passes through all the vertices of the graph.
-   * A .term[Hamiltonian graph] is a graph that includes at least one Hamiltonian cycle.
+* A Hamiltonian cycle] is a cycle that passes through all the vertices of the graph.
+   * A Hamiltonian graph] is a graph that includes at least one Hamiltonian cycle.
    * All complete graphs are Hamiltonian.
       * As a consequence, an algorithm of first create a complete graph using false edges, then reducing it can be used to find Hamiltonian cycles in incomplete graphs.
 

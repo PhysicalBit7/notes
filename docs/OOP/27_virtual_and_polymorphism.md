@@ -20,7 +20,7 @@ permalink: /oop/27_virtual_and_polymorphism
 
 ## Redefining Base Class Methods
 
-* A method is said to be .term[_redefined_] in a derived class when it has the same name (and perhaps parameter list) as a method in the base class.
+* A method is said to be _redefined_] in a derived class when it has the same name (and perhaps parameter list) as a method in the base class.
   * This is not the same thing as _overloading_.
 
 * Base class objects use the base class method... derived class objects use the derived class method.
@@ -94,7 +94,7 @@ Answer to the riddle:
 
 --
 
-* This is called .term[_static binding_]
+* This is called _static binding_]
 
 ---
 
@@ -108,13 +108,13 @@ Answer to the riddle:
 
 ## Virtual Methods
 
-.term[_**Virtual Method**_]: a method in a base class that _expects_ to be redefined in derived classes.
+_**Virtual Method**_]: a method in a base class that _expects_ to be redefined in derived classes.
 
 * Defined with keyword   `    virtual   `
 ```cpp
 virtual void y();
 ```
-* Allows .term[_dynamic binding_] – method name bound _at runtime_ to the corresponding code. ( as opposed to static binding )
+* Allows _dynamic binding_] – method name bound _at runtime_ to the corresponding code. ( as opposed to static binding )
     - Dynamic binding is based on the _type_ of the object actually initiating the call at runtime.
 
 ---
@@ -166,7 +166,7 @@ A pointer of the .highlight-orange[base-class type] may be "pointed" to a .highl
 
 * When the base class uses dynamic binding... 
   * Base class pointer to derived class object behaves appropriately for the derived class.
-  * This is called .term[_polymorphism_].
+  * This is called _polymorphism_].
 
 --
 
@@ -216,9 +216,9 @@ _**Overriding**_: refers to dynamically-bound methods.
 
 <br>
 
-* Redefined methods .red[_**do not**_] exhibit polymorphic behavior
+* Redefined methods _**do not**_] exhibit polymorphic behavior
 
-* Overridden methods .green[_**do**_] exhibit polymorphic behavior.
+* Overridden methods _**do**_] exhibit polymorphic behavior.
 
 ---
 
@@ -250,7 +250,7 @@ virtual void y() = 0;
 
 ## Abstract Base Classes
 
-.term[_**Abstract base class**_]: a base class that contains at least one pure virtual method.
+_**Abstract base class**_]: a base class that contains at least one pure virtual method.
 
 * Useful for factoring out common behavior from a _family_ of objects.
   
@@ -308,7 +308,7 @@ public:                        | public:
 };                             | };
 ```
 
-Now, we have the common code collected in a base class `Person`.  .green[Good!]
+Now, we have the common code collected in a base class `Person`.  Good!]
 
 --
 
@@ -374,7 +374,7 @@ Notice the "diamond" shape this created, with `Person` as a _common ancestor_ of
 
 ![:scale Person, Student, Faculty, 80%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/multiple_inheritance_diamond_of_death.svg)]
 
-This situation creates several challenges, and is known in programming circles as the .term[.red[Diamond of Death]].
+This situation creates several challenges, and is known in programming circles as the Diamond of Death]].
 
 ---
 
@@ -486,10 +486,10 @@ int main() {
 }
 ```
 
-.red[Ouch.]
+Ouch.]
 
 ---
-### The solution: .term[**Virtual Inheritance**].
+### The solution: **Virtual Inheritance**].
 
 ``` cpp
 class Person{
