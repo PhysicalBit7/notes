@@ -3,7 +3,7 @@ layout: default
 title: Socket Programming
 description: Socket Programming notes
 has_toc: false
-nav_order: 2
+nav_order: 3
 parent: Computer Networks
 permalink: /computer-networks/socket-programming
 ---

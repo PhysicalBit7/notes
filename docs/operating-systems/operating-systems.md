@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Operating systems
+title: Operating Systems
 description: An introduction to operating systems.
 has_children: true
 has_toc: false
