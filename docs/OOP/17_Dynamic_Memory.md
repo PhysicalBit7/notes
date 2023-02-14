@@ -49,7 +49,7 @@ delete rPtr;        // delete doesn't change `rPtr`'s value...
 rPtr = nullptr;     // null the pointer to safely disable it.
 ```
 
-![One double allocated dynamically.](../images/shared/dynamic_memory_double.svg)
+![One double allocated dynamically.]({{site.baseurl}}/assets/CS50pics/shared/dynamic_memory_double.svg)
 
 ---
 
@@ -62,7 +62,7 @@ rPtr = nullptr;     // null the pointer to safely disable it.
     - If you lose the pointer, you've leaked the memory!
     - You may transfer ownership to another part of the program by passing the pointer.
 
-![Conceptual memory layout with stack and heap.](../images/shared/memory-diagram-stack-heap.svg)
+![Conceptual memory layout with stack and heap.]({{site.baseurl}}/assets/CS50pics/shared/memory-diagram-stack-heap.svg)
 
 ---
 

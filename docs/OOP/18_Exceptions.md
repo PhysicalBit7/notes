@@ -73,7 +73,7 @@ When something unexpected happens, a function may choose to throw an exception.
 
 __Example__
 
-```{cpp}
+```cpp
 // function that *may* throw an exception
 int totalDays(int days, int weeks){
     if((days < 0) || (days > 7)){
@@ -93,7 +93,7 @@ int totalDays(int days, int weeks){
 
 __Example: Handling the Exception__
 
-```{cpp}
+```cpp
 int main(){
     int days, weeks;
     cout << "Enter days and weeks separated by space: \n";
@@ -130,7 +130,7 @@ But, exceptions provide an impossible-to-ignore failsafe in case the person writ
 
 __Example: Exceptions Can't be Ignored__
 
-```{cpp}
+```cpp
 int main(){
     int days, weeks;
     cout << "Enter days and weeks separated by space: \n";
@@ -155,7 +155,7 @@ If they aren't the exception will be thrown, but not caught, and the program wil
 
 __Example: Checking Pre-Conditions__
 
-```{cpp}
+```cpp
 int main(){
     int days, weeks;
     cout << "Enter days and weeks separated by space: \n";
@@ -215,13 +215,13 @@ is better than <br />
 
 **Example**
 
-```{cpp}
+```cpp
 class NullPointerException{ };  // empty
 ```
 
 Or:
 
-```{cpp}
+```cpp
 class NullPointerException{
     public:
         string msg;            // with attribute
@@ -235,7 +235,7 @@ The C++ Standard Library defines an `exception` base class in the `<exception>` 
 
 * Useful (later) to make our own exceptions with nice common behaviors.
 
-```{cpp}
+```cpp
 #include<exception>
     using std::exception;
 
@@ -253,7 +253,7 @@ class NullPointerException : public exception{
 
 Also, _Polymorphism_!
 
-```{cpp}
+```cpp
 try{
     [...] 
 }

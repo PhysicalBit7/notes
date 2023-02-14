@@ -8,7 +8,7 @@ parent: OOP
 permalink: /oop/02_Variables_Operators_Errors
 ---
 
-# Variables <br /> Operators <br /> Common Errors
+# Variables Operators Common Errors
 {:.no_toc}
 
 ## Table of contents
@@ -36,7 +36,7 @@ To learn a language, figure these things out first.
 
 ---
 
-## Where to Start?
+### Where to Start?
 
 We will begin by examining the way C++ provides for temporary data storage and retrieval.
 
@@ -46,18 +46,18 @@ We will begin by examining the way C++ provides for temporary data storage and r
 
 ---
 
-## Computer Memory
+### Computer Memory
 
 * The smallest division of memory is a _byte_ (8-bits).  All storage sizes are specified in bytes.
     - Each byte of memory has a number associated with it, called its  _memory address_.
     - This address is what the machine uses to refer to data.
 * _Physical memory_ is limited, but _logical memory_ (our view of memory as programmers) is usually treated as if it were unlimited.
 
-![Logical Memory](../images/Variables_Operators_Errors/Logical_Memory.svg) 
+![Logical Memory]({{site.baseurl}}/assets/CS50pics/Variables_Operators_Errors/Logical_Memory.svg) 
 
----
+----
 
-## Variables
+### Variables
 
 Since humans are not good with numbers (like memory addresses), C++ provides us with a way to use names instead.
 
@@ -70,7 +70,7 @@ The declaration statement above tells the compiler to create a variable named `t
 
 ---
 
-## Data Types
+### Data Types
 
 So what types of things can we store in variables?
 
@@ -84,7 +84,7 @@ So what types of things can we store in variables?
 
 ---
 
-## Identifiers
+### Identifiers
 
 An _identifier_ is a name that is permissible for variables, classes, functions, etc. in C++.
 
@@ -103,7 +103,7 @@ You must obey the following __3 Rules For Identifiers__:
 
 ---
 
-## Keywords
+### Keywords
 
 A _keyword_ is a word that has a specific, reserved meaning in a programming language.  Also known as _reserved words_ in some texts.
 
@@ -145,7 +145,7 @@ __C++ Keywords:__ &nbsp;&nbsp;&nbsp;&nbsp; <small><i>(1): New in C++11 &nbsp;&nb
 
 ---
 
-## Declaration
+### Declaration
 
 Declaring a variable allows the compiler to reserve memory for the data, as well as managing the association between the data's memory address and the identifier chosen to represent the variable in the program.
 
@@ -155,12 +155,12 @@ int temperature;
 
 The declaration above produces the situation in memory shown below:
 
-![Variable Declaration](../images/Variables_Operators_Errors/int_temperature_memory.svg) 
+![Variable Declaration]({{site.baseurl}}/assets/CS50pics/Variables_Operators_Errors/int_temperature_memory.svg) 
 
 
 ---
 
-## Declaration
+### Declaration
 
 * Declaring a variable tells the compiler the _name_ and _type_ of the data.
     - The compiler now also knows the amount of memory required.
@@ -172,7 +172,7 @@ The declaration above produces the situation in memory shown below:
 
 ---
 
-## Initialization
+### Initialization
 
 __Initialization__ refers to storing a value in a variable for the first time.
 
@@ -225,7 +225,7 @@ Here, `interestRate` will be of type `double` and `stockCode` will be type `char
 
 ---
 
-## When to use `auto`
+### When to use `auto`
 
 *  The `auto` keyword is intended to simplify declaration of _intermediate variables_ that have very complex types.
     -  In general, do not use `auto` to declare variables whose lifetime is more than a few lines.
@@ -267,7 +267,7 @@ The third line should be read as "`temperature` is assigned 75".
 
 ---
 
-### Type Compatibility and Coercion
+## Type Compatibility and Coercion
 
 * The _type_ of a variable must always match the _type_ of the data you are storing in it.
     - Failure to match the type can lead to errors.
@@ -428,7 +428,7 @@ See the documentation guidelines that your code must meet on the course website.
 
 ---
 
-## Programming Errors
+### Programming Errors
 
 Programmers are human.<sup><small>[citation needed]</small></sup>  <small>Errors are unavoidable.  Learning to expect, detect, and fix those errors is a key component of learning to program.</small>
 

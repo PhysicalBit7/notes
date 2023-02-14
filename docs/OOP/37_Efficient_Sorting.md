@@ -120,7 +120,7 @@ More specifically
 
 **Insertion Sort - First two iterations illustrated.**
 
-.center[![:height Insertion sort - first two steps, 20em](../images/efficient_sorting/insertion_sort_2-steps.svg)]
+.center[![:height Insertion sort - first two steps, 20em]({{site.baseurl}}/assets/CS50pics/efficient_sorting/insertion_sort_2-steps.svg)]
 
 ---
 
@@ -239,7 +239,7 @@ class: algorithm
 
 .vertical-center[
 .right-column[
-![Merge Sort](../images/efficient_sorting/merge_sort.svg)
+![Merge Sort]({{site.baseurl}}/assets/CS50pics/efficient_sorting/merge_sort.svg)
 ]]
 
 .footnote[Drozdek, Figure 9.14]
@@ -249,7 +249,7 @@ class: algorithm
 **Merge Sort**
 
 .middle[
-![:scale Merge Sort, 80%](../images/efficient_sorting/merge_sort.svg)
+![:scale Merge Sort, 80%]({{site.baseurl}}/assets/CS50pics/efficient_sorting/merge_sort.svg)
 ]
 
 .footnote[Drozdek, Figure 9.14]
@@ -304,7 +304,7 @@ Although in practice we often aren't merging the _whole array_ - we are merging 
 
 .vertical-center[
 .right-column[
-![Merge Sort](../images/efficient_sorting/merge_sort.svg)
+![Merge Sort]({{site.baseurl}}/assets/CS50pics/efficient_sorting/merge_sort.svg)
 ]]
 
 ---
@@ -415,7 +415,7 @@ There are other correct ways to write the in-place partitioning algorithm.  The 
 
 .center[**In-place Partitioning**]
 
-.center[![:height Partitioning, 20em](../images/Quicksort/partitioning.svg)]
+.center[![:height Partitioning, 20em]({{site.baseurl}}/assets/CS50pics/Quicksort/partitioning.svg)]
 
 .footnote[
 This figure shows the first element being chosen for _pivot_ for simplicity.  We will see in later slides that this might not be a good choice.
@@ -504,7 +504,7 @@ So, this algorithm requires an _array of piles_ as a secondary data structure to
 
 **Radix Sort - Illustrated.**
 
-.center[![Radix sort](../images/efficient_sorting/radix_sort.svg)]
+.center[![Radix sort]({{site.baseurl}}/assets/CS50pics/efficient_sorting/radix_sort.svg)]
 
 
 ---

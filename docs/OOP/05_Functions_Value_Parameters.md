@@ -28,7 +28,7 @@ permalink: /oop/05_Functions_Value_Parameters
 
 ---
 
-## Motivation
+### Motivation
 
 * Modular programs are easier to read and understand.
     - Each logical step has its own function definition that is easily examined separately from other code.
@@ -50,7 +50,7 @@ permalink: /oop/05_Functions_Value_Parameters
 
 ---
 
-## Types of Functions
+### Types of Functions
 
 Functions can be generally divided into two categories:
 
@@ -64,7 +64,7 @@ Functions can be generally divided into two categories:
 
 ---
 
-## Calling a Function
+### Calling a Function
 
 * Any statement can contain a function call.
     * Non-fruitful functions are often called as a stand-alone statement.
@@ -77,7 +77,7 @@ Functions can be generally divided into two categories:
 
 ---
 
-## Defining a function
+### Defining a function
 The function definition must define the function's _interface_, as well as the statements that must be executed to perform the function's action.
 * The **_function header_** defines the function's interface.
     - name, return type, list of parameters
@@ -246,7 +246,7 @@ void greeting( std::string name ){  // definition
 
 ---
 
-## Default Parameters
+### Default Parameters
 
 Often a parameter will always be set to a common value; in these cases, a _default value_ can be specified for the parameter.  Doing so makes the parameter _optional_ when calling the function.
 
@@ -258,7 +258,7 @@ double divide( double dividend, double divisor = 2.0 );
 
 ---
 
-## Default Parameter Notes
+### Default Parameter Notes
 
 * Defaults are placed in the function prototype if it is used (and _not_ in the header).
     - Place a default value in the header _only_ if no prototype is being used.

@@ -63,14 +63,14 @@ The .term[heap property], for any node in a tree, states:
 
 ## Binary Max Heap
 
-.center[![:scale Complete Binary Max Heap, 80%](../images/HeapSort/complete_binary_max_heap.png)]
+![:scale Complete Binary Max Heap, 80%]({{site.baseurl}}/assets/CS50pics/HeapSort/complete_binary_max_heap.png)]
 
 ---
 
 
 ## Binary Min Heap
 
-.center[![:scale Complete Binary Min Heap, 80%](../images/HeapSort/incomplete_binary_min_heap.png)]
+![:scale Complete Binary Min Heap, 80%]({{site.baseurl}}/assets/CS50pics/HeapSort/incomplete_binary_min_heap.png)]
 
 ---
 
@@ -83,7 +83,7 @@ It is convention (not strictly a requirement) that heaps "fill in" at the leaf l
 + The tree is balanced.
 + Leaves are added at level $h$ from left-to-right.
 
-.center[![:height Complete Binary Max Heap, 10em](../images/HeapSort/complete_binary_max_heap.png)]
+![:height Complete Binary Max Heap, 10em]({{site.baseurl}}/assets/CS50pics/HeapSort/complete_binary_max_heap.png)]
 
 ---
 
@@ -96,8 +96,8 @@ It is convention (not strictly a requirement) that heaps "fill in" at the leaf l
 + Leaves are added at level $h$ from left-to-right.
 
 <table><tr>
-<td>.left[![:scale Complete Binary Max Heap, 100%](../images/HeapSort/complete_binary_max_heap.png)]</td>
-<td>.right[![:scale Max Heap in Array, 80%](../images/HeapSort/heap_in_array_both_views.svg)]</td></tr></table>
+<td>![Complete Binary Max Heap, 100%]({{site.baseurl}}/assets/CS50pics/HeapSort/complete_binary_max_heap.png)</td>
+<td>![Max Heap in Array, 80%]({{site.baseurl}}/assets/CS50pics/HeapSort/heap_in_array_both_views.svg)</td></tr></table>
 
 ---
 
@@ -110,7 +110,7 @@ This allows us to make an easy representation of a heap in an array, by applying
 - An item at any index $i$ can find its left-child at index $2i+1$ and its right-child at index $2i+2$.
     - By inverse relation, the parent of any node is at index $(i-1)/2$ using integer division.
 
-.center[![:scale Max Heap in Array, 80%](../images/HeapSort/heap_in_array_both_views.svg)]
+![:scale Max Heap in Array, 80%]({{site.baseurl}}/assets/CS50pics/HeapSort/heap_in_array_both_views.svg)
 
 ---
 
@@ -124,7 +124,7 @@ When inserting a new item in an existing heap, the item must be placed into a le
 - Restore Heap
     + "Percolate up"
 
-.center[![:scale Max Heap in Array, 80%](../images/HeapSort/heap_in_array_both_views.svg)]
+![:scale Max Heap in Array, 80%]({{site.baseurl}}/assets/CS50pics/HeapSort/heap_in_array_both_views.svg)
 
 ---
 
@@ -139,7 +139,7 @@ We generally only care about removing the item at the root of the heap.
     - This re-heapify is a simple operation.
     - Usually referred to as "_sift-down_".
 
-.center[![:scale Max Heap in Array, 80%](../images/HeapSort/heap_in_array_both_views.svg)]
+![:scale Max Heap in Array, 80%]({{site.baseurl}}/assets/CS50pics/HeapSort/heap_in_array_both_views.svg)
 
 ---
 

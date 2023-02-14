@@ -47,13 +47,13 @@ How many "cells" in the table will have a rating entered?
 
 --
 
-.red[Not many!]  Most users won't watch most movies - and they will rate even fewer.
+__Not many!__  Most users won't watch most movies - and they will rate even fewer.
 
 Most of the space in the table will remain unused.
 
 ---
 
-.center[![:scale Sparse table with 17% populated cells. 80%](../images/sparse_table/sparse_content_in_normal_table.svg)]
+![:scale Sparse table with 17% populated cells. 80%]({{site.baseurl}}/assets/CS50pics/sparse_table/sparse_content_in_normal_table.svg)
 
 In the table above, about 17% of the cells are used.  .tiny[(This is actually quite high for this kind of data...)]
 
@@ -74,13 +74,13 @@ We could use a 1-D array of these linked lists.  (You could implement this as a 
 
 We could use a 1-D array of these linked lists.  (You could implement this as a 1-D array of `head` pointers as well, if you were writing the data structure from scratch for this purpose.)
 
-.center[![:scale Sparse table with 17% populated cells., 80%](../images/sparse_table/linked_list_per-user.svg)]
+![:scale Sparse table with 17% populated cells., 80%]({{site.baseurl}}/assets/CS50pics/sparse_table/linked_list_per-user.svg)
 
 That would allow us to look up all ratings for a _user_, but it would be difficult to find all ratings for a _movie_.
 
 ---
 
-.center[![:scale Sparse table with 17% populated cells., 50%](../images/sparse_table/linked_list_per-user.svg)]
+![:scale Sparse table with 17% populated cells., 50%]({{site.baseurl}}/assets/CS50pics/sparse_table/linked_list_per-user.svg)
 
 That would allow us to look up all ratings for a _user_, but it would be difficult to find all ratings for a _movie_.
 
@@ -93,15 +93,15 @@ But we would lose the ability to quickly find info on a "per-user" basis...
 ---
 
 **What if we do both?**     
-.small-90[If we use two 1-D arrays, one for "Movies" and one for "Users", we could quickly find info from either point-of-view.  
+If we use two 1-D arrays, one for "Movies" and one for "Users", we could quickly find info from either point-of-view.  
 
 * The node would need to know about the Movie, the User, and the Rating.
-]
-.center[![:scale Sparse table as linked lists., 80%](../images/sparse_table/linked_list_dual-indexed.svg)]
+
+![:scale Sparse table as linked lists., 80%]({{site.baseurl}}/assets/CS50pics/sparse_table/linked_list_dual-indexed.svg)
 
 ---
 
-.center[![:scale Sparse table as linked lists., 50%](../images/sparse_table/linked_list_dual-indexed.svg)]
+![:scale Sparse table as linked lists., 50%]({{site.baseurl}}/assets/CS50pics/sparse_table/linked_list_dual-indexed.svg)
 
 The nodes use 1 byte for the rating, plus at least two bytes for the user and movie number, plus two pointers (16 bytes), for a total of 21 bytes.  
 

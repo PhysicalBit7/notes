@@ -8,7 +8,7 @@ parent: OOP
 permalink: /oop/06_Functions_Reference_Parameters
 ---
 
-# Functions & <br /> Reference <br /> Parameters
+# Functions & Reference Parameters
 {:.no_toc}
 
 ## Table of contents
@@ -24,7 +24,7 @@ permalink: /oop/06_Functions_Reference_Parameters
 * Pass by value is the default method by which data is moved into a function for _primitive types_, _structured types_ and _object types_.
     - Changes to the formal parameter _cannot_ affect the actual parameter.
 
-.center[![COPY](../images/shared/copy-stamp.jpg)]
+        ![COPY]({{site.baseurl}}/assets/CS50pics/shared/copy-stamp.jpg)
 
 ---
 
@@ -38,7 +38,7 @@ permalink: /oop/06_Functions_Reference_Parameters
 
 ---
 
-## Passing by Reference
+### Passing by Reference
 
 * A **_reference parameter_** is a formal parameter that is an alias for the actual parameter.
 * Created by adding the _reference type modifier_ in the formal parameter declaration.
@@ -47,7 +47,7 @@ permalink: /oop/06_Functions_Reference_Parameters
 
 ---
 
-## Why?
+### Why?
 
 * Passing by reference avoid making a copy.
     - Smaller memory footprint.

@@ -28,11 +28,6 @@ In the computer science sense, .term[trees] are simply non-linear linked structu
 * Normally, we don’t draw the null pointers when we draw a tree... but we must remember that they are there.
 
 ---
-background-image: url(../images/Trees/trees.png)
-
-&nbsp;
-
----
 
 ## Trees
 We use terms borrowed from family trees to describe the hierarchical relationships between nodes in CS trees.<br />  (parent, child, grandparent, sibling, etc.)
@@ -45,15 +40,10 @@ We use terms borrowed from family trees to describe the hierarchical relationshi
 * .term[Subtree] - any node in the tree, and all its descendants.
 
 ---
-background-image: url(../images/Trees/trees.png)
-
-&nbsp;
-
----
 
 ## Binary Trees
 
-A .term[binary tree] is a tree in which each node has up to two children.
+A __binary tree__ is a tree in which each node has up to two children.
 
 * These are the most common type
 * Easy to design and conceptualize (and code)
@@ -65,7 +55,7 @@ A .term[binary tree] is a tree in which each node has up to two children.
 
 The binary tree "Node" must store a payload value and maintain pointers to the left and right subtree.
 
-.center[![](../images/Trees/Binary_Tree_Node.svg)]
+![]({{site.baseurl}}/assets/CS50pics/Trees/Binary_Tree_Node.svg)
 
 ---
 
@@ -73,7 +63,7 @@ The binary tree "Node" must store a payload value and maintain pointers to the l
 
 The "Tree" object must store an owning pointer to the root of the tree.  The tree itself has ownership responsibility for all nodes in the data structure.
 
-.center[![](../images/Trees/Binary_Tree.svg)]
+![]({{site.baseurl}}/assets/CS50pics/Trees/Binary_Tree.svg)
 
 
 ---
@@ -124,18 +114,18 @@ Binary search trees are shaped by the order in which values are added to the con
 
 ## Tree deletion - trivial cases
 
-.center[![:scale Delete a leaf node., 80%](../images/Trees/tree_delete_leaf_fig_6.26.png)]
+![:scale Delete a leaf node., 80%]({{site.baseurl}}/assets/CS50pics/Trees/tree_delete_leaf_fig_6.26.png)
 
 <br>
 
-.center[![:scale Delete a node with a single subtree., 80%](../images/Trees/tree_delete_node-with-one-child_fig_6.27.png)]
+![:scale Delete a node with a single subtree., 80%]({{site.baseurl}}/assets/CS50pics/Trees/tree_delete_node-with-one-child_fig_6.27.png)
 
 ---
 ## Tree deletion - delete by merge (refer to Drozdek Ch. 6.6 for algorithms)
 
-.center[![:scale Delete by merging., 80%](../images/Trees/tree_delete_by-merge_fig_6.28.png)]
+![:scale Delete by merging., 80%]({{site.baseurl}}/assets/CS50pics/Trees/tree_delete_by-merge_fig_6.28.png)
 
-.center[![:scale Delete by merging., 80%](../images/Trees/tree_delete_by-merge_fig_6.30.png)]
+![:scale Delete by merging., 80%]({{site.baseurl}}/assets/CS50pics/Trees/tree_delete_by-merge_fig_6.30.png)
 
 
 ---

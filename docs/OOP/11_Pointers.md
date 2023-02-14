@@ -48,7 +48,7 @@ xPtr = &x;     // point xPtr to x
 
 ---
 
-## Why?
+### Why?
 
 * Low-level access.
     - To provide explicit, direct access (no copy) in a similar way to what we do implicity with _pass by reference_.
@@ -60,7 +60,7 @@ xPtr = &x;     // point xPtr to x
 
 ---
 
-## Why? (simplified)
+### Why? (simplified)
 
 <br /><br />
 
@@ -86,7 +86,7 @@ xPtr = &x;     // point xPtr to x
 
 The following figure illustrates the _physical view_ of what a pointer actually looks like in memory.  The pointer `xPtr` contains the _address_ of the location where `x` is stored:
 
-![Physical view of pointer in memory.](../images/shared/pointer_in_memory.svg)
+![Physical view of pointer in memory.]({{site.baseurl}}/assets/CS50pics/shared/pointer_in_memory.svg)
 
 ---
 
@@ -101,7 +101,7 @@ xPtr = &x;     // point xPtr to x
 
 The following figure illustrates the _logical view_ of what a pointer conceptually does.  The pointer `xPtr` _points to_ the the variable `x`:
 
-![Conceptual view of pointer in memory.](../images/shared/pointer_in_memory_conceptual.svg)
+![Conceptual view of pointer in memory.]({{site.baseurl}}/assets/CS50pics/shared/pointer_in_memory_conceptual.svg)
 
 ---
 
@@ -114,9 +114,9 @@ int* xPtr;     // declare a pointer to an int
 xPtr = &x;     // point xPtr to x
 ```
 
-![Physical view of pointer in memory.](../images/shared/pointer_in_memory.svg)
+![Physical view of pointer in memory.]({{site.baseurl}}/assets/CS50pics/shared/pointer_in_memory.svg)
 
-![Conceptual view of pointer in memory.](../images/shared/pointer_in_memory_conceptual.svg)
+![Conceptual view of pointer in memory.]({{site.baseurl}}/assets/CS50pics/shared/pointer_in_memory_conceptual.svg)
 
 ---
 
@@ -275,7 +275,7 @@ int* begin = a;     // "left" edge of array
 int* end   = a + 5; // "right" edge of array
 ```
 
-![Pointers to range in array `a`.](../images/shared/range_iterators_in_array.svg)
+![Pointers to range in array `a`.]({{site.baseurl}}/assets/CS50pics/shared/range_iterators_in_array.svg)
 
 Notice that `end` physically points to the first memory address _beyond_ the end of the
 array.  For this reason, i**t would be an error to try to dereference `end`**.  We must be
@@ -293,7 +293,7 @@ int* first = a + 1;  // "left" edge of subrange
 int* last  = a + 4;  // "right" edge of subrange
 ```
 
-![Pointers to range in array `a`.](../images/shared/range_iterators_to_subrange.svg)
+![Pointers to range in array `a`.]({{site.baseurl}}/assets/CS50pics/shared/range_iterators_to_subrange.svg)
 
 In this usage, we are bracketing a _subrange_ of values within the larger array.  Again,
 notice that the `last` pointer points to a value outside that subrange - it should not

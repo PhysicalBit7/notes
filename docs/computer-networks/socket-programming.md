@@ -87,19 +87,21 @@ Many times when building packets or filling out data structures you'll need to m
 Section covers various data types used by the sockets interface
 
 #### Socket Descriptor
-A socket Descriptor is of the following type: ```int```
+A socket descriptor is of the following type: ```int```
 
 __Struct addrinfo__ - this structure is a more recent invention and is used to prep the socket address structures for subsequent use. It's also used in host name lookups, and service name lookups. __This is one of the first things you will call when making a connection.__
 
-    struct addrinfo {
-        int ai_flags; // AI_PASSIVE, AI_CANONNAME, etc.
-        int ai_family; // AF_INET, AF_INET6, AF_UNSPEC
-        int ai_socktype; // SOCK_STREAM, SOCK_DGRAM
-        nt ai_protocol; // use 0 for "any"
-        size_t ai_addrlen; // size of ai_addr in bytes
-        struct sockaddr *ai_addr; // struct sockaddr_in or _in6
-        char *ai_canonname; // full canonical hostname
-        struct addrinfo *ai_next; // linked list, next node
-    };
+```cpp
+struct addrinfo {
+    int ai_flags; // AI_PASSIVE, AI_CANONNAME, etc.
+    int ai_family; // AF_INET, AF_INET6, AF_UNSPEC
+    int ai_socktype; // SOCK_STREAM, SOCK_DGRAM
+    int ai_protocol; // use 0 for "any"
+    size_t ai_addrlen; // size of ai_addr in bytes
+    struct sockaddr *ai_addr; // struct sockaddr_in or _in6
+    char *ai_canonname; // full canonical hostname
+    struct addrinfo *ai_next; // linked list, next node
+};
+```
 
 You will load this struct up in a bit, and then call ```getaddrinfo()```. It will return a pointer to a new linked list of these structures filled out with all the goodies you need.

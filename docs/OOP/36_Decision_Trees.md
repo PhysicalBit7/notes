@@ -69,7 +69,7 @@ else
 .right-column[
 .center[ **Decision Tree** ]
 
-.center[![A decision tree for a grading scale.](../images/decision_trees/grading_scale_dt.svg)]
+.center[![A decision tree for a grading scale.]({{site.baseurl}}/assets/CS50pics/decision_trees/grading_scale_dt.svg)]
 ]
 
 ---
@@ -81,7 +81,7 @@ Notice that we could optimize the search tree a bit.  Here is an alternate versi
 .left-column[
 .center[ **Decision Tree** ]
 
-.center[![A decision tree for a grading scale.](../images/decision_trees/grading_scale_dt_optim.svg)]
+.center[![A decision tree for a grading scale.]({{site.baseurl}}/assets/CS50pics/decision_trees/grading_scale_dt_optim.svg)]
 ]
 
 .right-column[
@@ -112,7 +112,7 @@ In the book, Drozdek uses the relationship between decision trees and search alg
 
 Here is "insertion sort" as one possible decision tree (sorting three values in variables `a`, `b`, and `c`):
 
-.center[![Insertion sort as a DT.](../images/decision_trees/fig_9.4a.png)]
+.center[![Insertion sort as a DT.]({{site.baseurl}}/assets/CS50pics/decision_trees/fig_9.4a.png)]
 
 .footnote[Ref: Drozdek, Figure 9.4]
 
@@ -128,7 +128,7 @@ That corresponds to _at least_ $n!$ leaf nodes in the decision tree! .red[There 
 
 Here is a possible decision tree for "Bubble Sort":
 
-.center[![Bubble Sort as a DT.](../images/decision_trees/fig_9.4b.png)]
+.center[![Bubble Sort as a DT.]({{site.baseurl}}/assets/CS50pics/decision_trees/fig_9.4b.png)]
 
 .footnote[Ref: Drozdek, Figure 9.4]
 

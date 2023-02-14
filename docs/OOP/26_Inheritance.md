@@ -41,14 +41,14 @@ _... Infinite examples:  The real world works this way!_
 * _Derived class_ (or _child_): more specialized, derived from base class.
 * Notation:
 
-![Base and derived class headers.](../images/Inheritance/base_and_derived_class_headers.png )
+![Base and derived class headers.]({{site.baseurl}}/assets/CS50pics/Inheritance/base_and_derived_class_headers.png)
 
 
 ---
 
 ## How "is-a" Works
 
-.blue[The derived class object "**is a**(n)" object of the base class.]
+The derived class object "**is a**(n)" object of the base class.
 
 --
 
@@ -68,7 +68,7 @@ _... Infinite examples:  The real world works this way!_
 
 ## How "is-a" Works
 
-.center[![:scale Base and derived class., 80%](../images/Inheritance/base_and_derived_class_diagram.svg )]
+![:scale Base and derived class., 80%]({{site.baseurl}}/assets/CS50pics/Inheritance/base_and_derived_class_diagram.svg )
 
 The _physical object_ for a derived class object includes .blue[_all parts_] of the base class, even though the `private` base class members are not directly accessible to derived class methods.
 
@@ -90,18 +90,18 @@ The _physical object_ for a derived class object includes .blue[_all parts_] of 
 You may also inherit with a selected maximum level of access:
 --
 
-- **.blue[`public`]**
+- `public`
     + True "is-a" relationship.
     + Does not change any member's downstream access level.
 
 --
 
-- **.orange[`protected`]**
+- `protected`
     + `public` items from base class become `protected` in derived class.
 
 --
 
-- **.red[`private`]**
+- `private`
     + `public` and `protected` items from base class become `private` in derived class.
     + Derived class object _cannot_ be treated as an object of the base class.
 
@@ -109,7 +109,7 @@ You may also inherit with a selected maximum level of access:
 
 ## Class Access Specifiers
 
-.center[![Diagram of effect of access specifiers.](../images/Inheritance/Inheritance_Access_Levels.svg)]
+![Diagram of effect of access specifiers.]({{site.baseurl}}/assets/CS50pics/Inheritance/Inheritance_Access_Levels.svg)
 
 ---
 
@@ -172,7 +172,7 @@ public:
 };
 ```
 
-.green[Simple!]  But, it leads to an issue.
+Simple!  But, it leads to an issue.
 
 ---
 
@@ -183,22 +183,20 @@ public:
 };
 ```
 
-.green[Simple!]  But, it leads to an issue.
+Simple! But, it leads to an issue.
 
-.left-column[
 ```cpp
 Square s1{3}; // 3x3 square
 s1.print();   // "w=3, h=3"
 s1.set_width(4);
 s1.print();   // "w=4, h=3" ERROR
 ```
-]
 
-.right-column[.small[
+
+
 We inherited by `public` from `Rectangle`, so we can use any `Rectangle` method.
 
 Bad news - this lets us make a .red[mistake] by setting width/height _independently_.
-]]
 
 How can we fix this problem?
 

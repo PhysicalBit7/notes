@@ -40,7 +40,7 @@ void countDown(int timer) {
 
 **Tracing a Recursive Call**
 
-.small-80[
+[
 ```cpp
 void countDown(int timer) {   
     if (timer == 0) {
@@ -53,9 +53,9 @@ void countDown(int timer) {
 }
 ```
 ]
-.small-80[Assuming the function is called as in **`countDown(2);`**:]
+[Assuming the function is called as in **`countDown(2);`**:]
 <pre>
-.small-70[
+[
 <b>countdown(2):</b>
     Generates output "2..."
     Calls `countdown(1)`
@@ -168,11 +168,11 @@ bool is_even(int n){
 $x!$ is defined as follows:
 
 $$
-x! = 
-\begin{cases}
-1 & \text{ if } x = 1 \\\\
-x \cdot (x-1)! & \text{ otherwise. }
-\end{cases}
+    x! = 
+    \begin{cases}
+    1 & \text{ if } x = 1 \\\\
+    x \cdot (x-1)! & \text{ otherwise. }
+    \end{cases}
 $$
 
 ---
@@ -225,78 +225,38 @@ How do you break down a new and difficult problem to find a solution?
 
 ---
 
-background-image: url(../images/Recursion/Towers.png)
-
 ## Towers of Hanoi
-
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
----
-
-background-image: url(../images/Recursion/Towers.png)
-background-color: rgba(0,0,0,0.4)
-
-## Towers of Hanoi
-
-<span style="color: white">
 **Rules**
-</span>
 
-<ol style=" padding-left: 1.5em; color: white;">
-<li> All plates begin on one of three pegs, ordered from smallest to largest. </li>
-<li> The goal is to move all plates to another of the pegs, likewise ordered.</li>
-<li> Only one plate can be moved at a time. </li>
-<li> Plates not in motion must rest on one of the three pegs.</li>
-<li> A larger plate can never be placed atop a smaller plate.</li>
-</ol>
-</p>
-</div>
+1. All plates begin on one of three pegs, ordered from smallest to largest. 
+2. The goal is to move all plates to another of the pegs, likewise ordered.
+3. Only one plate can be moved at a time. 
+4. Plates not in motion must rest on one of the three pegs.
+5. A larger plate can never be placed atop a smaller plate.
+
 
 ---
 
-background-image: url(../images/Recursion/Towers.png)
-background-color: rgba(0,0,0,0.4)
-
 ## Towers of Hanoi
 
-
-<span style="color: white">
 **Algorithm**
-</span>
 
-<ol style="padding-left: 1.5em; color: white;">
-<li> Move $n-1$ plates from _start_ to _temp_ (using _goal_ for storage).</li>
-<li> Move the final plate from _start_ to _goal_.</li>
-<li> Move $n-1$ plates from _temp_ to _goal_ (using _start_ for storage).</li>
-</ol>
-</p>
-</div>
+1. Move $n-1$ plates from _start_ to _temp_ (using _goal_ for storage).
+2. Move the final plate from _start_ to _goal_.
+3. Move $n-1$ plates from _temp_ to _goal_ (using _start_ for storage).
 
-<span style="color: white">__Spoiler Alert!__ </span>
 
 ---
 
-background-image: url(../images/Recursion/Towers.png)
-background-color: rgba(0,0,0,0.4)
-
 ## Towers of Hanoi
 
-
-<span style="color: white">
 **Algorithm**
-</span>
 
-<ol style="padding-left: 1.5em; color: white;">
-<li> Move $n-1$ plates from _start_ to _temp_ (using _goal_ for storage).</li>
-<li> Move the final plate from _start_ to _goal_.</li>
-<li> Move $n-1$ plates from _temp_ to _goal_ (using _start_ for storage).</li>
-</ol>
-</p>
-</div>
+1. Move $n-1$ plates from _start_ to _temp_ (using _goal_ for storage).
+2. Move the final plate from _start_ to _goal_.
+3. Move $n-1$ plates from _temp_ to _goal_ (using _start_ for storage).
 
-<span style="color: white">__Spoiler Alert!__ </span>
-
-```{.cpp}
+```cpp
 void towers(int n, char start='A', char goal='C', char temp='B'){
     if(n > 0){
         towers(n-1, start, temp, goal);

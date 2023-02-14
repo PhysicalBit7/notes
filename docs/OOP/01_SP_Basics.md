@@ -37,7 +37,7 @@ So, a computer is the ultimate "Swiss Army Knife".
 
 ---
 
-## Computer Code
+### Computer Code
 
 Computers execute code that is stored in _computer memory_ in a _binary_ form.
 
@@ -47,7 +47,7 @@ Humans are not skilled at writing in machine language.
 
 ---
 
-## Language Levels
+### Language Levels
 
 * Low-Level 
     - Machine Language
@@ -78,7 +78,7 @@ Now, we will take a look at the parts of the program, and see what each part doe
 
 ---
 
-## Program Parts
+### Program Parts
 
 ``` cpp
 #include <iostream>
@@ -91,7 +91,7 @@ Now, we will take a look at the parts of the program, and see what each part doe
 
 ---
 
-## Program Parts
+### Program Parts
 
 ``` cpp
 int main()
@@ -106,7 +106,7 @@ int main()
 
 ---
 
-## Program Parts
+### Program Parts
 
 ```cpp
 {
@@ -121,7 +121,7 @@ int main()
 
 
 ---
-## Program Parts
+### Program Parts
 
 ``` cpp
     std::cout << "Hello, World\n";
@@ -139,7 +139,7 @@ int main()
 
 ---
 
-## Escape Characters
+### Escape Characters
 
 ``` cpp
     std::cout << "Hello, World\n";
@@ -149,7 +149,6 @@ int main()
 
 * __escape character__ - any character combination beginning with "`\`", used to represent a character that cannot otherwise be represented in a string literal.
 
-.small-80[
 
 __Examples:__
 
@@ -164,7 +163,7 @@ __Examples:__
 ]
 
 ---
-## Program Parts
+### Program Parts
 
 ``` cpp
     return 0;
@@ -191,7 +190,7 @@ __Terms from Program Parts__
 
 ## Our Development Toolchain
 
-<img src="{{site.baseurl}}/images/SP_Basics/Our_Compiling_Toolchain.png"  width="70%" height="30%">
+<img src="{{site.baseurl}}/assets/CS50pics/SP_Basics/Our_Compiling_Toolchain.png"  width="70%" height="30%">
 
 * User's Side: Editing, running and testing.
 * Server Side: Stores files, provides compiler and other tools.
@@ -200,11 +199,11 @@ __Terms from Program Parts__
 
 ## Some Linux / UNIX terminal basics
 
-<https://towardsdatascience.com/basics-of-bash-for-beginners-92e53a4c117a>
+[Basics of Bash for Beginners](https://towardsdatascience.com/basics-of-bash-for-beginners-92e53a4c117a)
 
-<https://www.educative.io/blog/bash-shell-command-cheat-sheet>
+[Bash Shell command cheat sheet](https://www.educative.io/blog/bash-shell-command-cheat-sheet)
 
-<https://wiki.cs.astate.edu/index.php/Common_Linux_Commands>
+[Common Linux Commands](https://wiki.cs.astate.edu/index.php/Common_Linux_Commands)
 
 ---
 

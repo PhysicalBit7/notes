@@ -8,7 +8,7 @@ parent: OOP
 permalink: /oop/14_Searching_Sorting
 ---
 
-# Search &<br />Sort<br />Algorithms
+# Search & Sort Algorithms
 {:.no_toc}
 
 ## Table of contents
@@ -26,7 +26,7 @@ Problem:  Given an array filled with data, you want to determine if a particular
 * Is the value present?
 * If so, where is it located?
 
-![Example array with integer values.](../images/shared/integer_array_with_values.svg)
+![Example array with integer values.]({{site.baseurl}}/assets/CS50pics/shared/integer_array_with_values.svg)
 
 Does this array contain the value 85?  If so, where?
 
@@ -122,7 +122,7 @@ How do you choose between Binary Search and Linear Search?
 
 Problem:  Given an array filled with data, you want rearrange the values in the array so that they are in ascending order.
 
-![Example array with integer values.](../images/shared/integer_array_with_values.svg)
+![Example array with integer values.]({{site.baseurl}}/assets/CS50pics/shared/integer_array_with_values.svg)
 
 How could this be accomplished using an in-place algorithm (meaning that no second array is allowed)?
 

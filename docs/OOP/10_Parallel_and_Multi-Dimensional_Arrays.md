@@ -9,7 +9,7 @@ permalink: /oop/10_Parallel_and_Multi-Dimensional_Arrays
 ---
 
 
-## Parallel &<br />Multi-Dimensional<br/>Arrays
+## Parallel & Multi-Dimensional Arrays
 {:.no_toc}
 
 ## Table of contents
@@ -63,17 +63,17 @@ int votes[5][3]; // create array with 5 rows and 3 columns
 
 ---
 
-## Layout (Logical)
+### Layout (Logical)
 
 ``` cpp
 int votes[5][3]; // create array with 5 rows and 3 columns
 ```
 
-![2-D Array of integers.](../images/shared/2D_array_with_indices.svg)
+![2-D Array of integers.]({{site.baseurl}}/assets/CS50pics/shared/2D_array_with_indices.svg)
 
 ---
 
-## Layout (Physical)
+### Layout (Physical)
 
 ``` cpp
 int votes[5][3]; // create array with 5 rows and 3 columns
@@ -82,7 +82,7 @@ In reality, all physical memory is 1-dimensional.
 
 Rows are sequential!
 
-![2-D Array of integers.](../images/shared/2D_array_with_indices_physical_layout.svg)
+![2-D Array of integers.]({{site.baseurl}}/assets/CS50pics/shared/2D_array_with_indices_physical_layout.svg)
 
 ---
 

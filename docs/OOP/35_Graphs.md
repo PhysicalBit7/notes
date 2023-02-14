@@ -8,7 +8,7 @@ parent: OOP
 permalink: /oop/35_Graphs
 ---
 
-background-image: url('../images/graphs/directed_graph_with_6_nodes.svg')
+background-image: url('{{site.baseurl}}/assets/CS50pics/graphs/directed_graph_with_6_nodes.svg')
 background-size: 45%
 
 # Graphs
@@ -28,9 +28,9 @@ background-size: 45%
    + A .term[simple graph], then is the non-empty set of vertices and edges $G=(V,E)$.
 
 .center[
-![:scale A graph, 300px](../images/graphs/undirected_graph_with_6_nodes.svg)
-![:scale A directed graph, 200px](../images/graphs/directed_graph_with_6_nodes.svg)
-![:scale A weighted graph, 250px](../images/graphs/undirected_graph_with_weighted_edges.svg)
+![:scale A graph, 300px]({{site.baseurl}}/assets/CS50pics/graphs/undirected_graph_with_6_nodes.svg)
+![:scale A directed graph, 200px]({{site.baseurl}}/assets/CS50pics/graphs/directed_graph_with_6_nodes.svg)
+![:scale A weighted graph, 250px]({{site.baseurl}}/assets/CS50pics/graphs/undirected_graph_with_weighted_edges.svg)
 ]
 
 
@@ -43,7 +43,7 @@ background-size: 45%
    + A .term[pseudograph] allows an edge to connect a single vertex to itself (a loop).
 
 
-.center[![:scale A directed graph, 220px](../images/graphs/directed_graph_with_6_nodes.svg)]
+.center[![:scale A directed graph, 220px]({{site.baseurl}}/assets/CS50pics/graphs/directed_graph_with_6_nodes.svg)]
 
 ---
 
@@ -54,7 +54,7 @@ background-size: 45%
 
 + A graph is .term[complete] if for each pair of distinct vertices, there is exactly one edge connecting them.
 
-.center[![:scale A weighted graph, 300px](../images/graphs/undirected_graph_with_weighted_edges.svg)]
+.center[![:scale A weighted graph, 300px]({{site.baseurl}}/assets/CS50pics/graphs/undirected_graph_with_weighted_edges.svg)]
 
 ---
 
@@ -65,7 +65,7 @@ background-size: 45%
     + Two vertices are .term[adjacent] if there is an edge connecting them that is a member of the same graph.
     + The edge connecting them is said to be .term[incident] with them.
 
-.center[![:scale A Subgraph (in blue), 300px](../images/graphs/subgraph.svg)]
+.center[![:scale A Subgraph (in blue), 300px]({{site.baseurl}}/assets/CS50pics/graphs/subgraph.svg)]
 
 ---
 
@@ -77,7 +77,7 @@ background-size: 45%
 
       + It is possible to have a graph $G$ containing only isolated vertices.  ($E$ can be empty).
 
-.center[![:scale Vertex Degrees, 300px](../images/graphs/vertex_degrees.svg)]
+.center[![:scale Vertex Degrees, 300px]({{site.baseurl}}/assets/CS50pics/graphs/vertex_degrees.svg)]
 
 ---
 
@@ -96,12 +96,12 @@ background-size: 45%
 .footnote[Drozdek, Figure 8.2]
 
 .left-column[
-![:scale Graph, 10.5em](../images/graphs/fig_8.2a_graph.svg)
+![:scale Graph, 10.5em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2a_graph.svg)
 
-![:scale Adjacency Table, 10.5em](../images/graphs/fig_8.2b_adjacency_list_table.svg)
+![:scale Adjacency Table, 10.5em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2b_adjacency_list_table.svg)
 ]
 
-.right-column[![:scale , 11.5em](../images/graphs/fig_8.2c_adjacency_list_logical.svg)]
+.right-column[![:scale , 11.5em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2c_adjacency_list_logical.svg)]
 
 ---
 
@@ -109,9 +109,9 @@ background-size: 45%
 
 .footnote[Drozdek, Figure 8.2]
 
-.center[![:scale , 260px](../images/graphs/fig_8.2a_graph.svg)]
+.center[![:scale , 260px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2a_graph.svg)]
 
-.center[![:scale , 450px](../images/graphs/fig_8.2d_adjacency_matrix.svg)]
+.center[![:scale , 450px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2d_adjacency_matrix.svg)]
 
 ---
 
@@ -119,9 +119,9 @@ background-size: 45%
 
 .footnote[Drozdek, Figure 8.2]
 
-.center[![:scale , 260px](../images/graphs/fig_8.2a_graph.svg)]
+.center[![:scale , 260px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2a_graph.svg)]
 
-.center[![:scale , 490px](../images/graphs/fig_8.2e_incidence_matrix.svg)]
+.center[![:scale , 490px]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.2e_incidence_matrix.svg)]
 
 ---
 
@@ -145,7 +145,7 @@ background-size: 45%
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![](../images/graphs/fig_8.3a_undirected_graph.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3a_undirected_graph.svg)]
 
 ---
 
@@ -157,7 +157,7 @@ background-size: 45%
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![](../images/graphs/fig_8.3b_undirected_graph_depth-first_1.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_1.svg)]
 
 ---
 
@@ -169,20 +169,7 @@ background-size: 45%
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![](../images/graphs/fig_8.3b_undirected_graph_depth-first_2.svg)]
-
----
-
-
-##  Depth-First Traversal: Example
-
-+ Starting with the list $V$  of vertices, the next available vertex v is visited
-    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
-    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
-    + When you backtrack to the vertex where you started, you are done.
-    + Repeat as long as there are unvisited vertices
-
-.center[![](../images/graphs/fig_8.3b_undirected_graph_depth-first_3.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_2.svg)]
 
 ---
 
@@ -195,7 +182,7 @@ background-size: 45%
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![](../images/graphs/fig_8.3b_undirected_graph_depth-first_4.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_3.svg)]
 
 ---
 
@@ -208,7 +195,7 @@ background-size: 45%
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![](../images/graphs/fig_8.3b_undirected_graph_depth-first_5.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_4.svg)]
 
 ---
 
@@ -221,7 +208,7 @@ background-size: 45%
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![](../images/graphs/fig_8.3b_undirected_graph_depth-first_6.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_5.svg)]
 
 ---
 
@@ -234,7 +221,7 @@ background-size: 45%
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![](../images/graphs/fig_8.3b_undirected_graph_depth-first_7.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_6.svg)]
 
 ---
 
@@ -247,7 +234,7 @@ background-size: 45%
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![](../images/graphs/fig_8.3b_undirected_graph_depth-first_8.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_7.svg)]
 
 ---
 
@@ -260,7 +247,20 @@ background-size: 45%
     + When you backtrack to the vertex where you started, you are done.
     + Repeat as long as there are unvisited vertices
 
-.center[![](../images/graphs/fig_8.3b_undirected_graph_depth-first_9.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_8.svg)]
+
+---
+
+
+##  Depth-First Traversal: Example
+
++ Starting with the list $V$  of vertices, the next available vertex v is visited
+    + Create the list of vertices adjacent to $v$ , and perform depth-first traversal on them.
+    + If v has no adjacent vertices, backtrack to the predecessor of $v$ .
+    + When you backtrack to the vertex where you started, you are done.
+    + Repeat as long as there are unvisited vertices
+
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_9.svg)]
 
 ---
 
@@ -270,7 +270,7 @@ background-size: 45%
 
    * A spanning tree includes all vertices of the original graph, but does not contain any cycles.
 
-.center[![](../images/graphs/fig_8.3b_undirected_graph_depth-first_finished.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.3b_undirected_graph_depth-first_finished.svg)]
 
 ---
 
@@ -315,7 +315,7 @@ function breadthFirstSearch(graph G):
 
 .footnote[Drozdek Fig. 8.5]
 
-.center[![](../images/graphs/fig_8.5a_undirected_graph.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5a_undirected_graph.svg)]
 
 We'll start traversing from (a).
 
@@ -325,7 +325,7 @@ We'll start traversing from (a).
 
 .footnote[Drozdek Fig. 8.5]
 
-.center[![](../images/graphs/fig_8.5b_undirected_graph_breadth-first_1.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_1.svg)]
 
 We see the nodes with edges from (a) and queue them up...
 
@@ -335,7 +335,7 @@ We see the nodes with edges from (a) and queue them up...
 
 .footnote[Drozdek Fig. 8.5]
 
-.center[![](../images/graphs/fig_8.5b_undirected_graph_breadth-first_2.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_2.svg)]
 
 From (e) we don't discover anything new; just mark it and continue.
 
@@ -345,7 +345,7 @@ From (e) we don't discover anything new; just mark it and continue.
 
 .footnote[Drozdek Fig. 8.5]
 
-.center[![](../images/graphs/fig_8.5b_undirected_graph_breadth-first_3.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_3.svg)]
 
 
 From (f) we don't discover anything new; just mark it and continue.
@@ -356,7 +356,7 @@ From (f) we don't discover anything new; just mark it and continue.
 
 .footnote[Drozdek Fig. 8.5]
 
-.center[![](../images/graphs/fig_8.5b_undirected_graph_breadth-first_4.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_4.svg)]
 
 
 From (g) we discover (b) and add it to the queue.
@@ -367,7 +367,7 @@ From (g) we discover (b) and add it to the queue.
 
 .footnote[Drozdek Fig. 8.5]
 
-.center[![](../images/graphs/fig_8.5b_undirected_graph_breadth-first_5.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_5.svg)]
 
 
 From (i) we don't discover anything new; just mark it and continue.
@@ -380,7 +380,7 @@ Notice that the edges (ef), (ei), (fi) will not be traversed at this point.
 
 .footnote[Drozdek Fig. 8.5]
 
-.center[![](../images/graphs/fig_8.5b_undirected_graph_breadth-first_6.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_6.svg)]
 
 
 From (b) we don't discover anything new; just mark it and continue.
@@ -394,7 +394,7 @@ and continue.
 
 .footnote[Drozdek Fig. 8.5]
 
-.center[![](../images/graphs/fig_8.5b_undirected_graph_breadth-first_7.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_7.svg)]
 
 
 From (b) we discover (h) and add it to the queue.
@@ -405,7 +405,7 @@ From (b) we discover (h) and add it to the queue.
 
 .footnote[Drozdek Fig. 8.5]
 
-.center[![](../images/graphs/fig_8.5b_undirected_graph_breadth-first_8.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_8.svg)]
 
 
 From (h) we discover (d) and add it to the queue.
@@ -416,7 +416,7 @@ From (h) we discover (d) and add it to the queue.
 
 .footnote[Drozdek Fig. 8.5]
 
-.center[![](../images/graphs/fig_8.5b_undirected_graph_breadth-first_9.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_9.svg)]
 
 
 From (d) we don't discover anything new.
@@ -431,7 +431,7 @@ But there are none.  That means we are finished.
 
 .footnote[Drozdek Fig. 8.5]
 
-.center[![](../images/graphs/fig_8.5b_undirected_graph_breadth-first_finished.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.5b_undirected_graph_breadth-first_finished.svg)]
 
 Final state, with visit ordering shown.  
 
@@ -501,7 +501,7 @@ function Dijkstra(Graph, source):
 
 ## Dijkstra's Algorithm Example
 
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
 
 ---
 
@@ -509,19 +509,9 @@ function Dijkstra(Graph, source):
 
 ## Dijkstra's Algorithm Example
 
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
 
-.center[![](../images/graphs/fig_8.7b_Dijkstra_0.svg)]
-
----
-
-.footnote[Drozdek, Figure 8.7]
-
-## Dijkstra's Algorithm Example
-
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
-
-.center[![](../images/graphs/fig_8.7b_Dijkstra_1.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_0.svg)]
 
 ---
 
@@ -529,19 +519,9 @@ function Dijkstra(Graph, source):
 
 ## Dijkstra's Algorithm Example
 
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
 
-.center[![](../images/graphs/fig_8.7b_Dijkstra_2.svg)]
-
----
-
-.footnote[Drozdek, Figure 8.7]
-
-## Dijkstra's Algorithm Example
-
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
-
-.center[![](../images/graphs/fig_8.7b_Dijkstra_3.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_1.svg)]
 
 ---
 
@@ -549,19 +529,9 @@ function Dijkstra(Graph, source):
 
 ## Dijkstra's Algorithm Example
 
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
 
-.center[![](../images/graphs/fig_8.7b_Dijkstra_4.svg)]
-
----
-
-.footnote[Drozdek, Figure 8.7]
-
-## Dijkstra's Algorithm Example
-
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
-
-.center[![](../images/graphs/fig_8.7b_Dijkstra_5.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_2.svg)]
 
 ---
 
@@ -569,19 +539,9 @@ function Dijkstra(Graph, source):
 
 ## Dijkstra's Algorithm Example
 
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
 
-.center[![](../images/graphs/fig_8.7b_Dijkstra_6.svg)]
-
----
-
-.footnote[Drozdek, Figure 8.7]
-
-## Dijkstra's Algorithm Example
-
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
-
-.center[![](../images/graphs/fig_8.7b_Dijkstra_7.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_3.svg)]
 
 ---
 
@@ -589,19 +549,9 @@ function Dijkstra(Graph, source):
 
 ## Dijkstra's Algorithm Example
 
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
 
-.center[![](../images/graphs/fig_8.7b_Dijkstra_8.svg)]
-
----
-
-.footnote[Drozdek, Figure 8.7]
-
-## Dijkstra's Algorithm Example
-
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
-
-.center[![](../images/graphs/fig_8.7b_Dijkstra_9.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_4.svg)]
 
 ---
 
@@ -609,9 +559,59 @@ function Dijkstra(Graph, source):
 
 ## Dijkstra's Algorithm Example
 
-.center[![](../images/graphs/fig_8.7_weighted_digraph.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
 
-.center[![](../images/graphs/fig_8.7b_Dijkstra_10.svg)]
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_5.svg)]
+
+---
+
+.footnote[Drozdek, Figure 8.7]
+
+## Dijkstra's Algorithm Example
+
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_6.svg)]
+
+---
+
+.footnote[Drozdek, Figure 8.7]
+
+## Dijkstra's Algorithm Example
+
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_7.svg)]
+
+---
+
+.footnote[Drozdek, Figure 8.7]
+
+## Dijkstra's Algorithm Example
+
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_8.svg)]
+
+---
+
+.footnote[Drozdek, Figure 8.7]
+
+## Dijkstra's Algorithm Example
+
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_9.svg)]
+
+---
+
+.footnote[Drozdek, Figure 8.7]
+
+## Dijkstra's Algorithm Example
+
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7_weighted_digraph.svg)]
+
+.center[![]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.7b_Dijkstra_10.svg)]
 
 You can find the shortest path by backtracking to the points where the "best"
 assigned distance updated to the final value.
@@ -807,7 +807,7 @@ function FleuryAlgorithm(undirected graph G):
 An Eulerian graph
 ]]]
 
-.center[![:scale Eulerian Graph, 11em](../images/graphs/fig_8.34_a_Eulerian_graph.svg)]
+.center[![:scale Eulerian Graph, 11em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.34_a_Eulerian_graph.svg)]
 ]
 
 .right-column[
@@ -815,7 +815,7 @@ An Eulerian graph
 An Eulerian path illustrated (numbers indicate traversal order from **b**)
 ]]]
 
-.center[![:scale Eulerian Path, 11em](../images/graphs/fig_8.34_c_Eulerian_path.svg)]
+.center[![:scale Eulerian Path, 11em]({{site.baseurl}}/assets/CS50pics/graphs/fig_8.34_c_Eulerian_path.svg)]
 ]
 
 ---
@@ -827,7 +827,7 @@ An Eulerian path illustrated (numbers indicate traversal order from **b**)
    * All complete graphs are Hamiltonian.
       * As a consequence, an algorithm of first create a complete graph using false edges, then reducing it can be used to find Hamiltonian cycles in incomplete graphs.
 
-.center[![:scale Hamiltonian Graph, 11em](../images/graphs/Hamiltonian_graph.svg)]
+.center[![:scale Hamiltonian Graph, 11em]({{site.baseurl}}/assets/CS50pics/graphs/Hamiltonian_graph.svg)]
 
 .footnote[Image: https://commons.wikimedia.org/wiki/File:Hamiltonian_path.svg]
 

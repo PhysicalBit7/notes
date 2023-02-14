@@ -22,7 +22,6 @@ permalink: /oop/29_Skip_Lists
 
 How efficient is a linked list?
 
---
 
 * Adding/removing items    
     * at Head
@@ -41,7 +40,7 @@ How efficient is a linked list?
 
 Recall how the binary search algorithm removed the complexity from searching an (ordered) array...
 
-.red[What if we could do some kind of non-sequential search on a linked list?]
+_What if we could do some kind of non-sequential search on a linked list?_
 
 --
 
@@ -56,7 +55,7 @@ layout: true
 
 By making different nodes hold different numbers of pointers, you can search non-sequentially:
 
-.center[![:scale Perfect Skip List, 80%](../images/skip_list/skip_lists1.png)]
+![:scale Perfect Skip List, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists1.png)
 
 ---
 
@@ -65,13 +64,13 @@ By making different nodes hold different numbers of pointers, you can search non
   * Every fourth node points four nodes ahead
   * And so on...
 
-.center[![:scale Perfect Skip List, 80%](../images/skip_list/skip_lists1.png)]
+![:scale Perfect Skip List, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists1.png)
 
 ---
 
-The “level” of a node refers to the number of pointers it has.  The highest level is given by  $\lg(n) + 1$ (1-indexed), or $\lg(n)$ (0-indexed).
+The “level” of a node refers to the number of pointers it has.  The highest level is given by  __\lg(n) + 1__ (1-indexed), or __\lg(n)__ (0-indexed).
 
-.center[![:scale Skip List Levels, 80%](../images/skip_list/skip_lists2.png)]
+![:scale Skip List Levels, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists2.png)
 
 ---
 
@@ -81,7 +80,7 @@ The “level” of a node refers to the number of pointers it has.  The highest 
   * Continue until the target value is found
     * Or until you hit the NULL at the end of the first-level list.
 
-.center[![:scale Skip List Search, 80%](../images/skip_list/skip_lists2.png)]
+![:scale Skip List Search, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists2.png)
 
 ---
 
@@ -89,7 +88,7 @@ This “perfect skip list” is easy to draw... but difficult (expensive) to ach
 
 Consider adding a new item / removing an item.
 
-.center[![:scale Skip List Search, 80%](../images/skip_list/skip_lists2.png)]
+![:scale Skip List Search, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists2.png)
 
 ---
 
@@ -97,13 +96,13 @@ Nodes do not have to be perfectly distributed...
 
 As long as the requirements are met for the number of nodes at each level, the skip list can still work.
 
-.center[![:scale Imperfect Skip List, 80%](../images/skip_list/skip_lists3.png)]
+![:scale Imperfect Skip List, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists3.png)
 
 ---
 
 The new node can determine its number of links at random, provided that it uses a probability distribution that (in the long run) maintains the correct proportions of levels...
 
-.center[![:scale Imperfect Skip List, 80%](../images/skip_list/skip_lists3.png)]
+![:scale Imperfect Skip List, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists3.png)
 
 ---
 
@@ -113,7 +112,7 @@ Keep a special “node” that points “back” at all “see-able” nodes... 
 
 Use that backLook node to set the appropriate next pointers.
 
-.center[![:scale backLook Node, 80%](../images/skip_list/skip_lists4.png)]
+![:scale backLook Node, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists4.png)
 
 ---
 
@@ -125,41 +124,41 @@ Insert (random): ?
 
 Space: ?
 
-.center[![:scale Imperfect Skip List, 80%](../images/skip_list/skip_lists3.png)]
+![:scale Imperfect Skip List, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists3.png)
 
 ---
 
 ### Skip List Efficiency
 
-Searching: $O(\log_2(n))$
+Searching: __O(\log_2(n))__
 
 Insert (random): ?
 
 Space: ?
 
-.center[![:scale Imperfect Skip List, 80%](../images/skip_list/skip_lists3.png)]
+![:scale Imperfect Skip List, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists3.png)
 
 ---
 
 ### Skip List Efficiency
 
-Searching: $O(\log_2(n))$
+Searching: __O(\log_2(n))__
 
-Insert (random): $O(\log_2(n))$ 
+Insert (random): __O(\log_2(n))__ 
 
 Space: ?
 
-.center[![:scale Imperfect Skip List, 80%](../images/skip_list/skip_lists3.png)]
+![:scale Imperfect Skip List, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists3.png)
 
 ---
 
 ### Skip List Efficiency
 
-Searching:  $O(\log_2(n))$ 
+Searching:  __O(\log_2(n))__ 
 
-Insert (random): $O(\log_2(n))$ 
+Insert (random): __O(\log_2(n))__ 
 
-Space:  $O(n \cdot \log_2(n))$
+Space:  __O(n \cdot \log_2(n))__
 
-.center[![:scale Imperfect Skip List, 80%](../images/skip_list/skip_lists3.png)]
+![:scale Imperfect Skip List, 80%]({{site.baseurl}}/assets/CS50pics/skip_list/skip_lists3.png)
 

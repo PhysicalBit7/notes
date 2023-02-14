@@ -8,7 +8,7 @@ parent: OOP
 permalink: /oop/22_Operator_Overloading
 ---
 
-# Operator<br />Overloading
+# Operator Overloading
 {:.no_toc}
 
 ## Table of contents

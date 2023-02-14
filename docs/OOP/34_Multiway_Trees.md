@@ -54,13 +54,13 @@ permalink: /oop/34_Multiway_Trees
 
 Example of a B-tree of order 5:
 
-.center[![B-Tree](../images/multiway_trees/B-tree.png)]
+![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree.png)]
 
 
 .footnote[Drozdek Figure 7.7]
 
 ---
-background-image: url(../images/multiway_trees/B-tree.png)
+background-image: url({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree.png)
 
 ## Searching a B-Tree
 
@@ -102,7 +102,7 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 ## Insert key into a B-Tree : Example
 
-.center[![B-Tree](../images/multiway_trees/B-tree_insert_fig_7.8_a-c.png)]
+![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_insert_fig_7.8_a-c.png)
 
 .footnote[Drozdek Figure 7.8]
 
@@ -110,7 +110,7 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 ## Insert key into a B-Tree : Example
 
-.center[![B-Tree](../images/multiway_trees/B-tree_insert_fig_7.8_d-e.png)]
+![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_insert_fig_7.8_d-e.png)
 
 .footnote[Drozdek Figure 7.8]
 
@@ -118,7 +118,7 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 ## Insert key into a B-Tree : Example
 
-.center[![B-Tree](../images/multiway_trees/B-tree_insert_fig_7.8_f.png)]
+![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_insert_fig_7.8_f.png)
 
 .footnote[Drozdek Figure 7.8]
 
@@ -151,7 +151,7 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 ## Delete key from a B-Tree : Example
 
-.center[![B-Tree](../images/multiway_trees/B-tree_delete_fig_7.9_a-b.png)]
+![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_delete_fig_7.9_a-b.png)
 
 .footnote[Drozdek Figure 7.9]
 
@@ -159,7 +159,7 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 ## Delete key from a B-Tree : Example
 
-.center[![B-Tree](../images/multiway_trees/B-tree_delete_fig_7.9_c-d.png)]
+![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_delete_fig_7.9_c-d.png)
 
 .footnote[Drozdek Figure 7.9]
 
@@ -167,7 +167,7 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 ## Delete key from a B-Tree : Example
 
-.center[![B-Tree](../images/multiway_trees/B-tree_delete_fig_7.9_e-f.png)]
+![B-Tree]({{site.baseurl}}/assets/CS50pics/multiway_trees/B-tree_delete_fig_7.9_e-f.png)
 
 .footnote[Drozdek Figure 7.9]
 
@@ -202,7 +202,7 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 **Comparision of 2-3-4 tree vs. Red-Black tree vs. Horizontal-Vertical tree**
 
-.center[![:scale 2-3-4 vs. Red-Black Trees, 80%](../images/multiway_trees/2-3-4_red-black_h-v_trees.svg)]
+![:scale 2-3-4 vs. Red-Black Trees, 80%]({{site.baseurl}}/assets/CS50pics/multiway_trees/2-3-4_red-black_h-v_trees.svg)
 
 .footnote[Drozdek Figure 7.23]
 
@@ -210,7 +210,7 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 **Comparision of 2-3-4 tree vs. Red-Black tree vs. Horizontal-Vertical tree**
 
-.center[![:scale Complete 2-3-4 vs. Red-Black Trees, 75%](../images/multiway_trees/2-3-4_red-black_h-v_trees_complete.svg)]
+![:scale Complete 2-3-4 vs. Red-Black Trees, 75%]({{site.baseurl}}/assets/CS50pics/multiway_trees/2-3-4_red-black_h-v_trees_complete.svg)
 
 
 .footnote[Drozdek Figure 7.23]
@@ -235,11 +235,9 @@ BTNode* BTree::search(keyType k, BTNode* subroot=root) const {
 
 This one has words containing the letters A, E, I, R, P.
 
-.center[![:scale A Trie, 100%](../images/multiway_trees/trie_fig_7.38.png)]
+![:scale A Trie, 100%]({{site.baseurl}}/assets/CS50pics/multiway_trees/trie_fig_7.38.png)
 
 Notice that there can be a lot of unused pointers in the nodes...
-
-.footnote[Drozdek Figure 7.38]
 
 ---
 
@@ -247,6 +245,4 @@ Notice that there can be a lot of unused pointers in the nodes...
 
 Same as the previous trie, but implemented as a h-v tree to reduce the unused storage locations.
 
-.center[![:scale A Trie, 100%](../images/multiway_trees/trie_fig_7.40.png)]
-
-.footnote[Drozdek Figure 7.40]
+![:scale A Trie, 100%]({{site.baseurl}}/assets/CS50pics/multiway_trees/trie_fig_7.40.png)

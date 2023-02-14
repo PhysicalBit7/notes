@@ -40,7 +40,7 @@ Before we can make decisions based on the answers to logic questions, we need to
 
 ---
 
-## Relational Operators
+### Relational Operators
 
 Relational operators compare two values, and evaluate to a `bool` result based on the truthfulness of the comparison:
 
@@ -57,7 +57,7 @@ Relational operators compare two values, and evaluate to a `bool` result based o
 
 ---
 
-### Examples
+#### Examples
 
 <pre>
     Expression                  Result
@@ -78,7 +78,7 @@ Relational operators compare two values, and evaluate to a `bool` result based o
 
 ---
 
-## Logical Operators
+### Logical Operators
 
 Logical (or Boolean) operators are used to combine relational expressions to create a more complex test condition:
 
@@ -92,7 +92,7 @@ Logical (or Boolean) operators are used to combine relational expressions to cre
 
 ---
 
-### Examples
+#### Examples
 
 <pre>
     Expression                  Result
@@ -118,7 +118,7 @@ Although control structures (such as the `if`) are _not actually statements_, th
 
 ---
 
-## The `if` Control Structure
+### The `if` Control Structure
 
 The most basic form of the C++ `if` control structure allows us to choose whether or not to take a specific action:
 
@@ -139,7 +139,7 @@ if( x < 0 )   // Check for a negative value
 
 ---
 
-## Using a Block
+### Using a Block
 
 Since a single statement isn't enough to solve most problems, the _body_ of an `if` may also be a **block**:
 
@@ -156,7 +156,7 @@ _Recall that a **block** just means a set of statements contained within curly b
 
 ---
 
-## Choose Between Two Outcomes
+### Choose Between Two Outcomes
 
 The `if`-`else` construct allows us to choose between two outcomes:
 
@@ -180,7 +180,7 @@ else
 
 ---
 
-## `if`-`else` with Blocks
+### `if`-`else` with Blocks
 
 The body of both the `if` and `else` part may be blocks:
 

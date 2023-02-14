@@ -57,7 +57,7 @@ Queues can easily be implemented as a _singly-linked list_ where additions occur
 
 ## Priority Queue
 
-.small-90[
+
 
 A _priority queue_ is a data structure optimized to allow items to be added, then removed in an order according to some priority.
 
@@ -74,20 +74,18 @@ Priority queues can easily be implemented as a _singly-linked list_ with in-orde
 
 * `enqueue()` is the same as `add_in_order()` 
 * `dequeue()` is the same as `remove_front()`
-]
+
 
 ---
 
 ## Circular List
 
-.small-90[
+
 A _circular list_ is a list in which following the "next" pointer from the end of the list will place you back at the beginning of the list.
 
 Useful for tasks that need to be repeated.
 
 The underlying list may be a _singly-linked list_ or a _doubly-linked list_.  You can also use an array as the underlying data structure.
 
-.center[![:width Circular Singly-Linked List, 80%](../images/LinkedList/CircularSinglyLinkedList.svg)]
-.center[![:width Circular Doubly-Linked List, 80%](../images/LinkedList/CircularDoublyLinkedList.svg)]
-
-]
+![:width Circular Singly-Linked List, 80%]({{site.baseurl}}/assets/CS50pics/LinkedList/CircularSinglyLinkedList.svg)
+![:width Circular Doubly-Linked List, 80%]({{site.baseurl}}/assets/CS50pics/LinkedList/CircularDoublyLinkedList.svg)

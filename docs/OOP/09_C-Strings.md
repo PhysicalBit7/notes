@@ -8,7 +8,7 @@ parent: OOP
 permalink: /oop/09_C-Strings
 ---
 
-# Characters &<br />C-Style Strings
+# Characters & C-Style Strings
 {:.no_toc}
 
 ## Table of contents
@@ -26,16 +26,11 @@ There is more than one way to do it... But C++ (by default) type `char` uses the
 
 ---
 
-background-image: url(../images/shared/ascii_table.svg)
-
-
----
-
 ## Testing Characters
 
 The following functions require the `<cctype>` header.
 
-![Character testing functions.](../images/c_strings/char_testing.png)
+![Character testing functions.]({{site.baseurl}}/assets/CS50pics/c_strings/char_testing.png)
 
 ---
 
@@ -50,7 +45,7 @@ Also require the `<cctype>` header.
 
 ---
 
-## Case Conversion Example
+### Case Conversion Example
 
 ``` cpp
 char ch1 = 'H';
@@ -76,7 +71,7 @@ C++ provides support for a low-level representation of strings of characters as 
 * String literals such as `"SMITH"` are internally represented as c-strings by default.
 * Internally, they look like the following:
 
-!["SMITH" as seen in memory.](../images/c_strings/c_string_literal_in_memory.svg)
+!["SMITH" as seen in memory.]({{site.baseurl}}/assets/CS50pics/c_strings/c_string_literal_in_memory.svg)
 
 ---
 
@@ -90,7 +85,7 @@ char name[6] = "SMITH";
 
 Produces:
 
-!["SMITH" as seen in a C-style string.](../images/c_strings/c_string_in_memory.svg)
+!["SMITH" as seen in a C-style string.]({{site.baseurl}}/assets/CS50pics/c_strings/c_string_in_memory.svg)
 
 * The trailing `'\0'` is added automatically during the initialization.
 

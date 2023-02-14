@@ -205,7 +205,6 @@ int main() {
 }
 ```
 
-</small>
 
 ---
 
@@ -237,7 +236,7 @@ Whenever you think a derived class might want to override a method!
 
 ## Pure `virtual` Methods
 
-.term[_**Pure `virtual` method**_]: a method that is not implemented (at all) in the base class, and is thus _required_ to be overridden in derived classes.
+[_**Pure `virtual` method**_]: a method that is not implemented (at all) in the base class, and is thus _required_ to be overridden in derived classes.
 
 * Created by using "assignment"-style syntax:
 
@@ -269,13 +268,13 @@ virtual void y() = 0;
 * Inherit from all base classes (may result in multiple attributes/methods with same name)
 * Scope resolution will be required.
 
-.center[![:scale Multiple Inheritance, 70%](../images/virtual_Polymorphism/multi_inherit.png )]
+![:scale Multiple Inheritance, 70%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/multi_inherit.png )
 
 ---
 
 Here is what it looks like in a class diagram:
 
-.center[![:scale Multiple Inheritance Class Diagram, 75%](../images/virtual_Polymorphism/multiple_inheritance_diagram.svg)]
+![:scale Multiple Inheritance Class Diagram, 75%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/multiple_inheritance_diagram.svg)
 
 ---
 
@@ -357,13 +356,13 @@ Let's look at the class diagram for this situation...
 
 We started with a simple class hierarchy:
 
-.center[![:scale Person, Student, Faculty, 80%](../images/virtual_Polymorphism/inheritance_person_student_faculty.svg)]
+![:scale Person, Student, Faculty, 80%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/inheritance_person_student_faculty.svg)
 
 ---
 
 Then we changed it so that a `GA` inherited from both `Student` and `Faculty` (which makes sense on some level).
 
-.center[![:scale Person, Student, Faculty, 80%](../images/virtual_Polymorphism/multiple_inheritance_diamond_of_death.svg)]
+![:scale Person, Student, Faculty, 80%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/multiple_inheritance_diamond_of_death.svg)
 
 --
 
@@ -373,7 +372,7 @@ Notice the "diamond" shape this created, with `Person` as a _common ancestor_ of
 
 Notice the "diamond" shape this created, with `Person` as a _common ancestor_ of both parent classes.  
 
-.center[![:scale Person, Student, Faculty, 80%](../images/virtual_Polymorphism/multiple_inheritance_diamond_of_death.svg)]
+![:scale Person, Student, Faculty, 80%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/multiple_inheritance_diamond_of_death.svg)]
 
 This situation creates several challenges, and is known in programming circles as the .term[.red[Diamond of Death]].
 
@@ -520,8 +519,8 @@ int main() {
 
 **Without `virtual` Inheritance:**
 
-.center[![:scale Diamond Problem in a Physical Object, 33%](../images/virtual_Polymorphism/ga_example_physical_object.svg)]
+![:scale Diamond Problem in a Physical Object, 33%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/ga_example_physical_object.svg)]
 
 **With `virtual` Inheritance**
 
-.center[![:scale Diamond Problem in a Physical Object, 33%](../images/virtual_Polymorphism/ga_example_physical_object_virtual_inheritance.svg)]
+![:scale Diamond Problem in a Physical Object, 33%]({{site.baseurl}}/assets/CS50pics/virtual_Polymorphism/ga_example_physical_object_virtual_inheritance.svg)]

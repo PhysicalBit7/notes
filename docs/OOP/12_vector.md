@@ -19,7 +19,6 @@ permalink: /oop/12_vector
 {:toc}
 
 ---
-background-image: url(../images/STL/circle_template.jpg)
 
 #   STL
 ##  The C++ <br> Standard Template Library
@@ -156,7 +155,7 @@ for(vector<string>::size_type i=0;  // size type is unsigned
 
 <small style="font-size: 90%;">
 
-## `std::vector` Example 2
+### `std::vector` Example 2
     
 ``` cpp
 std::vector<std::string> v;         // create vector
@@ -184,7 +183,7 @@ for(auto it = v.begin();            // iterator
 
 <!-- .slide: data-transition="linear", data-background="aliceblue" -->
 
-## `std::vector` Example 3
+### `std::vector` Example 3
     
 ``` cpp
 std::vector<std::string> v;         // create vector
@@ -204,7 +203,7 @@ for( auto item : v ){               // for each item in v
 
 <!-- .slide: data-transition="linear", data-background="aliceblue" -->
 
-## `std::vector` Example 4
+### `std::vector` Example 4
     
 ``` cpp
 auto v = std::vector<std::string>{3};    // pre-size to 3
