@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="102" height="62" viewBox="0, 0, 102, 62">
+  <g id="Layer_1">
+    <g>
+      <g>
+        <path d="M1.5,20.5 L41.5,20.5 L41.5,60.5 L1.5,60.5 z" fill="#FFFFFF"/>
+        <path d="M1.5,20.5 L41.5,20.5 L41.5,60.5 L1.5,60.5 z" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      </g>
+      <g>
+        <path d="M101.5,40.5 C101.5,46.023 97.023,50.5 91.5,50.5 C85.977,50.5 81.5,46.023 81.5,40.5 C81.5,34.977 85.977,30.5 91.5,30.5 C97.023,30.5 101.5,34.977 101.5,40.5 z" fill="#FFFFFF"/>
+        <path d="M101.5,40.5 C101.5,46.023 97.023,50.5 91.5,50.5 C85.977,50.5 81.5,46.023 81.5,40.5 C81.5,34.977 85.977,30.5 91.5,30.5 C97.023,30.5 101.5,34.977 101.5,40.5 z" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      </g>
+      <path d="M24.5,40.5 L73.26,40.5" fill-opacity="0" stroke="#000000" stroke-width="2" stroke-miterlimit="10"/>
+      <g>
+        <path d="M24.5,40.5 C24.5,42.157 23.157,43.5 21.5,43.5 C19.843,43.5 18.5,42.157 18.5,40.5 C18.5,38.843 19.843,37.5 21.5,37.5 C23.157,37.5 24.5,38.843 24.5,40.5 z" fill="#000000"/>
+        <path d="M24.5,40.5 C24.5,42.157 23.157,43.5 21.5,43.5 C19.843,43.5 18.5,42.157 18.5,40.5 C18.5,38.843 19.843,37.5 21.5,37.5 C23.157,37.5 24.5,38.843 24.5,40.5 z" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      </g>
+      <g>
+        <path d="M79.26,40.5 L71.26,44.5 L73.26,40.5 L71.26,36.5 z" fill="#000000"/>
+        <path d="M79.26,40.5 L71.26,44.5 L73.26,40.5 L71.26,36.5 z" fill-opacity="0" stroke="#000000" stroke-width="2" stroke-miterlimit="10"/>
+      </g>
+      <text transform="matrix(1, 0, 0, 1, 21, 9.5)">
+        <tspan x="-17.797" y="5.5" font-family="Helvetica" font-size="16" fill="#000000">head</tspan>
+      </text>
+    </g>
+    <text transform="matrix(1, 0, 0, 1, 1, -6)">
+      <tspan x="-75.969" y="2.5" font-family="GillSans" font-size="10" fill="#000000">Viewer does not support full SVG 1.1</tspan>
+    </text>
+  </g>
+</svg>

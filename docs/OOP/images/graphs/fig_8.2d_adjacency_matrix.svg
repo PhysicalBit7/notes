@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="540" height="305" viewBox="0, 0, 540, 305">
+  <defs>
+    <clipPath id="Clip_1">
+      <path d="M19,360 L558,360 L558,327 L19,327 z"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1" transform="translate(-19, -55)">
+    <text transform="matrix(1, 0, -0, 1, 122.5, 72.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">a</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 191.342, 72.5)">
+      <tspan x="-8.342" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">b</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 260.658, 72.5)">
+      <tspan x="-6.658" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">c</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 329.342, 72.5)">
+      <tspan x="-8.342" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">d</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 396.658, 72.5)">
+      <tspan x="-6.658" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">e</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 460.995, 72.5)">
+      <tspan x="-4.995" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">f</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 526.5, 72.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">g</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 53.5, 106.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">a</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 122.5, 106.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 191.5, 106.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 260.5, 106.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 329.5, 106.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 396.5, 106.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 461.5, 106.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 526.5, 106.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 53.342, 140.5)">
+      <tspan x="-8.342" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">b</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 122.5, 140.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 191.5, 140.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 260.5, 140.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 329.5, 140.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 396.5, 140.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 461.5, 140.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 526.5, 140.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 53.658, 174.5)">
+      <tspan x="-6.658" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">c</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 122.5, 174.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 191.5, 174.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 260.5, 174.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 329.5, 174.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 396.5, 174.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 461.5, 174.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 526.5, 174.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 53.342, 208.5)">
+      <tspan x="-8.342" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">d</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 122.5, 208.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 191.5, 208.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 260.5, 208.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 329.5, 208.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 396.5, 208.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 461.5, 208.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 526.5, 208.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 53.658, 242.5)">
+      <tspan x="-6.658" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">e</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 122.5, 242.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 191.5, 242.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 260.5, 242.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 329.5, 242.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 396.5, 242.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 461.5, 242.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 526.5, 242.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 52.995, 276.5)">
+      <tspan x="-4.995" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">f</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 122.5, 276.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 191.5, 276.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 260.5, 276.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 329.5, 276.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 396.5, 276.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 461.5, 276.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 526.5, 276.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 53.5, 310.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPS-BoldMT" font-size="30" kerning="0" fill="#000000">g</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 122.5, 310.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 191.5, 310.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 260.5, 310.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 329.5, 310.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 396.5, 310.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 461.5, 310.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <text transform="matrix(1, 0, -0, 1, 526.5, 310.5)">
+      <tspan x="-7.5" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">0</tspan>
+    </text>
+    <g clip-path="url(#Clip_1)">
+      <text transform="matrix(1, 0, -0, 1, 288.495, 344.5)">
+        <tspan x="-17.495" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0.009" fill="#000000">(</tspan>
+        <tspan x="-7.496" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" fill="#000000">d</tspan>
+        <tspan x="7.504" y="9.5" font-family="TimesNewRomanPSMT" font-size="30" kerning="0" fill="#000000">)</tspan>
+      </text>
+    </g>
+    <path d="M87,88 L88,88 L88,327 L87,327 z" fill="#000000"/>
+    <path d="M558,89 L559,89 L559,327 L558,327 z" fill="#000000"/>
+    <path d="M88,88 L559,88 L559,89 L88,89 z" fill="#000000"/>
+    <path d="M88,326 L559,326 L559,327 L88,327 z" fill="#000000"/>
+  </g>
+</svg>

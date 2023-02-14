@@ -89,7 +89,7 @@ Section covers various data types used by the sockets interface
 #### Socket Descriptor
 A socket Descriptor is of the following type: ```int```
 
-Struct addrinfo - this structure is a more recent invention and is used to prep the socket address structures for subsequent use. It's also used in host name lookups, and service name lookups. __This is one of the first things you will call when making a connection.
+__Struct addrinfo__ - this structure is a more recent invention and is used to prep the socket address structures for subsequent use. It's also used in host name lookups, and service name lookups. __This is one of the first things you will call when making a connection.__
 
     struct addrinfo {
         int ai_flags; // AI_PASSIVE, AI_CANONNAME, etc.
