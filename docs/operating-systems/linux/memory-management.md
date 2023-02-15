@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Memory managmement
+title: Memory management
 description: Notes on memory management in the Linux kernel.
 nav_order: 8
 parent: Linux
