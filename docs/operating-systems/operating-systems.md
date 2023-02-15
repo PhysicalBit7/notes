@@ -13,6 +13,12 @@ permalink: /operating-systems
 Fall 2022
 {:.no_toc}
 
+### Resources
+{: .no_toc}
+- [Credit Repo](https://github.com/eddyerburgh/notes/tree/master/docs/operating-systems)
+
+---
+
 ## Table of contents
 {: .no_toc }
 - [Devices and Modules](linux/devices-and-modules.md)
@@ -29,6 +35,7 @@ Fall 2022
 - [Page Cache and Page Writeback](linux/the-page-cache-and-page-writeback.md)
 - [Time Management](linux/time-management.md)
 
+---
 
 ## Introduction
 
@@ -47,8 +54,6 @@ An OS must provide **isolation**. A bug in one program shouldn't bring down the 
 
 Sometimes isolated programs need to communicate with each other. An OS provides mechanisms for **communication** between running programs.
 
-# Reference
-- __All credit to [eddyerburgh](https://github.com/eddyerburgh/notes/tree/master/docs/operating-systems) and his respective citations, this was an invaluable resource for me in Grad school.__
 
 
 

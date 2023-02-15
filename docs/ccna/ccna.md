@@ -17,6 +17,8 @@ CCNA Cheat Sheets, forked for studying purposes
 - [Credit Repo 2](https://github.com/HerrSpace/CCNA-Cheat-Sheet)
 - [Anki Deck](https://ankiweb.net/shared/info/591991787)
 
+---
+
 
 # Table of Contents
 
