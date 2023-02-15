@@ -4,7 +4,7 @@ title: Memory managmement
 description: Notes on memory management in the Linux kernel.
 nav_order: 8
 parent: Linux
-grand_parent: Operating systems
+grand_parent: Operating Systems
 permalink: /operating-systems/linux/memory-management
 ---
 

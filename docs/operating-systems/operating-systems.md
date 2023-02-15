@@ -17,7 +17,7 @@ Fall 2022
 {: .no_toc }
 - [Devices and Modules](linux/devices-and-modules.md)
 - [Filesystem](linux/filesystem.md)
-- [Interrupsts](linux/interrupts.md)
+- [Interrupts](linux/interrupts.md)
 - [Kernel Data Structures](linux/kernel-data-structures.md)
 - [Kernel Synchronization](linux/kernel-sychronization.md)
 - [Linux](linux/linux.md)

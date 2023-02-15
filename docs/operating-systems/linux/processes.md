@@ -4,7 +4,7 @@ title: Processes
 description: Notes on processes in the Linux kernel.
 nav_order: 1
 parent: Linux
-grand_parent: Operating systems
+grand_parent: Operating Systems
 permalink: /operating-systems/linux/processes
 ---
 

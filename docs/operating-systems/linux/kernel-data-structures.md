@@ -4,7 +4,7 @@ title: Kernel data structures
 description: Notes on kernel data structures, like linked lists and queues.
 nav_order: 4
 parent: Linux
-grand_parent: Operating systems
+grand_parent: Operating Systems
 permalink: /operating-systems/linux/kernel-data-structures
 ---
 
