@@ -15,10 +15,7 @@ Documents, links, or articles for future reference
 ---
 
 ## Table of contents
-{: .no_toc }
-
-1. TOC
-{:toc}
+- [Bash Commands](../misc/bash.md)
 
 
 ---

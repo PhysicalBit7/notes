@@ -8,7 +8,7 @@ nav_order: 1
 permalink: /japanese
 ---
 
-# Japanese
+# Japanese :japanese_goblin
 A compilation of my notes taken studying Japanese
 
 ----
@@ -23,6 +23,11 @@ A compilation of my notes taken studying Japanese
 7. [Genki 1 Anki Deck](https://ankiweb.net/shared/info/1742947823)
 8. [Genki 1 review and workbook questions](https://sethclydesdale.github.io/genki-study-resources/lessons-3rd/).
 9. [For learning Hirigana and Katakana](https://www.tofugu.com/japanese/learn-hiragana/)
+
+---
+## Table of Contents
+- [Lesson 1](../japanese/Lesson1.md)
+- [Lesson 2](../japanese/Lesson2.md)
 
 ---
 #### Current Routine 
