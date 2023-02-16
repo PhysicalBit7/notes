@@ -6,15 +6,6 @@ has_toc: false
 nav_order: 4
 parent: Miscellaneous
 permalink: /misc/cpp
----
-
-# CPP Cheat Sheet
-{: .no_toc }
-A cheat sheet for python commands for studying purposes.
-
-### Resources
-{: .no_toc}
-- [Credit Repo](https://github.com/gibsjose/cpp-cheat-sheet)
 
 ---
 # C++ Syntax Cheat Sheet
@@ -22,14 +13,19 @@ A cheat sheet for python commands for studying purposes.
 ## Preface
 Since the C++ language varies so heavily between versions (e.g. C++0x, C++11, C++17, etc.), I will preface this cheat sheet by saying that the majority of the examples here target C++0x or c++11, as those are the versions that I am most familiar with. I come from the aerospace industry (embedded flight software) in which we purposefully don't use the latest technologies for safety reasons, so most of the code I write is in C++0x and sometimes C++11. Nevertheless, the basic concepts of C++ and object oriented programming still generally apply to both past and future versions of the language.
 
+---
+
+### Resources
+{: .no_toc}
+- [Credit Repo](https://github.com/gibsjose/cpp-cheat-sheet)
+
 ## Table of Contents
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:0 orderedList:0 -->
 
-- [CPP Cheat Sheet](#cpp-cheat-sheet)
-    - [Resources](#resources)
 - [C++ Syntax Cheat Sheet](#c-syntax-cheat-sheet)
   - [Preface](#preface)
+    - [Resources](#resources)
   - [Table of Contents](#table-of-contents)
   - [1.0 C++ Classes](#10-c-classes)
     - [1.1 Class Syntax](#11-class-syntax)

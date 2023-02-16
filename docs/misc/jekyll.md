@@ -8,7 +8,7 @@ parent: Miscellaneous
 permalink: /misc/jekyll
 ---
 
-# Deploying a Jekyll instance
+# Deploying a Jekyll Instance
 {: .no_toc}
 Jekyll Documentation
 
@@ -21,4 +21,7 @@ Jekyll Documentation
 ---
 
 ## Deploying locally
-- `bundle exec jekyll serve`
+
+```bash
+bundle exec jekyll serve
+```

@@ -13,7 +13,7 @@ A compilation of my notes taken studying Japanese
 
 ----
 
-## Resources
+### Resources
 1. **"Japanese the Manga Way: An Illustrated Guide to Grammar and Structure"**
 2. **"Genki 1"**
 3. **"Remembering the Kanji"**

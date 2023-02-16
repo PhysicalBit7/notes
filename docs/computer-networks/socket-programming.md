@@ -13,7 +13,7 @@ Spring 2023
 
 A guide on what sockets are and how to program them
 
-Resources: 
+### Resources: 
 - [Beej's](https://beej.us/guide/bgnet/pdf/bgnet_usl_c_1.pdf)
 - [LinuxHowTo's Socket Programming](https://www.linuxhowtos.org/C_C++/socket.htm)
 

@@ -11,7 +11,7 @@ permalink: /computer-networks
 # Computer Networks
 Spring 2023
 
-Resources
+### Resources
 - "Computer Networking: A Top Down Approach 7th edition"
 
 ---

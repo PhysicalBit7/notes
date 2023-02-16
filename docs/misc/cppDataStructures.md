@@ -10,9 +10,8 @@ permalink: /misc/cppDataStructures
 
 # C++ Data Structures and Algorithms Cheat Sheet
 {: .no_toc }
-A cheat sheet for python commands for studying purposes.
+A cheat sheet on C++ data structures and algorithms for studying purposes.
 
----
 
 ### Resources
 {: .no_toc}
