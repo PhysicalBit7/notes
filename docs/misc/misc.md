@@ -22,6 +22,7 @@ Documents, links, or articles for future reference
 ## Python
 
 - [selenium-python](https://selenium-python.readthedocs.io/navigating.html)
+- [Terminal GUI App](https://textual.textualize.io/tutorial/)
 
 ---
 

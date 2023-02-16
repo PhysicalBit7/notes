@@ -585,6 +585,31 @@ echo $PATH     # Print PATH environment variable
 export FOO=Bar # Set an environment variable
 ```
 
+### Adding binaries to $PATH
+Allow's your terminal to read the PATH variable for terminal sessions.
+
+ On Mac the Bash profile is - `.bash_profile`
+
+- Create a folder called `bin` in your home directory
+
+```bash
+mkdir ~/bin
+```
+
+- Add `~.bin` to your `PATH` for all sessions of Bash
+
+```bash
+nano ~/.bash_profile
+
+# Add the following to the end of your .bash_profile while using nano or your text editor of choice:
+
+export PATH="/home/$USER/bin:$PATH"
+```
+
+- Add either the executable files themselves OR symlinks to the executable into ~/bin
+- Restart your terminal session by closing out the terminal and reopening it, or run `source ~/.bash_profile` to reload the configuration for your session.
+
+
 ### Functions
 
 ```bash
