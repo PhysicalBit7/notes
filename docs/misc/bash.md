@@ -24,6 +24,8 @@ A cheat sheet for bash commands, forked for studying purposes.
 1. TOC
 {:toc}
 
+---
+
 ## Command History
 
 ```bash
