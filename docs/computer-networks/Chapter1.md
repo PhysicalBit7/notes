@@ -16,6 +16,8 @@ permalink: /computer-networks/Chapter1
 1. TOC
 {:toc}
 
+---
+
 ## Lecture 1
 
 _What is the internet?_ 
@@ -49,7 +51,7 @@ _What is the internet?_
 | Layer | Description
 | ------ | ------ 
 | presentation | allow applications to interpret meaning of data, e.g., encryption, compression, machine-specific conventions
-| session | synchronization, checkpointing, recovery of data exchange
+| session | synchronization, check-pointing, recovery of data exchange
 
 
 ### Encapsulation
@@ -84,6 +86,8 @@ _What is the internet?_
   - IP datagram containing HTTP request routed to www.google.com
   - web server responds with _HTTP reply_ (containing web page)
   - IP datagram containing HTTP reply routed back to client
+
+---
 
 ## Lecture 2
 
@@ -143,10 +147,13 @@ End systems, access networks, links
 ### The network core
 Mesh of interconnected routers, hosts send data by breaking down application layer messages into packets. Packets are forwarded from one router to the next across links.
 1. __Packet Switching__
+  - Concept of sending a message from a source end system to a destination end system by breaking messages into smaller chunks of data known as _packets_. Each packet travels through communication links and _packet switches_ using routers and switches. Packets are transmitted over each communication link at a rate equal to the _full_ transmission rate of the link.
   - takes L/R seconds to transmit an L-bit packet onto link at R bps
     - L = 7.5 Mbits
     - R = 1.5 Mbps
-    - one hop transmission delay = 5 sec
+    - one hop transmission delay = 5 sec (L/R)
+    - _Store and Forward_ - a concept used by most packet switches meaning that the packet switch must receive the entire packet before it can begin to transmit the first bit of the packet onto the outbound link
+      - From source to desination consisting of two links through a router it would take 2L/R time
   - _Queueing delay and loss_
     - if arrival rate (in bits) to link exceeds transmission rate of link for a period of time
       - packets will __queue__ or wait to be transmitted on the link
@@ -155,13 +162,14 @@ Mesh of interconnected routers, hosts send data by breaking down application lay
     - determines where to send packet based on the source's __destination__
   - _Forwarding_
     - move packets from router's input to appropriate output
-2. __Circuit Switching__
+1. __Circuit Switching__
   - End to End resources are allocated to or reserved for a "call" between source and destination
     - _Dedicated Resources_ - no sharing, circuit like guaranteed performance
       - circuit is idle if not being used
       - commonly used in traditional telephone networks
   - ***Circuit Switching: FDM vs. TDM***
     - _FDM_ - Frequency Division Multiplexing
+      - the frequency spectrum of a link is divided up among the connections established across the link
       - users are given a specific frequency on the media to operate within
       - <img src="{{site.baseurl}}/assets/computer-networks/FDM.png"  width="60%" height="30%">
     - _TDM_ - Time Division Multiplexing
@@ -174,6 +182,8 @@ Mesh of interconnected routers, hosts send data by breaking down application lay
   - also great for bursty data
   - however network congestion can occur: packet delay and loss
     - protocols are needed for reliable data transfer and congestion control
+- __Circuit Switching__ may have dedicated lines but there can be _silent periods_ where a circuit isn't being utilized and is wasted
+  - can be argued that it is better suited for telephone and video calls.
 
 ### Internet Structure
 Today many ISP's exist. At the backbone are Tier 1 ISP's (AT&T, NTT), spanning across the country. Below them are regional ISP's connecting to Tier 1 ISP's through IXP(internet exchange point) and peering links
@@ -181,10 +191,82 @@ Today many ISP's exist. At the backbone are Tier 1 ISP's (AT&T, NTT), spanning a
 
 <img src="{{site.baseurl}}/assets/computer-networks/ISP.png"  width="60%" height="40%">
 
+---
+
 ## Lecture 3
 
-### Delay, loss, and throughput
-Packets queue in router buffers when the packet arrival rate to the link exceeds output link capacity
+### Delay, loss, and throughput in Packet Switched networks
+When a packet is sent to a destination, it travels through many different network components, each incurring its own delay to the transfer of the packet
+#### Total nodal delay consists of
+  - _nodal processing delay_
+    - the time required to examine the packet's header and determine where to direct the packet, can also include the time needed to check for bit-level errors in the packet that occurred in transmitting the packet's bits from the upstream node to a router
+  - _queueing delay_
+    - the time a packet waits to be transmitted onto the link. The length of the delay will depend on the number of earlier-arriving packets that are queued and waiting for transmission onto the link
+  - _transmission delay_
+    - a packet is only transmitted after all the packets that have arrived before it have been transmitted. (L bits/R bits per sec)
+  - _propagation delay_
+    - the time required to propagate from the beginning of the link to another router. This depends on the propagation speed of the physical media. Is the distance between two routers divided by the propagation speed. (D/S)
+- Transmission delay and propagation delay are close but transmission delay is the amount of time required for the router to push out a packet: it is a function of the packet's length and the transmission rate of the link, it has nothing to do with the distance between two routers. Propagation delay is the time is takes a bit to go from one router to another with distance in mind
+
+  - d(nodal) = d(proc) + d(queue) + d(trans) + d(prop)
+  
+__Queueing delay__ is the most interesting of the four types of delay. Can be quantified with La/R with a being the average packet arrival rate. This function is called __traffic intensity__. 
+  - if La/R > 1 then the average rate at which bits arrive at the queue exceeds the rate at which the bits can be transmitted from the queue. Queueing delay will approach infinity
+
+#### Packet Loss
+In reality a queue has a finite amount of space to buffer packets. If a queue fills up and a new packet arrives at a router, the packet will be dropped as a result
+
+- tracert or traceroute - provides delay measurement from source to router along end-end Internet path towards destination
+  - will send 3 * n packets for n routers from source to destination
+  - travel times are measured and sent back to host
+
+#### Throughput
+Another critical performance measure in computer networks is end-to-end throughput. Throughput refers to the amount of data that can be transmitted over a network during a given time period. The instantaneous throughput at any instant of time is the rate (in bits/sec) at which Host B is receiving the file. If a file consist of _F_ bits and the transfer takes _T_ seconds for Host B to receive all _F_ bits, then the __average throughput__  of the file transfer is __F/T bits/sec__. 
+
+For some applications low delay and an instantaneous throughput, for other apps, delay is not critical, but it is desirable to have the highest possible throughput.
+
+- a bottleneck is the min of two links used in the connection of two end points
+
+---
+## Lecture 3
+
+### Protocol layers
+To provide structure to the design of network protocols, network designers organize protocols in layers. We are interested in the services that layer offers to layers above it. A layer provides its services by performing certain actions within that layer and by using the services of the layer directly below it.
+
+A protocol can be implemented in software, hardware, or a combination of both. Application layer protocols like HTTP nad SMTP are implemented in software on the end systems. Physical and data link layers are responsible for handling communication over a specific link and are typically implemented in the nic using software and hardware
+
+- explicit structure - allows identification, relationship of complex systems pieces, like the OSI model
+- modularization - eases maintenance and when updating a system, a layers changes are transparent to the rest of the system
+  - one drawback is that layers can duplicate lower-layer functionality 
+  - one layer also may require information available in another layer
+
+### Networks under Attack
+The field of network security is a robust topic consisting of how bad guys can attack computer networks(threat models), how we can defend networks against attacks, and how to design architectures that are immune to attacks. Over the years many security considerations have been added in all layers.
+
+- __Malware__ - can get to a host from
+  - _virus_ - self-replicating infections by receiving/executing an object
+  - _worm_ - self-replicating infection by passively receiving an object that gets itself executed
+- __Spyware Malware__ - can record keystrokes, web sites visited, and can upload info to a collection site
+- __Botnets__ - a set of compromised computers used for spam or DDoS attacks
+
+_Denial of Service_ attacks consist of making resources, like a server or bandwidth, unavailable to legitimate traffic by overwhelming a resource with bogus traffic.
+
+Most fall into three categories
+
+- _vulnerability attack_ - involves sending a few well crafted messages to a vulnerable application or OS running on a targeted host
+- _bandwidth flooding_ - attacker sends a deluge of packets to the targeted host
+- _connection flooding_ - the attacker establishes a large number of half-open or fully open TCP connections stopping legitimate connections
+
+#### Sniffing packets
+A packet sniffer(Wireshark) can be used to capture traffic from host to router from a shared broadcast media
+#### IP spoofing
+It is quite easy to create a packet with an arbitrary source address, packet content, and destination address and then transmit this hand-crafted packet into the Internet. 
+
+This ability is know as IP spoofing, a way for a user to hide who they are.
+
+To solve we need _end-point authentication_, a mechanism that will allow us to determine if a message originates from where we think it does.
+
+
 
 
 
