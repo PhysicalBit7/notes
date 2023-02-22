@@ -147,7 +147,7 @@ HTTP specifications include the definitions of the HTTP message formats. There a
 
 ![](../assets/computer-networks/httpReq.png)
 
-HTTP requests are written in ordinary ASCII test. 
+HTTP requests are written in ordinary ASCII text. 
 __Request Line__
 - the method field
 - the URL field

@@ -1,0 +1,10 @@
+1. https://www.researchgate.net/profile/Jasmin-Softic/publication/366560877_Operating_Systems_Vulnerability_-_An_Examination_of_Windows_10_macOS_and_Ubuntu_from_2015_to_2021/links/63a80b45a03100368a282cf3/Operating-Systems-Vulnerability-An-Examination-of-Windows-10-macOS-and-Ubuntu-from-2015-to-2021.pdf
+2. https://www.statista.com/topics/4753/apple-products-in-the-us/#topicOverview
+3. https://www.cvedetails.com/
+4. https://www.exploit-db.com/exploits/36692
+5. https://lists.apple.com/archives/security-announce/2015/Apr/msg00001.html
+6. https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures
+7. https://truesecdev.wordpress.com/2015/04/09/hidden-backdoor-api-to-root-privileges-in-apple-os-x/
+8. https://developer.apple.com/documentation/xpc
+9. https://support.intego.com/hc/en-us/articles/207113598-Shellshock-Vulnerability-What-Mac-OS-X-Users-Need-to-Know
+10. https://www.exploit-db.com/exploits/37816

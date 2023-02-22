@@ -36,6 +36,12 @@ _What is the internet?_
     - protocols define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt
 
 ### Internet protocol stack OSI/TCP-IP
+We layer the TCP-IP stack as it provides some benefits when dealing with complex systems...
+- The explicit structure allows for easy identification of the pieces and their relationships
+- Modularization eases the maintenance and updating of a system
+  - each change to a layer is transparent to another
+
+
   
 | Layer | Description | Protocols
 | ------ | ------ | -----
@@ -57,8 +63,9 @@ _What is the internet?_
 ### Encapsulation
  <img src="{{site.baseurl}}/assets/computer-networks/encapsulation.png"  width="70%" height="30%">
   
+#### A day in the life: scenarios
 - ***Connecting to the Internet***
-  - connecting laptop needs to get its own IP address, address of first-hop router, address of DNS server: use DHCP
+  - Connecting laptop needs to get its own IP address, address of first-hop router, address of DNS server: use DHCP
   - DHCP request encapsulated in UDP, encapsulated in IP, encapsulated in 802.3 Ethernet
   - Ethernet frame broadcast (dest: FF-FF-FF-FF-FF-FF) on LAN, received at router running DHCP server
   - Ethernet demuxed to IP demuxed, UDP demuxed to DHCP 
@@ -66,26 +73,39 @@ _What is the internet?_
   - DHCP server formulates DHCP ACK containing client’s IP address, IP address of first-hop router for client, name & IP address of DNS server
   - encapsulation at DHCP server, frame forwarded (switch learning) through LAN, demultiplexing at client
   - DHCP client receives DHCP ACK reply
-- ***ARP*** - before DNS,HTTP
-  - before sending HTTP request, need IP address of www.google.com:  DNS
+
+---
+
+- ***ARP - before DNS,HTTP***
+  - before sending HTTP request, need IP address of `www.google.com`:  DNS comes into play
   - DNS query created, encapsulated in UDP, encapsulated in IP, encapsulated in Eth.  To send frame to router, need MAC address of router interface: ARP
   - ARP query broadcast, received by router, which replies with ARP reply giving MAC address of router interface
-  - client now knows MAC address of first hop router, so can now send frame containing DNS query 
+  - Client now knows MAC address of first hop router, so can now send frame containing DNS query 
+
+---
+
 - ***Using DNS***
   - IP datagram containing DNS query forwarded via LAN switch from client to 1st hop router
   - IP datagram forwarded from campus network into comcast network, routed (tables created by RIP, OSPF, IS-IS and/or BGP routing protocols) to DNS server
-  - demux’ed to DNS server
-  - DNS server replies to client with IP address of www.google.com 
+  - decapsulate to DNS server
+  - DNS server replies to client with IP address of `www.google.com`
+
+---
+
 - ***TCP connection carrying HTTP***
-  - to send HTTP request, client first opens TCP socket to web server
-  - TCP SYN segment (step 1 in 3-way handshake) inter-domain routed to web server
-  - web server responds with TCP SYNACK (step 2 in 3-way handshake)
+  - To send _HTTP request_ client first opens TCP socket to web server
+  - _TCP SYN_ segment (step 1 in 3-way handshake) inter-domain routed to web server
+  - Web server responds with _TCP SYNACK_ (step 2 in 3-way handshake)
   - TCP connection established!
+
+
+---
+
 - ***HTTP request/reply***
-  - _HTTP request_ sent into TCP socket
-  - IP datagram containing HTTP request routed to www.google.com
-  - web server responds with _HTTP reply_ (containing web page)
-  - IP datagram containing HTTP reply routed back to client
+  - _HTTP request_ sent into _TCP socket_
+  - IP datagram containing _HTTP request_ routed to `www.google.com`
+  - Web server responds with _HTTP reply_ (containing web page)
+  - IP datagram containing _HTTP reply_ routed back to client
 
 ---
 
