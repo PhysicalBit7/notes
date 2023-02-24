@@ -18,7 +18,7 @@ A cheat sheet for bash commands, forked for studying purposes.
 
 ---
 
-<details open markdown="block">
+<details closed markdown="block">
   <summary>
     Table of contents
   </summary>

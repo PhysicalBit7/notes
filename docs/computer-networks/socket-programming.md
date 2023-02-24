@@ -19,7 +19,7 @@ A guide on what sockets are and how to program them
 
 {:.no_toc}
 
-<details open markdown="block">
+<details closed markdown="block">
   <summary>
     Table of contents
   </summary>

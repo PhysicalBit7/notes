@@ -11,7 +11,7 @@ permalink: /computer-networks/Chapter2
 # Chapter 2
 {: .no_toc }
 
-<details open markdown="block">
+<details closed markdown="block">
   <summary>
     Table of contents
   </summary>

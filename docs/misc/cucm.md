@@ -19,7 +19,7 @@ Notes on how to set up and use CUCM for scripting capabilities
 
 ---
 
-<details open markdown="block">
+<details closed markdown="block">
   <summary>
     Table of contents
   </summary>

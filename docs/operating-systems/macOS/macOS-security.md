@@ -11,3 +11,4 @@
 11. https://dl.acm.org/doi/pdf/10.1145/2757667.2757673
 12. https://media.blackhat.com/us-13/US-13-Sevinsky-Funderbolt-Adventures-in-Thunderbolt-DMA-Attacks-Slides.pdf
 13. https://homes.luddy.indiana.edu/xw7/papers/xing2015cracking.pdf
+14. https://stack.watch/product/apple/macos/
