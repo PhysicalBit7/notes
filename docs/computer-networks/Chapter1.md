@@ -10,11 +10,15 @@ permalink: /computer-networks/Chapter1
 # Chapter 1
 {: .no_toc }
 
-## Table of contents
-{: .no_toc }
-
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
+
 
 ---
 
@@ -248,7 +252,7 @@ For some applications low delay and an instantaneous throughput, for other apps,
 - a bottleneck is the min of two links used in the connection of two end points
 
 ---
-## Lecture 3
+## Lecture 4
 
 ### Protocol layers
 To provide structure to the design of network protocols, network designers organize protocols in layers. We are interested in the services that layer offers to layers above it. A layer provides its services by performing certain actions within that layer and by using the services of the layer directly below it.

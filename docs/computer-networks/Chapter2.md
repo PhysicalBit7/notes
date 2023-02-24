@@ -11,11 +11,15 @@ permalink: /computer-networks/Chapter2
 # Chapter 2
 {: .no_toc }
 
-## Table of contents
-{: .no_toc }
-
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
+
 
 ---
 
@@ -136,6 +140,7 @@ When an HTTP connection is made, depending on the application and how the applic
 - __HTTP with Non-Persistent Connections__
   - Communication between a client and server does not persist for other objects, only the one requested. If there are 10 images on a web page 10 TCP connections are generated for each image, connections are torn down after one image is sent.
   - A browser can however open 5-10 parallel TCP connections at once, acquiring more images at once.
+  - It is important to note that each TCP connection generates exactly one request message and one response message.
 - __HTTP with Persistent Connections__
   - A server may leave a TCP connection open after sending a response. Subsequent requests and responses between the same client and server can be sent over the same connection. An entire web page can be sent over a single connection
   - The server will close the connection after some time
@@ -483,6 +488,18 @@ When you register the domain name with some registrar, you also need to provide 
 - Exploit DNS for DDoS
   - send queries with spoofed source address: target IP (e.g., mail server)
   - requires amplification; a response is much larger than a query
+
+
+---
+
+# Lecture 4
+
+## P2P architecture
+P2P architecture is an architecture where there is no server that is always on. End systems communicate directly with one another.
+
+Why is P2P used? Network design limits the upload speed of data, servers are bottle necked by upload speeds
+
+
 
 
 

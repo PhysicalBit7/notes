@@ -10,11 +10,15 @@ permalink: /software-security/Chapter2
 # Chapter 2
 {: .no_toc }
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
+
 
 ---
 

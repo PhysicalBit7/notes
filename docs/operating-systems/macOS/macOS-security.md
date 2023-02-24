@@ -8,3 +8,6 @@
 8. https://developer.apple.com/documentation/xpc
 9. https://support.intego.com/hc/en-us/articles/207113598-Shellshock-Vulnerability-What-Mac-OS-X-Users-Need-to-Know
 10. https://www.exploit-db.com/exploits/37816
+11. https://dl.acm.org/doi/pdf/10.1145/2757667.2757673
+12. https://media.blackhat.com/us-13/US-13-Sevinsky-Funderbolt-Adventures-in-Thunderbolt-DMA-Attacks-Slides.pdf
+13. https://homes.luddy.indiana.edu/xw7/papers/xing2015cracking.pdf

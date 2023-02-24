@@ -14,11 +14,15 @@ List of basic networking commands for troubleshooting/configuration
 
 ---
 
-## Table of contents
-{: .no_toc }
-
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
+
 
 ### Setup
 ---
