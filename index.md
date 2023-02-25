@@ -18,7 +18,8 @@ img {
 }
 
 .image {
-  flex-basis: 90%
+    flex-basis: 90%;
+    max-width: 100%;
 }
 
 .text {
