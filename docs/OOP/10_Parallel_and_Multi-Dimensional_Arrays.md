@@ -12,11 +12,14 @@ permalink: /oop/10_Parallel_and_Multi-Dimensional_Arrays
 ## Parallel & Multi-Dimensional Arrays
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 ---
 
 ## Parallel Arrays

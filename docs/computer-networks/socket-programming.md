@@ -16,6 +16,7 @@ A guide on what sockets are and how to program them
 ### Resources: 
 - [Beej's](https://beej.us/guide/bgnet/pdf/bgnet_usl_c_1.pdf)
 - [LinuxHowTo's Socket Programming](https://www.linuxhowtos.org/C_C++/socket.htm)
+- Computer Networking: A top down approach 7th edition
 
 {:.no_toc}
 

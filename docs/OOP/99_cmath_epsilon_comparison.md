@@ -10,11 +10,14 @@ permalink: /oop/99_cmath_epsilon_comparison
 # Epsilon Comparison
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 ---
 
 ## Mathematical Functions

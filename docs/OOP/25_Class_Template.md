@@ -11,11 +11,14 @@ permalink: /oop/25_Class_Template
 # Templates and Generic Programming
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 ---
 
 ## Function Templates

@@ -12,3 +12,5 @@
 12. https://media.blackhat.com/us-13/US-13-Sevinsky-Funderbolt-Adventures-in-Thunderbolt-DMA-Attacks-Slides.pdf
 13. https://homes.luddy.indiana.edu/xw7/papers/xing2015cracking.pdf
 14. https://stack.watch/product/apple/macos/
+15. https://github.com/curl/curl/commit/51c0ebcff2140c3
+16. https://nvd.nist.gov/vuln/detail/CVE-2022-42915

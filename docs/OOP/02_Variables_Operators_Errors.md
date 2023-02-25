@@ -11,11 +11,14 @@ permalink: /oop/02_Variables_Operators_Errors
 # Variables Operators Common Errors
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 ---
 
 ## The Big Picture

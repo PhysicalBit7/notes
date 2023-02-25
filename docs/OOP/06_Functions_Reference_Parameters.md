@@ -11,11 +11,14 @@ permalink: /oop/06_Functions_Reference_Parameters
 # Functions & Reference Parameters
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 ---
 
 ## Review: Pass by Value

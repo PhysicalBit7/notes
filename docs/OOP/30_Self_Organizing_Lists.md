@@ -11,11 +11,14 @@ permalink: /oop/30_Self_Organizing_Lists
 # Self-Organizing Lists
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 ---
 
 Skip lists were introduced to make searching more efficient ( __O({lg}(N))__ ), but require significant pointer overhead.

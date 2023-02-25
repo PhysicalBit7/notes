@@ -11,11 +11,14 @@ permalink: /oop/22_Operator_Overloading
 # Operator Overloading
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 ---
 
 ## Operators as Functions

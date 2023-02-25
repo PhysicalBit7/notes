@@ -14,7 +14,7 @@ List of intermediate networking commands for troubleshooting/configuration
 
 ---
 
-<details open markdown="block">
+<details closed markdown="block">
   <summary>
     Table of contents
   </summary>

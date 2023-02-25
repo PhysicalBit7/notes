@@ -13,11 +13,14 @@ permalink: /oop/19_Classes_and_Objects
 ## (When Everything Goes Wrong)
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 ---
 
 ## Introduction

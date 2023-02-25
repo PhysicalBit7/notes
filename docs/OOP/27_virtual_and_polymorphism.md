@@ -11,11 +11,14 @@ permalink: /oop/27_virtual_and_polymorphism
 # Virtual Methods & Polymorphism
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 ---
 
 ## Redefining Base Class Methods

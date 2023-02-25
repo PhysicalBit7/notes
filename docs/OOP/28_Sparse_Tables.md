@@ -11,11 +11,14 @@ permalink: /oop/28_Sparse_Tables
 # Sparse Tables
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 ---
 
 "Tables" are a natural way to express information for many real-world applications.

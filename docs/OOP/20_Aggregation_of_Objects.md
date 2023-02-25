@@ -11,11 +11,14 @@ permalink: /oop/20_Aggregation_of_Object
 # Aggregation of Objects
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 ---
 
 ## Aggregation

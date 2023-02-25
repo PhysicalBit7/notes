@@ -495,9 +495,40 @@ When you register the domain name with some registrar, you also need to provide 
 # Lecture 4
 
 ## P2P architecture
-P2P architecture is an architecture where there is no server that is always on. End systems communicate directly with one another.
+__P2P architecture__ is an architecture where there is no server that is always on. End systems communicate directly with one another, usually these end systems are not owned by a single entity but controlled by users.Why is P2P used? Network design limits the upload speed of data, servers are bottle necked by upload speeds. A heavy burden is also placed on a server, there can be a potentially huge amount of clients requesting data from the server.
 
-Why is P2P used? Network design limits the upload speed of data, servers are bottle necked by upload speeds
+In a P2P system each peer can redistribute any portion of the file it has received. The __distribution time__ is the time it takes to get a copy of the file to all _N_ peers
+
+Mathematically, as the number of hosts that become apart of the distribution the faster distribution becomes, it is bounded however and can be represented as...
+
+<img src="../assets/computer-networks/p2pSummation.png"  width="50%" height="20%">
+
+As U(s) becomes larger and larger, the equation gets smaller becoming bounded by the max of the other two within the equation.
+
+![](../assets/computer-networks/p2p.png)
+
+### BitTorrent
+BitTorrent is a popular P2P protocol for file distribution. In BitTorrent the collection of all peers participating in the distribution of a particular file is called a _torrent_. Peers in a torrent download equal-size _chunks_ of the file from one another, with a typical chunk size of 256 KBytes.
+
+When a peer first joins a torrent, it has no chunks. Over time it accumulates more and more chunks. While it downloads chunks it also uploads chunks to other peers. Once a peer has acquired the entire file, it may leave the torrent, or remain in the torrent and continue to upload chunks to other peers. Also, any peer may leave the torrent at any time with only a subset of chunks, and later rejoin the torrent.
+
+BitTorrent works by...
+- Each torrent has an infrastructure node called a __tracker__. 
+- When a peer joins a torrent, it registers itself with the tracker and periodically informs the tracker that it is still in the torrent
+- When a new peer joins the torrent, the tracker randomly selects a subset of peers from the set of participating and sends the IP addresses of these 50 peers to the new peer. 
+- TCP connections are attempted to all the peers on the list, successful ones becoming "neighboring peers"
+- As time goes on peers may join and leave
+- At any given tim, each peer will have a subset of chunks from the file, with different peers having different subsets
+- Periodically, a host will ask each of her neighboring peers for a list of the chunks that they have.
+- If you have _L_ different neighbors, you will obtain _L_ lists of chunks, at any given time, you will have a subset of chunks and will know which chunks your neighbors have.
+- Next, you have to answer which chunks you should request first and to which of your neighbors should you send requested chunks
+  - The technique __rarest first__ is used to determine, from among the chunks you don't have, the chunks that are the rarest among your neighbors and then request those rarest chunks first. This way the rarest chunks are redistributed the quickest
+  - A clever trading algorithm is used to respond to requests. Basically, you give priority to the neighbors that are currently supplying you data __at the highest rate__. Each neighbor is analyzed and four neighbors are found that are feeding you bits the fastest. You then reciprocate by sending chunks to those same set of four peers. Every _ten_ seconds this is recalculated and modified if needed
+    - In BitTorrent lingo the four neighbors are said to be __unchoked__. Importantly every 30 seconds, you also pick one additional neighbor to send chunks. This additional neighbor is said to be __optimistically unchoked__.
+
+__The result of this trading algorithm means that peers capable of uploading at compatible rates tend to find each other__
+
+This incentive mechanism for trading is often called __tit-for-tat__
 
 
 

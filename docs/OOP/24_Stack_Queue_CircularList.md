@@ -11,11 +11,14 @@ permalink: /oop/24_Stack_Queue_CircularList
 # Stacks, Queues, and Circular Lists
 {:.no_toc}
 
-## Table of contents
-{: .no_toc }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 
 ---
 
