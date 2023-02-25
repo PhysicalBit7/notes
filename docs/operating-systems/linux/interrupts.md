@@ -15,11 +15,14 @@ permalink: /operating-systems/linux/interrupts
 
 Most hardware communicates with the processor via interrupts, which makes interrupts an important topic to understand.
 
-## Table of contents
-{: .no_toc  }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 
 <!-- prettier-ignore-end -->
 

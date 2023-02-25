@@ -15,11 +15,14 @@ permalink: /operating-systems/linux/process-address-space
 
 This section is about the process address space and how it's implemented in Linux.
 
-## Table of contents
-{: .no_toc  }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 
 
 ## Introduction

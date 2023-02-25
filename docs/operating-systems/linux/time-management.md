@@ -15,11 +15,14 @@ permalink: /operating-systems/linux/time-management
 
 This section is about how the kernel handles time and how it implements timers.
 
-## Table of contents
-{: .no_toc  }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 
 <!-- prettier-ignore-end -->
 

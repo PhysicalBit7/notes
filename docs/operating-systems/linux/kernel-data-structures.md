@@ -15,11 +15,14 @@ permalink: /operating-systems/linux/kernel-data-structures
 
 Linux implements several data structures that are used throughout the kernel. If you want to read the Linux source code, you should learn the common data structures first.
 
-## Table of contents
-{: .no_toc  }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 
 <!-- prettier-ignore-end -->
 

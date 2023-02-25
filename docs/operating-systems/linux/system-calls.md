@@ -15,11 +15,14 @@ permalink: /operating-systems/linux/system-calls
 
 System calls are an interface for user processes to call into kernel code.
 
-## Table of contents
-{: .no_toc  }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 
 <!-- prettier-ignore-end -->
 

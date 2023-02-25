@@ -17,11 +17,14 @@ Protecting shared resources in Linux can be tough. Linux has symmetrical multipr
 
 This section is about the problems of concurrency, and the tools for kernel synchronization.
 
-## Table of contents
-{: .no_toc  }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 
 
 

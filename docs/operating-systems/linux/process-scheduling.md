@@ -14,11 +14,14 @@ permalink: /operating-systems/linux/process-scheduling
 
 Scheduling processes is one of the core roles of the kernel. To understand Linux, you must understand process scheduling.
 
-## Table of contents
-{: .no_toc  }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 
 
 

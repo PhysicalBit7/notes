@@ -15,11 +15,14 @@ permalink: /operating-systems/linux/the-page-cache-and-page-writeback
 
 The page cache is a disk cache used to minimize disk I/O. Instead of read requests and write operations running against a disk, they run against an in-memory cache that only reads data from disk when needed and writes changes to disk periodically.
 
-## Table of contents
-{: .no_toc  }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 
 <!-- prettier-ignore-end -->
 

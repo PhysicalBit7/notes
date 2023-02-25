@@ -15,11 +15,14 @@ permalink: /operating-systems/linux
 
 Linux is an open-source operating system kernel. Most large Internet companies run their software on Linux distributions, so it's useful to learn Linux in detail.
 
-## Table of contents
-{: .no_toc  }
-
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
 1. TOC
 {:toc}
+</details>
 
 <!-- prettier-ignore-end -->
 
