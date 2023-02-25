@@ -8,7 +8,7 @@ nav_order: 1
 permalink: /japanese
 ---
 
-# Japanese :japanese_goblin
+# Japanese
 A compilation of my notes taken studying Japanese
 
 ----

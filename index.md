@@ -29,7 +29,7 @@ img {
 
 <div class="container">
       <div class="image">
-        <img src="/assets/me.png">
+        <img src="./assets/me.png">
       </div>
       <div class="text">
         <h4><b>About Me</b></h4>
