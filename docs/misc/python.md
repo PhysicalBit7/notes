@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Python 
+title: Python Cheat Sheet
 description: Python Commands
 has_toc: false
 nav_order: 2

@@ -23,24 +23,26 @@ permalink: /computer-networks/Chapter1
 ---
 
 ## Lecture 1
+The Internet is a connected collection of computing devices. The working components are listed below 
 
-_What is the internet?_ 
-- The internet is a connected collection of computing devices 
-    -  hosts(endpoint devices)
-       -   running network apps
-  - _Communication links_
-    - Fiber, copper, radio, satellite
-    - transmission rate = bandwidth
-  - The internet is a "Network of networks"
-    - protocols control sending/recieving messages(TCP, IP, HTTP, Skype,  802.11)
-    - Internet Standards
-      - IETF: Internet Engineering Task Force
-      - RFC: Request for comments
-  - _Protocols_ - all communication activity in Internet is governed by protocols
-    - protocols define format, order of messages sent and received among network entities, and actions taken on message transmission, receipt
+- _Hosts(endpoint devices)_
+  - Hosts run network applications (Zoom, FireFox, Outlook)
+- _Communication links_
+  - Fiber, copper, radio, satellite are just some of the connection mediums used
+  - Messages are broken down into packets and sent across communication links. __Routers__ and __switches__ take care of switching these messages across the different networks that make up the Internet
+  - Routers typically make up the _network core_ while switches make up _access networks_
+  - Transmission rate = bandwidth
+- The Internet is a "Network of Networks"
+  - Specific protocols control sending/receiving messages(TCP, IP, HTTP, Skype,  802.11)
+  - Internet Standards
+    - IETF: Internet Engineering Task Force
+    - RFC: Request for comments
+- __Protocols__ - all communication activity in Internet is governed by protocols
+  - Protocols define format, order of messages sent and received among network entities, and actions taken on message transmission and/or receipt of a message or other event. _They allow for interoperability amongst various devices._
 
 ### Internet protocol stack OSI/TCP-IP
 We layer the TCP-IP stack as it provides some benefits when dealing with complex systems...
+
 - The explicit structure allows for easy identification of the pieces and their relationships
 - Modularization eases the maintenance and updating of a system
   - each change to a layer is transparent to another
@@ -116,6 +118,7 @@ We layer the TCP-IP stack as it provides some benefits when dealing with complex
 ## Lecture 2
 
 End systems, access networks, links
+
 ### Access networks
   - __Digital Subscriber Line(DSL)__ - voice, data transmitted at different frequencies over __dedicated line__ to central office
     - an existing telephone line network was used to run to DSLAM (DSL access multiplier)
@@ -170,38 +173,45 @@ End systems, access networks, links
 
 ### The network core
 Mesh of interconnected routers, hosts send data by breaking down application layer messages into packets. Packets are forwarded from one router to the next across links.
-1. __Packet Switching__
-  - Concept of sending a message from a source end system to a destination end system by breaking messages into smaller chunks of data known as _packets_. Each packet travels through communication links and _packet switches_ using routers and switches. Packets are transmitted over each communication link at a rate equal to the _full_ transmission rate of the link.
-  - takes L/R seconds to transmit an L-bit packet onto link at R bps
-    - L = 7.5 Mbits
-    - R = 1.5 Mbps
-    - one hop transmission delay = 5 sec (L/R)
-    - _Store and Forward_ - a concept used by most packet switches meaning that the packet switch must receive the entire packet before it can begin to transmit the first bit of the packet onto the outbound link
-      - From source to desination consisting of two links through a router it would take 2L/R time
-  - _Queueing delay and loss_
-    - if arrival rate (in bits) to link exceeds transmission rate of link for a period of time
-      - packets will __queue__ or wait to be transmitted on the link
-      - packets can be __dropped__ if memory buffer fills up
-  - _Routing_
-    - determines where to send packet based on the source's __destination__
-  - _Forwarding_
-    - move packets from router's input to appropriate output
-1. __Circuit Switching__
-  - End to End resources are allocated to or reserved for a "call" between source and destination
-    - _Dedicated Resources_ - no sharing, circuit like guaranteed performance
-      - circuit is idle if not being used
-      - commonly used in traditional telephone networks
-  - ***Circuit Switching: FDM vs. TDM***
-    - _FDM_ - Frequency Division Multiplexing
-      - the frequency spectrum of a link is divided up among the connections established across the link
-      - users are given a specific frequency on the media to operate within
-      - <img src="{{site.baseurl}}/assets/computer-networks/FDM.png"  width="60%" height="30%">
-    - _TDM_ - Time Division Multiplexing
-      - users are given a slice of time on a single frequency to operate
-      - <img src="{{site.baseurl}}/assets/computer-networks/TDM.png"  width="60%" height="30%">
+
+&nbsp;
+
+#### Packet Switching
+The concept of sending a message from a source end system to a destination end system by breaking messages into smaller chunks of data known as _packets_. Each packet travels through communication links and _packet switches_ using routers and switches. Packets are transmitted over each communication link at a rate equal to the _full_ transmission rate of the link.
+
+- Takes L/R seconds to transmit an L-bit packet onto link at R bps
+  - L = 7.5 Mbits
+  - R = 1.5 Mbps
+  - one hop transmission delay = 5 sec (L/R)
+- _Store and Forward_ - a concept used by most packet switches meaning that the packet switch must receive the entire packet before it can begin to transmit the first bit of the packet onto the outbound link
+  - from source to destination consisting of two links through a router it would take 2L/R time
+  - ![](../assets/computer-networks/storeForward.png)
+- _Queueing delay and loss_ - if arrival rate (in bits) to link exceeds transmission rate of link for a period of time
+  - packets will __queue__ or wait to be transmitted on the link
+  - packets can be __dropped__ if memory buffer fills up
+- _Routing_ - determines where to send packet based on the source's __destination__
+- _Forwarding_ - move packets from router's input to appropriate output
+
+&nbsp;
+
+#### Circuit Switching
+End to end resources are allocated to or reserved for a "call" between source and destination
+
+- __Dedicated Resources__ - no sharing, circuit like with guaranteed performance
+  - circuit is idle if not being used
+  - commonly used in traditional telephone networks
+- ***Circuit Switching: FDM vs. TDM***
+  - _FDM_ - Frequency Division Multiplexing
+    - the frequency spectrum of a link is divided up among the connections established across the link
+    - users are given a specific frequency on the media to operate within
+    - <img src="{{site.baseurl}}/assets/computer-networks/FDM.png"  width="60%" height="30%">
+  - _TDM_ - Time Division Multiplexing
+    - users are given a slice of time on a single frequency to operate
+    - <img src="{{site.baseurl}}/assets/computer-networks/TDM.png"  width="60%" height="30%">
 
 
 ### Packet Switching vs. Circuit Switching
+
 - __Packet switching__ allows more users
   - also great for bursty data
   - however network congestion can occur: packet delay and loss

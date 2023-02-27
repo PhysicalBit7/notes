@@ -14,3 +14,11 @@
 14. https://stack.watch/product/apple/macos/
 15. https://github.com/curl/curl/commit/51c0ebcff2140c3
 16. https://nvd.nist.gov/vuln/detail/CVE-2022-42915
+17. https://nvd.nist.gov/vuln/detail/CVE-2022-42916
+18. https://github.com/curl/curl/commit/7385610d0c7
+19. https://support.apple.com/en-us/HT213605
+20. https://nvd.nist.gov/vuln/detail/CVE-2022-32221
+21. https://hackerone.com/reports/1704017
+22. https://nvd.nist.gov/vuln/detail/CVE-2022-35260
+23. https://nvd.nist.gov/vuln/detail/CVE-2022-42821
+24. https://www.microsoft.com/en-us/security/blog/2022/12/19/gatekeepers-achilles-heel-unearthing-a-macos-vulnerability/

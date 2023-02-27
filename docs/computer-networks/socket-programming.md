@@ -16,7 +16,7 @@ A guide on what sockets are and how to program them
 ### Resources: 
 - [Beej's](https://beej.us/guide/bgnet/pdf/bgnet_usl_c_1.pdf)
 - [LinuxHowTo's Socket Programming](https://www.linuxhowtos.org/C_C++/socket.htm)
-- Computer Networking: A top down approach 7th edition
+- Computer Networking: A Top Down Approach 7th Edition
 
 {:.no_toc}
 
@@ -218,4 +218,159 @@ struct sockaddr_storage {
   char      __ss_pad2[_SS_PAD2SIZE];
 };
 ```
+
+---
+
+# Python Socket Programming
+From Computer Networks: A Top Down Approach
+
+Reminder that processes communicate via there socket. Data they want to send is put into the socket, data they want to receive is found in the socket.
+
+There are two types of network applications...
+- The implementation whose operation is specified in a standard, such as RFC or some other standards document. Such applications are referred to as open since the implementation is well known.
+  - For such an implementation the client and server must adhere to all rules specified by the RFC
+- The other type is a proprietary network application where a company creates a network application whose application layer has not be published for all to see
+  - Not all equipment would be able to communicate with these applications
+
+Code is written in Python as it most closely exposes socket concepts
+
+---
+
+## UDPClient.py
+
+```python
+from socket import *
+serverName - 'hostname'
+serverPort = 12000
+clientSocket = socket(AF_INET, SOCK_DGRAM)
+message = raw_input('Input lowercase sentence:')
+clientSocket.sendto(message.encode(), (serverName, serverPort))
+modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
+print(modifiedMessage.decode())
+clientSocket.close()
+```
+
+---
+
+```python
+from socket import *
+```
+
+The  `socket` module forms the basis of all network communications in Python. 
+
+---
+
+```python
+serverName - 'hostname'
+serverPort = 12000
+```
+
+The first line sets the variable `serverName` to the string 'hostname'. We can provide either a string containing the IP address of the server, or the hostname of the server. If we use a hostname, then a DNS lookup will automatically be performed to get the IP address.
+
+The second line sets the port number to 12000.
+
+---
+
+```python
+clientSocket = socket(AF_INET, SOCK_DGRAM)
+```
+
+This line creates the client's socket, called `clientSocket`. The first parameter indicates the address family; in particular, `AF_INET` which indicates that the underlying network is using IPv4. The second parameter indicates that the socket is of type `SOCK_DGRAM`, which means it is a UDP socket. 
+
+**Note:** we are not specifying the port number of the client socket when we create it, instead we are letting the operating system do this for us.
+
+---
+
+```python
+message = raw_input('Input lowercase sentence:')
+```
+
+The client process's "door" has been created and we can send a message through. `raw_input` is a built-in function in Python, when executed, the user at the client is prompted with the words "Input lowercase sentence:". What the user types in is put into the `message` variable.
+
+---
+
+Now that we have a message we can send through the socket to the destination host
+
+```python
+clientSocket.sendto(message.encode(), (serverName, serverPort))
+```
+
+We first convert the message from string type to byte type, as we need to send bytes into a socket; this is done with the `encode()` method. The method `sendto()` attaches the destination address `(serverName, serverPort)` to the message and sends the resulting packet into the process's socket `clientSocket`
+
+**Note:** the source address is also attached to the packet, but this is done automatically by the operating system.
+
+---
+
+```python
+modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
+```
+
+This line is the client waiting to receive data from the server. When a packet arrives from the Internet at the client's socket, the packet's data is put into the variable `modifiedMessage`. The variable `serverAddress` contains both the server's IP address and the server's port number. 
+
+This program actually doesn't need the `serverAddress` information, since it already knows the server address, but this line of Python provides the server address nevertheless. The method `recvfrom()` also takes the buffer size 2048 as input. **This buffer size works for most purposes.**
+
+---
+
+```python
+print(modifiedMessage.decode())
+```
+
+This line prints the `modifiedMessage` after converting the message from bytes to string using `decode()`
+
+---
+
+```python
+clientSocket.close()
+```
+
+This line closes the socket. The process then terminates
+
+---
+
+## UDPServer.py
+
+```python
+from socket import *
+serverPort = 12000
+serverSocket = socket(AF_INET, SOCK_DGRAM)
+serverSocket.bind(('', serverPort))
+print("The server is ready to receive")
+while True:
+    message, clientAddress = serverSocket.recvfrom(2048)
+    modifiedMessage = message.decode().upper()
+    serverSocket.sendto(modifiedMessage.encode(), clientAddress)
+```
+
+---
+
+The first line that is different from the client is 
+
+```python
+serverSocket.bind(('', serverPort))
+```
+
+This line binds (that is, assigns) the port number 12000 to the server's socket. In UPDServer, the code written by the application developer is explicitly assigning a port number to the socket. **When anyone sends a packet to port 12000 to the IP address of this server, that packet will be directed to this socket.**
+
+---
+
+```python
+message, clientAddress = serverSocket.recvfrom(2048)
+```
+
+This loop allows the server to receive and process packets from clients indefinitely. When a packet reaches the above code, the data is put into the variable `message` and the packet's source is put into the variable `clientAddress`. The `clientAddress` variable contains both the client's IP address and the client's port number. **This information is used in UDPServer.py as it provides a return address.**
+
+---
+
+```python
+modifiedMessage = message.decode().upper()
+serverSocket.sendto(modifiedMessage.encode(), clientAddress)
+```
+
+The first line simply takes the line sent by the client and after converting the message to a string, uses the method `upper()` to capitalize it.
+
+The last line attaches the client's address(IP address and port number) to the capitalized message(after converting the string to bytes) and sends the resulting packet into the server's socket.
+
+**Again here when the packet goes through the socket the operating system is the one attaching the source address to the packet**
+
+
 
