@@ -120,58 +120,49 @@ We layer the TCP-IP stack as it provides some benefits when dealing with complex
 End systems, access networks, links
 
 ### Access networks
-  - __Digital Subscriber Line(DSL)__ - voice, data transmitted at different frequencies over __dedicated line__ to central office
-    - an existing telephone line network was used to run to DSLAM (DSL access multiplier)
-    - Data over DSL goes to Internet
-    - Voice over DSL goes to telephone net
+  - __Digital Subscriber Line(DSL)__ - voice and data transmitted at different frequencies over __dedicated line__ to central office. An existing _telephone line network_ was used to run to DSLAM (DSL access multiplier) owned by the telco. Data over DSL goes to Internet, voice over DSL goes to telephone network. A splitter is used to connect to singular telephone line running to a central office. Connection is asymmetric meaning upload/download speeds are different.
     - < 2.5 Mbps upstream transmission rate (typically < 1 Mbps)
     - < 24 Mbps downstream transmission rate (typically < 10 Mbps)
-  - __Cable Networks__
-    - Data and TV are transmitted at different frequencies over __shared__ cable distribution network
-      - many houses connect to CMTS(cable modem termination system)
-      - HFC - hybrid fiber coax
-        - asymmetric: up to 30 Mbps downstream transmission rate and 2 Mbps upstream transmission rate
-      - Consists of a network of cable, fiber attaches homes to ISP router
-        - homes _share access network_ to cable headend unlike DSL which has dedicated access to central office
-  - Other networks include Home Networks and Enterprise Networks(large organizations such as Universities and companies)
+  - __Cable Networks__ - data and TV are transmitted at different frequencies over __shared__ cable distribution network. Many houses connect to CMTS(cable modem termination system), making use of the existing _cable TV network lines_. Homes connect using a cable modem. Connection is also asymmetric: up to 30 Mbps downstream transmission rate and 2 Mbps upstream transmission rate. Important to note that the access is shared, meaning the cable network is shared by everyone in one area. No dedicated line like with DSL.
+    - HFC(hybrid fiber coax) - Consists of a network of cable and fiber that attaches homes to ISP router
   - __Wireless access networks__
       - _Wireless LANS_ - typically within buildings. Uses 802.11b/g/n at 11/54/450 Mbps respectfully
-      - _Wide Area wireless access_ - Provided by a telco, transmission consists between 1 and 10 Mbps using 3G, 4G:LTE, and 5G
+      - _Wide Area wireless access_ - Provided by a telco like AT&T, transmission consists between 1 and 10 Mbps using 3G, 4G:LTE, and 5G
+
+Other networks include Home Networks and Enterprise Networks(large organizations such as Universities and companies)
 
 ### Sending Packets
 - _Host sending function_
   - Takes an application message and breaks into smaller chunks know as _packets_ of length __L__ bits
   - Transmits packets onto access network at a transmission rate of __R__
     - transmission rate also known as bandwidth
-    - _function below_
-
-<img src="{{site.baseurl}}/assets/computer-networks/transmission-rate.png"  width="60%" height="30%">
+    - <img src="{{site.baseurl}}/assets/computer-networks/transmission-rate.png"  width="60%" height="30%">
 
 ### Physical media
 - __Vocab__
-  - bit - propagates between transmitter/receiver pairs
-  - physical link - what lies between transmitter and receiver
-  - guided media - signals propagate on a solid media like coax, copper, fiber, etc
-  - unguided media - signals propagate freely such as radio waves
-  - twisted pair - insulated copper wires
+  - _bit_ - propagates between transmitter/receiver pairs
+  - _physical link_ - what lies between transmitter and receiver
+  - _guided media_ - signals propagate on a solid media like coax, copper, fiber, etc
+  - _unguided media_ - signals propagate freely such as radio waves
+
+
+#### Physical Media Examples
+  - _Twisted pair_ - insulated copper wires
     - Cat 5: 100Mbps - 1Gbps Ethernet
     - Cat 6: 10Gbps Ethernet
-- __Physical Media Examples__
   - _Coax_ - built with two concentric copper conductors
     - bidirectional broadband - multiple channels on cable, HFC(Hybrid fiber coax)
-  - _Fiber Optic Cable_
-    - glass fiber carrying light pulses, each pulse is a bit
-      - high speeds in 10's to 100's Gbps
-      - low error rate and immune to EMI
-  - _Radio_
-    - signal is carried on electromagnetic spectrum
-      - signal is affected by environment however (reflection, obstruction, and interference)
-        - terrestrial microwave - 45Mbps
-        - Wireless LAN - 54Mbps
-        - WAN - 10Mbps
-        - Satellite - Kbps to 45Mbps, 270 msec delay
+  - _Fiber Optic Cable_ - glass fiber carrying light pulses, each pulse is a bit
+    - high speeds in 10's to 100's Gbps
+    - low error rate and immune to EMI
+  - _Radio_ - signal is carried on electromagnetic spectrum
+    - signal is affected by environment however (reflection, obstruction, and interference)
+      - terrestrial microwave - 45Mbps
+      - Wireless LAN - 54Mbps
+      - WAN - 10Mbps
+      - Satellite - Kbps to 45Mbps, 270 msec delay
 
-### The network core
+### The Network Core
 Mesh of interconnected routers, hosts send data by breaking down application layer messages into packets. Packets are forwarded from one router to the next across links.
 
 &nbsp;
@@ -206,7 +197,7 @@ End to end resources are allocated to or reserved for a "call" between source an
     - users are given a specific frequency on the media to operate within
     - <img src="{{site.baseurl}}/assets/computer-networks/FDM.png"  width="60%" height="30%">
   - _TDM_ - Time Division Multiplexing
-    - users are given a slice of time on a single frequency to operate
+    - users are given a slice of time on the entire bandwidth of the medium
     - <img src="{{site.baseurl}}/assets/computer-networks/TDM.png"  width="60%" height="30%">
 
 
@@ -232,16 +223,12 @@ Today many ISP's exist. At the backbone are Tier 1 ISP's (AT&T, NTT), spanning a
 ### Delay, loss, and throughput in Packet Switched networks
 When a packet is sent to a destination, it travels through many different network components, each incurring its own delay to the transfer of the packet
 #### Total nodal delay consists of
-  - _nodal processing delay_
-    - the time required to examine the packet's header and determine where to direct the packet, can also include the time needed to check for bit-level errors in the packet that occurred in transmitting the packet's bits from the upstream node to a router
-  - _queueing delay_
-    - the time a packet waits to be transmitted onto the link. The length of the delay will depend on the number of earlier-arriving packets that are queued and waiting for transmission onto the link
-  - _transmission delay_
-    - a packet is only transmitted after all the packets that have arrived before it have been transmitted. (L bits/R bits per sec)
-  - _propagation delay_
-    - the time required to propagate from the beginning of the link to another router. This depends on the propagation speed of the physical media. Is the distance between two routers divided by the propagation speed. (D/S)
-- Transmission delay and propagation delay are close but transmission delay is the amount of time required for the router to push out a packet: it is a function of the packet's length and the transmission rate of the link, it has nothing to do with the distance between two routers. Propagation delay is the time is takes a bit to go from one router to another with distance in mind
+  - _nodal processing delay_ - the time required to examine the packet's header and determine where to direct the packet, can also include the time needed to check for bit-level errors in the packet that occurred in transmitting the packet's bits from the upstream node to a router
+  - _queueing delay_ - the time a packet waits to be transmitted onto the link. The length of the delay will depend on the number of earlier-arriving packets that are queued and waiting for transmission onto the link
+  - _transmission delay_ - a packet is only transmitted after all the packets that have arrived before it have been transmitted. (L bits/R bits per sec)
+  - _propagation delay_ - the time required to propagate from the beginning of the link to another router. This depends on the propagation speed of the physical media. Is the distance between two routers divided by the propagation speed. (Distance/Speed)
 
+Transmission delay and propagation delay are close but transmission delay is the amount of time required for the router to push out a packet: it is a function of the packet's length and the transmission rate of the link, it has nothing to do with the distance between two routers. Propagation delay is the time is takes a bit to go from one router to another with distance in mind
   - d(nodal) = d(proc) + d(queue) + d(trans) + d(prop)
   
 __Queueing delay__ is the most interesting of the four types of delay. Can be quantified with La/R with a being the average packet arrival rate. This function is called __traffic intensity__. 
@@ -250,7 +237,7 @@ __Queueing delay__ is the most interesting of the four types of delay. Can be qu
 #### Packet Loss
 In reality a queue has a finite amount of space to buffer packets. If a queue fills up and a new packet arrives at a router, the packet will be dropped as a result
 
-- tracert or traceroute - provides delay measurement from source to router along end-end Internet path towards destination
+`tracert` or `traceroute` - provides delay measurement from source to router along end-end Internet path towards destination
   - will send 3 * n packets for n routers from source to destination
   - travel times are measured and sent back to host
 
@@ -259,15 +246,15 @@ Another critical performance measure in computer networks is end-to-end throughp
 
 For some applications low delay and an instantaneous throughput, for other apps, delay is not critical, but it is desirable to have the highest possible throughput.
 
-- a bottleneck is the min of two links used in the connection of two end points
+- a bottleneck is the min of two links used in the connection of two end points `min{L1, L2}`
 
 ---
 ## Lecture 4
 
 ### Protocol layers
-To provide structure to the design of network protocols, network designers organize protocols in layers. We are interested in the services that layer offers to layers above it. A layer provides its services by performing certain actions within that layer and by using the services of the layer directly below it.
+To provide structure to the design of network protocols, network designers organize protocols in layers. We are interested in the services that a layer offers to layers above it. A layer provides its services by performing certain actions within that layer and by using the services of the layer directly below it.
 
-A protocol can be implemented in software, hardware, or a combination of both. Application layer protocols like HTTP nad SMTP are implemented in software on the end systems. Physical and data link layers are responsible for handling communication over a specific link and are typically implemented in the nic using software and hardware
+A protocol can be implemented in software, hardware, or a combination of both. Application layer protocols like HTTP and SMTP are implemented in software on the end systems. Physical and data link layers are responsible for handling communication over a specific link and are typically implemented in the nic using software and hardware
 
 - explicit structure - allows identification, relationship of complex systems pieces, like the OSI model
 - modularization - eases maintenance and when updating a system, a layers changes are transparent to the rest of the system

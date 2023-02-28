@@ -135,7 +135,7 @@ When a user requests a Web page, the browser sends HTTP request messages for the
 
 - Once the client sends a message into its socket interface, the message is out of the client's hands and is in the hands of TCP.
 
-__HTTP connections__
+#### HTTP connections
 When an HTTP connection is made, depending on the application and how the application is being used, the series of requests may be made back to back, periodically, at regular intervals, or intermittently. An application developer needs to make an important decision - should each request/response pair be sent over a separate TCP connection, or should all of the requests and their corresponding responses be sent over the _same_ TCP connection.
 - __HTTP with Non-Persistent Connections__
   - Communication between a client and server does not persist for other objects, only the one requested. If there are 10 images on a web page 10 TCP connections are generated for each image, connections are torn down after one image is sent.
@@ -203,7 +203,8 @@ Cookie technology has four components...
 - a back-end database at the web site
 
 When a user visits a website 
-1. A unique identification number is created and an entry in its back-end database that is indexed by the identification number. 2. The server responds to your browser, including in the HTTP response a `Set-cookie:` header, containing the identification number. 
+1. A unique identification number is created and an entry in its back-end database that is indexed by the identification number
+2. The server responds to your browser, including in the HTTP response a `Set-cookie:` header, containing the identification number. 
 3. The browser then appends a line to the special cookie file that it manages, this line includes the hostname of the server and the identification number in the `Set-cookie`
 4. Each time you request something from a website, your browser consults the cookie file, extracts the identification number for the site, and puts the cookie header line including your identification number in the HTTP request
 
@@ -381,7 +382,7 @@ Directory information would be located below
 ---
 
 #### HTTP
-It has become quite popular for user agents to simply be web browsers and the user communicates with its remote mailbox via HTTP. HTTP is used in both sending and receiving
+It has become quite popular for user agents to simply be web browsers and the user communicates with its remote mailbox via HTTP. HTTP is used in both sending and receiving but wraps SMTP, which is used under the hood for the "pushing" part of the application
 
 ---
 
