@@ -163,7 +163,7 @@ The method field can take on several different values including __GET, POST, HEA
 The GET method is used when the browser requests an object, with the requested object identified in the URL field. 
 
 __Header Lines__
-- The _Host:_ line specifies the host on which the object resides. This information is required by We proxy caches. 
+- The _Host:_ line specifies the host on which the object resides. This information is required by Web proxy caches. 
 - A _Connection:_ line tells the server not to worry with persistent connections; it wants the server to close the connection after sending the requested object. 
 - The _User-agent:_ line specifies the user agent, or the browser type that is making the request to the server.
 
@@ -420,7 +420,7 @@ This does not scale well, consequently a distributed design is preferred.
 
 For google.com
 - Client queries __root server__ to find __com DNS server__
-- Client queries __.com DNS server__ to get __google.com DNS server__
+- Client queries __.com DNS server__ to get __google.com DNS server__ ip address. Stores two resource records, A record and NS record
 - Client queries __google.com DNS server__ to get  IP address for __www.google.com__
 
 ### DNS server classes
@@ -519,7 +519,7 @@ BitTorrent works by...
 - When a new peer joins the torrent, the tracker randomly selects a subset of peers from the set of participating and sends the IP addresses of these 50 peers to the new peer. 
 - TCP connections are attempted to all the peers on the list, successful ones becoming "neighboring peers"
 - As time goes on peers may join and leave
-- At any given tim, each peer will have a subset of chunks from the file, with different peers having different subsets
+- At any given time, each peer will have a subset of chunks from the file, with different peers having different subsets
 - Periodically, a host will ask each of her neighboring peers for a list of the chunks that they have.
 - If you have _L_ different neighbors, you will obtain _L_ lists of chunks, at any given time, you will have a subset of chunks and will know which chunks your neighbors have.
 - Next, you have to answer which chunks you should request first and to which of your neighbors should you send requested chunks

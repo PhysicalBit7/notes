@@ -240,7 +240,7 @@ Code is written in Python as it most closely exposes socket concepts
 
 ```python
 from socket import *
-serverName - 'hostname'
+serverName = 'hostname'
 serverPort = 12000
 clientSocket = socket(AF_INET, SOCK_DGRAM)
 message = raw_input('Input lowercase sentence:')
