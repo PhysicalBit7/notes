@@ -16,6 +16,7 @@ Fall 2022
 ### Resources
 {: .no_toc}
 - [Credit Repo](https://github.com/eddyerburgh/notes/tree/master/docs/operating-systems)
+- [Book I mean to read](https://pages.cs.wisc.edu/~remzi/OSTEP/)
 
 ---
 

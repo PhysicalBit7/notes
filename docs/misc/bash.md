@@ -381,6 +381,7 @@ jobs -p                # List all background jobs with their PID
 
 lsof                   # List all open files and the process using them
 lsof -itcp:4000        # Return the process listening on port 4000
+lsof -i :<port_number> # List of processes running on a specified port
 ```
 
 ## Process Priority

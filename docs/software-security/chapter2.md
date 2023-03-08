@@ -56,14 +56,14 @@ __Four key questions you can ask yourself...__
 # Threat Modeling Methodology
 Generally it is important to focus on finding high likelihood and high impact threats instead of attempting to evaluate all the possible attacks. The threat modeling process naturally produces an assurance argument that can be used to explain and defend the security of your application
 
-**Threat Search Space**
+**Threat Search Space**     
 The process of exploring the search space is iterative and constantly refined based on what you have done so far. The four broad steps include...
 - Decompose the application or infrastructure
 - Determine the threats
 - Determine the countermeasures and mitigation's
 - Rank the threats
 
-**Basic Steps**
+**Basic Steps**     
 The basic threat modeling process consists of the following steps
 - _Assessment Scope_
   - Understand what is on the line
@@ -151,7 +151,7 @@ Adding boundaries to show who controls what is a simple way to improve the diagr
 5. Organizational boundaries
 6. Almost anywhere you can argue for different privileges
 
-### Attack Trees
+## Attack Trees
 One of the most widely used and oldest applied techniques on cyber-only systems, cyber-physical systems, and purely-physical systems. Attack trees have since been combined with other methods. They are diagrams that show attacks on a system in a tree form. The root is the goal and the leaves are ways to get to the root. Attack trees can be built for whole systems or broken down into trees for each component. As mentioned, attack trees have been combine with other frameworks such as STRIDE, CVSS, and PASTA.
 
 Once you've modeled your system, with say a DFD, you use an attack tree to analyze it.
