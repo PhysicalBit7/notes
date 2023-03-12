@@ -4,23 +4,25 @@ title: Operating Systems
 description: An introduction to operating systems.
 has_children: true
 has_toc: false
-nav_order: 2
+nav_order: 1
 permalink: /operating-systems
 ---
 
 
 # Operating Systems
-Fall 2022
+Fall 2022           
 {:.no_toc}
 
 ### Resources
 {: .no_toc}
-- [Credit Repo](https://github.com/eddyerburgh/notes/tree/master/docs/operating-systems)
+- [Credit Repo for Linux(Notes I used and also contributed to)](https://github.com/eddyerburgh/notes/tree/master/docs/operating-systems)
 - [Book I mean to read](https://pages.cs.wisc.edu/~remzi/OSTEP/)
+
+This section is broken into two parts [Linux OS notes](linux) and [Operating Systems Design Projects](os-design)
 
 ---
 
-## Table of contents
+## Linux Table of contents
 {: .no_toc }
 - [Devices and Modules](linux/devices-and-modules.md)
 - [Filesystem](linux/filesystem.md)

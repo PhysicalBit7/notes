@@ -9,16 +9,17 @@ permalink: /computer-networks/socket-programming
 ---
 
 # Socket Programming
+{:.no_toc}
 Spring 2023
 
 A guide on what sockets are and how to program them
 
 ### Resources: 
+{:.no_toc}
 - [Beej's](https://beej.us/guide/bgnet/pdf/bgnet_usl_c_1.pdf)
 - [LinuxHowTo's Socket Programming](https://www.linuxhowtos.org/C_C++/socket.htm)
 - Computer Networking: A Top Down Approach 7th Edition
 
-{:.no_toc}
 
 <details closed markdown="block">
   <summary>
@@ -32,12 +33,12 @@ A guide on what sockets are and how to program them
 
 ---
 
-## What is a socket?
-A socket is a way to speak to other programs using standard file descriptors. Maybe that still does'nt make a lot of sense. Surely you have heard that everything in Unix is a file meaning that when Unix programs do anything I/O related, they do it by reading or writing to a file descriptor. A file descriptor is simply an integer associated with an open file. Diving deeper, that file can be a network connection, a FIFO, a pipe, a terminal, a real on-the-disk file, or just about anything. When you want to communicate with anything over the Internet you're going to do it through a file descriptor.
+# What is a socket?
+A socket is a way to speak to other programs using standard file descriptors. Maybe that still doesn't make a lot of sense. Surely you have heard that everything in Unix is a file meaning that when Unix programs do anything I/O related, they do it by reading or writing to a file descriptor. A file descriptor is simply an integer associated with an open file. Diving deeper, that file can be a network connection, a FIFO, a pipe, a terminal, a real on-the-disk file, or just about anything. When you want to communicate with anything over the Internet you're going to do it through a file descriptor.
 
 In order to get this file descriptor you make a call to the ```socket()``` system routine. It returns the socket descriptor and you communicate through it using the specialized ```send()``` and ```recv()(man send, man recv)``` socket calls
 
-### Two types of sockets
+## Two types of sockets
 _Stream sockets and Datagram sockets_
 
 - ```SOCK_STREAM```
@@ -55,7 +56,7 @@ _Stream sockets and Datagram sockets_
     - many of these applications can be used with UDP because the protocol themselves have built in measures to ensure data integrity
     - speed is the main target with UDP applications
 
-### Network theory
+## Network theory
 Will keep this section to a minimum as is just networking theory explained in other notes. Big concept is encapsulation
 
 <img src="{{site.baseurl}}/assets/computer-networks/encapsulationSocket.png"  width="70%" height="30%">
@@ -64,19 +65,19 @@ Will keep this section to a minimum as is just networking theory explained in ot
 
 ---
 
-## IP Addresses, ```structs```, and Data Munging
+# IP Addresses, ```structs```, and Data Munging
 
-### IP Addresses, version 4 and 6
+## IP Addresses, version 4 and 6
 Network addresses sing IPv4 made up of "four octets" or four bytes. Of the form ```192.168.0.1```. IPv6 has been born as there are an increasing number of devices connecting to the internet. IPv6 addresses are made up of 128 bits, separated by semicolons every 16 bits. The address ::1 is the loopback address meaning the _machine I am running on now_. In IPv4 that address is ```127.0.0.1.```
 
 
 
-### Subnets
+## Subnets
 For organizational purposes, it's convenient to declare that "this first part of this IP address up through this bit is the _network portion_ of the IP address, and the remainder is the _host portion_"
 
 
 
-### Port Numbers
+## Port Numbers
 Aside from numbers being used in the IP address network layer portion of a datagram, the TCP/UDP transport layer protocols use another number called a port number. It is a 16-bit number that's like the local address for the connection.
 
 Think of the IP address as being the street address of a hotel, and the port number as the room number. 
@@ -86,7 +87,7 @@ Say you want to have a computer that handles incoming mail AND web services-how 
   
 
 
-### Byte Order
+## Byte Order
 If you want to store the two-byte hex number, say b34f, you'll store it in two sequential bytes b3 followed by 4f. This was generally agreed upon and by Wilford Brimley, its the right thing to do. This number is called _Big-Endian_.
 
 However, scattered about are Intel or Intel-compatible processors that store the bytes reversed, as in 4f followed by b3. This storage method is called _Little-Endian_.
@@ -102,18 +103,18 @@ Many times when building packets or filling out data structures you'll need to m
 
 ---
 
-## Structs
+# Structs
 Section covers various data types used by the sockets interface
 
-A socket descriptor is of the following type: ```int```
+A socket descriptor is of the following type: `int`
 
 ---
 
-### struct addrinfo
+## struct addrinfo
 
 This structure is a more recent invention and is used to prep the socket address structures for subsequent use. It's also used in host name lookups, and service name lookups. __This is one of the first things you will call when making a connection.__
 
-```cpp
+```c
 struct addrinfo {
     int             ai_flags; // AI_PASSIVE, AI_CANONNAME, etc.
     int             ai_family; // AF_INET, AF_INET6, AF_UNSPEC
@@ -138,11 +139,10 @@ Notice that the `ai_addr` field in the `struct addrinfo` is a pointer to a `stru
 
 ---
 
-### struct sockaddr
+## struct sockaddr
+Holds socket address information for many types of sockets.
 
- - holds socket address information for many types of sockets.
-
-```cpp
+```c
 struct sockaddr {
   unsigned short sa_family; // address family, AF_xxx
   char sa_data[14]; // 14 bytes of protocol address
@@ -157,7 +157,7 @@ struct sockaddr {
 
 _And this is the important bit:_ a pointer to a `struct sockaddr_in` can be cast to a pointer to a `struct sockaddr` and vice versa. SO even though `connect()` wants a `struct sockaddr*`, you can still use a `struct sockaddr_in` and cast it at the last minute
 
-```cpp
+```c
 // (IPv4 only--see struct sockaddr_in6 for IPv6)
 struct sockaddr_in {
   short int           sin_family; // Address family, AF_INET
@@ -175,9 +175,9 @@ Finally, the `sin_port` must be in _Network Byte Order_ by using `htons()`
 
 ---
 
-### struct in_addr
+## struct in_addr
 
-```cpp
+```c
 // (IPv4 only--see struct in6_addr for IPv6)
 // Internet address (a structure for historical reasons)
 struct in_addr {
@@ -186,10 +186,10 @@ struct in_addr {
 ```
 ---
 
-### struct sockaddr_in6
+## struct sockaddr_in6
 For used with IPv6
 
-```cpp
+```c
 struct sockaddr_in6 {
   u_int16_t       sin6_family; // address family, AF_INET6
   u_int16_t       sin6_port; // port number, Network Byte Order
@@ -205,11 +205,11 @@ struct in6_addr {
 
 ---
 
-### struct sockaddr_storage
+## struct sockaddr_storage
 
 Designed to be large enough to hold both IPv4 and IPv6 structures. For some calls you don't know in advance if it's going to fill out your `struct sockaddr` with an IPv4 or IPv6 address, so you pass in this parallel structure. It is very similar to the `struct sockaddr`, except larger.
 
-```cpp
+```c
 struct sockaddr_storage {
   sa_family_t ss_family; // address family
   // all this is padding, implementation specific, ignore it:
@@ -221,8 +221,9 @@ struct sockaddr_storage {
 
 ---
 
+
 # Python Socket Programming
-From Computer Networks: A Top Down Approach
+_From Computer Networks: A Top Down Approach_
 
 Reminder that processes communicate via there socket. Data they want to send is put into the socket, data they want to receive is found in the socket.
 
@@ -372,5 +373,351 @@ The last line attaches the client's address(IP address and port number) to the c
 
 **Again here when the packet goes through the socket the operating system is the one attaching the source address to the packet**
 
+## TCPClient.py
+When creating the TCP connection, we associate with it the client socket address and the server socket address. With the TCP connection established, when one side wants to send data to the other side, it just drops the data into the TCP connection via the socket. This is different from UDP where the server must attach a destination address to the packet before dropping it into the socket.
+
+__Specifics on TCP connection__       
+The client has the job of initiating contact with the server, the server therefore has to be ready for the request. This means the server has to have a socket connection running first. When the client creates its TCP socket, it specifies the address of the welcoming socket in the server, namely the IP address and the port number. _The three-way handshake, taking place within the transport layer, is completely invisible to the client and server.
+
+__Important__: the server's TCP socket is more or less a listening socket, whenever a client requests a connection to the server, a new socket is created handling the unique connection to that client. This can be seen below with the `Welcoming socket` being the listening socket, and the `Connection socket` being the second socket created when the client makes a new connection to the server
+
+![](../assets/computer-networks/tcpConn.png)
+
+The following is the actual TCPClient code
+
+```python
+from socket import *
+serverName = 'serverName'
+serverPort = 12000
+clientSocket = socket(AF_INET, SOCK_STREAM) # Create the client socket using SOCK_STREAM or TCP
+clientSocket.connect((serverName, serverPort))
+sentence = raw_input('Input lowercase sentence:')
+clientSocket.send(sentence.encode())
+modifiedSentence = clientSocket.recv(1024) # Data is received here
+print('From Server: ', modifiedSentence.decode())
+clientSocket.close()
+```
+
+### Differences from UDPClient
+
+The following line is what initiates the TCP connection between the server and the client. The parameter of the `connect()` method is the address of the server side of the connection. After this line the three-way handshake is performed and a TCP connection is established
+
+```python
+clientSocket.connect((serverName, serverPort))
+```
+---
+
+The following is very different from the UDPClient. `sentence` is sent through the client's socket and into the TCP connection. Note that the program does not explicitly create a packet and attach the destination address to the packet, as was the case with UDP sockets. The program simply drops the bytes in the string `sentence` into the TCP connection.
+
+```python
+clientSocket.send(sentence.encode())
+```
+
+## TCPServer.py
+Now the server TCP program
+
+```python
+from socket import *
+serverPort = 12000
+serverSocket = socket(AF_INET, SOCK_STREAM)
+serverSocket.bind('', serverPort)
+serverSocket.listen(1)
+print('Server listening')
+while True:
+  connectionSocket, addr = serverSocket.accept()
+  sentence = connectionSocket.recv(1024).decode()
+  capitalizedSentence = sentence.upper()
+  connectionSocket.send(capitalizedSentence.encode())
+  connectionSocket.close()
+```
+### Differences from UDPServer
+There are some distinct differences between the UDPServer and the TCPServer. Remember the `serverSocket` will be our listening socket.
+
+```python
+serverSocket.listen(1) # Listening socket, will only accept 1 connection
+```
+
+When a client knocks on the "door", aka the listening socket, the program invokes the `accept()` method for the serverSocket, which creates a new socket in the server called the `connectionSocket`
+
+```python
+connectionSocket, addr = serverSocket.accept()
+```
+
+# Examples 
+An example c program I built for class
+
+## UDP Word Count Server
+
+__UDPServer.c__ - counts the number of words in a sentence sent by the client, terminates on "bye"
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <netdb.h>
+#include <sys/types.h> 
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdbool.h>
+
+#define BUFSIZE 1024
+
+/*
+ * error - wrapper for perror
+ */
+void error(char *msg) {
+  perror(msg);
+  exit(1);
+}
+
+bool checkForEnd(char word[]){
+    char *lowercaseWord = malloc (sizeof(char) * BUFSIZE);
+    bool flag = false;
+    strcpy(lowercaseWord, word);
+    for(int i = 0;i < strlen(lowercaseWord); i++)
+        lowercaseWord[i] = tolower(lowercaseWord[i]);
+
+    if(strcmp(lowercaseWord, "end\n") == 0)
+      flag = true;
+
+    free(lowercaseWord);
+    return flag;
+}
 
 
+int main(int argc, char **argv) {
+  int sockfd; /* socket */
+  int portno; /* port to listen on */
+  int clientlen; /* byte size of client's address */
+  struct sockaddr_in serveraddr; /* server's addr */ // defined in Socket API, is a struct used to specify an endpoints address
+  struct sockaddr_in clientaddr; /* client addr */
+  struct hostent *hostp; /* client host info */
+  char buf[BUFSIZE]; /* message buf */
+  char *hostaddrp; /* dotted decimal host addr string */
+  int optval; /* flag value for setsockopt */
+  int n; /* message byte size */
+  
+  //new define
+  struct hostent *myent;
+  int len = 0;
+  char *buf2;
+  struct in_addr  myen;
+  long int *add;
+  /* 
+   * check command line arguments 
+   */
+  if (argc != 2) {
+    fprintf(stderr, "usage: %s <port>\n", argv[0]);
+    exit(1);
+  }
+  portno = atoi(argv[1]);
+
+  /* 
+   * socket: create the parent socket 
+   */
+  sockfd = socket(AF_INET, SOCK_DGRAM, 0); //af__inet specifies ipv4, SOCK_dgram specifies a udp connection
+  if (sockfd < 0) 
+    error("ERROR opening socket");
+
+  /* setsockopt: Handy debugging trick that lets 
+   * us rerun the server immediately after we kill it; 
+   * otherwise we have to wait about 20 secs. 
+   * Eliminates "ERROR on binding: Address already in use" error. 
+   */
+  optval = 1;
+  setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, 
+	     (const void *)&optval , sizeof(int));
+
+  /*
+   * build the server's Internet address
+   */
+  bzero((char *) &serveraddr, sizeof(serveraddr));
+  serveraddr.sin_family = AF_INET; // the internet protocal used
+  serveraddr.sin_addr.s_addr = htonl(INADDR_ANY); // htonl host byte order to network byte order, used to aid in confusion of byte ordering? INADDR_ANY is used when we dont know the ip address of our machine
+  serveraddr.sin_port = htons((unsigned short)portno); // address port
+  printf("Server port number: %hu (%d)\n",(unsigned short)serveraddr.sin_port,portno);
+
+  /* 
+   * bind: associate the parent socket with a port 
+   */
+  if (bind(sockfd, (struct sockaddr *) &serveraddr,  // associates and reserves a port for use by the socket
+	   sizeof(serveraddr)) < 0) 
+    error("ERROR on binding");
+
+  /* 
+   * main loop: wait for a datagram, then echo it
+   */
+  clientlen = sizeof(clientaddr);
+  while (1) {
+
+    /*
+     * recvfrom: receive a UDP datagram from a client
+     */
+    bzero(buf, BUFSIZE);
+    n = recvfrom(sockfd, buf, BUFSIZE, 0,
+		 (struct sockaddr *) &clientaddr, &clientlen);
+    if (n < 0)
+      error("ERROR in recvfrom");
+    
+
+    /* 
+     * gethostbyaddr: determine who sent the datagram
+     */
+
+    hostp = gethostbyaddr((const char *)&clientaddr.sin_addr.s_addr, 
+			  sizeof(clientaddr.sin_addr.s_addr), AF_INET);
+    
+
+    if (hostp == NULL)
+      error("ERROR on gethostbyaddr");
+    hostaddrp = inet_ntoa(clientaddr.sin_addr);
+    if (hostaddrp == NULL)
+      error("ERROR on inet_ntoa\n");
+    printf("server received datagram from %s (%s)\n", 
+	   hostp->h_name, hostaddrp);
+    printf("client port number: %d\n",clientaddr.sin_port);
+    printf("server received %d/%d bytes: %s\n", (int)strlen(buf), n, buf);
+
+
+   
+    /* 
+     * sendto: echo the input back to the client 
+     */
+    int i = 0;
+    char returnI[50];
+    if(checkForEnd(buf)){
+      strcpy(buf, "Bye");
+      printf("Closing connection to: %s (%s)\n", 
+	        hostp->h_name, hostaddrp);
+      n = sendto(sockfd, buf, strlen(buf), 0, 
+        (struct sockaddr *) &clientaddr, clientlen);
+      if (n < 0) 
+        error("ERROR in sendto");
+    }else{
+      char* token;
+      token = strtok(buf, " ");
+      while(token != NULL){
+        token = strtok(NULL, " ");
+        i++;
+      }
+      sprintf(returnI, "%d\n", i);
+      n = sendto(sockfd, returnI, strlen(buf), 0, 
+        (struct sockaddr *) &clientaddr, clientlen);
+      if (n < 0) 
+        error("ERROR in sendto");
+    }
+
+  }
+}
+```
+
+__UDPClient.c__ - opens the socket to server and sends a phrase
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h> 
+
+#define BUFSIZE 1024
+#define SRC_PORT 6010
+
+/* 
+ * error - wrapper for perror
+ */
+void error(char *msg) {
+    perror(msg);
+    exit(0);
+}
+
+
+int main(int argc, char **argv) {
+    int sockfd, portno, n;
+    int serverlen;
+    struct sockaddr_in serveraddr;
+    struct sockaddr_in clientaddr; /*source port*/
+    struct hostent *server;
+    char *hostname;
+    char buf[BUFSIZE];
+    char *checkForLowercase;
+
+    /* check command line arguments */
+    if (argc != 3) {
+       fprintf(stderr,"usage: %s <hostname> <port>\n", argv[0]);
+       exit(0);
+    }
+    hostname = argv[1];
+    portno = atoi(argv[2]);
+
+    /* socket: create the socket */
+    sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+    if (sockfd < 0) 
+        error("ERROR opening socket");
+
+    /*bind*/
+    bzero((char *) &clientaddr, sizeof(clientaddr)); 
+    clientaddr.sin_family = AF_INET;
+    clientaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    clientaddr.sin_port = htons((unsigned short)SRC_PORT);
+    printf("before bind success port number: %d\n",clientaddr.sin_port);
+
+    if (bind(sockfd, (struct sockaddr *) &clientaddr, sizeof(clientaddr)) < 0) {
+        perror("bind");
+        exit(1);
+    }
+    else{
+       printf("bind success port number: %d\n",clientaddr.sin_port);
+       
+	}
+
+ 
+    /* gethostbyname: get the server's DNS entry */
+    server = gethostbyname(hostname);
+    if (server == NULL) {
+        fprintf(stderr,"ERROR, no such host as %s\n", hostname);
+        exit(0);
+    }
+
+    /* build the server's Internet address */
+    bzero((char *) &serveraddr, sizeof(serveraddr));
+    serveraddr.sin_family = AF_INET;
+    bcopy((char *)server->h_addr, 
+	  (char *)&serveraddr.sin_addr.s_addr, server->h_length);
+    serveraddr.sin_port = htons(portno);
+
+    
+    while(1){
+        /* get a message from the user */
+        bzero(buf, BUFSIZE);
+        printf("Please enter msg: ");
+        fgets(buf, BUFSIZE, stdin);
+        
+
+        /* send the message to the server */
+        serverlen = sizeof(serveraddr);
+        n = sendto(sockfd, buf, (int)strlen(buf), 0, (struct sockaddr *)&serveraddr, serverlen);
+        if (n < 0) 
+        error("ERROR in sendto");
+        
+        /* print the server's reply */
+        n = recvfrom(sockfd, buf, strlen(buf), 0, (struct sockaddr *)&serveraddr, &serverlen);
+        if (n < 0) 
+            error("ERROR in recvfrom");
+        if(strcmp(buf, "Bye\n") == 0){
+	    printf("%s\n", buf);
+            break;
+	}
+        printf("Echo from server: %s", buf);
+    }
+    close(sockfd);
+    return 0;
+}
+```

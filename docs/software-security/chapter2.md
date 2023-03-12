@@ -83,7 +83,7 @@ The basic threat modeling process consists of the following steps
 
 ---
 
-# Structured approach to Threat Modeling
+# Structured Approach to Threat Modeling
 1. Focusing on Assets
 2. Focusing on Attackers
 3. Focusing on Software
@@ -276,92 +276,95 @@ Most fundamental qualities of a vulnerability, represents a general vulnerabilit
 - Exploitability - access vector, access complexity, authentication
 - Impact - confidentiality, integrity, availability
 
-### Access Vector (AV)
+1. **Access Vector (AV)**     
 Measures how remote an attacker can be to exploit a vulnerability
-- __L__: the vulnerability is only exploitable locally(physical access or local account)
-- __Adjacent Network__: the attacker must have access to either the broadcast network or collision domain of the vulnerable software
-- __Network__: the vulnerable software is bound to the network stack and the attacker does not need local or adjacent network access to exploit it
+- Local (L): the vulnerability is only exploitable locally(physical access or local account)
+- Adjacent Network (AN): the attacker must have access to either the broadcast network or collision domain of the vulnerable software
+- Network (N): the vulnerable software is bound to the network stack and the attacker does not need local or adjacent network access to exploit it
 
-### Access Complexity (AC)
+2. **Access Complexity (AC)**    
 Measure the complexity of attack required to exploit the vulnerability once an attacker has access to the target system
-- __High (H)__: specialized access conditions exist, such as the attacker already having elevated privileges, spoofing additional systems, or relying on obvious and convoluted social engineering methods.
-- __Medium (M)__: the access conditions are somewhat specialized, such as only certain systems or users being able to perform attacks, the affected configuration being uncommon, or some information gathering being required
-- __Low (L)__: the access conditions are not specialized or extenuating circumstances, the attack requires little skill or information gathering
+- High (H): specialized access conditions exist, such as the attacker already having elevated privileges, spoofing additional systems, or relying on obvious and convoluted social engineering methods.
+  Medium (M): the access conditions are somewhat specialized, such as only certain systems or users being able to perform attacks, the affected configuration being uncommon, or some information gathering being required
+- Low (L): the access conditions are not specialized or extenuating circumstances, the attack requires little skill or information gathering
 
-### Authentication (Au)
+3. **Authentication (Au)**      
 Measures the amount of times an attacker must be authenticated to a target system _once the system has been accessed_ in order to exploit a vulnerability
-- __Multiple (M)__: exploiting the vulnerability requires the attacker to be authenticated two or more times, even if the same credentials are used each time
-- __Single (S)__: one instance of authentication is required
-- __None (N)__: the attack requires no authentication
+- Multiple (M): exploiting the vulnerability requires the attacker to be authenticated two or more times, even if the same credentials are used each time
+- Single (S): one instance of authentication is required
+- None (N): the attack requires no authentication
 
-### Confidentiality Impact (C)
+4. **Confidentiality Impact (C)**    
 Measures the impact on confidentiality of a successfully exploited vulnerability
-- __None (N)__: no impact on confidentiality
-- __Partial (P)__: considerable informational disclosure, such as access to some files or certain database tables
-- __Complete (C)__: total information disclosure; the attacker can read all of the system's data (including files and memory)
+- None (N): no impact on confidentiality
+- Partial (P): considerable informational disclosure, such as access to some files or certain database tables
+- Complete (C): total information disclosure; the attacker can read all of the system's data (including files and memory)
 
-### Integrity Impact (I)
+5. **Integrity Impact (I)**     
 Measures the impact to integrity of a successfully exploited vulnerability
-- __None (N)__: no impact on integrity
-- __Partial (P)__: modification of some system files or information
-- __Complete (C)__: total compromise of system integrity; the attacker can modify all of the system's data (including files and memory)
+- None (N): no impact on integrity
+- Partial (P): modification of some system files or information
+- Complete (C): total compromise of system integrity; the attacker can modify all of the system's data (including files and memory)
 
-### Availability Impact (A)
+6. **Availability Impact (A)**      
 Measures the impact to availability of a successfully exploited vulnerability
-- __None (N)__: no impact on availability
-- __Partial (P)__: reduced performance or interruptions of resource availability
-- __Complete (C)__: total shutdown of the affected resource
+- None (N): no impact on availability
+- Partial (P): reduced performance or interruptions of resource availability
+- Complete (C): total shutdown of the affected resource
 
-## Base Scoring
+__Base Scoring__      
 Computed by vendors and coordinators, each metric has a number assigned to each possible value, the final base score is between 0.0 and 10.0
 
-__Base Vector__- a vector is a representation of the values assigned to the CVSS metrics. Sample vector: (AV:N/AC:L/Au:N/C:P/I:P/A:P)
+__Base Vector__     
+A vector is a representation of the values assigned to the CVSS metrics. Sample vector: (AV:N/AC:L/Au:N/C:P/I:P/A:P)
 
 ---
 
-__Temporal Metric Group__- time-dependent qualities of a vulnerability, representing urgency at a specific point in time. Three temporal metrics:
-1. __Exploitability__
-   1. Measures the current state of exploit techniques or code availability
-      1. Unproven (U): no exploit code is available
-      2. Proof-of-Concept (POC): POC exploit code is available
-      3. Functional (F): functional explicit code is available
-      4. High (H): either there is functional mobile autonomous code of no exploit is required and details are widely available
-      5. Not Defined (ND): no value assigned, skip this metric in calculating the score
-2. __Remediation Level__
-   1. Measures the level of available remediation solutions
-      1. Official Fix (OF): complete vendor solution available, patch or upgrade
-      2. Temporary Fix (TF): official temporary fix available
-      3. Workaround (W): unofficial non-vendor fix available
-      4. Unavailable (U): either no solution is available or it is impossible to apply
-      5. Not Defined (ND): no value assigned, skip this metric in calculating
-3. __Report Confidence__
-   1. Measures the degree of confidence in the existence of the vulnerability and the credibility of reports
-      1. Unconfirmed (UC): a single unconfirmed source or possibly multiple conflicting reports: little confidence
-      2. Uncorroborated (UC): multiple non-official sources, possibly including independent security companies
-      3. Confirmed (C): vendor has reported/confirmed a problem with its own product, or functional exploit code is available
-      4. Not Defined (ND): no value assigned, skip this metric in calculating the score
+## Temporal Metric Group
+Time-dependent qualities of a vulnerability, representing urgency at a specific point in time. Three temporal metrics:
+1. __Exploitability__     
+Measures the current state of exploit techniques or code availability
+   1. Unproven (U): no exploit code is available
+   2. Proof-of-Concept (POC): POC exploit code is available
+   3. Functional (F): functional explicit code is available
+   4. High (H): either there is functional mobile autonomous code of no exploit is required and details are widely available
+   5. Not Defined (ND): no value assigned, skip this metric in calculating the score
+1. __Remediation Level__      
+Measures the level of available remediation solutions
+   1. Official Fix (OF): complete vendor solution available, patch or upgrade
+   2. Temporary Fix (TF): official temporary fix available
+   3. Workaround (W): unofficial non-vendor fix available
+   4. Unavailable (U): either no solution is available or it is impossible to apply
+   5. Not Defined (ND): no value assigned, skip this metric in calculating
+1. __Report Confidence__      
+Measures the degree of confidence in the existence of the vulnerability and the credibility of reports
+   1. Unconfirmed (UC): a single unconfirmed source or possibly multiple conflicting reports: little confidence
+   2. Uncorroborated (UC): multiple non-official sources, possibly including independent security companies
+   3. Confirmed (C): vendor has reported/confirmed a problem with its own product, or functional exploit code is available
+   4. Not Defined (ND): no value assigned, skip this metric in calculating the score
 
 __Temporal Scoring__ - computed by vendors and coordinators, designed to be re-evaluated at specific times, has the following form (E:[U,POC,F,H,ND]/RL:[OF,TF,W,U,ND]/ RC:[UC,UR,C,ND])
 
 ---
 
-__Environmental Metric Group__ - qualities of a vulnerability specific to a particular IT environment, five environmental metrics
-1. __Collateral Damage Potential__
-   1. Measures the potential for loss of life or physical assets through damage or theft of property or equipment, and economic loss of productivity or revenue
-      1. None (N): no potential for physical assets, productivity or revenue damage
-      2. Low (L): slight damage or loss of revenue or productivity
-      3. Low-Medium (LM): moderate damage or loss of revenue or productivity
-      4. Medium-High (MH): significant damage or loss of revenue or productivity
-      5. High (H): catastrophic damage or loss of revenue or productivity
-      6. Not Defined (ND): no value assigned, skip this metric
-2. __Target Distribution__
-   1. Measures the proportion of vulnerable systems in an environment
-      1. None (N): no target systems exist, or targets are highly specialized and exit only in a laboratory environment
-      2. Low (L): targets exist on a small scale
-      3. Medium (M): targets exist on a medium scale
-      4. High (H): targets exist on a considerable scale
-      5. Not Defined (ND): no value assigned, skip this metric
-3. __Security Requirements__
+## Environmental Metric Group
+Qualities of a vulnerability specific to a particular IT environment, five environmental metrics
+1. __Collateral Damage Potential__      
+Measures the potential for loss of life or physical assets through damage or theft of property or equipment, and economic loss of productivity or revenue
+   1. None (N): no potential for physical assets, productivity or revenue damage
+   2. Low (L): slight damage or loss of revenue or productivity
+   3. Low-Medium (LM): moderate damage or loss of revenue or productivity
+   4. Medium-High (MH): significant damage or loss of revenue or productivity
+   5. High (H): catastrophic damage or loss of revenue or productivity
+   6. Not Defined (ND): no value assigned, skip this metric
+1. __Target Distribution__      
+Measures the proportion of vulnerable systems in an environment
+   1. None (N): no target systems exist, or targets are highly specialized and exit only in a laboratory environment
+   2. Low (L): targets exist on a small scale
+   3. Medium (M): targets exist on a medium scale
+   4. High (H): targets exist on a considerable scale
+   5. Not Defined (ND): no value assigned, skip this metric
+1. __Security Requirements__      
 Customize score based on the importance of the targets to the organization in terms of below, each affects the weight of the corresponding base metric
    1. Confidentiality requirement
    2. Integrity requirement
@@ -371,7 +374,8 @@ Customize score based on the importance of the targets to the organization in te
       3. High (H): likely to have a catastrophic adverse effect
       4. Not Defined (ND): no value assigned, skip this metric
 
-__Environmental Scoring__ - computed by end users, each metric has a number assigned to each possible value, example form: (CDP:[N,L,LM,MH,H,ND]/TD:[N,L,M,H,ND]/CR:[L,M,H,ND]/IR)
+__Environmental Scoring__     
+Computed by end users, each metric has a number assigned to each possible value, example form: (CDP:[N,L,LM,MH,H,ND]/TD:[N,L,M,H,ND]/CR:[L,M,H,ND]/IR)
 
 ## Example
 CVE-2003-0062: Buffer Overflow in NOD32 Antivirus. Discovered in Linux and Unix versions prior to 1.013 that could allow local users to execute arbitrary code with the privileges of the user executing NOD32. To trigger the buffer overflow, the attacker must wait for another user to scan a directory path of excessive length
@@ -396,24 +400,27 @@ Widely regarded as a risk-centric framework, PASTA uses an attacker centric pers
 
 ## PASTA steps
 The seven steps are as follows
-1. Define business objectives
-   1. Focus on what is important to your business, understand your application or product
-      1. They could be driven by outside sources or internal, company could be focused on a resilient product, protecting assets and customers, or avoiding reputation risks
-2. Define the technical scope of assets and components
-   1. Understand the attack surface, and create a picture of what it is that you are protecting
-      1. For each business component identify how they are configured, what dependencies they have on other internal applications, or where third party applications are used
-3. Application decomposition and identify application controls
-   1. Map the relationships between components
-      1. Identify users and their roles and permissions, assets, data, services, hardware, and software
-4. Threat analysis based on threat intelligence
-   1. Research and find the credible threats that affect your industry and products, and build a threat library
-      1. Utilize intelligence to understand the latest threats affecting your industry or products, and analyze application logs to understand the behaviors the system is recording, including attacks that existing protections have mitigated
-5. Vulnerability detection
-   1. Attacking stage
-      1. Aim is to emulate the attacks that could exploit any identified weaknesses or vulnerabilities, and prove that the suspected risks to applications actually are risks, Attack Trees are recommended
-6. Risk analysis and development of countermeasures
-   1. Uses the answers from earlier stages
-      1. What does my threat intelligence tell me about our risks in order to create countermeasures that are truly relevant to your business, product, and the actual threats you face
+1. **Define business objectives**     
+Focus on what is important to your business, understand your application or product
+   1. They could be driven by outside sources or internal, company could be focused on a resilient product, protecting assets and customers, or avoiding reputation risks
+2. **Define the technical scope of assets and components**      
+Understand the attack surface, and create a picture of what it is that you are protecting
+   1. For each business component identify how they are configured, what dependencies they have on other internal applications, or where third party applications are used
+3. **Application decomposition and identify application controls**      
+Map the relationships between components
+   1. Identify users and their roles and permissions, assets, data, services, hardware, and software
+4. **Threat analysis based on threat intelligence**     
+Research and find the credible threats that affect your industry and products, and build a threat library
+   1. Utilize intelligence to understand the latest threats affecting your industry or products, and analyze application logs to understand the behaviors the system is recording, including attacks that existing protections have mitigated
+5. **Vulnerability detection**      
+Map which weaknesses will break under threats
+   1. Identify the attack surface looking for vulnerabilities and design flaws
+6. **Attack enumeration and modeling**      
+This is the attacking stage
+   1. Aim is to emulate the attacks that could exploit any identified weaknesses or vulnerabilities, and prove that the suspected risks to applications actually are risks, Attack Trees are recommended
+7. **Risk analysis and development of countermeasures**     
+Uses the answers from earlier stages
+   1. What does my threat intelligence tell me about our risks in order to create countermeasures that are truly relevant to your business, product, and the actual threats you face
 
 ### The Benefits of PASTA Threat Modeling
 Put security at the center of the entire business, stakeholders can understand goals and the cybersecurity threats, therefore influencing decisions. You can get a full picture of the threats an organization may face. A security team can prioritize threats to mitigate

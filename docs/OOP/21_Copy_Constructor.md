@@ -33,14 +33,6 @@ class Rectangle {
 };
 ```
 
-What happens when you do:
-
-``` cpp
-Rectangle r1{3, 4};
-Rectangle r2{2, 3};
-r2 = r1;            // what happens here?
-```
-
 ---
 
 What happens when you do:

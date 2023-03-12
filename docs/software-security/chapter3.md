@@ -25,7 +25,7 @@ permalink: /software-security/Chapter3
 
 
 ## Trust in General
-Many different disciplines have different definitions of trust. Philosophy - Risky action deriving from personal, moral relationships between two entities. Economics - Expectations upon a risky action under uncertainty and ignorance  based on the calculated incentives for the action
+Many different disciplines have different definitions of trust. *Philosophy* - Risky action deriving from personal, moral relationships between two entities. *Economics* - Expectations upon a risky action under uncertainty and ignorance  based on the calculated incentives for the action
 
 __Composite Trust__ - multilayered trust dimensions
 1. __Communication trust__ from communication networks such as quality of service (service response time, packet drop rates)
@@ -40,11 +40,20 @@ _Dictionary definition_: trust is assured reliance on the character, ability, st
 ### Measurement of Trust
 **Trust** is a belief that does not necessarily require observed behavior in the past, that is distinct from trustworthiness, which is a verified objective of trust through observed evidence
 
-**Distrust** is not simply the complement of trust
-**Untrust** is defined as the state in which a trustee cannot reach the cooperation threshold in terms of its capability
-**Undistrust** means the lack of trust indicating when a trustor cannot sufficiently make a decision for whether he or she distrusts a trustee
-**Mistrust** derives from misinformation, often called misplaced trust, where a trustee does not have the intention to betray a trustor
-**Misdistrust** is defines as distrusting or ignoring an entity that is trustworthy
+**Distrust**       
+Is not simply the complement of trust
+
+**Untrust**      
+Is defined as the state in which a trustee cannot reach the cooperation threshold in terms of its capability
+
+**Undistrust**       
+Means the lack of trust indicating when a trustor cannot sufficiently make a decision for whether he or she distrusts a trustee
+
+**Mistrust**       
+Derives from misinformation, often called misplaced trust, where a trustee does not have the intention to betray a trustor
+
+**Misdistrust**      
+Is defines as distrusting or ignoring an entity that is trustworthy
 
 ## Trust in Security
 Systems must be built that match with the societal expectations of trust. Security must be built into every layer of a solution, it should'nt be an afterthought.
@@ -74,7 +83,7 @@ __Three Essentials__
 2. There must be a starting point in establishing credentials for identity
 3. Trust does not happen spontaneously
 
-__Threat Profile and Risk Analysis__
+__Threat Profile and Risk Analysis__      
 Threat profiles and risk analyses are intrinsically related. Threat profiles identify the specific threats that are most likely to put your environment at risk
 
 The most common types of threats fall into categories such as:
@@ -84,7 +93,7 @@ The most common types of threats fall into categories such as:
 - Unauthorized modification, deletion, or disclosure of data
 - Denial of Service attacks
 
-__Original Entity Authentication__
+## Original Entity Authentication   
 Permeates all trust models. Before trust can be made you have to have assurance that who you are speaking to is who they say they are. Original entity authentication occurs only once, at the beginning of a trust relationship. The more rigorous the original entity authentication process, the greater the degree of trust
 
 For a library an ID is enough of an original entity authentication. For a financial institution they may need to use some sort of cryptographic key to verify the entity. To ensure a reliable validation or authentication process, tokens or credentials must be unique and bound to a particular entity
@@ -98,15 +107,15 @@ Process could be layed out like...
 The last step outlines **bootstrapping**, meaning the association of a unique entity with a unique credential
 
 Trust depends on the ability to bind unique attributes or credentials to a unique entity or user. There must be an agreed upon and standardized format for credentials, as well as for the protocols that are used to test those credentials marking off...
-- Authentication - verification of identity
-- Authorization - granting of specific privileges
-- Confidentiality - information will not be accessed by unauthorized parties
-- Integrity - data will not be modified by unauthorized parties
-- Non-repudiation - legitimate transactions cannot later be denied by either the client or the server
+- **Authentication** - verification of identity
+- **Authorization** - granting of specific privileges
+- **Confidentiality** - information will not be accessed by unauthorized parties
+- **Integrity** - data will not be modified by unauthorized parties
+- **Non-repudiation** - legitimate transactions cannot later be denied by either the client or the server
 
 _No spontaneous trust_, without reliance on mapping to previously established credentials, there cannot be any trust in an entity's identity. The server side implementation of SSL shows spontaneous trust as there is nothing that checks the browser's identity
 
-### Qualities of Trust Relationships
+## Qualities of Trust Relationships
 __Portability__ and __Interoperability__ are similar but have subtle differences, portability depends on standardized credential types and formats to be used anywhere, and at any time. Interoperability depends on the standardization of protocols for testing credentials, it relies on applications and systems to implement standardized protocols for credential testing
 
 _Portability_ refers to the ability of software or hardware to work on different platforms or environments without modification
@@ -127,7 +136,8 @@ A direct trust model is found in some architectures using a **PKI**, a root cert
 #### Advantages of Direct Trust
 The validation of credentials is performed by one's self with no delegation, thus ensuring a high level of confidence in every entity associated with the trust implementation, used often to reduce liability. Financial transactions, e-commerce, insurance, or health care should consider a direct trust model
 
-Primary disadvantage of a direct trust model is that it may be more labor intensive and more expensive than other trust models
+#### Disadvantages of Direct Trust
+Direct trust model is that it may be more labor intensive and more expensive than other trust models
 
 ### Transitive Trust
 Trust transmitted through another party such as...

@@ -53,20 +53,20 @@ Other properties that don't necessarily make software secure but characterize ho
 
 Software security extends the requirements of reliability and safety to the need to preserve predictable, correct execution even in the face of _malicious_ attacks on defects or weaknesses and environmental state changes
 
-## Influence the Security Properties of Software
+# Influence the Security Properties of Software
 Balance between engaging in defensive action and thinking like an attacker
 
 **Defender Side:** build into the software appropriate security features and characteristics to make the software more resistant to attack and to minimize weaknesses that make it more vulnerable
 **Attacker Side:** understand the exact nature of the threat that the software is likely to face so as to focus defensive efforts on areas of highest risk
 
-### The Defensive Perspective
+## The Defensive Perspective
 Analyze the software for vulnerabilities and opportunities for the security of the software to be compromised through malicious attack
 
 - Address expected issues through the application of appropriate security architectures and features
 - Address unexpected issues through the avoidance, removal, and mitigation of weaknesses
 - Continually strive to improve and strengthen the attack  resistance, tolerance, and resilience of the software in everything they do
 
-#### Addressing the Expected: Security Architecture and Features
+### Addressing the Expected: Security Architecture and Features
 Security features and functionality alone are insufficient to ensure software security. __Security architecture__ is the overall framework that holds these security functionalities together, the functionality and architecture of the software have to be checked for vulnerabilities
 
 The activities and practices to reduce and mitigate weaknesses present in software can typically be categorized into two approaches:
@@ -78,18 +78,22 @@ The activities and practices to reduce and mitigate weaknesses present in softwa
   - Not only incorporates protective, post-implementation techniques, but also addresses the need to specify, design, and implement an application with a minimal attack surface
   - Preventing weaknesses from entering the software in the first place or at least removing them as early in the life cycle as possible and before the software is deployed
 
-#### Cyberinfrastructure Security
+### Cyberinfrastructure Security
 Research environments that support advanced data acquisition, data storage, and other computing and information processing services distributed over the Internet. In scientific usage, it is a technological and sociological solution to the problem of efficiently connecting laboratories and computers for novel scientific knowledge
 
 **Security** is the degree of resistance to, or protection from harm
 
-#### Attack Resistance, Attack Tolerance, and Attack Resilience
-1. Attack Resilience - the ability of the software to prevent the capability of an attacker to execute an attack against it
-   1. Often the most difficult to achieve, as it involves minimizing all weaknesses from every level, sometimes impossible to achieve
-2. Attack Tolerance - the ability of the software to "tolerate" the errors and failure that result from successful attacks and, in effect, to continue to operate as if it had not occurred
-3. Attack Resilience - the ability of the software to isolate, contain, and limit the damage resulting from any failures caused by attack-triggered faults that the software was unable to resist or tolerate and to recover as quickly as possible
+---
 
-### The Attackers Perspective
+### Attack Resistance, Attack Tolerance, and Attack Resilience
+1. **Attack Resilience** - the ability of the software to prevent the capability of an attacker to execute an attack against it
+   1. Often the most difficult to achieve, as it involves minimizing all weaknesses from every level, sometimes impossible to achieve
+2. **Attack Tolerance** - the ability of the software to "tolerate" the errors and failure that result from successful attacks and, in effect, to continue to operate as if it had not occurred
+3. **Attack Resilience** - the ability of the software to isolate, contain, and limit the damage resulting from any failures caused by attack-triggered faults that the software was unable to resist or tolerate and to recover as quickly as possible
+
+Properties contributing to the attacking perspective
+
+## The Attackers Perspective
 Much easier to find vulnerabilities in software than it is to make software secure, an attacker may have a physical copy of the software, or attack it over the Internet
 
 Design patterns attempt to tackle head-on the problems of secure, stable, and effective software architecture and design. Attack patterns apply the problem-solution paradigm of design patterns in a destructive context. Gives software developers a representation of how attackers think, which enables them to anticipate attacks and take more effective steps to mitigate the impact
@@ -100,7 +104,7 @@ An attack pattern at a minimum should fully describe:
 - In which contexts it is applicable
 - Should provide enough information to enable defenders to effectively prevent or mitigate it
 
-#### Attack Pattern Components
+### Attack Pattern Components
 1. Pattern name and classification
 2. Attack prerequisites - which conditions must exit
 3. Description
@@ -115,24 +119,24 @@ An attack pattern at a minimum should fully describe:
 
 Attack patterns provide useful information to developers at all phases of development
 
-#### Positive and Negative Requirements
+### Positive and Negative Requirements
 Security-focused requirements are typically split between
 1. Positive requirements - functional behaviors the software must exhibit, often security features
 2. Negative requirements - behaviors that the software must not exhibit if it is to operate securely 
 
 Attack patterns can help identify requirements, many vulnerabilities result from vague specifications and requirements. Once requirements have been defined, all software must go through some level of architecture and design
 
-#### Leveraging Attack Patterns in Architecture Design
+### Leveraging Attack Patterns in Architecture Design
 Some attack patterns describe attacks that directly exploit architecture and design flaws in software. Attack patterns at all levels can provide a useful context for the threats that the software is likely to face and thereby avoid those architecture or design features
 
 It is essential to document any attack patterns used in the architecture and design phase so that the application can be tested using those attack patterns
 
-#### Leveraging Attack Patterns in Implementation and Coding
+### Leveraging Attack Patterns in Implementation and Coding
 During this phase attack patterns enumerate the specific weaknesses targeted by relevant attacks and allow developers to ensure that they do not occur in their code
 
 These weaknesses could take the form of implementation bugs or simply valid coding constructs that can have security implications if used improperly
 
-#### Leveraging Attack Patterns in Software Security Testing
+### Leveraging Attack Patterns in Software Security Testing
 Goal is to break things so that they can be fixed before an attacker can find them, can be done various ways
 1. **Unit Testing** - generate proper tests for each component ensuring that each component at least resists weaknesses
 2. **Integration Testing** - whether the individual components make differing assumptions that affect security, such that the integrated whole may contain conflicts or ambiguities
@@ -248,6 +252,7 @@ Again, deploying the application securely should be done at the end of the lifec
 # Security Principles and Policies
 Security is different from other IT services, the best security professionals combine there knowledge of computers and networks with general theories about security, technology, and human nature
 
+## Security Principles
 1. **Principle 1**: There is no such thing as absolute security
    1. Given enough time, tools, skills, and inclination, a malicious person can break through any security measure. Confidentiality is sometimes referred to as the principle of least privileges
 2. **Principle 2**: The three security goals
@@ -484,15 +489,15 @@ Important habit
 Architectural risk analysis provides assurance that architecture and design-level security concerns are identified and addressed as early as possible, yielding improved levels of attack resistance, tolerance, and resilience
 
 Consists of six activities...
-1. **Software characterization**
-   1. Full understanding of what the software is and how it works, requires minimal description using high-level diagramming techniques. Illustrates the true nature of the software
-   2. Useful artifacts include: software business case, use case documents, quality assurance plan, etc.
-2. **Threat analysis**
-   1. Agents that violate the protection of information assets and site security policy. Identifies relevant threats for a specific architecture, functionality, and configuration
-3. **Architectural vulnerability assessment**
-   1. Examines the preconditions that must be present for vulnerabilities to be exploited and assesses the states that the software might enter upon exploit
-   2. __Attack resistance analysis__ - examining software architecture and design for common weaknesses that may lead to vulnerabilities and increase the system's susceptibility to common attack patters. Relevant attack patterns should be mapped against the architecture
-   3. CAPEC (common attack pattern enumeration and classification) describes the following classes of attacks
+1. **Software characterization**       
+Full understanding of what the software is and how it works, requires minimal description using high-level diagramming techniques. Illustrates the true nature of the software
+   1. Useful artifacts include: software business case, use case documents, quality assurance plan, etc.
+2. **Threat analysis**        
+Agents that violate the protection of information assets and site security policy. Identifies relevant threats for a specific architecture, functionality, and configuration
+3. **Architectural vulnerability assessment**         
+Examines the preconditions that must be present for vulnerabilities to be exploited and assesses the states that the software might enter upon exploit
+   1. __Attack resistance analysis__ - examining software architecture and design for common weaknesses that may lead to vulnerabilities and increase the system's susceptibility to common attack patters. Relevant attack patterns should be mapped against the architecture
+   2. **CAPEC** (common attack pattern enumeration and classification) describes the following classes of attacks
       1. Abuse of functionality
       2. Spoofing
       3. Probabilistic techniques
@@ -500,15 +505,30 @@ Consists of six activities...
       5. Injection
       6. Resource manipulation
       7. Time and state attacks
-   4. An architectural risk assessment must include an analysis of the vulnerabilities associated with the software's execution environment. The goal is to develop a list of software or system vulnerabilities that could be accidentally triggered or intentionally exploited, resulting in a security breach or a violation of the system's security policy
-4. **Risk likelihood determination**
-   1. Can be useful when prioritizing risks and evaluating the effectiveness of potential mitigation's
-5. **Risk impact determination**
+   3. An architectural risk assessment must include an analysis of the vulnerabilities associated with the software's execution environment. The goal is to develop a list of software or system vulnerabilities that could be accidentally triggered or intentionally exploited, resulting in a security breach or a violation of the system's security policy
+1. **Risk likelihood determination**         
+Can be useful when prioritizing risks and evaluating the effectiveness of potential mitigation's
+1. **Risk impact determination**       
    1. Three aspects of risk impact determination
       1. Identifying the threatened assets
       2. Identifying business impact
       3. Determining impact locality
-6. **Risk mitigation planning**
+2. **Risk mitigation planning**        
    1. Often require changes to multiple modules with it being architectural flaws
    2. Many mitigation's can be described as either detection strategies or correction strategies
    3. Mitigation mechanisms themselves can introduce threats and vulnerabilities to the software
+
+# Control Flow Technology
+
+## Behavior-Based Detection
+Idea: Observe the program's behavior, is it doing what we expect it to? If not, it might be compromised. Can be challenging to define "expected behavior", detect deviations from expectation efficiently, and avoid compromise of the detector
+
+## Control-flow Integrity (CFI)
+Answers the above complications
+1. Define "expected behavior"? __Control flow graph (CFG)__
+2. Detect deviations from expectation efficiently? __In-line reference monitor (IRM)__
+3. Avoid compromise of the detector? __Sufficient randomness, immutability__
+
+CFI is quite efficient. Classic EFI (2005) imposes 16% overhead on average, 45% in the worst case. Modular CFI (2014) imposes 5% overhead on average, 12% in the worst case
+
+Modular CFI can eliminate 95.75% of ROP gadgets on x86-64 versions of SPEC2006 benchmark suite
