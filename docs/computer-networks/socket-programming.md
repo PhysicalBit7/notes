@@ -3,7 +3,7 @@ layout: default
 title: Socket Programming
 description: Socket Programming notes
 has_toc: false
-nav_order: 3
+nav_order: 4
 parent: Computer Networks
 permalink: /computer-networks/socket-programming
 ---
@@ -379,7 +379,7 @@ When creating the TCP connection, we associate with it the client socket address
 __Specifics on TCP connection__       
 The client has the job of initiating contact with the server, the server therefore has to be ready for the request. This means the server has to have a socket connection running first. When the client creates its TCP socket, it specifies the address of the welcoming socket in the server, namely the IP address and the port number. _The three-way handshake, taking place within the transport layer, is completely invisible to the client and server.
 
-__Important__: the server's TCP socket is more or less a listening socket, whenever a client requests a connection to the server, a new socket is created handling the unique connection to that client. This can be seen below with the `Welcoming socket` being the listening socket, and the `Connection socket` being the second socket created when the client makes a new connection to the server
+__Important__: the server's TCP socket is more or less a listening socket, whenever a client requests a connection to the server, a new socket is created handling the unique connection to that client. This can be seen below with the "Welcoming socket" being the listening socket, and the "Connection socket" being the second socket created when the client makes a new connection to the server
 
 ![](../assets/computer-networks/tcpConn.png)
 

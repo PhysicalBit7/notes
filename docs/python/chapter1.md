@@ -106,7 +106,8 @@ Structures come built into the _standard library_, one of which is the __list__.
 
 A list in Python can be of any type, it can even mix the types of data in the list.
 
-__Of Note__: Python variables are dynamically assigned, meaning you do not have to specify the type of the variable
+{: .warning }
+Python variables are dynamically assigned, meaning you do not have to specify the type of the variable
 
 ### Invoking built-in module functionality
 
@@ -133,7 +134,8 @@ if right_this_minute in odds:
 
 We check if `right_this_minute` is inside `odds`, and will return true or false
 
-__To note__: Python does not use {}, it only uses indentation to denote blocks of code. Python programmers prefer to call this a "suite" as opposed to a block of code. Suite's are introduced by the colon(`:`) operator
+{: .note }
+Python does not use {}, it only uses indentation to denote blocks of code. Python programmers prefer to call this a "suite" as opposed to a block of code. Suite's are introduced by the colon(`:`) operator
 
 Python can have embedded suites, otherwise known as __levels of indentation__
 
@@ -181,7 +183,9 @@ datetime.datetime() #We have to specify the function within the module, don't ge
 
 Generating the random number with `import random`
 
-__From within the Python interpreter you can also find embedded functions with...__
+{: .important}
+From within the Python interpreter you can also find embedded functions with...
+
 ```python
 >>> dir(random) #Will list all functions
 >>> help(random.randint) #You will find a randint function in random, get documentation with help

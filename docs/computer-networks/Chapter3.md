@@ -49,6 +49,78 @@ At a destination host, the transport layer receives segments from the network la
 
 How does a receiving host direct an incoming transport-layer segment to the appropriate socket? Each transport-layer segment has a set of fields in the segment for this purpose. At the receiving end, the transport layer examines these fields to identify the receiving socket and then directs the segment to that socket. The job of delivering the data in the transport-layer segment to the correct socket is called __demultiplexing__. The job of gathering data chunks at the source host from different sockets, encapsulating each data chunk with header information to create segments, and passing the segments to the network layer is called __multiplexing__.
 
+The transport layer segment contains a **source port number field** and a **destination port number field**. Both of these make up a 32 bit row of the transport layer header that is tacked on to application data
+
+### TCP and UDP Header Fields
+{: .no_toc }
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/TCP_UDP_headers.png"  width="70%" height="50%">
+</p>
+
+## Connectionless Multiplexing and Demultiplexing
+Recall that a Python program on a host can create a UPD socket with the line
+
+```python
+clientSocket = socket(AF_INET, SOCK_DGRAM)
+```
+
+When a UDP socket is created in this manner, the transport layer automatically assigns a port number to the socket, particularly in the range __1024 to 65535__, that is not being used by any other UDP port in the host. Alternatively, we can add a line into our Python program after we create the socket to associate a specific port number (say, 19157) to this UDP socket via the socket `bind()` method
+
+```python
+clientSocket.bind(('', 19157))
+```
+
+__Typically, the client side of the application let's the transport layer automatically (and transparently) assign the port number, whereas the server side of the application assigns a specific port number__
+
+The UDP socket is fully identified by a two-tuple consisting of a destination IP address and a destination port number. __If there are two UDP segments that have different source IP addresses and/or source port numbers, but have the same _destination_ IP address and _destination_ port number, then the two segments will be directed to the same destination process via the same destination socket__
+
+## Connection-Oriented Multiplexing and Demultiplexing
+An important difference between a TCP socket and a UDP socket is that a TCP socket is identified by a four-tuple: (source IP address, source port number, destination IP address, destination port). When a TCP segment arrives from the network to a host, the host uses all four value to direct (demultiplex) the segment to the appropriate socket. __Two arriving TCP segments with different source IP addresses or source port numbers will (with the exception of a TCP segment carrying the original connection-establishment request) be directed to two different sockets__
+
+Example:
+1. The TCP server application has a "welcoming socket", that waits for connection-establishment request from TCP clients on port number 12000
+2. The TCP client creates a socket and sends a connection-establishment request segment with the lines
+```python
+clientSocket = socket(AF_INET, SOCK_STREAM)
+clientSocket.connect((serverName, 12000))
+```
+3. A connection-establishment request is nothing more than a TCP segment with destination port number 12000 and a special __connection-establishment bit set in the TCP header__. The segment also includes a source port number that was chosen by the client
+4. When the host operating system of the computer running the server process receives the incoming connection-request segment with destination port number 12000, it locates the server process that is waiting to accept a connection on port number 12000. The server then creates a new socket with:
+```python
+connectionSocket, addr = serverSocket.accept()
+```
+5. Also, the transport layer at the server notes the following four values in the connection-request segment: 1. the source port number in the segment, 2. the IP address of the source host, 3. the destination port number in the segment, 4. its own IP address. The newly created connection socket is identified by these four values; all subsequently arriving segments whose source port, source IP address, destination port, and destination IP address match these four values will be demultiplexed to this socket
+
+_The server host may support many simultaneous TCP connection sockets, with each socket attached to a process, and with each socket identified by its own four-tuple_
+
+#### Figure 4, Host C initiates two HTTP sessions, Host A initiates one HTTP session 
+{: .no_toc }
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/tcpExample.png"  width="70%" height="50%">
+</p>
+Figure explained:
+1. All entities have there own unique IP address
+2. Host C assigns two different source port numbers (7532 and 26145) to its two HTTP connections
+3. Because Host A is choosing source port numbers independently of Host C, it might also assign a source port of 26145 to its HTTP connection.
+4. The server will be able to correctly demultiplex the two connections having the same source port number, since the two connections have different source IP addresses
+
+---
+### Port Scanning Notes
+A server process waits patiently on an open port for contact by a remote client. Some ports are reserved for well known applications, other ports are used by convention by popular applications (Microsoft 2000 SQL server listens for requests on UDP port 1434). If we  determine that a port is open on a host, we may be able to map that port to a specific application running on that host
+
+Some network admins are often interested in seeing what network applications are running on the hosts in their network configuration, attackers are also interested in this information in order to "case the joint". If an attacker learns that a SQL server is running on port 1434 and has a known security flaw, then it is ripe for attack
+
+Determining which applications are listening on which ports is easy. There are a number of port scanners, but the most widely used is `nmap`. For TCP connections `nmap` sequentially scans ports, looking for ports accepting TCP connections. For UDP, `nmap` again sequentially scans ports, looking for UDP ports that respond to transmitted UDP segments. In both cases, `nmap` returns a list of open, closed, or unreachable ports. A host running `nmap` can attempt to scan any target host anywhere on the Internet.
+
+---
+
+### Web Servers and TCP
+Explanation of Web servers and how they use port numbers. A host running an Apache web server on port 80 will have all segments arrive with a destination port of 80. Both the initial connection-establishment segments and the segments carrying HTTP request messages will have destination port 80. The server distinguishes the segments from the different clients using the _source IP addresses and source port numbers._ 
+
+Figure 4 above shows the web server spawning a new process for each connection. Each of these processes has its own connection socket through which HTTP requests arrive and HTTP responses are sent. Today's high performing web servers often use only one process for initial communication, and __create a new thread with a new connection socket for each new client connection.__
+
+# Connectionless Transport: UDP
+
 
 
 

@@ -43,14 +43,14 @@ img {
 
 ---
 
-## Subjects
-- [OOP](/docs/OOP/oop.md)
-- [Operating Systems](/docs/operating-systems/operating-systems.md)
-- [Computer Networks](/docs/computer-networks/computer-networks.md)
-- [Software Security](/docs/software-security/software-security.md)
-- [CCNA](/docs/ccna/ccna.md)
-- [Japanese](/docs/japanese/japan.md)
-- [Miscellaneous](docs/misc/misc.md)
+## Areas of Interest
+- High Performance Computing
+- Database Architecture
+- Scripting
+
+
+
+
 
 
 

@@ -10,5 +10,5 @@ permalink: /heterogeneous-computing
 # Heterogeneous Computing
 Summer 2023
 
-
 ---
+## Table of Contents

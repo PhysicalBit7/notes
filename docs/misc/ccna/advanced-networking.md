@@ -1,11 +1,12 @@
 ---
 layout: default
-title: Advanced Networking 
+title: Advanced Networking
 description: Advanced Networking
 has_toc: false
 nav_order: 3
 parent: CCNA
-permalink: /ccna/advanced-networking
+grand_parent: Miscellaneous
+permalink: /misc/ccna/advanced-networking
 ---
 
 # Advanced Networking

@@ -22,25 +22,30 @@ permalink: /computer-networks/Chapter1
 
 ---
 
-## Lecture 1
+# Lecture 1
 The Internet is a connected collection of computing devices. The working components are listed below 
 
-- _Hosts(endpoint devices)_
+**Hosts(endpoint devices)**     
   - Hosts run network applications (Zoom, FireFox, Outlook)
-- _Communication links_
+
+**Communication links**     
   - Fiber, copper, radio, satellite are just some of the connection mediums used
   - Messages are broken down into packets and sent across communication links. __Routers__ and __switches__ take care of switching these messages across the different networks that make up the Internet
   - Routers typically make up the _network core_ while switches make up _access networks_
   - Transmission rate = bandwidth
-- The Internet is a "Network of Networks"
+
+
+**The Internet is a "Network of Networks"**     
   - Specific protocols control sending/receiving messages(TCP, IP, HTTP, Skype,  802.11)
   - Internet Standards
     - IETF: Internet Engineering Task Force
     - RFC: Request for comments
-- __Protocols__ - all communication activity in Internet is governed by protocols
+
+
+__Protocols__ - all communication activity in Internet is governed by protocols     
   - Protocols define format, order of messages sent and received among network entities, and actions taken on message transmission and/or receipt of a message or other event. _They allow for interoperability amongst various devices._
 
-### Internet protocol stack OSI/TCP-IP
+## Internet protocol stack OSI/TCP-IP
 We layer the TCP-IP stack as it provides some benefits when dealing with complex systems...
 
 - The explicit structure allows for easy identification of the pieces and their relationships
@@ -57,7 +62,7 @@ We layer the TCP-IP stack as it provides some benefits when dealing with complex
 | link | transfer between neighboring  network elements| Ethernet, 802.11 (WiFi), PPP(Point-to-Point Protocol)
 | physical | bits “on the wire" | UTP, Fiber
 
-- ISO standard breaks down application into two more layers
+ISO standard breaks down application into two more layers
 
 
 | Layer | Description
@@ -66,60 +71,18 @@ We layer the TCP-IP stack as it provides some benefits when dealing with complex
 | session | synchronization, check-pointing, recovery of data exchange
 
 
-### Encapsulation
+## Encapsulation
+<p align="center">
  <img src="{{site.baseurl}}/assets/computer-networks/encapsulation.png"  width="70%" height="30%">
-  
-#### A day in the life: scenarios
-- ***Connecting to the Internet***
-  - Connecting laptop needs to get its own IP address, address of first-hop router, address of DNS server: use DHCP
-  - DHCP request encapsulated in UDP, encapsulated in IP, encapsulated in 802.3 Ethernet
-  - Ethernet frame broadcast (dest: FF-FF-FF-FF-FF-FF) on LAN, received at router running DHCP server
-  - Ethernet demuxed to IP demuxed, UDP demuxed to DHCP 
-- ***DHCP***
-  - DHCP server formulates DHCP ACK containing client’s IP address, IP address of first-hop router for client, name & IP address of DNS server
-  - encapsulation at DHCP server, frame forwarded (switch learning) through LAN, demultiplexing at client
-  - DHCP client receives DHCP ACK reply
+</p>
 
 ---
 
-- ***ARP - before DNS,HTTP***
-  - before sending HTTP request, need IP address of `www.google.com`:  DNS comes into play
-  - DNS query created, encapsulated in UDP, encapsulated in IP, encapsulated in Eth.  To send frame to router, need MAC address of router interface: ARP
-  - ARP query broadcast, received by router, which replies with ARP reply giving MAC address of router interface
-  - Client now knows MAC address of first hop router, so can now send frame containing DNS query 
-
----
-
-- ***Using DNS***
-  - IP datagram containing DNS query forwarded via LAN switch from client to 1st hop router
-  - IP datagram forwarded from campus network into comcast network, routed (tables created by RIP, OSPF, IS-IS and/or BGP routing protocols) to DNS server
-  - decapsulate to DNS server
-  - DNS server replies to client with IP address of `www.google.com`
-
----
-
-- ***TCP connection carrying HTTP***
-  - To send _HTTP request_ client first opens TCP socket to web server
-  - _TCP SYN_ segment (step 1 in 3-way handshake) inter-domain routed to web server
-  - Web server responds with _TCP SYNACK_ (step 2 in 3-way handshake)
-  - TCP connection established!
-
-
----
-
-- ***HTTP request/reply***
-  - _HTTP request_ sent into _TCP socket_
-  - IP datagram containing _HTTP request_ routed to `www.google.com`
-  - Web server responds with _HTTP reply_ (containing web page)
-  - IP datagram containing _HTTP reply_ routed back to client
-
----
-
-## Lecture 2
+# Lecture 2
 
 End systems, access networks, links
 
-### Access networks
+## Access networks
   - __Digital Subscriber Line(DSL)__ - voice and data transmitted at different frequencies over __dedicated line__ to central office. An existing _telephone line network_ was used to run to DSLAM (DSL access multiplier) owned by the telco. Data over DSL goes to Internet, voice over DSL goes to telephone network. A splitter is used to connect to singular telephone line running to a central office. Connection is asymmetric meaning upload/download speeds are different.
     - < 2.5 Mbps upstream transmission rate (typically < 1 Mbps)
     - < 24 Mbps downstream transmission rate (typically < 10 Mbps)
@@ -131,14 +94,14 @@ End systems, access networks, links
 
 Other networks include Home Networks and Enterprise Networks(large organizations such as Universities and companies)
 
-### Sending Packets
+## Sending Packets
 - _Host sending function_
   - Takes an application message and breaks into smaller chunks know as _packets_ of length __L__ bits
   - Transmits packets onto access network at a transmission rate of __R__
     - transmission rate also known as bandwidth
     - <img src="{{site.baseurl}}/assets/computer-networks/transmission-rate.png"  width="60%" height="30%">
 
-### Physical media
+## Physical media
 - __Vocab__
   - _bit_ - propagates between transmitter/receiver pairs
   - _physical link_ - what lies between transmitter and receiver
@@ -162,19 +125,19 @@ Other networks include Home Networks and Enterprise Networks(large organizations
       - WAN - 10Mbps
       - Satellite - Kbps to 45Mbps, 270 msec delay
 
-### The Network Core
+## The Network Core
 Mesh of interconnected routers, hosts send data by breaking down application layer messages into packets. Packets are forwarded from one router to the next across links.
 
 &nbsp;
 
-#### Packet Switching
+### Packet Switching
 The concept of sending a message from a source end system to a destination end system by breaking messages into smaller chunks of data known as _packets_. Each packet travels through communication links and _packet switches_ using routers and switches. Packets are transmitted over each communication link at a rate equal to the _full_ transmission rate of the link.
 
 - Takes L/R seconds to transmit an L-bit packet onto link at R bps
   - L = 7.5 Mbits
   - R = 1.5 Mbps
   - one hop transmission delay = 5 sec (L/R)
-- _Store and Forward_ - a concept used by most packet switches meaning that the packet switch must receive the entire packet before it can begin to transmit the first bit of the packet onto the outbound link
+- **Store and Forward** - a concept used by most packet switches meaning that the packet switch must receive the entire packet before it can begin to transmit the first bit of the packet onto the outbound link
   - from source to destination consisting of two links through a router it would take 2L/R time
   - ![](../assets/computer-networks/storeForward.png)
 - _Queueing delay and loss_ - if arrival rate (in bits) to link exceeds transmission rate of link for a period of time
@@ -185,7 +148,7 @@ The concept of sending a message from a source end system to a destination end s
 
 &nbsp;
 
-#### Circuit Switching
+### Circuit Switching
 End to end resources are allocated to or reserved for a "call" between source and destination
 
 - __Dedicated Resources__ - no sharing, circuit like with guaranteed performance
@@ -201,7 +164,7 @@ End to end resources are allocated to or reserved for a "call" between source an
     - <img src="{{site.baseurl}}/assets/computer-networks/TDM.png"  width="60%" height="30%">
 
 
-### Packet Switching vs. Circuit Switching
+## Packet Switching vs. Circuit Switching
 
 - __Packet switching__ allows more users
   - also great for bursty data
@@ -210,19 +173,21 @@ End to end resources are allocated to or reserved for a "call" between source an
 - __Circuit Switching__ may have dedicated lines but there can be _silent periods_ where a circuit isn't being utilized and is wasted
   - can be argued that it is better suited for telephone and video calls.
 
-### Internet Structure
+## Internet Structure
 Today many ISP's exist. At the backbone are Tier 1 ISP's (AT&T, NTT), spanning across the country. Below them are regional ISP's connecting to Tier 1 ISP's through IXP(internet exchange point) and peering links
 - At the center with Tier 1 ISP's reside Content Provider Networks (Google, Microsoft, etc.). They consist of a private network that connects its data centers to the Internet, often bypassing Tier 1 ISP's and regional ISP's
 
-<img src="{{site.baseurl}}/assets/computer-networks/ISP.png"  width="60%" height="40%">
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/ISP.png"  width="60%" height="40%">
+</p>
 
 ---
 
-## Lecture 3
+# Lecture 3
 
-### Delay, loss, and throughput in Packet Switched networks
+## Delay, loss, and throughput in Packet Switched networks
 When a packet is sent to a destination, it travels through many different network components, each incurring its own delay to the transfer of the packet
-#### Total nodal delay consists of
+### Total nodal delay consists of
   - _nodal processing delay_ - the time required to examine the packet's header and determine where to direct the packet, can also include the time needed to check for bit-level errors in the packet that occurred in transmitting the packet's bits from the upstream node to a router
   - _queueing delay_ - the time a packet waits to be transmitted onto the link. The length of the delay will depend on the number of earlier-arriving packets that are queued and waiting for transmission onto the link
   - _transmission delay_ - a packet is only transmitted after all the packets that have arrived before it have been transmitted. (L bits/R bits per sec)
@@ -230,18 +195,18 @@ When a packet is sent to a destination, it travels through many different networ
 
 Transmission delay and propagation delay are close but transmission delay is the amount of time required for the router to push out a packet: it is a function of the packet's length and the transmission rate of the link, it has nothing to do with the distance between two routers. Propagation delay is the time is takes a bit to go from one router to another with distance in mind
   - d(nodal) = d(proc) + d(queue) + d(trans) + d(prop)
-  
-__Queueing delay__ is the most interesting of the four types of delay. Can be quantified with La/R with a being the average packet arrival rate. This function is called __traffic intensity__. 
-  - if La/R > 1 then the average rate at which bits arrive at the queue exceeds the rate at which the bits can be transmitted from the queue. Queueing delay will approach infinity
 
-#### Packet Loss
+{: .note }
+__Queueing delay__ is the most interesting of the four types of delay. Can be quantified with La/R with a being the average packet arrival rate. This function is called __traffic intensity__. If La/R > 1 then the average rate at which bits arrive at the queue exceeds the rate at which the bits can be transmitted from the queue. Queueing delay will approach infinity
+
+### Packet Loss
 In reality a queue has a finite amount of space to buffer packets. If a queue fills up and a new packet arrives at a router, the packet will be dropped as a result
 
 `tracert` or `traceroute` - provides delay measurement from source to router along end-end Internet path towards destination
   - will send 3 * n packets for n routers from source to destination
   - travel times are measured and sent back to host
 
-#### Throughput
+### Throughput
 Another critical performance measure in computer networks is end-to-end throughput. Throughput refers to the amount of data that can be transmitted over a network during a given time period. The instantaneous throughput at any instant of time is the rate (in bits/sec) at which Host B is receiving the file. If a file consist of _F_ bits and the transfer takes _T_ seconds for Host B to receive all _F_ bits, then the __average throughput__  of the file transfer is __F/T bits/sec__. 
 
 For some applications low delay and an instantaneous throughput, for other apps, delay is not critical, but it is desirable to have the highest possible throughput.
@@ -249,9 +214,9 @@ For some applications low delay and an instantaneous throughput, for other apps,
 - a bottleneck is the min of two links used in the connection of two end points `min{L1, L2}`
 
 ---
-## Lecture 4
+# Lecture 4
 
-### Protocol layers
+## Protocol layers
 To provide structure to the design of network protocols, network designers organize protocols in layers. We are interested in the services that a layer offers to layers above it. A layer provides its services by performing certain actions within that layer and by using the services of the layer directly below it.
 
 A protocol can be implemented in software, hardware, or a combination of both. Application layer protocols like HTTP and SMTP are implemented in software on the end systems. Physical and data link layers are responsible for handling communication over a specific link and are typically implemented in the nic using software and hardware
@@ -261,7 +226,7 @@ A protocol can be implemented in software, hardware, or a combination of both. A
   - one drawback is that layers can duplicate lower-layer functionality 
   - one layer also may require information available in another layer
 
-### Networks under Attack
+## Networks under Attack
 The field of network security is a robust topic consisting of how bad guys can attack computer networks(threat models), how we can defend networks against attacks, and how to design architectures that are immune to attacks. Over the years many security considerations have been added in all layers.
 
 - __Malware__ - can get to a host from
@@ -278,9 +243,9 @@ Most fall into three categories
 - _bandwidth flooding_ - attacker sends a deluge of packets to the targeted host
 - _connection flooding_ - the attacker establishes a large number of half-open or fully open TCP connections stopping legitimate connections
 
-#### Sniffing packets
+### Sniffing packets
 A packet sniffer(Wireshark) can be used to capture traffic from host to router from a shared broadcast media
-#### IP spoofing
+### IP spoofing
 It is quite easy to create a packet with an arbitrary source address, packet content, and destination address and then transmit this hand-crafted packet into the Internet. 
 
 This ability is know as IP spoofing, a way for a user to hide who they are.

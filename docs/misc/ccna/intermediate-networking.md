@@ -5,7 +5,8 @@ description: Intermediate Networking
 has_toc: false
 nav_order: 2
 parent: CCNA
-permalink: /ccna/intermediate-networking
+grand_parent: Miscellaneous
+permalink: /misc/ccna/intermediate-networking
 ---
 
 # Intermediate Networking

@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Python Cheat Sheet
-description: Python Commands
+title: Command List
+description: Command List
 has_toc: false
-nav_order: 2
-parent: Miscellaneous
-permalink: /misc/python
+nav_order: 3
+parent: Python
+permalink: /python-language/python
 ---
 
 # Python Cheat Sheet
@@ -14,7 +14,7 @@ A cheat sheet for python commands for studying purposes.
 
 ### Resources
 {: .no_toc}
-- [Credit Repo](https://github.com/gto76/python-cheatsheet)
+- [Repo](https://github.com/gto76/python-cheatsheet)
 
 ---
 
@@ -69,8 +69,9 @@ flatter_list     = list(itertools.chain.from_iterable(<list>))
 product_of_elems = functools.reduce(lambda out, el: out * el, <collection>)
 list_of_chars    = list(<str>)
 ```
-* **For details about sorted(), min() and max() see [sortable](#sortable).**
-* **Module [operator](#operator) provides functions itemgetter() and mul() that offer the same functionality as [lambda](#lambda) expressions above.**
+
+{: .note}
+For details about sorted(), min() and max() see [sortable](#sortable). Module [operator](#operator) provides functions itemgetter() and mul() that offer the same functionality as [lambda](#lambda) expressions above.
 
 ```python
 <list>.insert(<int>, <el>)     # Inserts item at index and moves the rest to the right.
@@ -151,8 +152,9 @@ Set
 ```
 
 ### Frozen Set
-* **Is immutable and hashable.**
-* **That means it can be used as a key in a dictionary or as an element in a set.**
+
+{: .important}
+Is immutable and hashable. That means it can be used as a key in a dictionary or as an element in a set.
 
 ```python
 <frozenset> = frozenset(<collection>)
@@ -162,7 +164,7 @@ Set
 Tuple
 ----
 -----
-**Tuple is an immutable and hashable list.**
+Tuple is an immutable and hashable list.
 ```python
 <tuple> = ()                                # Empty tuple.
 <tuple> = (<el>,)                           # Or: <el>,
@@ -170,7 +172,7 @@ Tuple
 ```
 
 ### Named Tuple
-**Tuple's subclass with named elements.**
+Tuple's subclass with named elements.
 
 ```python
 >>> from collections import namedtuple
@@ -189,7 +191,7 @@ Point(x=1, y=2)
 Range
 ----
 -----
-**Immutable and hashable sequence of integers.**
+Immutable and hashable sequence of integers.
 ```python
 <range> = range(stop)                       # range(to_exclusive)
 <range> = range(start, stop)                # range(from_inclusive, to_exclusive)
@@ -246,8 +248,7 @@ import itertools as it
 Generator
 ----
 ---------
-* **Any function that contains a yield statement returns a generator.**
-* **Generators and iterators are interchangeable.**
+Any function that contains a yield statement returns a generator. Generators and iterators are interchangeable.
 
 ```python
 def count(start, step):
@@ -266,9 +267,11 @@ def count(start, step):
 Type
 ----
 ----
-* **Everything is an object.**
-* **Every object has a type.**
-* **Type and class are synonymous.**
+
+{: .important}
+Everything is an object.
+Every object has a type.
+Type and class are synonymous.
 
 ```python
 <type> = type(<el>)                          # Or: <el>.__class__
@@ -286,7 +289,7 @@ from types import FunctionType, MethodType, LambdaType, GeneratorType, ModuleTyp
 ```
 
 ### Abstract Base Classes
-**Each abstract base class specifies a set of virtual subclasses. These classes are then recognized by isinstance() and issubclass() as subclasses of the ABC, although they are really not. ABC can also manually decide whether or not a specific class is its virtual subclass, usually based on which methods the class has implemented. For instance, Iterable ABC looks for method iter(), while Collection ABC looks for iter(), contains() and len().**
+Each abstract base class specifies a set of virtual subclasses. These classes are then recognized by `isinstance()` and `issubclass()` as subclasses of the ABC, although they are really not. ABC can also manually decide whether or not a specific class is its virtual subclass, usually based on which methods the class has implemented. For instance, Iterable ABC looks for method `iter()`, while Collection ABC looks for `iter()`, `contains()` and `len()`.
 
 ```python
 >>> from collections.abc import Iterable, Collection, Sequence
@@ -355,8 +358,8 @@ String
 <str>  = chr(<int>)                          # Converts int to Unicode character.
 <int>  = ord(<str>)                          # Converts Unicode character to int.
 ```
-* **Also: `'lstrip()'`, `'rstrip()'` and `'rsplit()'`.**
-* **Also: `'lower()'`, `'upper()'`, `'capitalize()'` and `'title()'`.**
+Also: `'lstrip()'`, `'rstrip()'` and `'rsplit()'`.          
+Also: `'lower()'`, `'upper()'`, `'capitalize()'` and `'title()'`.
 
 ### Property Methods
 ```text
@@ -386,13 +389,13 @@ import re
 <iter>  = re.finditer(<regex>, text)           # Returns all occurrences as Match objects.
 ```
 
-* **Argument 'new' can be a function that accepts a Match object and returns a string.**
-* **Search() and match() return None if they can't find a match.**
-* **Argument `'flags=re.IGNORECASE'` can be used with all functions.**
-* **Argument `'flags=re.MULTILINE'` makes `'^'` and `'$'` match the start/end of each line.**
-* **Argument `'flags=re.DOTALL'` makes `'.'` also accept the `'\n'`.**
-* **Use `r'\1'` or `'\\1'` for backreference (`'\1'` returns a character with octal code 1).**
-* **Add `'?'` after `'*'` and `'+'` to make them non-greedy.**
+* Argument 'new' can be a function that accepts a Match object and returns a string.
+* Search() and match() return None if they can't find a match.
+* Argument `'flags=re.IGNORECASE'` can be used with all functions.
+* Argument `'flags=re.MULTILINE'` makes `'^'` and `'$'` match the start/end of each line.
+* Argument `'flags=re.DOTALL'` makes `'.'` also accept the `'\n'`.
+* Use `r'\1'` or `'\\1'` for backreference (`'\1'` returns a character with octal code 1).
+* Add `'?'` after `'*'` and `'+'` to make them non-greedy.
 
 ### Match Object
 ```python
@@ -410,9 +413,9 @@ import re
 '\s' == '[ \t\n\r\f\v]'                        # Matches whitespaces.
 ```
 
-* **By default, decimal characters, alphanumerics and whitespaces from all alphabets are matched unless `'flags=re.ASCII'` argument is used.**
-* **As shown above, it restricts all special sequence matches to the first 128 characters and prevents `'\s'` from accepting `'[\x1c-\x1f]'` (the so-called separator characters).**
-* **Use a capital letter for negation (all non-ASCII characters will be matched when used in combination with ASCII flag).**
+* By default, decimal characters, alphanumerics and whitespaces from all alphabets are matched unless `'flags=re.ASCII'` argument is used.
+* As shown above, it restricts all special sequence matches to the first 128 characters and prevents `'\s'` from accepting `'[\x1c-\x1f]'` (the so-called separator characters).
+* Use a capital letter for negation (all non-ASCII characters will be matched when used in combination with ASCII flag).
 
 
 Format
@@ -442,8 +445,8 @@ Format
 {<el>:.<10}                              # '<el>......'
 {<el>:0}                                 # '<el>'
 ```
-* **Options can be generated dynamically: `f'{<el>:{<str/int>}[…]}'`.**
-* **Adding `'!r'` before the colon converts object to string by calling its [repr()](#class) method.**
+* Options can be generated dynamically: `f'{<el>:{<str/int>}[…]}'`.
+* Adding `'!r'` before the colon converts object to string by calling its [repr()](#class) method.
 
 ### Strings
 ```python
@@ -500,8 +503,8 @@ Format
 | 56.789       |    '5.7e+01'   |     '56.79'    |   '5.68e+01'   |   '5678.90%'   |
 +--------------+----------------+----------------+----------------+----------------+
 ```
-* **When both rounding up and rounding down are possible, the one that returns result with even last digit is chosen. That makes `'{6.5:.0f}'` a `'6'` and `'{7.5:.0f}'` an `'8'`.**
-* **This rule only effects numbers that can be represented exactly by a float (`.5`, `.25`, …).**
+* When both rounding up and rounding down are possible, the one that returns result with even last digit is chosen. That makes `'{6.5:.0f}'` a `'6'` and `'{7.5:.0f}'` an `'8'`.
+* This rule only effects numbers that can be represented exactly by a float (`.5`, `.25`, …).
 
 ### Ints
 ```python
@@ -521,10 +524,10 @@ Numbers
 <Fraction> = fractions.Fraction(0, 1)             # Or: Fraction(numerator=0, denominator=1)
 <Decimal>  = decimal.Decimal(<str/int>)           # Or: Decimal((sign, digits, exponent))
 ```
-* **`'int(<str>)'` and `'float(<str>)'` raise ValueError on malformed strings.**
-* **Decimal numbers are stored exactly, unlike most floats where `'1.1 + 2.2 != 3.3'`.**
-* **Floats can be compared with: `'math.isclose(<float>, <float>)'`.**
-* **Precision of decimal operations is set with: `'decimal.getcontext().prec = <int>'`.**
+* `'int(<str>)'` and `'float(<str>)'` raise ValueError on malformed strings.
+* Decimal numbers are stored exactly, unlike most floats where `'1.1 + 2.2 != 3.3'`.
+* Floats can be compared with: `'math.isclose(<float>, <float>)'`.
+* Precision of decimal operations is set with: `'decimal.getcontext().prec = <int>'`.
 
 ### Basic Functions
 ```python
@@ -575,8 +578,8 @@ Combinatorics
 ----
 -------------
 
-* **Every function returns an iterator.**
-* **If you want to print the iterator, you need to pass it to the list() function first!**
+* Every function returns an iterator.
+* If you want to print the iterator, you need to pass it to the list() function first!
 
 ```python
 import itertools as it
@@ -2145,8 +2148,10 @@ from collections import deque
 Threading
 ----
 ---------
-* **CPython interpreter can only run a single thread at a time.**
-* **That is why using multiple threads won't result in a faster execution, unless at least one of the threads contains an I/O operation.**
+
+{: .important }
+CPython interpreter can only run a single thread at a time. That is why using multiple threads won't result in a faster execution, unless at least one of the threads contains an I/O operation.
+
 ```python
 from threading import Thread, RLock, Semaphore, Event, Barrier
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -2183,8 +2188,9 @@ with <lock>:                                   # Enters the block by calling acq
 ```
 
 ### Thread Pool Executor
-* **Object that manages thread execution.**
-* **An object with the same interface called ProcessPoolExecutor provides true parallelism by running a separate interpreter in each process. All arguments must be [pickable](#pickle).**
+
+{: .important}
+Object that manages thread execution. An object with the same interface called ProcessPoolExecutor provides true parallelism by running a separate interpreter in each process. All arguments must be [pickable](#pickle).
 
 ```python
 <Exec> = ThreadPoolExecutor(max_workers=None)  # Or: `with ThreadPoolExecutor() as <name>: …`
@@ -2200,7 +2206,8 @@ with <lock>:                                   # Enters the block by calling acq
 ```
 
 ### Queue
-**A thread-safe FIFO queue. For LIFO queue use LifoQueue.**
+A thread-safe FIFO queue. For LIFO queue use LifoQueue.
+
 ```python
 from queue import Queue
 <Queue> = Queue(maxsize=0)
@@ -2217,7 +2224,8 @@ from queue import Queue
 Operator
 ----
 --------
-**Module of functions that provide the functionality of operators.**
+
+Module of functions that provide the functionality of operators.
 ```python
 import operator as op
 <obj>     = op.add/sub/mul/truediv/floordiv/mod(<obj>, <obj>)     # +, -, *, /, //, %

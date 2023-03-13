@@ -57,15 +57,18 @@ A human who exploits a vulnerability perpetrates an attack on the system, we use
 
 ## CIA
 Properties make your computer valuable to you. 
-- Computer properties (CIA)
+*Computer properties (CIA)*
   - __Confidentiality__: the ability of a system to ensure that an asset is viewed only by authorized parties
   - __Integrity__: the ability of a system to ensure that an asset is modified only by authorized parties
   - __Availability__: the ability of a system to ensure that an asset can be used by any authorized parties
-- Network Properties
+*Network Properties*
   - __Authentication__: the ability of a system to confirm the identity of a sender
   - __Nonrepudiation or accountability__: the ability of a system to confirm that a sender cannot convincingly deny having sent something
 
-![](../assets/software-security/cia.png)
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/software-security/cia.png"  width="70%" height="50%">
+</p>
 
 ### Confidentiality
 Only authorized people or systems can access protected data. The properties of data confidentiality include...
@@ -93,8 +96,6 @@ Can mean several things, properties include
 - Internally consistent
 - Meaningful and usable
 
-![](../assets/software-security/acc-prec.png)
-
 Accuracy refers to the closeness of a measured value to a standard, precision refers to the closeness of two or more measurements to each other
 
 ### Availability
@@ -104,7 +105,9 @@ Availability applies to both the data and to services(information and informatio
 - It is making clear progress, and, if in wait mode, it has bounded waiting time
 - The service is completed in an acceptable period of time
 
-![](../assets/software-security/availability.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/software-security/availability.png"  width="40%" height="20%">
+</p>
 
 
 ### Computer Security
@@ -118,7 +121,9 @@ A paradigm to computer security is access control
 Threats can be caused both by human and other sources, they can be malicious or not, and can be targeted or random
 - Advanced persistent threat attacks come from organized, well financed, patient assailants
 
-![](../assets/software-security/threats.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/software-security/threats.png"  width="70%" height="50%">
+</p>
 
 ## Types of Attackers
 Can be individuals, organized: worldwide groups, organized: crime, or terrorists

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Bash Commands
+title: Bash
 description: Bash Commands
 has_toc: false
 nav_order: 1
@@ -14,7 +14,7 @@ A cheat sheet for bash commands, forked for studying purposes.
 
 ### Resources
 {: .no_toc}
-- [Credit Repo](https://github.com/RehanSaeed/Bash-Cheat-Sheet)
+- [Repo](https://github.com/RehanSaeed/Bash-Cheat-Sheet)
 
 ---
 

@@ -1,11 +1,12 @@
 ---
 layout: default
 title: 日本語
-description: Genki 1
+description: Japanese
 has_children: true
 has_toc: false
-nav_order: 9
-permalink: /japanese
+nav_order: 6
+parent: Miscellaneous
+permalink: /misc/japanese
 ---
 
 # Japanese

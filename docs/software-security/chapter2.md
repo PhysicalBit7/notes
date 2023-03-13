@@ -116,30 +116,35 @@ Understanding is essential of your software, a good understanding offers insight
 
 ---
 
-- DFD
+**DFD**     
 
-<img src="../assets/software-security/dfd.png"  width="70%" height="30%">
-<img src="../assets/software-security/dfd2.png"  width="60%" height="20%">
+<p align="center">
+  <img src="{{site.baseurl}}/assets/software-security/dfd.png"  width="70%" height="30%">
+  <img src="../assets/software-security/dfd2.png"  width="60%" height="20%">
+</p>
+
 
 ---
 
-- UML
+**UML**     
 Unified Modeling Language, adapted for use in threat modeling with the addition of trust boundaries. Complex but often beneficial as nuances are brought in.
 
 ---
 
-- Swim Lane Diagrams
+**Swim Lane Diagrams**      
 A common way to represent flows between various participants
 
-<img src="../assets/software-security/sld.png"  width="30%" height="5%">
-
+<p align="center">
+  <img src="../assets/software-security/sld.png"  width="30%" height="5%">
+</p>
 ---
 
-- State Diagrams
+**State Diagrams**      
 Represent the various states that a system can be in, and the transitions between those states.
 
-<img src="../assets/software-security/state.png"  width="50%" height="10%">
-
+<p align="center">
+  <img src="../assets/software-security/state.png"  width="50%" height="10%">
+</p>
 ---
 
 ### Trust Boundaries

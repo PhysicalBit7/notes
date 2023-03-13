@@ -154,7 +154,10 @@ SYSCALL_DEFINE1(stealth, pid_t, process)
 ---
 
 ### In use
-<img src="{{site.baseurl}}/assets/operating-systems/os-design/stealth.png"  width="120%" height="70%">
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/operating-systems/os-design/stealth.png"  width="120%" height="70%">
+</p>
 
 
 

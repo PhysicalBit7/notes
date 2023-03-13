@@ -18,7 +18,7 @@ Fall 2022
 - [Credit Repo for Linux(Notes I used and also contributed to)](https://github.com/eddyerburgh/notes/tree/master/docs/operating-systems)
 - [Book I mean to read](https://pages.cs.wisc.edu/~remzi/OSTEP/)
 
-This section is broken into two parts [Linux OS notes](linux) and [Operating Systems Design Projects](os-design)
+Operating Systems is broken into two parts [Linux OS notes](linux) and [Operating Systems Design Projects](os-design)
 
 ---
 

@@ -5,7 +5,8 @@ description: Lesson 1 Notes
 has_toc: false
 nav_order: 1
 parent: 日本語
-permalink: /japanese/Lesson1
+grand_parent: Miscellaneous
+permalink: /misc/japanese/Lesson1
 ---
 
 # Lesson 1

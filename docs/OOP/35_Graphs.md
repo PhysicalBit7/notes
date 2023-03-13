@@ -26,8 +26,8 @@ background-size: 45%
 
 ##  Definition and Terminology 
 
-+ A graph] is a data structure containing nodes and connections between them (much like a tree), but with no requirement for hierarchical ordering.
-   + We often call the nodes vertices], and the connections between them edges].
++ A graph is a data structure containing nodes and connections between them (much like a tree), but with no requirement for hierarchical ordering.
+   + We often call the nodes vertices, and the connections between them edges.
    + A simple graph, then is the non-empty set of vertices and edges __G=(V,E)__.
 
 
@@ -41,7 +41,7 @@ background-size: 45%
 
 ##  Terminology 
 
-+ A directed graph] (or "digraph") is the non-empty set of vertices and edges __G=(V,E)__ where the edges __E={v&#7522;, v&#11388;}__ have a direction associated with them.
++ A directed graph (or "digraph") is the non-empty set of vertices and edges __G=(V,E)__ where the edges __E={v&#7522;, v&#11388;}__ have a direction associated with them.
    + Neither simple graphs nor digraphs allow pairs of vertices to have more than one edge connecting them.  A multigraphrelaxes this restriction.
    + A pseudograph allows an edge to connect a single vertex to itself (a loop).
 
@@ -52,10 +52,10 @@ background-size: 45%
 
 ##  Terminology 
 
-+ A weighted graph] is a graph in which each edge has a number (or weight]) assigned.
++ A weighted graph is a graph in which each edge has a number (or weight]) assigned.
     + Depending on context, weight is also called "cost", "distance", "length", or some other name.
 
-+ A graph is complete] if for each pair of distinct vertices, there is exactly one edge connecting them.
++ A graph is complete if for each pair of distinct vertices, there is exactly one edge connecting them.
 
 ![:scale A weighted graph, 300px]({{site.baseurl}}/assets/CS50pics/graphs/undirected_graph_with_weighted_edges.svg)
 
@@ -63,10 +63,10 @@ background-size: 45%
 
 ##  Terminology 
 
-+ A subgraph] is a set of edges and vertices that are themselves subsets of the edges and vertices of a larger graph.
-    + A subgraph induced by] vertices __V'__ is a graph such that any edges in the subgraph __(V', E')__ are also in the larger graph.
-    + Two vertices are adjacent] if there is an edge connecting them that is a member of the same graph.
-    + The edge connecting them is said to be incident] with them.
++ A subgraph is a set of edges and vertices that are themselves subsets of the edges and vertices of a larger graph.
+    + A subgraph induced by vertices __V'__ is a graph such that any edges in the subgraph __(V', E')__ are also in the larger graph.
+    + Two vertices are adjacent if there is an edge connecting them that is a member of the same graph.
+    + The edge connecting them is said to be incident with them.
 
 ![:scale A Subgraph (in blue), 300px]({{site.baseurl}}/assets/CS50pics/graphs/subgraph.svg)
 
@@ -74,9 +74,9 @@ background-size: 45%
 
 ##  Terminology 
 
-+ The degree] of a vertex __v__ is the number of edges incident with __v__.
++ The degree of a vertex __v__ is the number of edges incident with __v__.
 
-   + A vertex with no incident edges is called an isolated vertex].
+   + A vertex with no incident edges is called an isolated vertex.
 
       + It is possible to have a graph __G__ containing only isolated vertices.  (__E__ can be empty).
 
@@ -87,9 +87,9 @@ background-size: 45%
 ##  Representations 
 
 + Aside from drawings: Graphs may be represented by
-   + Adjacency lists]
-   + Adjacency matrices]
-   + Incidence matrices]
+   + Adjacency lists
+   + Adjacency matrices
+   + Incidence matrices
       + See Drozdek pg 378-379
 
 ---
@@ -129,8 +129,8 @@ background-size: 45%
 
 * Much like tree traversals, vertices are "visited" one at a time.
    
-* Unlike trees, graphs have cycles], so tree traversal algorithms would result in infinite loops.
-  * A cycle] is a path from one vertex __v&#7522;__ through one or more edges such that the path returns to __v&#7522;__.
+* Unlike trees, graphs have cycles, so tree traversal algorithms would result in infinite loops.
+  * A cycle is a path from one vertex __v&#7522;__ through one or more edges such that the path returns to __v&#7522;__.
 
 * Vertices must be "marked" to avoid re-visiting the same vertex.
 * Isolated vertices must also be visited in some way.
@@ -278,7 +278,7 @@ background-size: 45%
 
 We have discussed Depth-First traversals, where the traversal choose one path and "follows" it as far as possible before returning to try other paths.  
 
-The Breadth-First Traversal] instead focuses on visiting all neighboring vertices before proceeding to other vertices.  
+The Breadth-First Traversal instead focuses on visiting all neighboring vertices before proceeding to other vertices.  
 
 In a tree-like structure, we could visualize this as working across each level of the tree before proceeding further "down" toward the leaves.  
 

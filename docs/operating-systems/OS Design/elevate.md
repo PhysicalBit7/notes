@@ -96,4 +96,7 @@ obj-y     = fork.o exec_domain.o panic.o \
 ---
 
 ### In use
-<img src="{{site.baseurl}}/assets/operating-systems/os-design/elevate.png"  width="120%" height="70%">
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/operating-systems/os-design/elevate.png"  width="120%" height="70%">
+</p>

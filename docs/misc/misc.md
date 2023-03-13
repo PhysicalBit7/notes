@@ -4,13 +4,13 @@ title: Miscellaneous
 description: Misc Docs
 has_children: true
 has_toc: false
-nav_order: 10
+nav_order: 12
 permalink: /misc
 ---
 
 # Miscellaneous
 {: .no_toc}
-Documents, links, or articles for future reference
+Cheats sheets, other related programming content, and notes on hobbies
 
 ---
 

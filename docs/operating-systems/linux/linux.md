@@ -13,8 +13,6 @@ permalink: /operating-systems/linux
 # Linux
 {:.no_toc}
 
-Linux is an open-source operating system kernel. Most large Internet companies run their software on Linux distributions, so it's useful to learn Linux in detail.
-
 <details closed markdown="block">
   <summary>
     Table of contents
@@ -26,7 +24,7 @@ Linux is an open-source operating system kernel. Most large Internet companies r
 
 <!-- prettier-ignore-end -->
 
-When people think of Linux, they often imagine a full Linux system including the kernel, the C library, and system utilities. Technically, Linux is only the kernel, while the other features are part of the operating system .
+Linux is an open-source operating system kernel. Most large Internet companies run their software on Linux distributions, so it's useful to learn Linux in detail. When people think of Linux, they often imagine a full Linux system including the kernel, the C library, and system utilities. Technically, Linux is only the kernel, while the other features are part of the operating system .
 
 ## The kernel
 

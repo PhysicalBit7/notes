@@ -68,7 +68,8 @@ for letter in word:
             continue
 ```
 
-__Note:__ the use of `input()` in order to prompt the user for input and the use of `.append()` in order to add additional objects to a list
+{: .note }
+The use of `input()` in order to prompt the user for input and the use of `.append()` in order to add additional objects to a list
 
 ### Removing objects from a List
 To reiterate a list is dynamic, allocating more memory on your behalf in the system. The interpreter also de-allocates memory as objects are removed
@@ -77,9 +78,44 @@ Some of the most useful methods are `remove()`, `pop()`, `extend()` and `insert(
 
 1. **remove()**         
 Takes an object's value as its sole argument. The `remove()` method removes the first occurrence of the specified data value from the list. If the data value is _not_ in the list, the interpreter will throw an exception
-1. **pop()**        
+2. **pop()**        
 Takes an optional index value as its argument. The `pop()` method removes _and returns_ an object from an existing list based on the object's index value. If you invoke `pop()` without specifying an index value, the last object in the list is removed and returned. If the list is empty the interpreter will throw an exception. Objects returned by `pop()` can be assigned to a variable, if it is not then the memory is reclaimed and the object disappears
-1. **extend()**     
-Takes a list of objects as its sole argument. The `extend()` method takes a second list and adds each of the objects to an existing list. Useful for combining two lists into one
-1. **insert()**         
+3. **extend()**     
+Takes a list of objects as its sole argument. The `extend()` method takes a second list and adds each of the objects to an existing list. Useful for combining two lists into one. Can be helpful to think of `extend()` as shorthand for multiple calls to the `append()` method
+4. **insert()**         
 Takes an index value and an object as its arguments. The `insert()` method inserts an object into an existing list _before_ a specified index value. This lets you insert the object at the start of an existing list or anywhere in the list. You cannot add at the end of the list as that is what `append()` does. Works using `insert(<index>, <value>)`
+
+## What looks like a Copy, but isn't
+When copying one list to another, it is tempting to use the assignment operator:
+
+```python
+first = [1, 2, 3, 4, 5]
+print first # [1, 2, 3, 4, 5]
+second = first
+print second # [1, 2, 3, 4, 5]
+```
+
+You may think that `second` above is a separate list but it is pointing to the same place in memory, aka. the same list. A __reference__ to the list is shared among _first_ and _second_
+
+### How to copy a data structure
+There is a copy method that corrects the assignment operator problem from above
+
+```python
+third = second.copy()
+```
+
+{: .warning }
+`copy()` creates an entirely new list in memory. __Don't use the assignment operator__
+
+## Square Bracket notation
+Python starts counting from zero when it comes to numbering index locations, and uses the well-known __square bracket notation__ to access objects in a list. _However_, Python lets you access the list relative to each end: positive index values count from left to right, negative index values count from right to left
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/python/listnumbering.png"  width="60%" height="30%">
+</p>
+
+{: .important }
+Using [-1] will always return the last object in a list no matter how big the list is
+
+## Start, Stop, and Step
+Lists also understand a stepping mechanism. __letters[start:stop:step]__, all three are optional when used together.

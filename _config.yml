@@ -18,6 +18,25 @@ color_scheme: light
 # For copy button on code
 enable_copy_code_button: true
 
+callouts_level: quiet # or loud
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: yellow
+  warning:
+    title: Warning
+    color: red
+
+
+
 
 
 

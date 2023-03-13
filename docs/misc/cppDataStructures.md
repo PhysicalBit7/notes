@@ -3,7 +3,7 @@ layout: default
 title: CPP Data Structures
 description: CPP DS
 has_toc: false
-nav_order: 5
+nav_order: 3
 parent: Miscellaneous
 permalink: /misc/cppDataStructures
 ---

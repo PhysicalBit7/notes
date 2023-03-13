@@ -54,8 +54,12 @@ A network application consists of pairs of processes that send messages to each 
 ### Sockets
 __A process sends/receives messages to/from its socket__. A socket is a software component that provides a means for two processes to communicate with each other over a network, using a combination of an IP address and a port number.
 
-![](../assets/computer-networks/socket.png)
-![](../assets/computer-networks/portAndSocket.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/socket.png"  width="70%" height="50%">
+</p>
+
+__IP address + Port number = socket__
+
 
 Taking it deeper, a socket is the interface between the application layer and the transport layer within a host, an API essentially between the application and the network. This is the only part of transmission an application developer has control over.
 
@@ -90,21 +94,25 @@ TCP and UDP are the two transport-layer protocols provided to applications. A de
 
 
 ---
-### * Sidenote about SSL
+### Sidenote about SSL
 Neither TCP or UDP provide encryption. Data sent in is sent in cleartext by both protocols. There has been an enhancement made to TCP however, combining it with SSL. TCP with SSL provided all services by TCP but also provides security services such as encryption, data integrity, and end-point authentication. __This is an enhancement to TCP not another transport-layer protocol__. The enhancements are actually implemented in the application layer.
 - You can think of the enhancement of SSL as being another socket or API that data travels through. Data goes cleartext into SSL socket, gets encrypted, gets sent into TCP socket, goes over the network, arrives and receiving TCP socket, gets sent to SSL socket, which is the decrypted.
 
-![](../assets/computer-networks/ssl.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/ssl.png"  width="70%" height="50%">
+</p>
 
 ---
 
-- __UDP__ - User Datagram Protocol
+__UDP__ - User Datagram Protocol
   - lightweight, connection-less protocol. No handshaking is done beforehand like in TCP connections. It is an unreliable data transfer service
   - UDP provides no guarantee that the message will ever reach the receiving process. Messages also may arrive out of order
   - UDP also does not provide the same congestion-control mechanism that TCP provides
 
 
-![](../assets/computer-networks/popular.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/popular.png"  width="70%" height="50%">
+</p>
 
 ## Application-Layer Protocols
 An application layer protocol defines how an applications processes, running on different end systems, pass messages to each other. In particular...
@@ -115,7 +123,8 @@ An application layer protocol defines how an applications processes, running on 
   - Open protocols ie. HTTP - allow for interoperability 
   - Proprietary protocols ie. Skype
 
-__It is important to distinguish between network applications and application-layer protocols. An application-layer protocol is only one piece of a network application__. In other words, network applications(the Web) are the software programs that use the network, while application layer protocols(HTTP) are the rules and procedures used by these programs to communicate over the network.
+{: .note }
+It is important to distinguish between network applications and application-layer protocols. An application-layer protocol is only one piece of a network application. In other words, network applications(the Web) are the software programs that use the network, while application layer protocols(HTTP) are the rules and procedures used by these programs to communicate over the network.
 
 ---
 
@@ -150,7 +159,9 @@ HTTP specifications include the definitions of the HTTP message formats. There a
 
 #### HTTP Request Message
 
-![](../assets/computer-networks/httpReq.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/httpReq.png"  width="70%" height="50%">
+</p>
 
 HTTP requests are written in ordinary ASCII text. 
 __Request Line__
@@ -172,19 +183,19 @@ __The header line is useful because the server can actually send different versi
 
 __POST__ is often used when a user fills out a form, for example, when a user provides search words to a search engine. The user is still requesting a Web page from the server, but the specific contents of the Web page depend on what the user entered into the form fields. If the value of the method field is _POST_, then the entity body contains what the user entered into the form fields
 
-__*To note__, the above about POST does not necessarily mean that it is used. Normally GET is used and the URL is modified. If a user searches for "monkeys" and "bananas", a GET message is used with the url being something like _"www.somesite.com/animalsearch?monkeys&bananas"_
+__To note__, the above about POST does not necessarily mean that it is used. Normally GET is used and the URL is modified. If a user searches for "monkeys" and "bananas", a GET message is used with the url being something like _"www.somesite.com/animalsearch?monkeys&bananas"_
 
 #### HTTP Response Message
 Below is a typical response message coming after a request
 
-![](../assets/computer-networks/fullHTTP.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/fullHTTP.png"  width="70%" height="50%">
+</p>
 
 There are three parts...
-- A status line
-  - three fields: the protocol version field, a status code, and a corresponding status message
-- Six header lines - easily interpreted
-- Entity body
-  - the entity body is the meat of the message, it contains the requested object itself
+- **A status line** - three fields: the protocol version field, a status code, and a corresponding status message
+- **Six header lines** - easily interpreted
+- **Entity body** - the entity body is the meat of the message, it contains the requested object itself
 
 Common status codes...
 - __200 OK:__ request succeeded and the info is returned
@@ -227,7 +238,9 @@ Cookies can also be categorized as __"first-party cookies"__ or __"third-party c
 It's important to note that cookies can also raise privacy concerns, as they can be used to track a user's activity on the web. Some users choose to disable cookies in their browser settings for this reason. However, cookies can also be used to enhance the user's experience on a website, and many websites require the use of cookies to function properly.
 
 
-![](../assets/computer-networks/cookie.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/cookie.png"  width="60%" height="40%">
+</p>
 
 ---
 
@@ -318,13 +331,17 @@ There are three major components to email...
 
 ### SMTP
 
-![](../assets/computer-networks/smtp.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/smtp.png"  width="70%" height="50%">
+</p>
 
 It is important to note in the above graph that messages can be queued from within the two mail servers. If the mail server cannot be reached the message waits in the queue and the server keeps periodically trying.
 
 Also, there are TCP connections being made at every step of transmission using port 25. When connecting there are application layer handshakes being made to introduce who the sending/receiving mail servers are. During this phase the sending user's email address is introduced as well
 
-![](../assets/computer-networks/smtp-interaction.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/smtp-interaction.png"  width="60%" height="40%">
+</p>
 
 In the above example, a client sends "Do you like ketchup? How about pickles?" to bob@hamburger.edu. There are some notes to make of this interaction...
 - Five commands are used `HELO`, `MAIL FROM`, `RCPT TO`, `DATA`, and `QUIT`. They are all self explanatory.
@@ -361,7 +378,9 @@ Extremely simple mail access protocol. A TCP connection is made to the mail serv
    1. There are two possible responses as the user agent issues commands, `+OK`, used by the server to indicate that the previous command was fine, and `-ERR`, used by the server to indicate that something was wrong with the previous command
 3. Update - occurs after the client has issued the `quit` command, ending the POP3 session, messages marked for deletion are actually deleted
 
-![](../assets/computer-networks/telnet-pop3.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/telnet-pop3.png"  width="70%" height="50%">
+</p>
 
 After authorization four commands can be used; `list`, `retr`, `dele`, and `quit`. After issuing `quit` the POP3 server enter the _update_ phase and updates a users mailbox
 
@@ -375,7 +394,9 @@ POP3 downloads emails locally to one machine where they can be stored in files, 
 - Users can organize messages in folders
 - User state is also kept across sessions ie, names of folders and mappings
 
-![](../assets/computer-networks/imapCLI.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/imapCLI.png"  width="70%" height="50%">
+</p>
 
 Directory information would be located below
 
@@ -406,7 +427,9 @@ DNS usually runs in tandem with HTTP where when a user requests a page, the host
 
 ## How DNS works
 
-![](../assets/computer-networks/dns.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/dns.png"  width="70%" height="50%">
+</p>
 
 A simple design for DNS would see that there is a single DNS server that contains all the mappings. This introduces problems including...
 - A single point of failure
@@ -416,7 +439,9 @@ A simple design for DNS would see that there is a single DNS server that contain
 
 This does not scale well, consequently a distributed design is preferred.
 
-![](../assets/computer-networks/dnsHeir.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/dnsHeir.png"  width="70%" height="50%">
+</p>
 
 For google.com
 - Client queries __root server__ to find __com DNS server__
@@ -432,7 +457,9 @@ For google.com
 There is also a __local DNS server__ deployed by many service providers given to hosts via DHCP. A DNS request is first sent to the local DNS server where it acts as a proxy, forwarding the query into the DNS server hierarchy.
 
 
-![](../assets/computer-networks/dnsEx.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/dnsEx.png"  width="60%" height="20%">
+</p>
 
 There are __recursive queries__, noted by the request from `cis.poly.edu` to `dns.poly.edu` where the query asks `dns.poly.edu` to do everything on its behalf. There are also __iterative queries__ noted by the replies sent to `dns.poly.edu` from the various servers
 
@@ -461,7 +488,9 @@ If a server is not an authoritative for a hostname, then it will contain a `Type
 ### DNS Messages
 The only two kinds of DNS messages are _query_ and _reply_. Both also have the same format,.
 
-![](../assets/computer-networks/dnsMessage.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/dnsMessage.png"  width="60%" height="40%">
+</p>
 
 - The first 12 bytes is the __header section__, which has a number of fields. The first field is a 16-bit number that identifies the query. This is also copied into reply messages. There are a number of flags in the flag field. 
   - A 1-bit query/reply flag indicates whether the message is a query(0) or a reply(1). 
@@ -502,11 +531,15 @@ In a P2P system each peer can redistribute any portion of the file it has receiv
 
 Mathematically, as the number of hosts that become apart of the distribution the faster distribution becomes, it is bounded however and can be represented as...
 
-<img src="../assets/computer-networks/p2pSummation.png"  width="50%" height="20%">
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/p2pSummation.png"  width="40%" height="10%">
+</p>
 
 As U(s) becomes larger and larger, the equation gets smaller becoming bounded by the max of the other two within the equation.
 
-![](../assets/computer-networks/p2p.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/p2p.png"  width="60%" height="40%">
+</p>
 
 ### BitTorrent
 BitTorrent is a popular P2P protocol for file distribution. In BitTorrent the collection of all peers participating in the distribution of a particular file is called a _torrent_. Peers in a torrent download equal-size _chunks_ of the file from one another, with a typical chunk size of 256 KBytes.

@@ -5,8 +5,10 @@ description: Basic Networking
 has_toc: false
 nav_order: 1
 parent: CCNA
-permalink: /ccna/basic-networking
+grand_parent: Miscellaneous
+permalink: /misc/ccna/basic-networking
 ---
+
 
 # Basic Networking
 {: .no_toc }

@@ -1,11 +1,12 @@
 ---
 layout: default
 title: CCNA
-description: List of CCNA commands
+description: CCNA commands
 has_children: true
 has_toc: false
-nav_order: 8
-permalink: /ccna
+nav_order: 5
+parent: Miscellaneous
+permalink: /misc/ccna
 ---
 
 # CCNA Cheat Sheet
