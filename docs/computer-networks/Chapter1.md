@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Chapter 1
+title: Internet Structure
 description: Chapter 1 notes
 has_toc: false
 nav_order: 1

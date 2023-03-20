@@ -11,6 +11,7 @@ permalink: /python-language
 
 ### Resources
 - Head First Python 2nd edition
+- [No Starch Press](https://inventwithpython.com/)
 
 ---
 

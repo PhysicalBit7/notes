@@ -18,6 +18,7 @@ A guide on what sockets are and how to program them
 {:.no_toc}
 - [Beej's](https://beej.us/guide/bgnet/pdf/bgnet_usl_c_1.pdf)
 - [LinuxHowTo's Socket Programming](https://www.linuxhowtos.org/C_C++/socket.htm)
+- [Real Python](https://realpython.com/python-sockets/#tcp-sockets)
 - Computer Networking: A Top Down Approach 7th Edition
 
 
@@ -377,11 +378,14 @@ The last line attaches the client's address(IP address and port number) to the c
 When creating the TCP connection, we associate with it the client socket address and the server socket address. With the TCP connection established, when one side wants to send data to the other side, it just drops the data into the TCP connection via the socket. This is different from UDP where the server must attach a destination address to the packet before dropping it into the socket.
 
 __Specifics on TCP connection__       
-The client has the job of initiating contact with the server, the server therefore has to be ready for the request. This means the server has to have a socket connection running first. When the client creates its TCP socket, it specifies the address of the welcoming socket in the server, namely the IP address and the port number. _The three-way handshake, taking place within the transport layer, is completely invisible to the client and server.
+The client has the job of initiating contact with the server, the server therefore has to be ready for the request. This means the server has to have a socket connection running first. When the client creates its TCP socket, it specifies the address of the welcoming socket in the server, namely the IP address and the port number. The three-way handshake, taking place within the transport layer, is completely invisible to the client and server.
 
-__Important__: the server's TCP socket is more or less a listening socket, whenever a client requests a connection to the server, a new socket is created handling the unique connection to that client. This can be seen below with the "Welcoming socket" being the listening socket, and the "Connection socket" being the second socket created when the client makes a new connection to the server
+{: .important }
+The server's TCP socket is more or less a listening socket, whenever a client requests a connection to the server, a new socket is created handling the unique connection to that client
 
-![](../assets/computer-networks/tcpConn.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/tcpConn.png"  width="70%" height="50%">
+</p>
 
 The following is the actual TCPClient code
 

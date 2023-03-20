@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Chapter 3
+title: Trust in Security
 description: Chapter 3 notes
 has_toc: false
 nav_order: 3

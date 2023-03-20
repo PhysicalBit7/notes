@@ -470,6 +470,7 @@ ip route show               # Show IP addresses to router
 
 netstat -i|--interfaces     # List all network interfaces and in/out usage
 netstat -l|--listening      # List all open ports
+netstat -an                 # Show current state of sockets on host
 
 traceroute example.com      # List all servers the network traffic goes through
 

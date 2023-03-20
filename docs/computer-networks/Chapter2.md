@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Chapter 2
+title: Application-Layer Protocols
 description: Chapter 2 notes
 has_toc: false
 nav_order: 2

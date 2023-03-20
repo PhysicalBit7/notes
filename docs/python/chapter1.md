@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Chapter 1
-description: Chapter 1 notes
+title: The Basics
+description: Chapter 1 The Basics
 has_toc: false
 nav_order: 1
 parent: Python

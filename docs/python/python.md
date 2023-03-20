@@ -3,7 +3,7 @@ layout: default
 title: Command List
 description: Command List
 has_toc: false
-nav_order: 3
+nav_order: 5
 parent: Python
 permalink: /python-language/python
 ---
@@ -1758,6 +1758,7 @@ import os, shutil, subprocess
 os.chdir(<path>)                    # Changes the current working directory.
 os.mkdir(<path>, mode=0o777)        # Creates a directory. Permissions are in octal.
 os.makedirs(<path>, mode=0o777)     # Creates all path's dirs. Also: `exist_ok=False`.
+os.path.exists(<path>)              # Returns True if the file exists.
 ```
 
 ```python

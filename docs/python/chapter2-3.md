@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Chapter 2
-description: Chapter 2 notes
+title: Built-in Data Structures
+description: Chapter 2-3 Data Structures
 has_toc: false
 nav_order: 2
 parent: Python
-permalink: /python-language/chapter2
+permalink: /python-language/chapter2-3
 ---
 
 # Chapter 2
@@ -118,4 +118,165 @@ Python starts counting from zero when it comes to numbering index locations, and
 Using [-1] will always return the last object in a list no matter how big the list is
 
 ## Start, Stop, and Step
-Lists also understand a stepping mechanism. __letters[start:stop:step]__, all three are optional when used together.
+Lists also understand a stepping mechanism. `letters[start:stop:step]`, all three are optional when used together. WHen start is missing, it has a default value of 0, when stop is missing, it takes on the maximum value allowable for the list, when step is missing, it has a default value of 1
+
+### Slicing a list is Nondestructive
+List methods are destructive to a list, slicing a list is nondestructive as extracting objects from an existing list does not alter it; the original data remains intact
+
+## Python's For loop understands lists
+
+```python
+paranoid_android = "Marvin"
+letters = list(paranoid_android)
+for char in letters:
+  print('\t', char)
+```
+
+Python's for loops also understand sliced lists...
+
+```python
+paranoid_android = "Marvin, the Paranoid Android"
+letters = list(paranoid_android)
+for char in letters[-7:]:
+  print('\t'*2, char)
+```
+
+{: .note }
+The multiplication operator is used to control how many tab characters are printed before each object in the `for` 
+
+---
+# Chapter 3
+
+# Working with Structured Data
+Python's list data structure cannot handle truly structured data but Python has a built-in structure called a dictionary to help. A dictionary is used to store key/value pairs. The key part of a dictionary is typically a string, whereas the associated value part can be any Python object
+
+```python
+person3 =  {'Name': 'Ford Prefect',
+            'Gender': 'Male',
+            'Occupation': 'Researcher',
+            'Home Planet': 'Betelgeuse Seven'}
+```
+
+{: .note }
+Insertion order is not maintained in dictionaries, unlike lists, which keep you objects arranged in the order in which you inserted them
+
+Dictionaries do understand square brackets however, you index using the keys,  `person3['Home Planet']`
+
+## Working with Dictionaries at Runtime
+Adding to a list is as simple as adding a new key/value pair
+
+```python
+person3['Age'] = 33
+```
+
+When updating the value in a key, Python dictionaries support `+=`
+
+```python
+person3['Age'] += 1
+```
+
+## Iterating over a Dictionary
+
+```python
+for k, v in found:
+  print(k, 'was found', v, 'time(s)')
+```
+
+## setdefault()
+`if/not in` is used so much for dictionaries that Python has a built-in function called `setdefault()` in order to help.
+
+```python
+found = {}
+for letter in word:
+  if letter in vowles:
+    found.setdefault(letter, 0) #Replaces `if letter not in vowels`
+    found[letter] += 1
+```
+
+Makes sure that a key is always initialized before it is used, if it does not exist
+
+# Brief discussion about sets and tuples
+Sets do not allow duplicates. Sets in Python are also optimized for very speedy lookup, if speed is a requirement sets can be used in place of lists. Lists always perform slow sequential searches
+
+## Sets
+Sets in code look like this:
+
+```python
+vowels = {'a', 'e', 'i', 'o', 'u'}
+#or
+vowels = set('aeiou')
+```
+
+{: .note}
+Sets can look similar to dictionaries but, there is no use of ":" however, only commas. There is also no ordering in sets, it behaves like a dictionary
+
+Being a set, this data structure can perform set-like operations such as difference, intersection, and union. We can extend our vowel lookup program to utilize set operations
+
+```python
+word = 'hello'
+u = vowels.union(set(word))
+# u would print a, e, h, i, l, o, u
+```
+
+The `union()` method combines one set with another, which is then assigned to a new variable called `u`, which is another set
+
+---
+
+```python
+d = vowels.difference(set(word))
+# u, i, a
+```
+
+`difference()` reports whats not shared between the two sets
+
+---
+
+```python
+i = vowels.intersection(set(word))
+#  e, o
+```
+
+`intersection()` reports commonality
+
+## Tuples
+A tuple is an immutable list
+
+{: .warning}
+Tuples are surrounded by parentheses, whereas lists use square brackets. In order for a tuple to be a tuple we must include a comma `t = ('Python')` is a string object, `t2 = ('Python',)` is a tuple object
+
+# Complex data structures
+Data structures can store other data structures
+
+```python
+people = {}
+people['Ford'] = {'Name': 'Ford Prefect',
+                  'Gender': 'Male',
+                  'Occupation': 'Researcher',
+                  'Home Planet': 'Betelgeuse Seven'}
+
+people['Arthur'] = {'Name': 'Arthur Dent',
+                    'Gender': 'Male',
+                    'Occupation': 'Sandwich-Maker',
+                    'Home Planet': 'Earth' }
+
+people['Trillian'] = {'Name': 'Tricia McMillan',
+                      'Gender': 'Female',
+                      'Occupation': 'Mathematician',
+                      'Home Planet': 'Earth' }
+
+people['Robot'] = {'Name': 'Marvin',
+                      'Gender': 'Unknown',
+                      'Occupation': 'Paranoid Android',
+                      'Home Planet': 'Unknown' }
+```
+
+{: .note}
+The above code is very messy when printed, using `pprint()` from the pprint module will print in a structured format
+
+Accessing the data in the above data structure is straight forward
+
+```python
+people['Arthur']['Occupation']
+# prints 'Sandwich-Maker'
+```
+

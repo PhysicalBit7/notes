@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Chapter 4
+title: Secure Software Development
 description: Chapter 4 notes
 has_toc: false
 nav_order: 4
@@ -532,3 +532,13 @@ Answers the above complications
 CFI is quite efficient. Classic EFI (2005) imposes 16% overhead on average, 45% in the worst case. Modular CFI (2014) imposes 5% overhead on average, 12% in the worst case
 
 Modular CFI can eliminate 95.75% of ROP gadgets on x86-64 versions of SPEC2006 benchmark suite
+
+---
+
+Notes from Class
+
+Emulation - analyze programs code without running it. You translate each instruction using software for the underlying hardware to understand 
+
+Soundness vs Completeness **Exam
+Soundness does not issue false-positive results
+Completeness does not give a false-negative result
