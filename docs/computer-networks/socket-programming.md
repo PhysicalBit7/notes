@@ -448,7 +448,7 @@ connectionSocket, addr = serverSocket.accept()
 ```
 
 # Examples 
-An example c program I built for class
+An example C program I built for class
 
 ## UDP Word Count Server
 

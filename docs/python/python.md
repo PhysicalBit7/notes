@@ -3,7 +3,7 @@ layout: default
 title: Command List
 description: Command List
 has_toc: false
-nav_order: 5
+nav_order: 7
 parent: Python
 permalink: /python-language/python
 ---

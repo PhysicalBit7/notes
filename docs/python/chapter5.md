@@ -154,3 +154,86 @@ Allows the page to send data to a web server over HTTP
 
 {: .note}
 You can tell your Flask webapp to accept posted data from a browser by providing an extra argument on the `@app.route` line. `@app.route('/search4', methods=['POST'])`. The function can now accept POST data and will not support GET requests. If you need more than one HTTP method simply add in the brackets, ie. `methods=['GET', 'POST']`
+
+## Refining the Edit/Stop/Start/Test Cycle
+Restarting after changes becomes tedious. Flask supports a debugging mode where it will automatically restart the webapp after Flask notices changes have been made
+
+```python
+app.run(debug=True)
+```
+
+## Getting HTML form data with Flask
+Flask comes with a built-in object called `request` that provides easy access to posted data. The request object contains a dictionary attribute called `form` that provides access to a HTML form's data posted from the browser
+
+To use a request object import it from request in flask `from flask import request`, we can access the request object using bracket notation `request.form['phrase']`, inside the bracket is usually from the `<input name = txt>` within some HTML document, like below
+
+```html
+<tr><td>Phrase:</td><td><input name='phrase' type='TEXT' width='60'></td></tr>
+<tr><td>Letters:</td><td><input name='letters' type='TEXT' value='aeiou'></td></tr>
+```
+
+Form data can be accessed using `request.form['phrase']` or `request.form['letters']`
+
+Our code becomes...
+
+```python
+@app.route('/search4', methods=['POST'])
+def do_search() -> set:
+    """Returns the set of 'letters' found in 'phrase'.""" 
+    return str(set(request.form['phrase']).intersection(set(request.form['letters'])))
+```
+
+## Redirecting to another page
+Flask can redirect to another page using `from flask import redirect`
+
+```python
+@app.route('/')
+def hello() -> '302':
+    return redirect('/entry')
+```
+
+When requesting '/', we would instead be redirected to '/entry'
+
+This can result in two requests being made, instead we can give a function multiple URL's with...
+
+```python
+@app.route('/')
+@app.route('/entry')
+def entry_page() -> 'html':
+    return render_template('entry.html',
+                            the_title='Welcome to search4letters on the web!')
+```
+
+When a function has more than one URL associated with it, Flask tries to match each of the URLs in turn, and if it finds a match, the function is executed.
+
+# Running your webapp in the cloud
+A popular cloud based hosting service on AWS is PythonAnywhere. PythonAnywhere does like to control how your app starts so it assumes responsibility for `app.run()`. You could remove that line but then you would have to add it back in order to start it locally again. We can fix this by using `if __name__ = __main__`.
+
+Here is how it works. If your program is executed *directly* by Python, an if statement like above returns True, as the active namespace is `__main__`. If your program is imported as a module, the if statement returns False, as the value of `__name__` is not `__main__`, but the name of the imported module
+
+PythonAnywhere imports your app as a module and then executes `app.run()`. From here we can simply wrap `app.run()` in...
+
+```python
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+Deploy at [PythonAnywhere](https://pythonanywhere.com)
+
+# Debugging
+Viewing the page source in your browser can be useful for debugging. If we were to send logging data to the browser it may not render properly. Upon viewing the page source we can see this...
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/python/error.png"  width="70%" height="50%">
+</p>
+
+
+Here the <> are being treated as HTML tags, `REQUEST` is not a valid HTTP method so we get errors. HTML creators came up with __escaping__: encoding HTML's special characters so that they could appear on a webpage but not be interpreted as HTML. Flask comes with an `escape()` function that translates <> to &lt and &gt (sending these translations tells the web browser to print <> sending this instead of raw data)
+
+```python
+from flask import escape
+escape('This is a request')
+#Prints Markup('This is a request')
+escape('This is a <request>')
+#Prints Markup('This is a &lt;Request&gt;')
+```
