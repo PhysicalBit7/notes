@@ -10,4 +10,5 @@ permalink: /python/libraries
 
 # List of Python libraries and how to use
 
-- [Asyncio](asyncio.md)
+- [Asyncio](https://docs.python.org/3/library/asyncio.html)
+- [Poetry](https://python-poetry.org/docs/)
