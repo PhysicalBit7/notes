@@ -1,13 +1,13 @@
 ---
 layout: default
 title: CPP 
-description: CPP Commands
+description: CPP 
 has_toc: false
-nav_order: 2
-parent: Miscellaneous
-permalink: /misc/cpp
-
+nav_order: 40
+parent: OOP
+permalink: /oop/cpp
 ---
+
 # C++ Syntax Cheat Sheet
 
 ## Preface

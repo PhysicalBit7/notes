@@ -4,7 +4,7 @@ title: 日本語
 description: Japanese
 has_children: true
 has_toc: false
-nav_order: 6
+nav_order: 3
 parent: Miscellaneous
 permalink: /misc/japanese
 ---

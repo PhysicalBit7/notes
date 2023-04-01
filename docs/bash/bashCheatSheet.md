@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Bash
-description: Bash Commands
+title: Bash Commands
+description: Bash
 has_toc: false
 nav_order: 1
-parent: Miscellaneous
-permalink: /misc/bash
+parent: Bash
+permalink: /bash/bashCheatSheet
 ---
 
-# Bash Cheat Sheet
+# Bash Command List
 {: .no_toc }
 A cheat sheet for bash commands, forked for studying purposes.
 

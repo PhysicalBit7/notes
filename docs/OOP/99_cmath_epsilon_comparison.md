@@ -3,7 +3,7 @@ layout: default
 title: Epsilon Comparison
 description: Epsilon Comparison
 has_toc: false
-nav_order: 38
+nav_order: 39
 parent: OOP
 permalink: /oop/99_cmath_epsilon_comparison
 ---

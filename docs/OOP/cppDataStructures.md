@@ -1,11 +1,11 @@
 ---
 layout: default
 title: CPP Data Structures
-description: CPP DS
+description: CPP 
 has_toc: false
-nav_order: 3
-parent: Miscellaneous
-permalink: /misc/cppDataStructures
+nav_order: 41
+parent: OOP
+permalink: /oop/cppDataStructures
 ---
 
 # C++ Data Structures and Algorithms Cheat Sheet
