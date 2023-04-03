@@ -12,9 +12,11 @@ permalink: /python-language
 ### Resources
 - Head First Python 2nd edition
 - [No Starch Press](https://inventwithpython.com/)
+- [LEMP Stack](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04)
 
 ---
 
 ## Table of Contents
 - [Chapter 1](../python/chapter1.md)
 - [Chapter 2](../python/chapter2.md)
+- [Chapter 3](../python/chapter3.md)

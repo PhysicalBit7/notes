@@ -40,7 +40,7 @@ The Internet makes two distinct transport-layer protocols available, TCP and UDP
 
 In a brief description of the network layer, IP provides logical communication between hosts. It is a __best-effort delivery service__, meaning that IP makes its best effort to deliver segments between communicating hosts, _but it makes no guarantees_. It does not guarantee segment delivery, orderly delivery of segments, and the integrity of data in the segments.
 
-The most fundamental responsibility of UPD/TCP is to extend IP's delivery service between two end systems to a delivery service between two processes running on the end systems. Extending hot-to-host delivery to process-to-process delivery is called __transport-layer multiplexing__ and __demultiplexing__.
+The most fundamental responsibility of UPD/TCP is to extend IP's delivery service between two end systems to a delivery service between two processes running on the end systems. Extending host-to-host delivery to process-to-process delivery is called __transport-layer multiplexing__ and __demultiplexing__.
 
 # Multiplexing and Demultiplexing
 Defined as extending the host-to-host delivery service provided by the network layer to a process-to-process delivery service for applications running on hosts.
@@ -120,6 +120,9 @@ Explanation of Web servers and how they use port numbers. A host running an Apac
 Figure 4 above shows the web server spawning a new process for each connection. Each of these processes has its own connection socket through which HTTP requests arrive and HTTP responses are sent. Today's high performing web servers often use only one process for initial communication, and __create a new thread with a new connection socket for each new client connection.__
 
 # Connectionless Transport: UDP
+When a developer chooses to use UDP then the application is almost directly talking with IP. UDP takes messages from the application process, attaches source and destination port number fields for the multiplexing/demultiplexing service, adds two other small fields, and passes the resulting segment to the network layer. TCP may sound overall better than UDP but there are some points to be made for UDP
+
+- _Finer application-level control over what data is sent, and when_. 
 
 
 
