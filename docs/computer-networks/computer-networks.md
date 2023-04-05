@@ -13,6 +13,7 @@ Spring 2023
 
 ### Resources
 - "Computer Networking: A Top Down Approach 7th edition"
+- [Interactive companion website](https://wps.pearsoned.com/ecs_kurose_compnetw_6/216/55463/14198702.cw/index.html)
 
 ---
 

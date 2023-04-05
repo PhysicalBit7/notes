@@ -36,14 +36,15 @@ The Internet is a connected collection of computing devices. The working compone
 
 
 **The Internet is a "Network of Networks"**     
-  - Specific protocols control sending/receiving messages(TCP, IP, HTTP, Skype,  802.11)
+  - Specific protocols control sending/receiving messages(TCP, IP, HTTP, Skype, 802.11)
   - Internet Standards
     - IETF: Internet Engineering Task Force
     - RFC: Request for comments
 
 
-__Protocols__ - all communication activity in Internet is governed by protocols     
-  - Protocols define format, order of messages sent and received among network entities, and actions taken on message transmission and/or receipt of a message or other event. _They allow for interoperability amongst various devices._
+__Protocols__     
+- all communication activity on the Internet is governed by protocols     
+- Protocols define format, order of messages sent and received among network entities, and actions taken on message transmission and/or receipt of a message or other event. _They allow for interoperability amongst various devices._
 
 ## Internet protocol stack OSI/TCP-IP
 We layer the TCP-IP stack as it provides some benefits when dealing with complex systems...

@@ -53,8 +53,12 @@ The transport layer segment contains a **source port number field** and a **dest
 
 ### TCP and UDP Header Fields
 {: .no_toc }
+
 <p align="center">
   <img src="{{site.baseurl}}/assets/computer-networks/TCP_UDP_headers.png"  width="70%" height="50%">
+</p>
+<p align="center">
+  Figure 1
 </p>
 
 ## Connectionless Multiplexing and Demultiplexing
@@ -122,11 +126,71 @@ Figure 4 above shows the web server spawning a new process for each connection. 
 # Connectionless Transport: UDP
 When a developer chooses to use UDP then the application is almost directly talking with IP. UDP takes messages from the application process, attaches source and destination port number fields for the multiplexing/demultiplexing service, adds two other small fields, and passes the resulting segment to the network layer. TCP may sound overall better than UDP but there are some points to be made for UDP
 
-- _Finer application-level control over what data is sent, and when_. 
+- _Finer application-level control over what data is sent, and when_. As soon as an application process passes data to UDP, UDP will package the data inside a UDP segment and immediately pass the segment to the network layer. TCP on the other hand has a congestion control mechanism that throttles the transport-layer TCP sender when one or more links between the source and destination hosts become excessively congested. TCP also resends a segment until it has received confirmation that the segment has been received. Most real time applications do not work well with TCP
+- _No connection establishment_. No three way handshake is done in UDP
+- _No connection state_. TCP maintains connection state in the end systems. This state includes receive and send buffers, congestion-control parameters, and sequence and acknowledgment number parameters. A server running UDP can usually support many more clients
+- _Small packet header overhead_. The TCP segment has 20 bytes of header overhead in every segment, whereas UDP has only 8 bytes of overhead
+
+__Reliability can be a feature of UDP but the reliability has to be built into the application itself__
+
+## UDP segment structure
+See the structure in Figure 1 above. The header has only four fields, each consisting of two bytes. The port numbers allow for the destination end system to correctly demultiplex to processes. The length field specifies the number of bytes in the UDP segment (header plus data). The length value is needed since the size of the data file may differ from one UDP segment to the next. The checksum is used by the receiving host to check whether errors have been introduced into the segment
+
+### UDP Checksum
+Provides error detection. The checksum is used to determine whether bits within the UDP segment have been altered as it moved from source to destination. UDP at the senders side performs the 1s compliment of the sum of all the 16 bit words in the segment, with any overflow encountered during the sum being wrapped around. The checksum is sent with the datagram. On the receivers side the checksum is added to the other three fields in the header. The outcome should be all 1's, if it is not then errors have been introduced into the packet. Although UDP provides error checking, it does not do anything to recover from an error. Some implementations of UDP simply discard the damaged segment; others pass the damaged segment to the application with a warning.
+
+# Principles of Reliable Data Transfer
+It is the responsibility of a reliable data transfer protocol to implement a framework of a reliable channel through which data can be transferred. No transferred bits are corrupted or lost, and all are delivered in the order in which they were sent
+
+## Building a Reliable Data Transfer Protocol
+ARQ(Automatic Repeat reQuest) protocols are built as control messages in computers. Much like when talking to someone you send them positive acknowledgements and negative acknowledgements, this protocol does that with computers. Three additional protocol capabilities are required in ARQ protocols to handle the presence of bit errors
+
+1. __Error Detection__      
+A mechanism is needed to allow the receiver to detect when bit errors have occurred. For now we only need to know that techniques for error detection require that extra bits be sent from the sender to the receiver. These bits are gathered into the packet checksum
+2. __Receiver feedback__      
+The receiver must provide feedback to the sender such as positive acknowledgement (ACK) and negative acknowledgements (NAK).These packets need only be one bit long
+3. __Retransmission__     
+A packet that is received in error at the receiver will be retransmitted by the sender
+
+Within a TCP header a sequence number is added in order to correctly recover from lost data or incorrect ACK/NAK segments. At its simplest a reliable data transfer protocol must implement checksums, sequence numbers, timers, and positive/negative acknowledgement packets. A summary of scenarios can be found below
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/rdt.png"  width="70%" height="50%">
+</p>
+
+## Pipelined Reliable Data Transfer Protocols
+The utilization of the computers, and the network bandwidth, on either side of a data transfer during a stop and wait transmission is very low. Rather than operate in a stop-and-wait manner, the sender is allowed to send multiple packets without waiting for acknowledgements. This is called pipelining, which increases utilization. Pipelining has the following consequences for reliable data transfer protocols
+
+- The range of sequence numbers must be increased, since each in-transmit packet must have a unique sequence number and there may be multiple, in-transit, unacknowledged packets
+- The sender and receiver sides of the protocols may have to buffer more than one packet. At a minimum, the sender will have to buffer packets that have been transmitted but not yet acknowledged. Buffering of correctly received packets may also be needed at the receiver
+- The rage of sequence numbers needed and the buffering requirements will depend on the manner in which a data transfer protocol responds to lost, corrupted, and overly delayed packets. Two approaches toward pipelined error recovery can be identified: __Go-Back-N__ and __selective request__
+
+### Go-Back-N (GBN)
+In GBN, the sender is allowed to transmit multiple packets without waiting for an acknowledgement, but is constrained to have no more than some maximum allowable number of unacknowledged packets in the pipeline. See a useful applet demonstrating the GBN protocol [here](https://media.pearsoncmg.com/aw/ecs_kurose_compnetwork_7/cw/content/interactiveanimations/go-back-n-protocol/index.html)
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/gbn.png"  width="60%" height="40%">
+</p>
+
+The GBN sender must respond to three different types of events...
+1. __Invocation from above__      
+When the application asks the transport layer to send a packet the sender must first check to see if the window is full, that is, whether there are _N_ outstanding, unacknowledged packets. If the windows is not full the data is sent, if the window is full the data is sent back to the layer above
+2. __Receipt of an ACK__      
+An acknowledgement for a packet with sequence number _n_ will be taken to be a __cumulative acknowledgement__, indicating that all packets with a sequence number up to and including _n_ have been correctly received at the receiver
+3. __A timeout event__      
+The name GBN is derived from the sender's behavior in the presence of lost or overly delayed packets. A timer will again be used to recover from lost data or acknowledgement packets. If a timeout occurs, the sender resends all packets that have been previously sent but not yet acknowledged
 
 
+The receiver's actions are also pretty simple. If a packet with sequence number _n_ is received correctly and is in order, the receiver sends an ACK for packet _n_ and delivers the data portion of the packet to the upper layer. In all other cases, the receiver discards the packet and resends an ACK for the most recently received in-order packet. 
 
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/gbn2.png"  width="70%" height="50%">
+</p>
 
+### Selective Repeat (SR)
+GBN suffers performance issues from scenarios in which the window size and bandwidth-delay are both large, many packets can be in the pipeline. A single packet error can cause GBN to retransmit a large number of packets, many unnecessarily. As the name suggests, SR protocols avoid unnecessary retransmissions by having the sender retransmit only those packets that it suspects were received in error at the receiver.
+
+The window of size _n_ is still used in this protocol, however, the sender will have already received ACKs for some of the packets in the window. Out of order packets are buffered by the receiver until any missing packets(that is packets with lower sequence numbers) are received, at which point a batch of packets can be delivered in order to the upper layer.
 
 
 
