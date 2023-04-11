@@ -192,7 +192,52 @@ GBN suffers performance issues from scenarios in which the window size and bandw
 
 The window of size _n_ is still used in this protocol, however, the sender will have already received ACKs for some of the packets in the window. Out of order packets are buffered by the receiver until any missing packets(that is packets with lower sequence numbers) are received, at which point a batch of packets can be delivered in order to the upper layer.
 
+An applet for SR can be found [here](https://media.pearsoncmg.com/aw/ecs_kurose_compnetwork_7/cw/content/interactiveanimations/selective-repeat-protocol/index.html)
 
+__Sender characteristics__      
+1. When data is received from layers above to send the sender checks the next available sequence number for the packet. If the sequence number is within the senders window, the data is packetized and sent; otherwise it is either buffered or returned to the upper layer for later transmission
+2. Timers are again used to protect against lost packets. However, each packet now has its own logical timer, since only a single packet will be transmitted on timeout. A single hardware timer can be used to mimic many logical timers
+3. If an ACK is received, the sender marks that packets as having been received, provided it is in the window. If the packets sequence number is equal to the base of the window, the window base is moved forward to the unacknowledged packet with the smallest sequence number. If the window moves and there are un-transmitted packets with sequence numbers that now fall within the window, these packets are transmitted
+
+__Receiver characteristics__      
+1. A packet received that falls within the receiver's window prompts a selective ASK to be returned to the sender. If the packet was not previously received, it is buffered. If the packet has a sequence number equal to the base of the receive window, then this packet, and any previously buffered and consecutively numbered packets are delivered to the upper layer. The receiver window is then moved forward by the number of packets delivered to the upper layer
+2. A packet with sequence number coming before the window is correctly received. In this case, an ACK must be generated even though this is a packet that the receiver has previously acknowledged
+2. Any other cases and the packet is ignored
+
+# TCP connections
+TCP is said to be connection-oriented because before one application process can begin to send data to another, the two processes must first "handshake" with each other-that is, they must send some preliminary segments to each other to establish the parameters of the ensuing data transfer. As part of this connection establishment, both sides of the connection will initialize many TCP stat variables associated with the TCP connection
+
+TCP provides a full-duplex service and is also always point-to-point(between a single sender and receiver). _Multicast cannot work with TCP_. 
+
+### A TCP connection is established with...
+{: .no_toc}
+- A client application lets the client transport layer know that it wants to establish a connection to a process in the server. This is done by issuing where serverName is the name of the server and serverPort is the process running on the server
+
+```python
+clientSocket.connect((serverName, serverPort))
+```
+
+- Segments are sent back and forth, called a three-way handshake, that establishes the connection between the two entities
+
+Once a connection is established data can then be sent back and forth. Data passed into the transport layer from the sender is sent to a TCP send buffer, one of which is set up during the initial three way handshake. From time to time, TCP will grab chunks of data from the send buffer and pass the data to the network layer. The TCP specification is very laid back about specifying when TCP should actually send buffered data. The maximum amount of data that can be grabbed and placed in a segment is limited by the __maximum segment size(MSS)__, which is typically set by first determining the length of the largest link-layer frame that can be sent by the local sending host (the so-called __maximum transmission unit or MTU__). The MSS is set to ensure that a TCP segment, when in an IP datagram, plus the TCP/IP header length will fit into a single link-layer frame. Ethernet and PPP link-layer protocols have an MTU of 1,500 bytes, thus a typical MSS is 1460 bytes. __The MSS is the maximum amount of application layer data in the segment, not the maximum size of the TCP segment including headers__
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/tcp.png"  width="70%" height="50%">
+</p>
+
+## TCP segment structure
+A TCP segment consists of header fields and a data field. The data field is application data, sent down to be sent to the remote host. Images often take up the entire MSS in the data field for each chunk, except with the last segment usually being smaller than the others. Some applications however often transmit data smaller than the MSS, telnet for example only uses 1 byte of the data field
+
+As with UDP the TCP header consists of source and destination port numbers, used for multiplexing and demultiplexing. Other fields can be seen in Figure 1. To summarize...
+
+- The 32-bit __sequence number field__ and the 32-bit __acknowledgement number field__ are used by the TCP sender and receiver in implementing a reliable data transfer service
+- The 16-bit __receive window__ field is used for flow control. Used to indicate the number of bytes that a receiver is willing to accept
+- The 4-bit __header length field__ specifies the length of the TCP header in the 32-bit words. The TCP header can be of variable length due to the TCP options field(the options field is usually empty so that the length of the typical TCP header is 20 bytes)
+- The optional and variable-length __options field__ is used when a sender and receiver negotiate the MSS or is a window scaling factor for use in high-speed networks
+- The __flag field__ contains 6 bits. The __ACK bit__ is used to indicate that the value carried in the acknowledgement field is valid; that is, the segment contains an acknowledgement for a segment that has been successfully received. The __RST, SYN, and FIN__ bits are used for connection setup and teardown.  __CWR and ECE__ are used in congestion notification. The __PSH bit__ indicates that the receiver should pass the data to the upper layer immediately. The __URG bit__ is used to indicate that there is data in this segment that the sending-side upper-layer has marked as "urgent"
+
+### Sequence Numbers and Acknowledgement Numbers
+TCP views data as an unstructured, but ordered, stream of bytes. The sequence number for a segment is therefore the byte-stream number of the first byte in the segment. For example, a process in Host A wants to send a stream of data to a process in Host B over a TCP connection. The TCP in Host A will implicitly number each byte in the data stream.
 
 
 

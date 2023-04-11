@@ -118,7 +118,7 @@ Python starts counting from zero when it comes to numbering index locations, and
 Using [-1] will always return the last object in a list no matter how big the list is
 
 ## Start, Stop, and Step
-Lists also understand a stepping mechanism. `letters[start:stop:step]`, all three are optional when used together. WHen start is missing, it has a default value of 0, when stop is missing, it takes on the maximum value allowable for the list, when step is missing, it has a default value of 1
+Lists also understand a stepping mechanism. `letters[start:stop:step]`, all three are optional when used together. When start is missing, it has a default value of 0, when stop is missing, it takes on the maximum value allowable for the list, when step is missing, it has a default value of 1
 
 ### Slicing a list is Nondestructive
 List methods are destructive to a list, slicing a list is nondestructive as extracting objects from an existing list does not alter it; the original data remains intact
