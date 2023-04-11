@@ -237,7 +237,7 @@ As with UDP the TCP header consists of source and destination port numbers, used
 - The __flag field__ contains 6 bits. The __ACK bit__ is used to indicate that the value carried in the acknowledgement field is valid; that is, the segment contains an acknowledgement for a segment that has been successfully received. The __RST, SYN, and FIN__ bits are used for connection setup and teardown.  __CWR and ECE__ are used in congestion notification. The __PSH bit__ indicates that the receiver should pass the data to the upper layer immediately. The __URG bit__ is used to indicate that there is data in this segment that the sending-side upper-layer has marked as "urgent"
 
 ### Sequence Numbers and Acknowledgement Numbers
-TCP views data as an unstructured, but ordered, stream of bytes. The sequence number for a segment is therefore the byte-stream number of the first byte in the segment. For example, a process in Host A wants to send a stream of data to a process in Host B over a TCP connection. The TCP in Host A will implicitly number each byte in the data stream.
+TCP views data as an unstructured, but ordered, stream of bytes. The sequence number for a segment is therefore the byte-stream number of the first byte in the segment. For example, a process in Host A wants to send a stream of data to a process in Host B over a TCP connection. The TCP in Host A will implicitly number each byte in the data stream. Picking back up soon
 
 
 
