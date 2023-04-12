@@ -238,7 +238,7 @@ As with UDP the TCP header consists of source and destination port numbers, used
 
 ### Sequence Numbers and Acknowledgement Numbers
 TCP views data as an unstructured, but ordered, stream of bytes. The sequence number for a segment is therefore the byte-stream number of the first byte in the segment. For example, a process in Host A wants to send a stream of data to a process in Host B over a TCP connection. The TCP in Host A will implicitly number each byte in the data stream.
-
+ blah blach lcasjdfqk
 
 
 
