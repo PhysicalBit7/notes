@@ -163,14 +163,29 @@ The utilization of the computers, and the network bandwidth, on either side of a
 
 - The range of sequence numbers must be increased, since each in-transmit packet must have a unique sequence number and there may be multiple, in-transit, unacknowledged packets
 - The sender and receiver sides of the protocols may have to buffer more than one packet. At a minimum, the sender will have to buffer packets that have been transmitted but not yet acknowledged. Buffering of correctly received packets may also be needed at the receiver
-- The rage of sequence numbers needed and the buffering requirements will depend on the manner in which a data transfer protocol responds to lost, corrupted, and overly delayed packets. Two approaches toward pipelined error recovery can be identified: __Go-Back-N__ and __selective request__
+- The rage of sequence numbers needed and the buffering requirements will depend on the manner in which a data transfer protocol responds to lost, corrupted, and overly delayed packets. Two approaches toward pipelined error recovery can be identified: __Go-Back-N__ and __Selective Repeat__
 
 ### Go-Back-N (GBN)
 In GBN, the sender is allowed to transmit multiple packets without waiting for an acknowledgement, but is constrained to have no more than some maximum allowable number of unacknowledged packets in the pipeline. See a useful applet demonstrating the GBN protocol [here](https://media.pearsoncmg.com/aw/ecs_kurose_compnetwork_7/cw/content/interactiveanimations/go-back-n-protocol/index.html)
 
+The characteristics of GBN are
+1. Uses the concept of protocol pipelining where the sender can send multiple segments before receiving the acknowledgement for the first segment
+2. There are a finite number of frames and the frames are numbered in a sequential manner
+3. The number of frames that can be sent depends on the window size of the sender
+4. If the acknowledgement of a frame is not received within an agree upon time period, __all frames in the current window are transmitted__
+
 <p align="center">
   <img src="{{site.baseurl}}/assets/computer-networks/gbn.png"  width="60%" height="40%">
 </p>
+
+{: .important}
+It is important to note that GBN sends repeated ACKs for lost segments and discards any out of order segments like so...
+
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/gbn2.png"  width="50%" height="30%">
+</p>
+
 
 The GBN sender must respond to three different types of events...
 1. __Invocation from above__      
@@ -183,9 +198,8 @@ The name GBN is derived from the sender's behavior in the presence of lost or ov
 
 The receiver's actions are also pretty simple. If a packet with sequence number _n_ is received correctly and is in order, the receiver sends an ACK for packet _n_ and delivers the data portion of the packet to the upper layer. In all other cases, the receiver discards the packet and resends an ACK for the most recently received in-order packet. 
 
-<p align="center">
-  <img src="{{site.baseurl}}/assets/computer-networks/gbn2.png"  width="70%" height="50%">
-</p>
+A video that helped me with GBN is available [here](https://www.youtube.com/watch?v=QD3oCelHJ20)
+
 
 ### Selective Repeat (SR)
 GBN suffers performance issues from scenarios in which the window size and bandwidth-delay are both large, many packets can be in the pipeline. A single packet error can cause GBN to retransmit a large number of packets, many unnecessarily. As the name suggests, SR protocols avoid unnecessary retransmissions by having the sender retransmit only those packets that it suspects were received in error at the receiver.
@@ -200,9 +214,18 @@ __Sender characteristics__
 3. If an ACK is received, the sender marks that packets as having been received, provided it is in the window. If the packets sequence number is equal to the base of the window, the window base is moved forward to the unacknowledged packet with the smallest sequence number. If the window moves and there are un-transmitted packets with sequence numbers that now fall within the window, these packets are transmitted
 
 __Receiver characteristics__      
-1. A packet received that falls within the receiver's window prompts a selective ASK to be returned to the sender. If the packet was not previously received, it is buffered. If the packet has a sequence number equal to the base of the receive window, then this packet, and any previously buffered and consecutively numbered packets are delivered to the upper layer. The receiver window is then moved forward by the number of packets delivered to the upper layer
+1. A packet received that falls within the receiver's window prompts a selective ACK to be returned to the sender. If the packet was not previously received, it is buffered. If the packet has a sequence number equal to the base of the receive window, then this packet, and any previously buffered and consecutively numbered packets are delivered to the upper layer. The receiver window is then moved forward by the number of packets delivered to the upper layer
 2. A packet with sequence number coming before the window is correctly received. In this case, an ACK must be generated even though this is a packet that the receiver has previously acknowledged
 2. Any other cases and the packet is ignored
+
+{: .important}
+SR numbers ACKs received based on the sequence number just received, it also queues out of order segments for example
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/sr.png"  width="80%" height="60%">
+</p>
+
+
 
 # TCP connections
 TCP is said to be connection-oriented because before one application process can begin to send data to another, the two processes must first "handshake" with each other-that is, they must send some preliminary segments to each other to establish the parameters of the ensuing data transfer. As part of this connection establishment, both sides of the connection will initialize many TCP stat variables associated with the TCP connection
@@ -230,16 +253,138 @@ A TCP segment consists of header fields and a data field. The data field is appl
 
 As with UDP the TCP header consists of source and destination port numbers, used for multiplexing and demultiplexing. Other fields can be seen in Figure 1. To summarize...
 
-- The 32-bit __sequence number field__ and the 32-bit __acknowledgement number field__ are used by the TCP sender and receiver in implementing a reliable data transfer service
+- The 32-bit __sequence number field__ and the 32-bit __acknowledgement number field__ are used by the TCP sender and receiver in implementing a reliable data transfer service. The sequence number of a segment is the sequence number of the first byte in the data field. The acknowledgement number is the sequence number of the next byte of data that the host is waiting for.
 - The 16-bit __receive window__ field is used for flow control. Used to indicate the number of bytes that a receiver is willing to accept
 - The 4-bit __header length field__ specifies the length of the TCP header in the 32-bit words. The TCP header can be of variable length due to the TCP options field(the options field is usually empty so that the length of the typical TCP header is 20 bytes)
 - The optional and variable-length __options field__ is used when a sender and receiver negotiate the MSS or is a window scaling factor for use in high-speed networks
 - The __flag field__ contains 6 bits. The __ACK bit__ is used to indicate that the value carried in the acknowledgement field is valid; that is, the segment contains an acknowledgement for a segment that has been successfully received. The __RST, SYN, and FIN__ bits are used for connection setup and teardown.  __CWR and ECE__ are used in congestion notification. The __PSH bit__ indicates that the receiver should pass the data to the upper layer immediately. The __URG bit__ is used to indicate that there is data in this segment that the sending-side upper-layer has marked as "urgent"
 
 ### Sequence Numbers and Acknowledgement Numbers
-TCP views data as an unstructured, but ordered, stream of bytes. The sequence number for a segment is therefore the byte-stream number of the first byte in the segment. For example, a process in Host A wants to send a stream of data to a process in Host B over a TCP connection. The TCP in Host A will implicitly number each byte in the data stream.
- blah blach lcasjdfqk
+TCP views data as an unstructured, but ordered, stream of bytes. The sequence number for a segment is therefore the byte-stream number of the first byte in the segment. For example, a process in Host A wants to send a stream of data to a process in Host B over a TCP connection. The TCP in Host A will implicitly number each byte in the data stream. If there are 50,000 bytes and the MSS is 1000 bytes, suppose the first byte is labeled 0, TCP will construct 500 segments out of the data stream. The first segment is assigned segment 0, the second is assigned segment 1000, the third is assigned 2000, and so on. The sequence number is inserted in the sequence number field in the header of the TCP segment.
 
+Acknowledgement numbers is trickier. Recall that TCP is full-duplex. **The acknowledgement number that Host A puts in its segment is the sequence number of the next byte Host A is expecting from Host B.** Suppose Host A has received all bytes numbered 0 through 535 from B and suppose that it is about to send a segment to Host B. Host A is waiting for byte 536 and all the subsequent bytes in Host B's data stream. Host A puts 536 in the acknowledgment number field of the segment it sends to B. TCP is said to provide cumulative acknowledgements. 
+
+__Piggybacking__ simply refers to whether or not we are sending data to another host whilst also sending an acknowledgment. If we only send an acknowledgement we are not piggybacking.
+
+Its important to understand that each side has a starting random sequence number. This number with the received ACK from another host is how the connection is tracked
+
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/tcpSeqAck.png"  width="30%" height="20%">
+</p>
+
+In the above example we have the sender starting at Seq 1400. The receiver starts at Seq 4000 but also sends back an Ack with 1401. The same happens the other way around. Since the receiver has acknowledged that it is ready for everything past 1400 the sender sends a Seq of 1400 and an Ack of 4001, acknowledging that it received the receiver segment with Seq 4000. When the sender starts to actually send data this increases the Seq number. When received the receiver should return the last Seq + 1 as the Ack, which it does with 1601. If the receiver had anything to send we would repeat the process, incrementing the Seq number to reflect how much data was sent
+
+TCP 
+
+
+### RTT estimation and Timeout
+Clearly any timeout for segments needs to be longer than any RTT for traffic. TCP estimates RTT between sender and receiver. This is accomplished as follows. The sample RTT for a segment is the amount of time between when the segment is sent, or passed to IP, and when the acknowledgement for the segment is received. Most TCP implementations only take one sample RTT measurement at a time. TCP maintains an average of all RTT's calculated. This estimated RTT has a formula that is updated when its receives a new sample RTT. The estimated RTT is a weighted average. The weight puts more value on new RTT's
+
+## Reliable Data Transfer
+Recall that IP is unreliable. TCP creates a reliable data transfer service on top of IP. For efficiency's sake, only one retransmission timer is used throughout. It is helpful to think of the timer as being associated with the oldest unacknowledged segment. 
+
+### Doubling the timeout interval
+Most TCP implementations employ some modifications. The first is the length of the timeout interval after a timer expiration. In this modification, when a timeout event occurs, TCP retransmits the not-yet-acknowledged segment with the smallest sequence number. Each time TCP retransmits, it sets the next timeout interval to twice the previous value. It reverts when the sequence is finally acknowledged. This provides a bit of congestion control
+
+### Fast Retransmit
+A problem with timeout-triggered retransmissions is that the timeout period can be relatively long. A sender can retransmit a lost sent packet if there is a detection of a gap in the data stream. If a receiver does not acquire an in order data stream it will Ack multiple times back for the missing segment. The receiver can then retransmit the lost segment _before_ the segments actually times out
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/fastTransmit.png"  width="40%" height="10%">
+</p>
+
+## Flow Control
+Remember that each host sets aside a receive buffer for the connection. If an application does not read data out of this buffer quickly enough from TCP, overflow can happen. TCP provides a flow-control service to its applications to eliminate this. This is a speed matching service where the rate at which the sender is sending against the rate at which the receiving application is reading. TCP provides flow control by having the _sender_ maintain a variable called the __receive window__. Informally, the receive window is used to give the sender an idea of how much free buffer space is available at the receiver.
+
+Suppose Host A is sending a large file to Host B. Host B allocates a receive buffer to this connection; denote its size by `RcvBuffer`. The buffer has to be smaller than _LastByteRcvd - LastByteRead <= RcvBuffer_. The receiver window is dynamic and is denoted by rwnd = RcvBuffer = [LastByteRcvd - LastByteRead]
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/rwnd.png"  width="40%" height="20%">
+</p>
+
+As for Host A, it keeps track of the LastByteSent and the LastByteAcked, which shortened simply come to equal the amount of data sent into the data stream that has been unacknowledged. Host A only has to make sure that this number does not grow bigger than the rwnd sent to it by Host B. 
+
+A stalemate can happen if the TCP stream is open, Host B broadcasts that its rwnd = 0, and no Ack's or data needs to be sent from B->A. As the buffer in B begins to clear up, Host A receives no notice that it is good to start sending again. To aid Host A continuously sends 1 byte segments to B when Host B's rwnd is full. With Host B actually acknowledging these segments, the buffer will clear up, and communication can continue. UDP makes no effort to provide flow control
+
+## TCP Connection Management
+This section explains what happens during connection setup within TCP. Assume a process on one computer wants to make a connection to a process on another computer
+
+1. The client-side TCP first sends a special TCP segment to the server-side TCP. This special segment contains no application-layer data. A flag bit is set in the segment header, called the SYN bit. It is set to 1. In addition, the client also sends a random initial sequence number called the `client_isn` and puts this number in the sequence number field of the initial TCP SYN segment
+2. The server extracts the TCP SYN segment, allocates the TCP buffers ad variables to the connection, and sends a connection-granted segment to the client TCP. This segment also contains no application data, it does contain other important data. The SYN bit is set to 1, the acknowledgment field is set to `client_isn + 1`, and the server chooses its own initial sequence number(`server_isn`) and puts it in the sequence number field. This is referred to as the __SYNACK segment__
+3. After receiving the __SYNACK__, the client allocates buffers and variables to the connection. The client host then sends another segment acknowledging the servers connection-granted segment (putting the `server_isn + 1` in the acknowledgement field of the segment header). The SYN bit is set to 0. This stage can send data in the segment payload
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/segmentEx.png"  width="40%" height="20%">
+</p>
+
+After this __three-way handshake__ the SYN bit is off
+
+When closing a connection any side can initiate. A special FIN bit is set to 1. When the server receives this segment, it sends the client an acknowledgement in return. The server then sends its own FIN bit. The client acknowledges. At this point all resources are deallocated.
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/fin.png"  width="40%" height="20%">
+</p>
+
+## The SYN flood attack
+One of the first DOS attacks recorded is the SYN flood attack. A client can flood a server with many SYN segments, not completing the third stage of the three way setup. The server allocates resources that are never used and legitimate hosts cannot connect. __SYN coookies__ were created to aid. A SYN cookie works as follows
+1. When a server receives a SYN segment, it instead creates an initial TCP sequence number that is a hash function of source and destination IP addresses and port numbers of the SYN segment, as well as a secret number only known by the server. This is the cookie. The server sends this special segment with the crafted sequence number as a SYNACK
+2. A legitimate client will return an ACK segment. When the server receives this ACK, it must verify that the ACK corresponds to some SYN sent earlier. This is done with the cookie. After running the same hash function, if the result is the same as the cookie value in the client's SYNACK, the server concludes that the ACK corresponds to an earlier SYN segment and is valid
+3. If it is a illegitimate connection, no harm is done as the server waits to allocate resources
+
+# Principles of Congestion Control
+Much loss usually occurs within router buffers becoming overflowed. Packet retransmission thus treats a symptom of network congestion (the loss of a specific transport-layer segment) but does not treat the cause. Mechanisms are used to throttle senders in the face of congestion
+
+## The Causes and the Costs of Congestion
+1. Large queuing delays can be experienced as the packet-arrival rate nears the link capacity. The router buffer(if assumed infinite) will approach infinity
+2. With a finite router buffer, packets will be dropped if the buffer becomes full. If a packet containing a transport-level segment is dropped at the router, the sender will eventually retransmit it. You will begin losing original data and retransmissions as a result as well. The sender must perform retransmissions
+3. Unneeded retransmissions by the sender in the face of large delays may cause a router to use its link bandwidth to forward unneeded copies of a packet
+4. When a packet is dropped along a path, the transmission capacity that was used at each of the upstream links to forward that packet to the point at which it is dropped ends up having been wasted
+
+## Approaches to Congestion Control
+This section analyzes approaches to the network architecture/layer offering assistance to the transport layer for congestion-control purposes
+1. _End-to-end congestion control_: practice of TCP detecting network congestion with duplicate ACK's and segment loss. TCP will decrease its window size in order to help with congestion. No help
+2. _Network-assisted congestion control_: routers provide explicit feedback to the sender and/or receiver regarding the congestion state of a network. In __ATM Available Bite Rate (ABR)__ congestion control, a router informs the sender of the maximum host sending rate it (the router) can support on an outgoing link
+
+# TCP Congestion Control
+TCP must assume end-to-end congestion control as the network layer provides no notice that it is controlling congestion. The approach taken by TCP is to have each sender limit the rate at which it sends traffic into its connection as a function of perceived network congestion. If it perceives there is no congestion, the sender increases its send rate vice,versa. Of note, congestion control is noted by the sender and the rate at which it sends segments, flow control is noted by a receiver making aware the receive window to a sender. Congestion control has to account for three questions...
+
+
+1. How does the TCP sender limit the rate at which it sends traffic into its connection? The TCP congestion control operating at the sender can limit the rate at which it sends traffic with an additional variable called the __congestion window__, denoted `cwnd`. This window is not broadcasted as is with flow control. The amount of unacknowledged data at the sender may not exceed the minimum of `cwnd` and `rwnd`. Both are constraints on sending data. This constraint above limits the amount of unacknowledged data at the sender and therefore indirectly limits the sender's send rate. By adjusting `cwnd` the sender can therefore adjust the rate at which it sends data into its connection
+2. How does a TCP sender perceive that there is congestion on the path between itself and the destination? We define a loss event at the TCP sender as an occurrence of either a timeout or the receipt of three duplicate ACKs from the receiver. This is assumed by the sender to be congestion. Let's assume that we have a congestion free network. TCP is said to be self clocking meaning that the rate at which the congestion window increases is determined by the rate at which the sender receives ACKs from the receiver. How should the TCP sender determine it's send rate? You have to balance the available bandwidth as well as increasing to quickly between the sender and the receiver. Here are the guiding principles...
+
+  - _A lost segment implies congestion, and hence, the TCP sender's rate should be decreased when a segment is lost_
+  - _An acknowledged segment indicates that the network is delivering the sender's segments to the receiver, and hence, the sender's rate should be increased when an ACK arrives for a previously unacknowledged segment_
+  - _Bandwidth probing_, given ACK's are congestion flags, TCP should increase the transmission rate until a loss event occurs, which then decreases the rate.
+
+3. What algorithm should the sender use to change its send rate as a function of perceived end-to-end congestion? The __TCP congestion-control algorithm__ has three major components. (1) slow start, (2) congestion avoidance, and (3) fast recovery. Slow start and congestion avoidance are mandatory components, differing in how they increase the size of `cwnd` in response to received ACKs.
+
+## Slow Start
+When a TCP connection begins, the value of `cwnd` is initially set to a small value of 1 MSS resulting in a sending rate roughly of MSS/RTT. The value of `cwnd` in slow start starts at 1 and upon an acknowledgment increases by 1 MSS or 1 MSS * 2. It is exponential. 
+
+
+There are three ways slow start will end. First, upon a loss event, the sender sets the value of `cwnd` to 1 and begins the slow start process anew. Another state variable called `ssthresh`, short for slow start threshold, is set to `cwnd / 2`, half the value of `cwnd` when congestion was detected. The second way that slow start may end is directly tied to the value of `ssthresh`. Since it is half the value of `cwnd` when congestion was last detected, it is reckless to continue doubling the `cwnd` when it reaches or surpasses the value of `ssthresh`. When the `cwnd` reaches `ssthresh`, slow start ends and TCP transitions into congestion avoidance. The third way is if three duplicate ACKs are detected, in which case TCP performs a fast retransmit and enters the fast recovery state
+
+### Congestion Avoidance
+When entering the congestion avoidance state, the value of `cwnd` is half its value when congestion was last detected. Instead of doubling `cwnd`, TCP becomes more conservative and simply increases the value of `cwnd` by just a single MSS every RTT. __An RTT can be described as when all segments sent within the `cwnd` are sent and all ACKs are received__. This increase is made possible one way by increasing the `cwnd` by MSS bytes(MSS/cwnd) after every segment ACK. For example, if MSS is 1,460 bytes and `cnwnd` is 14,600 bytes, then 10 segments are being sent within an RTT. Each arriving ACK(assuming one ACK per segment) increases the congestion window size by 1/10 MSS. The value of the congestion window will have increased by one MSS after ACKs have been received for all 10 segments
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/computer-networks/tcpSSCA.png"  width="100%" height="100%">
+</p>
+
+### Fast Recovery
+In fast recovery, the value of `cwnd` is increased by one MSS for every duplicate ACK received for the missing segment that caused TCP to enter the fast recovery state. When the ACK eventually arrives, TCP enters the congestion-avoidance state after deflating `cwnd`. If a timeout event occurs, fast recovery transitions to the slow-start state after performing the same actions as in slow start and congestion avoidance. TCP fast recovery is a recommended, but not required, component of TCP
+
+__TCP is said to be an additive-increase, multiplicative-decrease (AIMD) form of congestion control__
+
+#### TCP Tahoe
+
+
+### TCP Reno
+Incorporates fast recovery
+
+## TCP Fairness
+A transmission rate is said to be fair if the average transmission rate of each connection is approximately R/K, with K being the number of TCP connections on a link. Is AIMD fair if all TCP connections start at different times and each have different window sizes at a given point in time?
 
 
 ---
