@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Transport-Layer Services
+title: Transport Layer Services
 description: Chapter 3 notes
 has_toc: false
 nav_order: 3
@@ -76,10 +76,10 @@ clientSocket.bind(('', 19157))
 
 __Typically, the client side of the application let's the transport layer automatically (and transparently) assign the port number, whereas the server side of the application assigns a specific port number__
 
-The UDP socket is fully identified by a two-tuple consisting of a destination IP address and a destination port number. __If there are two UDP segments that have different source IP addresses and/or source port numbers, but have the same _destination_ IP address and _destination_ port number, then the two segments will be directed to the same destination process via the same destination socket__
+The UDP socket is fully identified by a two-tuple consisting of a destination IP address and a destination port number. __If there are two UDP segments that have different source IP addresses and/or source port numbers, but have the same _destination_ IP address and _destination_ port number, then the two segments will be directed to the same destination process via the same destination socket__. This makes sense in the case of DNS, all incoming connections will be directed to one single process on the server, the DNS process
 
 ## Connection-Oriented Multiplexing and Demultiplexing
-An important difference between a TCP socket and a UDP socket is that a TCP socket is identified by a four-tuple: (source IP address, source port number, destination IP address, destination port). When a TCP segment arrives from the network to a host, the host uses all four value to direct (demultiplex) the segment to the appropriate socket. __Two arriving TCP segments with different source IP addresses or source port numbers will (with the exception of a TCP segment carrying the original connection-establishment request) be directed to two different sockets__
+An important difference between a TCP socket and a UDP socket is that a TCP socket is identified by a four-tuple: (source IP address, source port number, destination IP address, destination port). When a TCP segment arrives from the network to a host, the host uses all four value to direct (demultiplex) the segment to the appropriate socket. __Two arriving TCP segments with different source IP addresses and/or source port numbers will (with the exception of a TCP segment carrying the original connection-establishment request) be directed to two different sockets__. You can see this in Figure 4 below
 
 Example:
 1. The TCP server application has a "welcoming socket", that waits for connection-establishment request from TCP clients on port number 12000
@@ -107,6 +107,9 @@ Figure explained:
 2. Host C assigns two different source port numbers (7532 and 26145) to its two HTTP connections
 3. Because Host A is choosing source port numbers independently of Host C, it might also assign a source port of 26145 to its HTTP connection.
 4. The server will be able to correctly demultiplex the two connections having the same source port number, since the two connections have different source IP addresses
+
+{: .important}
+Know that when a host connects to a remote server, say over HTTP, the destination port is 80, whereas the operating system will choose a __random high level port number (one outside of the well known port numbers)__ to assign the local process in order for the host OS to uniquely identify that process. Like in the above photo we have multiple connections to port 80 but all of the local processes have a unique port number assigned to it. This is also a way for the HTTP server to distinguish between per-connection HTTP processes
 
 ---
 ### Port Scanning Notes
@@ -183,7 +186,7 @@ It is important to note that GBN sends repeated ACKs for lost segments and disca
 
 
 <p align="center">
-  <img src="{{site.baseurl}}/assets/computer-networks/gbn2.png"  width="50%" height="30%">
+  <img src="{{site.baseurl}}/assets/computer-networks/gbn2.png"  width="70%" height="70%">
 </p>
 
 
@@ -228,13 +231,13 @@ SR numbers ACKs received based on the sequence number just received, it also que
 
 
 # TCP connections
-TCP is said to be connection-oriented because before one application process can begin to send data to another, the two processes must first "handshake" with each other-that is, they must send some preliminary segments to each other to establish the parameters of the ensuing data transfer. As part of this connection establishment, both sides of the connection will initialize many TCP stat variables associated with the TCP connection
+TCP is said to be connection-oriented because before one application process can begin to send data to another, the two processes must first "handshake" with each other, that is, they must send some preliminary segments to each other to establish the parameters of the ensuing data transfer. As part of this connection establishment, both sides of the connection will initialize many TCP state variables associated with the TCP connection
 
 TCP provides a full-duplex service and is also always point-to-point(between a single sender and receiver). _Multicast cannot work with TCP_. 
 
 ### A TCP connection is established with...
 {: .no_toc}
-- A client application lets the client transport layer know that it wants to establish a connection to a process in the server. This is done by issuing where serverName is the name of the server and serverPort is the process running on the server
+- A client application lets the client transport layer know that it wants to establish a connection to a process in the server. This is done by issuing the following, where serverName is the name of the server and serverPort is the process running on the server
 
 ```python
 clientSocket.connect((serverName, serverPort))
@@ -275,7 +278,6 @@ Its important to understand that each side has a starting random sequence number
 
 In the above example we have the sender starting at Seq 1400. The receiver starts at Seq 4000 but also sends back an Ack with 1401. The same happens the other way around. Since the receiver has acknowledged that it is ready for everything past 1400 the sender sends a Seq of 1400 and an Ack of 4001, acknowledging that it received the receiver segment with Seq 4000. When the sender starts to actually send data this increases the Seq number. When received the receiver should return the last Seq + 1 as the Ack, which it does with 1601. If the receiver had anything to send we would repeat the process, incrementing the Seq number to reflect how much data was sent
 
-TCP 
 
 
 ### RTT estimation and Timeout
@@ -288,7 +290,7 @@ Recall that IP is unreliable. TCP creates a reliable data transfer service on to
 Most TCP implementations employ some modifications. The first is the length of the timeout interval after a timer expiration. In this modification, when a timeout event occurs, TCP retransmits the not-yet-acknowledged segment with the smallest sequence number. Each time TCP retransmits, it sets the next timeout interval to twice the previous value. It reverts when the sequence is finally acknowledged. This provides a bit of congestion control
 
 ### Fast Retransmit
-A problem with timeout-triggered retransmissions is that the timeout period can be relatively long. A sender can retransmit a lost sent packet if there is a detection of a gap in the data stream. If a receiver does not acquire an in order data stream it will Ack multiple times back for the missing segment. The receiver can then retransmit the lost segment _before_ the segments actually times out
+A problem with timeout-triggered retransmissions is that the timeout period can be relatively long. A sender can retransmit a lost sent packet if there is a detection of a gap in the data stream. If a receiver does not acquire an in order data stream it will ACK multiple times back for the missing segment. The receiver can then retransmit the lost segment _before_ the segments actually times out
 
 <p align="center">
   <img src="{{site.baseurl}}/assets/computer-networks/fastTransmit.png"  width="40%" height="10%">
@@ -305,7 +307,7 @@ Suppose Host A is sending a large file to Host B. Host B allocates a receive buf
 
 As for Host A, it keeps track of the LastByteSent and the LastByteAcked, which shortened simply come to equal the amount of data sent into the data stream that has been unacknowledged. Host A only has to make sure that this number does not grow bigger than the rwnd sent to it by Host B. 
 
-A stalemate can happen if the TCP stream is open, Host B broadcasts that its rwnd = 0, and no Ack's or data needs to be sent from B->A. As the buffer in B begins to clear up, Host A receives no notice that it is good to start sending again. To aid Host A continuously sends 1 byte segments to B when Host B's rwnd is full. With Host B actually acknowledging these segments, the buffer will clear up, and communication can continue. UDP makes no effort to provide flow control
+A stalemate can happen if the TCP stream is open, Host B broadcasts that its rwnd = 0, and no ACKs or data need to be sent from B->A. As the buffer in B begins to clear up, Host A receives no notice that it is good to start sending again. To aid Host A continuously sends 1 byte segments to B when Host B's rwnd is full. With Host B actually acknowledging these segments, the buffer will clear up, and communication can continue. UDP makes no effort to provide flow control
 
 ## TCP Connection Management
 This section explains what happens during connection setup within TCP. Assume a process on one computer wants to make a connection to a process on another computer
@@ -347,7 +349,7 @@ This section analyzes approaches to the network architecture/layer offering assi
 2. _Network-assisted congestion control_: routers provide explicit feedback to the sender and/or receiver regarding the congestion state of a network. In __ATM Available Bite Rate (ABR)__ congestion control, a router informs the sender of the maximum host sending rate it (the router) can support on an outgoing link
 
 # TCP Congestion Control
-TCP must assume end-to-end congestion control as the network layer provides no notice that it is controlling congestion. The approach taken by TCP is to have each sender limit the rate at which it sends traffic into its connection as a function of perceived network congestion. If it perceives there is no congestion, the sender increases its send rate vice,versa. Of note, congestion control is noted by the sender and the rate at which it sends segments, flow control is noted by a receiver making aware the receive window to a sender. Congestion control has to account for three questions...
+TCP must assume end-to-end congestion control as the network layer provides no notice that it is controlling congestion. The approach taken by TCP is to have each sender limit the rate at which it sends traffic into its connection as a function of perceived network congestion. If it perceives there is no congestion, the sender increases its send rate and vice,versa. Of note, congestion control is noted by the sender and the rate at which it sends segments, flow control is noted by a receiver making aware the receive window to a sender. Congestion control has to account for three questions...
 
 
 1. How does the TCP sender limit the rate at which it sends traffic into its connection? The TCP congestion control operating at the sender can limit the rate at which it sends traffic with an additional variable called the __congestion window__, denoted `cwnd`. This window is not broadcasted as is with flow control. The amount of unacknowledged data at the sender may not exceed the minimum of `cwnd` and `rwnd`. Both are constraints on sending data. This constraint above limits the amount of unacknowledged data at the sender and therefore indirectly limits the sender's send rate. By adjusting `cwnd` the sender can therefore adjust the rate at which it sends data into its connection
@@ -378,48 +380,21 @@ In fast recovery, the value of `cwnd` is increased by one MSS for every duplicat
 __TCP is said to be an additive-increase, multiplicative-decrease (AIMD) form of congestion control__
 
 #### TCP Tahoe
+Does not incorporate fast recovery. In short
 
+- `ssthresh` = `cwnd` / 2
+- `cwnd` = 1 MSS
 
-### TCP Reno
-Incorporates fast recovery
+Algorithm then enters slow start, growing again exponentially
+
+#### TCP Reno
+Incorporates fast recovery. When three duplicate ACKs occur, increment `cwnd` by every duplicate. In short
+
+- `ssthresh` = `cwnd` / 2
+- `cwnd` = `ssthresh` + 3 MSS
+
+Algorithm from here starts to grow by 1MSS every RTT, growing linearly
 
 ## TCP Fairness
 A transmission rate is said to be fair if the average transmission rate of each connection is approximately R/K, with K being the number of TCP connections on a link. Is AIMD fair if all TCP connections start at different times and each have different window sizes at a given point in time?
 
-
----
-
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-
-
----
-__Classroom notes__, will summarize later
-
-Not UDP directly. The issue isn't how UDP works, but how the software uses it.
-
-When using UDP, the higher level protocol (like the video stream, or a game) will have some sort of sequencing of its own, like a timecode or a timestamp. This (usually) isn't so that the packets can be re-requested and put back in the right order (like TCP), but so that the packets can be ignored if they are out of order or some other nonsense.
-
-So, in real time applications, like games, it's better to just lose a bit of info and jump back to real-time when new data comes in. This is where you'll get the rubber band effect. Something happened with the other persons connection, and some packets were probably lost, or came in too late, and were ignored.
-
-TCP would actually be worse, because it wouldn't be able to catch up quickly. Instead of just getting the next bit of location data, the game would just be waiting around while TCP re-requests and orders the packets. This would make the game stutter even more, and real-time interaction would go out the window with hundreds of milliseconds (or more) of delay for everything.
-
----
-
-UDP is often preferred over TCP for video streaming because it provides a faster delivery of packets without the overhead of TCP's congestion control and error recovery mechanisms. However, this also means that UDP does not provide any guarantees about packet delivery or packet order, so it is up to the application layer to handle any lost or out-of-order packets.
-
-To address these issues, video streaming applications typically use various techniques to compensate for packet loss or delay, such as buffering, packet retransmission, and forward error correction (FEC). These techniques can help improve the quality of the video streaming experience over unreliable networks.
-
----
-
-Local ports for processes
-
-Yes, typically when a process initiates a connection to another process using TCP or UDP, the operating system assigns a different port number to the local end of the connection than the one used by the remote end.
-
-This is because port numbers are used to identify specific processes on a host, and it is possible for multiple processes to initiate connections to the same remote host using the same protocol (e.g., TCP or UDP). By assigning a different port number to each local end of the connection, the operating system can uniquely identify each process and manage the communication between them.
-
-For example, when a web browser initiates a connection to a web server using HTTP (which runs over TCP), the operating system assigns a random high-numbered port number to the local end of the connection (e.g., 49152), and uses the well-known HTTP port number (80) for the remote end of the connection. Similarly, when a server application listens for incoming connections, it binds to a specific port number (e.g., 8080) and waits for incoming connections on that port number. When a client initiates a connection to the server, the operating system assigns a different random port number to the local end of the connection, and uses the server's well-known port number as the remote end of the connection.

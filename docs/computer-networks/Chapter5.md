@@ -42,7 +42,7 @@ There are two possible approaches for forwarding and flow tables to be computed
 # Routing Algorithms
 The goal of routing algorithm's are to determine good paths from senders to receivers, through the network of routers. A "good path" is one that is the least cost typically. Routing typically wants to achieve this least cost but will also observe the shortest path. We can classify routing algorithms in two manners...
 
-1. __Centralized routing algorithm__ - computes the least-cost path between a source and destination using complete, global knowledge about the network. The algorithm takes into account all nodes and all links and calculates the cost. The algorithm obviously has to know this info beforehand. The calculation can be rn at one site or could be replicated in the routing component of each and every router (per-router vs logically centralized). The key feature is that the algorithm has complete information about connectivity and link costs, these are often referred to as __link-state (LS) algorithms__
+1. __Centralized routing algorithm__ - computes the least-cost path between a source and destination using complete, global knowledge about the network. The algorithm takes into account all nodes and all links and calculates the cost. The algorithm obviously has to know this info beforehand. The calculation can be done at one site or could be replicated in the routing component of each and every router (per-router vs logically centralized). The key feature is that the algorithm has complete information about connectivity and link costs, these are often referred to as __link-state (LS) algorithms__
 2. __Decentralized routing algorithm__ - calculation of the least-cost path is carried out in an iterative, distributed manner by the routers. No node has complete information about the costs of all network links. Each node begins only with the links it is directly connected to. Through an iterative process of calculation and exchange of info with its neighbors, a node gradually calculates the least-cost path. These are often called __distance vector (DV) algorithms__
 
 Routing can also be a __static__ or __dynamic__ algorithm. Static usually changes by humans, dynamic changes as routers get new information. Yet another way to classify a routing algorithm is if it is a __load-sensitive__ or __load-insensitive__ algorithm. In load-sensitive, link costs vary dynamically to reflect the current level of congestion in the underlying link. Load-insensitive does not explicitly reflect a links current level of congestion
@@ -62,7 +62,7 @@ Consider the following network with the associated path costs...
 
 We can compute the least-cost path from `u` to all possible destinations with the following steps...
 
-1. Initialization step: the currently known least-cost paths from `u` to its directly connected neighbors, _v, x, and w,_ are initialized to 2, 1, and 5. All connections not directly connected are set to infinity
+1. Initialization step: the currently known least-cost paths from `u` to its directly connected neighbors, _v, x, and w,_ are initialized to 7, 3, and 5. All connections not directly connected are set to infinity
 2. Scan the row and find the smallest number, if tied choose one. Add new connected nodes from the path, if they are smaller then take that route, if they are not added then add them
 3. Continue...
 
@@ -73,7 +73,11 @@ The distance-vector algorithm is iterative, asynchronous, and distributed. It is
 
 The DS algorithm is made up of the Bellman Ford algorithm. This algorithm defines the distance at each node with `Dx(Y) = cost of least cost path from X to Y`. Continuing with the algorithm we can update it to include the distances based on the neighbors. This is defined as `Dx(Y) = min{cost(x,v) + Dv(Y)}`. X is the source node, Y is the destination node. We say that that distance is the minimum of the cost from the source to v, v is nothing but intermediate node(s). Dv(Y) is the distance between the intermediate node and the destination node
 
-A table would consist of Destination | Cost | Next Hop
+A table would consist of 
+
+```
+Destination | Cost | Next Hop
+```
 
 DV algorithms are used in many routing protocols in practice such as RIP, BGP, ISO IDRP, Novell IPX, and ARPAnet
 
@@ -110,5 +114,8 @@ The count to infinity problem occurs when a router goes down or a link fails, an
 However, if there are multiple paths to the same destination network, the neighboring routers may still receive updates about the failed router through other paths. These routers will then update their routing tables, increasing the cost to the failed router's networks to infinity plus one. This process continues until the cost to the failed router's networks becomes so large that it appears to be a better path than any other, causing routing loops and slowing down the convergence of the network
 
 To prevent the count to infinity problem, distance-vector routing protocols typically use mechanisms such as split horizon, poison reverse, and hold-down timers to limit the effects of routing table changes and avoid routing loops
+
+# ICMP
+pg 419
 
 

@@ -263,7 +263,7 @@ The  `socket` module forms the basis of all network communications in Python.
 ---
 
 ```python
-serverName - 'hostname'
+serverName = 'hostname'
 serverPort = 12000
 ```
 
@@ -384,7 +384,7 @@ The client has the job of initiating contact with the server, the server therefo
 The server's TCP socket is more or less a listening socket, whenever a client requests a connection to the server, a new socket is created handling the unique connection to that client
 
 <p align="center">
-  <img src="{{site.baseurl}}/assets/computer-networks/tcpConn.png"  width="70%" height="50%">
+  <img src="{{site.baseurl}}/assets/computer-networks/tcpConn.png"  width="60%" height="30%">
 </p>
 
 The following is the actual TCPClient code
