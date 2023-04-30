@@ -39,6 +39,8 @@ There are two possible approaches for forwarding and flow tables to be computed
   <img src="{{site.baseurl}}/assets/computer-networks/logicCentral.png"  width="70%" height="50%">
 </p>
 
+---
+
 # Routing Algorithms
 The goal of routing algorithm's are to determine good paths from senders to receivers, through the network of routers. A "good path" is one that is the least cost typically. Routing typically wants to achieve this least cost but will also observe the shortest path. We can classify routing algorithms in two manners...
 
@@ -115,7 +117,5 @@ However, if there are multiple paths to the same destination network, the neighb
 
 To prevent the count to infinity problem, distance-vector routing protocols typically use mechanisms such as split horizon, poison reverse, and hold-down timers to limit the effects of routing table changes and avoid routing loops
 
-# ICMP
-pg 419
 
 

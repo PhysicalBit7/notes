@@ -141,6 +141,10 @@ Note the port numbers being assigned, first the 3345 by the host process, next t
 
 NAT does have problems as it takes use of a layer 2 port number which is a violation of the specification
 
+
+---
+
+
 # IPv6
 A successor to IPv4 was bred as all possible addresses got used very quickly in IPv4. It was also tweaked from better it from IPv4
 

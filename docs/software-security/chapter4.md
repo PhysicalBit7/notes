@@ -22,14 +22,7 @@ permalink: /software-security/Chapter4
 ---
 
 # Secure Software
-Core properties of secure software include 
-- Confidentiality
-- Integrity
-- Availability
-- Accountability
-- Non-repudiation
-
----
+Core properties of secure software include, confidentiality, integrity, availability, accountability, and on-repudiation
 
 Other properties that don't necessarily make software secure but characterize how secure it is are
 1. **Dependability**
@@ -78,7 +71,7 @@ The activities and practices to reduce and mitigate weaknesses present in softwa
   - Not only incorporates protective, post-implementation techniques, but also addresses the need to specify, design, and implement an application with a minimal attack surface
   - Preventing weaknesses from entering the software in the first place or at least removing them as early in the life cycle as possible and before the software is deployed
 
-### Cyberinfrastructure Security
+### Cyber-Infrastructure Security
 Research environments that support advanced data acquisition, data storage, and other computing and information processing services distributed over the Internet. In scientific usage, it is a technological and sociological solution to the problem of efficiently connecting laboratories and computers for novel scientific knowledge
 
 **Security** is the degree of resistance to, or protection from harm
@@ -518,27 +511,270 @@ Can be useful when prioritizing risks and evaluating the effectiveness of potent
    2. Many mitigation's can be described as either detection strategies or correction strategies
    3. Mitigation mechanisms themselves can introduce threats and vulnerabilities to the software
 
+
+---
+# Start of Final
+
 # Control Flow Technology
+After architecture and design we begin the software implementation or the "programming" portion, after implementation is compilation. Control Flow is what our program does at runtime, how we programmed it. The Integrity in Control Flow Integrity is simply ensuring that our program does not deviate from the behavior. It can only be modified by authorized users. Hackers should not be able to change the program at runtime
+
+{: .note}
+The compiler really should detect attacks. We try to stop attack probability at both compilation and runtime
 
 ## Behavior-Based Detection
-Idea: Observe the program's behavior, is it doing what we expect it to? If not, it might be compromised. Can be challenging to define "expected behavior", detect deviations from expectation efficiently, and avoid compromise of the detector
+Idea: Observe the program's behavior, is it doing what we expect it to? If not, it might be compromised. Can be challenging to define "expected behavior", to detect deviations from expectation efficiently, and to avoid _compromise of the detector_(a hacker could turn this off or cause other erroneous behavior). In a Unix/Linux system, you could erase the log files that are made when doing something as sudo, removing all trace of an attackers activity (rootkit). This is a compromise of the hardware itself, your detector becomes completely useless
+
+In short we are analyzing the program we built and making sure that the program acts how we want it to
+
+An example is a __stack canary__, this is a security mechanism used to detect stack buffer overflows. It is a small randomly generated value that is placed between the buffer and the return address on the stack. When a function returns, the canary value is checked to ensure that it has not been overwritten. If the value has changed, it indicates that the buffer has been overflowed, and an attacker may have altered the return address to redirect the program execution to malicious code. The program can then terminate to prevent the execution of the malicious code
+
+Other examples include non-executable code and ASLR. All of these aim to detect/complicate standard attacks on programs, need to frustrate the hacker!
+
 
 ## Control-flow Integrity (CFI)
 Answers the above complications
-1. Define "expected behavior"? __Control flow graph (CFG)__
-2. Detect deviations from expectation efficiently? __In-line reference monitor (IRM)__
-3. Avoid compromise of the detector? __Sufficient randomness, immutability__
+1. Define "expected behavior"? Use __control flow graph (CFG)__
+2. Detect deviations from the expected behavior efficiently? Use __in-line reference monitor (IRM)__, involves injecting monitors into your code to keep eyes on behavior
+3. Avoid compromise of the detector? Use __sufficient randomness, immutability__, randomize where your monitors reside so attackers cannot find the location
 
-CFI is quite efficient. Classic EFI (2005) imposes 16% overhead on average, 45% in the worst case. Modular CFI (2014) imposes 5% overhead on average, 12% in the worst case
+{: .important}
+Based on the statements in your code you can build the CFG, the compiler can also create a CFG. Remember that compilation is static. After compilation, the runtime behavior should follow the CFG. IRM helps to detect deviations from the expected behavior in the CFG. The compiler can inject monitors into your code to make detection more dynamic. At runtime we can then detect bad behavior
+
+### Is it Secure?
+
+CFI is quite efficient from fighting attacks but does cause overhead in your code, as you are injecting detectors in your code. Classic EFI (2005) imposes 16% overhead on average, 45% in the worst case however, it is not modular, there are no dynamically linked libraries. Modular CFI (2014) imposes 5% overhead on average, 12% in the worst case
 
 Modular CFI can eliminate 95.75% of ROP gadgets on x86-64 versions of SPEC2006 benchmark suite
 
----
+{: .note}
+Refresher on dynamically linked libraries. When an executable program uses a dynamically linked library, it only includes a reference to the library's functions and data, rather than including the entire library's code. This allows multiple programs to share the same library code in memory, reducing the overall memory usage of the system and making it more efficient
 
-Notes from Class
+## Indirect/Direct Calls
+If you can change your executable code then we need to monitor, is the code is immutable, then we should not worry about monitoring. These are also called direct calls.  _We usually assume that binary code cannot be modified_, this is actually quite popular in Unix environments. Programs often involve jumping to different areas of code. How does a function know where to jump back to when done executing? We use the `ret` variable on the stack. Buffer overflows can overwrite the `ret` variable ad make a program jump wherever. These are called indirect jumps. Indirect jumps __need to be monitored__
+
+Hackers usually take advantage of the data in your program. They may not be able to change the code but they can change the data possibly controlling where your code jumps to. Data is put into registers on the CPU instructing what your code does. Hackers can possibly change that data
+
+For example, direct calls would be like `sort()` below. It is a direct call into that function
+
+<p align="center">
+  <img src="../assets/software-security/directCall.png"  width="60%" height="60%">
+</p>
+
+Indirect calls are a type of function call where the address of the function is determined at runtime, rather than being hardcoded. An indirect call involves a jump to `lt` or `gt`. These are functions that are called via a register as they are __parameters__ passed in. The return variable is used to jump back, this is based on data in the stack
+
+<p align="center">
+  <img src="../assets/software-security/indirectCall.png"  width="60%" height="60%">
+</p>
+
+## Labeling
+We keep eyes on jump behavior with the compiler, which does the in-line monitoring. During compilation it injects monitors to keep eyes on control flow. The compiler can insert labels right before the target address to verify the indirect transfer. By attaching a security label to an indirect call, developers can ensure that only authorized functions are called, and that the call is made with the appropriate level of privilege
+
+The simplest way to label is using the same label for all targets, you can treat your program as one unit labeling each indirect call as with your program to ensure that it does'nt jump out. You would have to make sure library calls are taken care of
+
+<p align="center">
+  <img src="../assets/software-security/label.png"  width="60%" height="60%">
+</p>
+
+### Detailed Labeling
+Detailed labeling can also be used, different modules use different labels. All calls to sort must use Label L, calls to `lt` or `gt` must use Label M. Label N can not jump to Label M. Labels can be verified when calling or when returning. It is the destination label being verified
+
+<p align="center">
+  <img src="../assets/software-security/label.png"  width="60%" height="60%">
+</p>
+
+```
+call  [ebx + 8]               :this is an indirect call to a function, it has been determined at runtime, ebx is a register
+mov   eax, [ebx + 8]          :loading the pointer into another register
+cmp   [eax + 4], 12345678h    :compare the labels to verify
+jne   error_label :           :if not equal handle elsewhere
+call  eax                     :call function if equal
+```
+
+{: .important}
+You may think that hackers could identify/modify enforced labels but this wont work. The operating system will put a stop to any code trying to be executed in the stack so injected code with a correct label will not work. Memory is segmented into executable memory and stack memory. You also cannot change labels because the code is immutable. The label also cannot be changed during execution in memory, you don't know the label or have permission
+
+## CFI Assurance
+CFI defeats control flow-modifying attacks but it cannot control manipulation of the control-flow that is allowed by the labels/graphs(labels being changed). It also cannot control data leaks or corruptions such as overflow
+
+# Static Analysis (Code Auditing)
+Analyzing software code without actually executing it. Useful before compilation or deployment. Try and cover all paths by traversing the source code. This is in comparison to running your code and testing using penetration testing. _You analyze your source code with another analyzing software_, you are not running your code
+
+Can be expensive and difficult but can aid in a fix. The analyzing program can find issues with syntax, buffer overflow, or other vulnerabilities and let you know to fix them. Will not find all issues usually, to complex. The simplest form of this is having a peer review your source code
+
+__Benefit include__        
+- much higher coverage
+- you can analyze many paths of the program
+- you can analyze possible incomplete programs
+
+__Drawbacks__        
+- you can only analyze limited properties, if you don't recognize a problem then you will miss it
+- can be time consuming
+- you may miss some errors, or have false alarms
+
+Static analysis does happen to encourage better development, you can avoid mistakes in the first place. Programmers will begin to manifest certain assumptions they make. Don't have blurry lines
+
+## The Halting Problem
+Problem that seeks to determine whether a program will eventually halt, or run forever. Can we prove that for any program P and inputs to it that P will terminate? It is impossible to solve the halting problem for all possible programs and inputs, it is undecidable
+
+The halting problem and array bounds checking are approximately equal. While there is no general algorithm that can determine whether any program will halt or run forever there are methods such as static or dynamic analysis that can determine out of bounds errors. However, it is computationally expensive and has been proven to be similar to the halting problem in complexity meaning that for all cases it is difficult to determine if buffer overflows will occur. There are programs however that will stop you immediately from accessing memory outside of an array, but C does not do such a thing
+
+## Is Static Analysis Impossible?
+Perfect static analysis does not exist but useful static analysis is perfectly possible. Most static analyzers will overlook errors. Static analysis falls somewhere between soundness and completeness
+
+### Sound and Complete Static Analysis
+A static analyzer should be both sound and complete, today's systems usually lean towards either soundness or completeness
+
+__Sound static analysis__ is defined as a property that guarantees that if the tool reports errors, then there are indeed errors in the program. The analyzer is sound if it does not issue false-positive results, or false alarms. Soundness, if the program is claimed to be error free, then it really is. You can't prove anything thats wrong
+
+__Complete static analysis__ is if the analyzer does not give a false-negative result, for instance the analyzer is complete if there is not an error and it does not get reported. We always find the issues. Completeness, if the program is claimed to be erroneous, then it really is. You can't prove anything that's right
+
+False-positive, you say there is a problem but everything is fine. False-negative, you say there is no problem but there is a problem. False-negatives are arguably more problematic
+
+<p align="center">
+  <img src="../assets/software-security/soundComplete.png"  width="60%" height="60%">
+</p>
+
+Both sound and complete meet in the middle to say "Things I say are all true things"
+
+# Tainted Flow Analysis
+The root cause of many attacks is trusting un-validated input. Input from the user can often be tainted. Examples can include SQL injection attacks, which is allowing form data that is used to query a database to be incorrect, potentially exploiting the database to erroneous behavior. Another is a format string attack discussed below
+
+Essentially we want to identify potential security vulnerabilities in programs by tracing the flow of data through the program and detecting any points at which user input may be used in an unsafe manner
+
+For example, a tainted flow analysis might identify a vulnerability where user input is used in a SQL query without proper sanitization, potentially allowing an attacker to inject malicious code into the query and execute unauthorized database operations. The analysis tool would flag this vulnerability and provide recommendations for how to fix it, such as using parameterized queries or input validation to prevent SQL injection attacks
+
+{: .note}
+A method that expects tainted data can also be used with untainted data, it only expects bad data so there is no problem with using good data. It is illegal during static analysis however to use tainted data where untainted data is expected
+
+## Format String Attack
+A format string attack is a type of software vulnerability that can occur in programs that use formatted input/output functions such as printf(). In a format string attack, an attacker uses a string that contains formatting directives to read or write arbitrary memory locations, potentially allowing them to execute malicious code or steal sensitive information. If an attacker is able to pass a carefully crafted input string that includes format specifiers, they can cause the function to access memory that it shouldn't be able to access, potentially leading to a range of security issues
+
+```c
+char *name = fgets(..., network_fd)
+printf(name);
+```
+
+An attacker can set name = %s%s%s to crash the program. An attacker can also set name = %n to write to memory
+
+We can classify our data into tainted and untainted types. For example, the following code runs
+
+```c
+int printf(untainted char *fmt, ...);
+tainted char *fgets(...);
+
+tainted char *name = fgets(..., network_fd);
+printf(name);
+```
+
+The bottom `printf()` would be considered a failure in static analysis as we are using the tainted name variable in a parameter where the function expects data to be untainted
+
+No tainted data flows would indicate that for all possible inputs, we prove that tainted data will never be used where untainted data is expected. We can annotate our code in order to specify untainted/tainted data and follow it throughout the life of the program
+
+## Flow Sensitivity
+Tainted flow analysis, unlike control flow, is flow insensitive. We aren't concerned with branching/decisions, more concerned with assignments. Each variable has one qualifier which abstracts the tainted-ness of all values it ever contains
+
+Flow sensitive analysis would account for variables whose contents change cause by conditions or functions. Variable contents change by the decisions made in a program
+
+# Penetration Testing
+Unlike static analysis, we are actually running your program. It assesses security by actively trying to find exploitable vulnerabilities. Testing can be applied at different level of granularity, the single program/complete application/network application must be runnable. Libraries and incomplete applications are usually not tested
+
+Pen testers, usually carried out by a separate team within/not within your organization, usually employ ingenuity and automated tools to explore a system's attack surface, looking for weaknesses. Not carried out by the actual developers, they are biased towards their code. Pen testers are given varied levels of access
+
+__Benefits__ include that penetrations are certain and reproducible, they demonstrated by tests. Static analysis can raise false alarms where pen testing cannot. There is also evidence presented that the vulnerabilities are real and have gone unfixed, results in clear improvement to security
+
+__Drawbacks__ can include assumptions made about the absence of issues after pen testing. This does not mean you have reached security, there may be some still lurking. Changes to a system also necessitate a retest of the system. Small changes can propagate to other components making larger vulnerabilities. Changes are often common unfortunately
+
+## Tools for Penetration Testing
+Pen testers use tools to probe a target and gather information. Some tools for pen testing include
+
+### nmap 
+`nmap` is used for network scanning. It stands for "network mapper"              
+
+ Nmap can do the following
+1. Find what hosts are available on the network
+   - `nmap` will ping a specified range of IP addresses
+2. What services (application name and version) these hosts are offering
+   - TCP SYN to port 443 or TCP SYN/ACK to port 80 to look for HTTPS or HTTP servers
+   - Will probe protocol specific UDP/TCP ports
+3. What OS and the version they are running
+   - Probes to elicit different responses on different OSes
+4. What type of packet filters/firewalls are in use
+
+When using `nmap` a flurry of activity can be detected, you need to control the rate at which you scan so you go under the radar. Nmap works by sending raw IP packets into the network and is free and [open-source](https://nmap.org/)
+
+
+### zap
+Web proxies are frequently targeted entities. `zap`, stands for __Zed Attack Proxy__, is used for web proxy probing and exploitation. If you can act as the proxy, you can control where or what a user does as well as test the web application on the server side
+
+`zap` is a GUI based method of the inspection/modification of captured packets. It is [open-source](https://github.com/zaproxy/zaproxy) as well. `zap` works by intercepting and modifying HTTP and HTTPS requests and responses between the client and the server, allowing you to see and modify the traffic to test the security of the web application. It can be used both as a proxy and as a standalone tool, and it supports a wide range of scanning techniques, including passive and active scanning
+
+
+### Metasploit
+`metasploit` is an advanced open source platform for developing, testing, and using exploit code. It is an [open-source](https://www.metasploit.com/) testing framework that allows security professionals and researchers to identify and exploit particular vulnerabilities in systems. Probes many targets with a library of scripts, encodes the payload to avoid detection
+
+Metasploit comes with an interactive console, and also supports active/passive attacks
+
+### Kali
+Another suite for pen testing, is actually a Linux distribution. Implements many open-source pen testing tools such as
+
+- _John the Ripper_ for password cracking
+- _Valgrind_ for dynamic binary analysis
+- _Reaver_ for WiFi password cracking
+- _peepdf_ for scanning PDF files for attack vectors
+
+Also includes every tool mentioned above
+
+## Approaches
+Humans will probe and interact with a system, looking for different weaknesses or vulnerabilities, once the vulnerabilities are found, you can write programs to do the work, _ingenuity automated_
+
+A pen tester approaches a target knowing the workings of the target domain(web), how the systems are built(Protocols: (http, tcp) Languages: (Python, Java) Frameworks: (Rails, Dream Weaver)), and common weaknesses(bugs like SQL injections or misconfigurations like default passwords)
+
+<p align="center">
+  <img src="../assets/software-security/penTest.png"  width="60%" height="60%">
+</p>
+
+From the above picture you can test a webpage with 
+- Testing extreme cases by changing price to 0.01 or changing item to 10
+- Inserting foreign scripts into the URL
+- The last is a sort of injection, can the system handle this command?
+- You can also try default passwords, looking through hidden files or directories, and others
+
+### Ethical Hacking
+A good pen testing team meant to reveal security issues to customers. Are usually hired to deploy pen testing
+
+### Fuzzing
+A useful technique is called __fuzzing__ which is a software testing technique that involves sending a large number of input data to a program or system in an attempt to identify vulnerabilities, errors, and crashes. It is a kind of random testing, the input data is randomly generated in large amounts
+
+Fuzzing compliments functional testing, functional testing has a clear goal, in fuzzing we are just sending random input's. There are different kinds of fuzzing
+
+1. __Black Box__ - the tool knows nothing about the program or its input, easy to use and get started but only explores up to a very shallow amount
+2. __Grammar Based__ - uses a set of rules or grammar to generate valid inputs that adhere to the syntax and structure of a specific file format or protocol. Fuzzing adheres to the grammar of the system under the test
+3. __White Box__ - the tool generates new inputs at least partially informed by the code of the program. Is computationally expensive
+
+After fuzzing you have to decipher the root cause of why the system crashed based on that input
+
+#### Fuzzing inputs
+There are a few techniques used to generate inputs for fuzzy testing
+1. __Mutation__ - take a legal input and mutate it
+2. __Generational__ - generate speech from scratch using grammar or being completely random
+3. __Combinations__ - generate initial input, mutate, generate new inputs. Generate mutations according to grammar 
+
+## Finding Memory Errors
+An address sanitizer (ASAN) is a tool that helps to detect memory-related bugs in software programs. It is a type of runtime instrumentation that can be used during program execution to identify memory errors such as buffer overflows, use-after-free bugs, and memory leaks
+
+The address sanitizer works by inserting extra code into the compiled binary, which checks the program's memory access patterns at runtime. When a memory error is detected, the sanitizer can stop the program and print diagnostic information, such as the location of the error and a stack trace, to help developers identify and fix the problem
+
+After sanitizing code is compiled into the binary you can _fuzz it_ and see if ASAN sent any signal errors
+
+
+
+
+
+
+
+
+
+
+  
 
 Emulation - analyze programs code without running it. You translate each instruction using software for the underlying hardware to understand 
-
-Soundness vs Completeness **Exam
-Soundness does not issue false-positive results
-Completeness does not give a false-negative result

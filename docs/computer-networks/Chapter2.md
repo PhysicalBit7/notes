@@ -23,7 +23,7 @@ permalink: /computer-networks/Chapter2
 
 ---
 
-# Lecture 1
+# Application Layer Protocols
 Internet applications have been the driving force of its popularity, this chapter defines key application-layer concepts, including network services required by applications, clients and servers, processes, and transparent-layer interfaces.
 
 ## Principles of Network Applications
@@ -32,15 +32,15 @@ Network applications include e-mail, web browsing, streaming services, and text 
 ### Network Application Architectures
 An applications architecture is distinctly different from the network architecture.
 - The application architecture is designed by the application developer and dictates how the application is structured over the various end systems. In choosing the application architecture, an application developer will likely choose from two of the prominent paradigms...
-  - __Client - Server architecture__
-    - consists of an always on host called a server, the servers services are requested by another host, called a client
-    - popular example are web browsers, they request pages sent from a server to a host
-    - clients do not directly communicate with one another
-    - a server has a fixed well known IP address
-    - other examples include FTP, Telnet, and e-mail
-  - __P2P architecture__ 
-    -  minimal reliance on dedicated servers in data centers. The application exploits direct communication between pairs of intermittently connected hosts, called peers, the peers are controlled by users, not some other entity
-    -  a defining note about P2P is the fact that it is self-scalable. Once a user participates they begin adding capacity ot the system by distributing files to other peers.
+__Client - Server architecture__      
+  - consists of an always on host called a server, the servers services are requested by another host, called a client
+  - popular example are web browsers, they request pages sent from a server to a host
+  - clients do not directly communicate with one another
+  - a server has a fixed well known IP address
+  - other examples include FTP, Telnet, and e-mail
+__P2P architecture__      
+  -  minimal reliance on dedicated servers in data centers. The application exploits direct communication between pairs of intermittently connected hosts, called peers, the peers are controlled by users, not some other entity
+  -  a defining note about P2P is the fact that it is self-scalable. Once a user participates they begin adding capacity ot the system by distributing files to other peers.
 
 ## Process Communicating
 A process is a currently executing program in RAM. Many processes can communicate on a single host via IPC, governed by the OS. This course is only interested in how two processes on separate hosts communicate. One process communicates with another by sending messages onto the network. The receiving process acquires the message and does something with it.
@@ -52,13 +52,12 @@ A network application consists of pairs of processes that send messages to each 
   - P2P architectures do have client/server processes but a host can do either/both
 
 ### Sockets
-__A process sends/receives messages to/from its socket__. A socket is a software component that provides a means for two processes to communicate with each other over a network, using a combination of an IP address and a port number.
+__A process sends/receives messages to/from its socket__. A socket is a software component that provides a means for two processes to communicate with each other over a network, using a combination of an __IP address and a port number.__
 
 <p align="center">
   <img src="{{site.baseurl}}/assets/computer-networks/socket.png"  width="70%" height="50%">
 </p>
 
-__IP address + Port number = socket__
 
 
 Taking it deeper, a socket is the interface between the application layer and the transport layer within a host, an API essentially between the application and the network. This is the only part of transmission an application developer has control over.
@@ -85,8 +84,8 @@ An application at the sending side pushes messages through a socket, at the othe
 
 ## TCP and UDP
 TCP and UDP are the two transport-layer protocols provided to applications. A dev must decide which to use.
-- __TCP - transport control protocol__
-  - TCP is a connection-oriented service and a reliable data transfer service
+- __TCP__, Transport Control Protocol
+  - TCP is a connection-oriented and reliable data transfer service
   - a client and a server exchange transport-layer control information before the application-level messages begin to flow. When the connection is made it is said to be a TCP connection that exists between the two sockets of the two processes. 
   - The connection is a full duplex connection and must be torn down when done.
   - The communicating process can rely on TCP to deliver all data sent without error and in the proper order.
@@ -104,7 +103,7 @@ Neither TCP or UDP provide encryption. Data sent in is sent in cleartext by both
 
 ---
 
-__UDP__ - User Datagram Protocol
+__UDP__, User Datagram Protocol
   - lightweight, connection-less protocol. No handshaking is done beforehand like in TCP connections. It is an unreliable data transfer service
   - UDP provides no guarantee that the message will ever reach the receiving process. Messages also may arrive out of order
   - UDP also does not provide the same congestion-control mechanism that TCP provides
@@ -126,7 +125,6 @@ An application layer protocol defines how an applications processes, running on 
 {: .note }
 It is important to distinguish between network applications and application-layer protocols. An application-layer protocol is only one piece of a network application. In other words, network applications(the Web) are the software programs that use the network, while application layer protocols(HTTP) are the rules and procedures used by these programs to communicate over the network.
 
----
 
 ### HTTP
 The World Wide Web's application layer protocol is HTTP(hypertext transfer protocol). HTTP is implemented in two programs: a client program and a server program. Executing on different end systems, a client and a server talk to each other by exchanging HTTP messages. HTTP defines the structure of these messages and how the client and server exchange the messages.
@@ -183,7 +181,8 @@ __The header line is useful because the server can actually send different versi
 
 __POST__ is often used when a user fills out a form, for example, when a user provides search words to a search engine. The user is still requesting a Web page from the server, but the specific contents of the Web page depend on what the user entered into the form fields. If the value of the method field is _POST_, then the entity body contains what the user entered into the form fields
 
-__To note__, the above about POST does not necessarily mean that it is used. Normally GET is used and the URL is modified. If a user searches for "monkeys" and "bananas", a GET message is used with the url being something like _"www.somesite.com/animalsearch?monkeys&bananas"_
+{: .note}
+The above about POST does not necessarily mean that it is used. Normally GET is used and the URL is modified. If a user searches for "monkeys" and "bananas", a GET message is used with the url being something like _"www.somesite.com/animalsearch?monkeys&bananas"_
 
 #### HTTP Response Message
 Below is a typical response message coming after a request
@@ -312,13 +311,12 @@ Server: Apache/1.3.0 (Unix)
 (empty entity body)
 ```
 
-__Note the web server still sends a response message but does not include the requested object in the response message__
+{: .important}
+The web server still sends a response message but does not include the requested object in the response message
 
 ---
 
-# Lecture 2
-
-## Electronic Mail in the Internet
+# Electronic Mail in the Internet
 E-mail remains one of the most important applications on the internet today. It is an asynchronous communication medium where people send and read messages when it is convenient for them.
 
 There are three major components to email...
@@ -329,13 +327,13 @@ There are three major components to email...
 - _SMTP(simple mail transfer protocol)_
   - the principle application layer protocol for e-mail. It uses TCP to transfer mail from the sender's email server to the recipients mail server. Has a client side, which executes on the sender's mail server, and a server side, which executes on the recipients mail server. Both sides run on every mail server
 
-### SMTP
+## SMTP
 
 <p align="center">
   <img src="{{site.baseurl}}/assets/computer-networks/smtp.png"  width="70%" height="50%">
 </p>
 
-It is important to note in the above graph that messages can be queued from within the two mail servers. If the mail server cannot be reached the message waits in the queue and the server keeps periodically trying.
+It is important to note in the above graph that messages can be queued from within the two mail servers. If the mail server cannot be reached the message waits in the queue and the server keeps periodically trying
 
 Also, there are TCP connections being made at every step of transmission using port 25. When connecting there are application layer handshakes being made to introduce who the sending/receiving mail servers are. During this phase the sending user's email address is introduced as well
 
@@ -349,27 +347,25 @@ In the above example, a client sends "Do you like ketchup? How about pickles?" t
 - SMTP uses persistent connections
 - SMTP requires message to be in 7-bit ASCII
 
-#### Comparison with HTTP
+### Comparison with HTTP
 Both SMTP and HTTP are used to send files from one host to another. Both use persistent connections however, there are some important distinctions
 - HTTP uses a __pull protocol__ where someone loads information on a web server and users use HTTP to pull the information from their server at their convenience. The TCP connection is established by the machine that wants to receive the file.
 - SMTP uses a __push protocol__ where the sending mail server pushes the file to the receiving mail server. The TCP connection is made by the machine that wants to send the file.
 - SMTP needs everything to be in 7-bit ASCII
 - HTTP encapsulates each object in its own HTTP response message. SMTP places all of the message's objects into one message.
 
-#### Mail message format
+### Mail message format
 RFC 5322 defines header lines containing information on the sender, receiver, and an optional subject, separated by a blank line `CLRF`. These are different from the earlier handshaking commands ie. `FROM`, `RCPT TO`, etc
 
 The body contains only ASCII characters
 
-### Mail Access Protocols
+## Mail Access Protocols
 Today mail access uses a Client-Server architecture. We don't login to the mail server to check our mail. Since SMTP is a push operation, a recipient cannot use SMTP to receive an email from their mail server. A pull operation is needed...
 - POP3(post office protocol version 3)
 - IMAP(internet mail access protocol)
 - HTTP
 
----
-
-#### POP3
+### POP3
 Extremely simple mail access protocol. A TCP connection is made to the mail server on port 110 and three phases commence; __authorization, transaction, and update__. 
 
 1. Authorization - user agent sends a username and password (cleartext) to authenticate.
@@ -384,11 +380,11 @@ Extremely simple mail access protocol. A TCP connection is made to the mail serv
 
 After authorization four commands can be used; `list`, `retr`, `dele`, and `quit`. After issuing `quit` the POP3 server enter the _update_ phase and updates a users mailbox
 
-__POP3 does not keep track of user sessions across different POP3 sessions__
+{: .note}
+POP3 does not keep track of user sessions across different POP3 sessions
 
----
 
-#### IMAP
+### IMAP
 POP3 downloads emails locally to one machine where they can be stored in files, directories, etc. This poses a problem for someone who uses email across multiple machines. Some would prefer these directories and emails be saved on a remote server and accessed from any computer. In comes IMAP.
 - All messages are stored in one place on the server
 - Users can organize messages in folders
@@ -400,30 +396,28 @@ POP3 downloads emails locally to one machine where they can be stored in files, 
 
 Directory information would be located below
 
----
 
-#### HTTP
+### HTTP
 It has become quite popular for user agents to simply be web browsers and the user communicates with its remote mailbox via HTTP. HTTP is used in both sending and receiving but wraps SMTP, which is used under the hood for the "pushing" part of the application
 
+
 ---
 
-# Lecture 3
+# DNS
+Just as humans can be identified in many ways, so can internet hosts. One identifier for a host is its __hostname__. Hostnames include things like "www.facebook.com". Hosts are identified by both there IP address and hostname
 
-## DNS
-Just as humans can be identified in many ways, so can internet hosts. One identifier for a host is its __hostname__. Hostnames include things like "www.facebook.com". Hosts are identified by both there IP address and hostname.
-
-### Services Provided by DNS
+## Services Provided by DNS
 DNS's main task is to provide translation from _hostname_ to _IP address_. DNS is...
 1. A distributed database implemented in a hierarchy of __DNS Servers__
 2. An application-layer protocol that allows hosts to query the distributed database
 
 The DNS servers are usually `UNIX` machines running the __Berkeley Internet Name Domain(BIND)__ software. The DNS protocol runs over UDP on port 53
 
-DNS usually runs in tandem with HTTP where when a user requests a page, the hostname is passed to the DNS client service where it query's a DNS server. DNS can be slow sometimes so entries are usually __cached__.
+DNS usually runs in tandem with HTTP where when a user requests a page, the hostname is passed to the DNS client service where it query's a DNS server. DNS can be slow sometimes so entries are usually __cached__
 
 - __Host aliasing__ - a host with a complicated hostname can have one or more alias names. A hostname such as `relay1.west-coast.enterprise.com` (also known as the __canonical name__) could have two aliases such as `enterprise.com` and `www.enterprise.com`
 - __Mail server aliasing__ - hostnames for emails such as "bob@yahoo.com" are often much more complicated than simply @yahoo.com. The canonical name could be `relay1.west-coast.yahoo.com`. DNS can be invoked by a mail application to obtain the canonical name for a supplied alias hostname, as well as the IP address of the host
-- __Load distribution__ - DNS is also used to perform load distribution among replicated servers, such as replicated web servers. Busy cites, like `cnn.com`, are often replicated over multiple servers, with each machine having a different IP address. For this a set of IP addresses is thus associated with one canonical hostname. A DNS server will respond from within this set of addresses, but will rotate the ordering of the addresses with each reply. HTTP requests usually use the first address in the set.
+- __Load distribution__ - DNS is also used to perform load distribution among replicated servers, such as replicated web servers. Busy cites, like `cnn.com`, are often replicated over multiple servers, with each machine having a different IP address. For this a set of IP addresses is thus associated with one canonical hostname. A DNS server will respond from within this set of addresses, but will rotate the ordering of the addresses with each reply. HTTP requests usually use the first address in the set
 
 ## How DNS works
 
@@ -437,24 +431,25 @@ A simple design for DNS would see that there is a single DNS server that contain
 - Distant centralized database
 - Maintenance
 
-This does not scale well, consequently a distributed design is preferred.
+This does not scale well, consequently a distributed design is preferred
 
 <p align="center">
-  <img src="{{site.baseurl}}/assets/computer-networks/dnsHeir.png"  width="70%" height="50%">
+  <img src="{{site.baseurl}}/assets/computer-networks/dnsHeir.png"  width="80%" height="70%">
 </p>
 
-For google.com
-- Client queries __root server__ to find __com DNS server__
-- Client queries __.com DNS server__ to get __google.com DNS server__ ip address. Stores two resource records, A record and NS record
-- Client queries __google.com DNS server__ to get  IP address for __www.google.com__
+For `google.com`
+- Client queries __root server__ to find __.com DNS server__
+- Client queries __.com TLD(top level domain) server__ to get the `google.com` __authoritative DNS servers__ IP address. Stores two resource records, the 'A' record and 'NS' record. 
+- Client queries __google.com authoritative DNS server__ to get the IP address for `www.google.com`. This would be a single 'A' record
+- `www` specifies a subdomain, notice how there are two for `google.com`
 
-### DNS server classes
+## DNS server classes
 
 1. Root DNS servers - there are over 400 root name servers scattered all over the world. They provide the IP addresses of the TLD servers
 2. Top-level domain servers(TLD) - For each `.com`, `.edu`, and `.net` there is a TLD server or server cluster
 3. Authoritative DNS servers - every organization with publicly accessible hosts (such as web servers and mail servers) on the internet must provide publicly accessible DNS records that map the names of these hosts to IP addresses. An organization can do this themselves or pay to have these records stored in an authoritative DNS server of some service provider
 
-There is also a __local DNS server__ deployed by many service providers given to hosts via DHCP. A DNS request is first sent to the local DNS server where it acts as a proxy, forwarding the query into the DNS server hierarchy.
+There is also a __local DNS server__ deployed by many service providers given to hosts via DHCP. A DNS request is first sent to the local DNS server where it acts as a proxy, forwarding the query into the DNS server hierarchy
 
 
 <p align="center">
@@ -466,7 +461,7 @@ There are __recursive queries__, noted by the request from `cis.poly.edu` to `dn
 ### DNS caching
 DNS extensively exploits __DNS caching__ to speed up queries and reduce there number. It is straightforward, a DNS reply can be cached and when another host requests that same mapping, the cache is queried first and returned.
 
-These mappings can timeout after some time (TTL). TLD servers are typically _cached in local name servers_, thus root name servers not often visited.
+These mappings can timeout after some time (TTL). TLD servers are typically _cached in local name servers_, thus root name servers not often visited
 
 Cached entries can be out of date, if the IP address of a host is changed it may not be known Internet-wide until all TTL's expire
 
@@ -479,14 +474,14 @@ The meaning of `Name` and `Value` depend on `Type`
 - If `Type = A` then `Name` is a hostname and `Value` is the IP address for the hostname. Thus a Type A record provides the standard hostname-to-IP address mapping such as `(relay1.br.foo.com, 145.37.93.126, A)`
 - If `Type = NS` then `Name` is a domain (such as foo.com) and `Value` is the hostname of an authoritative DNS server that knows how to obtains the IP addresses for hosts in the domain. This is used to route DNS queries further along in the query chain, such as `(foo.com, dns.foo.com, NS)`
 - If `Type = CNAME`, then `Value` is a canonical hostname for the alias hostname `Name`. This record can provide querying hosts the canonical name for the hostname, `(foo.com, relay1.bar.foo.com, CNAME)`
-- If `Type = MX`, then `Value` is the canonical name of a mail server that has an alias hostname `Name` like `(foo.com, mail.bar.foo.com, MX)`. MX records allow the hostnames of mail servers to have simple aliases.
+- If `Type = MX`, then `Value` is the canonical name of a mail server that has an alias hostname `Name` like `(foo.com, mail.bar.foo.com, MX)`. MX records allow the hostnames of mail servers to have simple aliases
 
-If a DNS server is authoritative for a particular hostname, then the DNS server will contain a `Type A` record for the hostname. Even if a DNS server is not authoritative, it may contain a `Type A` record in its cache.
+If a DNS server is authoritative for a particular hostname, then the DNS server will contain a `Type A` record for the hostname. Even if a DNS server is not authoritative, it may contain a `Type A` record in its cache
 
 If a server is not an authoritative for a hostname, then it will contain a `Type NS` record for the domain that includes the hostname, it will also contain a `Type A` record that provides the IP address of the DNS server in the `Value` field of the NS record
 
 ### DNS Messages
-The only two kinds of DNS messages are _query_ and _reply_. Both also have the same format,.
+The only two kinds of DNS messages are _query_ and _reply_. Both also have the same format
 
 <p align="center">
   <img src="{{site.baseurl}}/assets/computer-networks/dnsMessage.png"  width="60%" height="40%">
@@ -504,7 +499,7 @@ The only two kinds of DNS messages are _query_ and _reply_. Both also have the s
 - The __additional section__ contains other helpful records such as canonical hostname or IP address for MX
 
 ### Inserting Records into the DNS Database 
-The first thing you do with your domain name is registering it with a __registrar__. A registrar is a commercial entity that verifies the uniqueness of the domain name, enters the domain name into the DNS database and collects a small fee from you for its services.
+The first thing you do with your domain name is registering it with a __registrar__. A registrar is a commercial entity that verifies the uniqueness of the domain name, enters the domain name into the DNS database and collects a small fee from you for its services
 
 When you register the domain name with some registrar, you also need to provide the registrar with the names and IP addresses of your primary and secondary authoritative DNS servers. A registrar would then make sure that a `Type NS` and `Type A` record are entered into the _TLD com servers_
 
@@ -522,47 +517,44 @@ When you register the domain name with some registrar, you also need to provide 
 
 ---
 
-# Lecture 4
-
-## P2P architecture
-__P2P architecture__ is an architecture where there is no server that is always on. End systems communicate directly with one another, usually these end systems are not owned by a single entity but controlled by users.Why is P2P used? Network design limits the upload speed of data, servers are bottle necked by upload speeds. A heavy burden is also placed on a server, there can be a potentially huge amount of clients requesting data from the server.
+# P2P architecture
+__P2P architecture__ is an architecture where there is no server that is always on. End systems communicate directly with one another, usually these end systems are not owned by a single entity but controlled by users.Why is P2P used? Network design limits the upload speed of data, servers are bottle necked by upload speeds. A heavy burden is also placed on a server, there can be a potentially huge amount of clients requesting data from the server
 
 In a P2P system each peer can redistribute any portion of the file it has received. The __distribution time__ is the time it takes to get a copy of the file to all _N_ peers
 
-Mathematically, as the number of hosts that become apart of the distribution the faster distribution becomes, it is bounded however and can be represented as...
+Mathematically, as the number of hosts that become apart of the distribution increases, the faster distribution becomes. The summation can be represented as...
 
 <p align="center">
-  <img src="{{site.baseurl}}/assets/computer-networks/p2pSummation.png"  width="40%" height="10%">
+  <img src="{{site.baseurl}}/assets/computer-networks/p2pSummation.png"  width="30%" height="10%">
 </p>
 
-As U(s) becomes larger and larger, the equation gets smaller becoming bounded by the max of the other two within the equation.
+As U(s) becomes larger and larger, the equation gets smaller becoming bounded by the max of the other two within the equation
 
 <p align="center">
   <img src="{{site.baseurl}}/assets/computer-networks/p2p.png"  width="60%" height="40%">
 </p>
 
-### BitTorrent
+## BitTorrent
 BitTorrent is a popular P2P protocol for file distribution. In BitTorrent the collection of all peers participating in the distribution of a particular file is called a _torrent_. Peers in a torrent download equal-size _chunks_ of the file from one another, with a typical chunk size of 256 KBytes.
 
 When a peer first joins a torrent, it has no chunks. Over time it accumulates more and more chunks. While it downloads chunks it also uploads chunks to other peers. Once a peer has acquired the entire file, it may leave the torrent, or remain in the torrent and continue to upload chunks to other peers. Also, any peer may leave the torrent at any time with only a subset of chunks, and later rejoin the torrent.
 
 BitTorrent works by...
-- Each torrent has an infrastructure node called a __tracker__. 
+- Each torrent has an infrastructure node called a __tracker__.
 - When a peer joins a torrent, it registers itself with the tracker and periodically informs the tracker that it is still in the torrent
-- When a new peer joins the torrent, the tracker randomly selects a subset of peers from the set of participating and sends the IP addresses of these 50 peers to the new peer. 
+- When a new peer joins the torrent, the tracker randomly selects a subset of peers from the set of participating and sends the IP addresses of these 50 peers to the new peer.
 - TCP connections are attempted to all the peers on the list, successful ones becoming "neighboring peers"
 - As time goes on peers may join and leave
 - At any given time, each peer will have a subset of chunks from the file, with different peers having different subsets
 - Periodically, a host will ask each of her neighboring peers for a list of the chunks that they have.
-- If you have _L_ different neighbors, you will obtain _L_ lists of chunks, at any given time, you will have a subset of chunks and will know which chunks your neighbors have.
+- If you have _L_ different neighbors, you will obtain _L_ lists of chunks, at any given time, you will have a subset of chunks and will know which chunks your neighbors have
 - Next, you have to answer which chunks you should request first and to which of your neighbors should you send requested chunks
   - The technique __rarest first__ is used to determine, from among the chunks you don't have, the chunks that are the rarest among your neighbors and then request those rarest chunks first. This way the rarest chunks are redistributed the quickest
   - A clever trading algorithm is used to respond to requests. Basically, you give priority to the neighbors that are currently supplying you data __at the highest rate__. Each neighbor is analyzed and four neighbors are found that are feeding you bits the fastest. You then reciprocate by sending chunks to those same set of four peers. Every _ten_ seconds this is recalculated and modified if needed
-    - In BitTorrent lingo the four neighbors are said to be __unchoked__. Importantly every 30 seconds, you also pick one additional neighbor to send chunks. This additional neighbor is said to be __optimistically unchoked__.
+    - In BitTorrent lingo the four neighbors are said to be __unchoked__. Importantly every 30 seconds, you also pick one additional neighbor to send chunks. This additional neighbor is said to be __optimistically un-choked__
 
-__The result of this trading algorithm means that peers capable of uploading at compatible rates tend to find each other__
-
-This incentive mechanism for trading is often called __tit-for-tat__
+{: .note}
+The result of this trading algorithm means that peers capable of uploading at compatible rates tend to find each other. This incentive mechanism for trading is often called __tit-for-tat__
 
 
 

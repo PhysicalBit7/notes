@@ -99,6 +99,8 @@ The __receiver's__ steps are as follows:
  
 A video that helped is found [here](https://www.youtube.com/watch?v=A9g6rTMblz4)
 
+---
+
 # Switched Local Area Network
 Link-Layer addressing is made up unique MAC addresses, the ARP protocol is also used in order to translate IP addresses to link-layer addresses
 
@@ -168,6 +170,8 @@ Ethernet technologies serve to provide connection-less service to the network la
 
 #### Ethernet Today
 Ethernet is both a link-layer protocol and a physical-layer protocol, defining different mediums by which data can travel in an Ethernet topology; copper, fiber, and coax
+
+---
 
 # A Day in the Life of a Web Page Request
 Here we can summarize all of the layers working together in order for a host to receive a web page, say `www.google.com`

@@ -42,6 +42,8 @@ In a brief description of the network layer, IP provides logical communication b
 
 The most fundamental responsibility of UPD/TCP is to extend IP's delivery service between two end systems to a delivery service between two processes running on the end systems. Extending host-to-host delivery to process-to-process delivery is called __transport-layer multiplexing__ and __demultiplexing__.
 
+---
+
 # Multiplexing and Demultiplexing
 Defined as extending the host-to-host delivery service provided by the network layer to a process-to-process delivery service for applications running on hosts.
 
@@ -100,7 +102,7 @@ _The server host may support many simultaneous TCP connection sockets, with each
 #### Figure 4, Host C initiates two HTTP sessions, Host A initiates one HTTP session 
 {: .no_toc }
 <p align="center">
-  <img src="{{site.baseurl}}/assets/computer-networks/tcpExample.png"  width="70%" height="50%">
+  <img src="{{site.baseurl}}/assets/computer-networks/TCPexample.png"  width="70%" height="50%">
 </p>
 Figure explained:
 1. All entities have there own unique IP address
@@ -126,6 +128,8 @@ Explanation of Web servers and how they use port numbers. A host running an Apac
 
 Figure 4 above shows the web server spawning a new process for each connection. Each of these processes has its own connection socket through which HTTP requests arrive and HTTP responses are sent. Today's high performing web servers often use only one process for initial communication, and __create a new thread with a new connection socket for each new client connection.__
 
+---
+
 # Connectionless Transport: UDP
 When a developer chooses to use UDP then the application is almost directly talking with IP. UDP takes messages from the application process, attaches source and destination port number fields for the multiplexing/demultiplexing service, adds two other small fields, and passes the resulting segment to the network layer. TCP may sound overall better than UDP but there are some points to be made for UDP
 
@@ -134,13 +138,16 @@ When a developer chooses to use UDP then the application is almost directly talk
 - _No connection state_. TCP maintains connection state in the end systems. This state includes receive and send buffers, congestion-control parameters, and sequence and acknowledgment number parameters. A server running UDP can usually support many more clients
 - _Small packet header overhead_. The TCP segment has 20 bytes of header overhead in every segment, whereas UDP has only 8 bytes of overhead
 
-__Reliability can be a feature of UDP but the reliability has to be built into the application itself__
+{: .note}
+Reliability can be a feature of UDP but the reliability has to be built into the application itself
 
 ## UDP segment structure
 See the structure in Figure 1 above. The header has only four fields, each consisting of two bytes. The port numbers allow for the destination end system to correctly demultiplex to processes. The length field specifies the number of bytes in the UDP segment (header plus data). The length value is needed since the size of the data file may differ from one UDP segment to the next. The checksum is used by the receiving host to check whether errors have been introduced into the segment
 
 ### UDP Checksum
-Provides error detection. The checksum is used to determine whether bits within the UDP segment have been altered as it moved from source to destination. UDP at the senders side performs the 1s compliment of the sum of all the 16 bit words in the segment, with any overflow encountered during the sum being wrapped around. The checksum is sent with the datagram. On the receivers side the checksum is added to the other three fields in the header. The outcome should be all 1's, if it is not then errors have been introduced into the packet. Although UDP provides error checking, it does not do anything to recover from an error. Some implementations of UDP simply discard the damaged segment; others pass the damaged segment to the application with a warning.
+Provides error detection. The checksum is used to determine whether bits within the UDP segment have been altered as it moved from source to destination. UDP at the senders side performs the 1s compliment of the sum of all the 16 bit words in the segment, with any overflow encountered during the sum being wrapped around. The checksum is sent with the datagram. On the receivers side the checksum is added to the other three fields in the header. The outcome should be all 1's, if it is not then errors have been introduced into the packet. Although UDP provides error checking, it does not do anything to recover from an error. Some implementations of UDP simply discard the damaged segment; others pass the damaged segment to the application with a warning
+
+---
 
 # Principles of Reliable Data Transfer
 It is the responsibility of a reliable data transfer protocol to implement a framework of a reliable channel through which data can be transferred. No transferred bits are corrupted or lost, and all are delivered in the order in which they were sent
@@ -229,6 +236,7 @@ SR numbers ACKs received based on the sequence number just received, it also que
 </p>
 
 
+---
 
 # TCP connections
 TCP is said to be connection-oriented because before one application process can begin to send data to another, the two processes must first "handshake" with each other, that is, they must send some preliminary segments to each other to establish the parameters of the ensuing data transfer. As part of this connection establishment, both sides of the connection will initialize many TCP state variables associated with the TCP connection
@@ -334,6 +342,9 @@ One of the first DOS attacks recorded is the SYN flood attack. A client can floo
 2. A legitimate client will return an ACK segment. When the server receives this ACK, it must verify that the ACK corresponds to some SYN sent earlier. This is done with the cookie. After running the same hash function, if the result is the same as the cookie value in the client's SYNACK, the server concludes that the ACK corresponds to an earlier SYN segment and is valid
 3. If it is a illegitimate connection, no harm is done as the server waits to allocate resources
 
+
+---
+
 # Principles of Congestion Control
 Much loss usually occurs within router buffers becoming overflowed. Packet retransmission thus treats a symptom of network congestion (the loss of a specific transport-layer segment) but does not treat the cause. Mechanisms are used to throttle senders in the face of congestion
 
@@ -347,6 +358,8 @@ Much loss usually occurs within router buffers becoming overflowed. Packet retra
 This section analyzes approaches to the network architecture/layer offering assistance to the transport layer for congestion-control purposes
 1. _End-to-end congestion control_: practice of TCP detecting network congestion with duplicate ACK's and segment loss. TCP will decrease its window size in order to help with congestion. No help
 2. _Network-assisted congestion control_: routers provide explicit feedback to the sender and/or receiver regarding the congestion state of a network. In __ATM Available Bite Rate (ABR)__ congestion control, a router informs the sender of the maximum host sending rate it (the router) can support on an outgoing link
+
+---
 
 # TCP Congestion Control
 TCP must assume end-to-end congestion control as the network layer provides no notice that it is controlling congestion. The approach taken by TCP is to have each sender limit the rate at which it sends traffic into its connection as a function of perceived network congestion. If it perceives there is no congestion, the sender increases its send rate and vice,versa. Of note, congestion control is noted by the sender and the rate at which it sends segments, flow control is noted by a receiver making aware the receive window to a sender. Congestion control has to account for three questions...

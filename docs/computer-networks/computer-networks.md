@@ -21,4 +21,7 @@ Spring 2023
 - [Chapter 1](../computer-networks/Chapter1.md)
 - [Chapter 2](../computer-networks/Chapter2.md)
 - [Chapter 3](../computer-networks/Chapter3.md)
+- [Chapter 4](../computer-networks/Chapter4.md)
+- [Chapter 5](../computer-networks/Chapter5.md)
+- [Chapter 6](../computer-networks/Chapter6.md)
 - [Socket Programming](../computer-networks/socket-programming.md)
