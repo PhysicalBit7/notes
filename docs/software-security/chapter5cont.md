@@ -300,7 +300,7 @@ Formatted output functions that write to a character array assume arbitrarily lo
 
 ```c
 char buffer[512];
-sprintf(buffer, "Wrong command: %s\n", user);
+sprintf(buffer, "Wrong command: %s\n", user;
 ```
 
 Output streams can also be used to crash a program. For most UNIX systems, an invalid pointer access causes a SIGSEGV signal to the process. If not handled correctly the program will terminate abnormally and dump core
