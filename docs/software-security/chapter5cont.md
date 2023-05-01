@@ -45,15 +45,15 @@ int main(int argc, char** argv) {
 }
 ```
 
-> With a carefully crafted buffer overflow you could changed the `func_ptr` to whatever you want it to put to including shellcode
+> With a carefully crafted buffer overflow you could changed the `func_ptr` to whatever you want it to put to, including shellcode
 
 In order for pointers to be overwritten by buffer overflow they must (1) The buffer must be allocated in the same segment as the target function or object pointer (2) For a loop limited by an upper bound, by a Hi value, or by a null terminator, the buffer must be at a lower memory address than the target function or object pointer. For a loop limited by a lower bound, by a Lo value, the buffer must be at a higher memory address than the target function or object pointer (3) The buffer must not be adequately bounded
 
 ### Unix Segments
 Unix executables contain both a data and a BSS segment, the data segment contains all initialized global variables, the BSS segment contains all uninitialized global variables
 
-Re-entrant code = stateless, every time you run a function it holds no state
-Nonre-entrant code = stateful, retains state such as in `static` variables or when memory is not de-allocated
+- __Reentrant code__ = stateless, every time you run a function it holds no state     
+- __Non-reentrant code__ = stateful, retains state such as in `static` variables or when memory is not de-allocated
 
 ```c
 static int GLOBAL INIT = 1; /* data segment, global */
@@ -117,15 +117,15 @@ An arbitrary memory write could result if a buffer is overflowed, the overflow d
 An attacker cna modify the instruction pointer and reference some shellcode, normally you cannot change the EIP directly. It is changed by transfer instructions like ret, jmp, call, and jcc
 
 # Executable and Linkable Format
-ELF stands for Executable and Linkable Format. It is a file format used for executables, object code, shared libraries, and core dumps in many Unix-like operating systems. The ELF format is designed to be portable across different hardware platforms and operating systems. It is the default binary format on most Unix systems. Describes the way in which your program is compiled in a way
+ELF stands for Executable and Linkable Format. It is a file format used for executables, object code, shared libraries, and core dumps in many Unix-like operating systems. The ELF format is designed to be portable across different hardware platforms and operating systems. It is the default binary format on most Unix systems. ELF files define a common binary interface between the operating system kernel, the program loader, and the executable code, allowing programs and libraries to be compiled and linked on different systems and architectures
 
 ## Global Offset Table
-The Global Offset Table (GOT) is a data structure used by shared libraries in the Executable and Linkable Format (ELF) to resolve external symbols(functions basically) at runtime. It is a table that contains the addresses of all global variables and functions that the library needs to access. This is included in any process that uses a library like `libc`. Basically provides a way for your code to know how to get to the dll. It resides in the data segment and is changeable
+The Global Offset Table (GOT) is a data structure used by shared libraries in the Executable and Linkable Format (ELF) to resolve external symbols(functions basically) at runtime. It is a table that contains the addresses of all global variables and functions that the library needs to access. This is included in any process that uses a library like `libc`. Basically provides a way for your code to know how to get to the DLL. It resides in the data segment and is changeable
 
 When a program is used as a DLL, the linker generates a GOT entry for global variables. It is essential for dynamic linking to work
 
 ## Dynamically Linking Process
-Every library function used by a program has an entry in the GOT that contains the address of the actual function. The libraries can be relocated. the linker is responsible for creating the Global Offset Table (GOT) in a dynamically linked program. When the linker links a program that uses shared libraries, it creates a GOT for each shared library that the program uses. The GOT is a table that contains the addresses of all the global variables and functions that the program needs to access in the shared library
+Every library function used by a program has an entry in the GOT that contains the address of the actual function. The libraries can be relocated in memory upon execution. The linker is responsible for creating the Global Offset Table (GOT) in a dynamically linked program. When the linker links a program that uses shared libraries, it creates a GOT for each shared library that the program uses. The GOT is a table that contains the addresses of all the global variables and functions that the program needs to access in the shared library
 
 More specifically, before the program uses a function in a shared library it contains an address to the runtime linker(RTL). Control is passed to the RTL and it finds the mapping to the library which it then places into the GOT used after every subsequent call to that function
 
@@ -141,7 +141,7 @@ Each entry in the PLT also has a corresponding entry in the GOT. They work toget
 
 1. A function func is called and the compiler translates this to a call to func@plt
 2. The program jumps to the PLT        
-    a. the PLT points to the GOT
+    a. the PLT points to the GOT for the mapping to the function         
     b. if the function hasn't been previously called, the GOT points back into the PLT to a resolver routine, otherwise it points to the function itself
 
 
@@ -152,12 +152,12 @@ The GOT is found using the %ebx register. This register with some offset will al
   <img src="../assets/software-security/pltGOT.png"  width="70%" height="70%">
 </p>
 
-> The PLT contains a stub of code that either has to use the resolver function to correctly add an entry for a function into the GOT, or in subsequent calls, just directly queries the GOT table for the mapping
+> The PLT contains a stub of code that either has to use the resolver function to correctly add an entry for a function into the GOT, or in subsequent calls directly queries the GOT table for the mapping
 
 The PLT and GOT work as follows
 1. A library function is called, in the compiled binary this function is replaced with a stub function that belongs to the PLT table that has already been populated for each library function. The stub function first jumps to another address, this is an address into a specific location in the GOT
-2. Jumping to the GOT table we observe what is stored at the location we jumped to. At first it is another memory address pointing back to the PLT table. If the function has been called before the GOT will already contain the mapping to the library function
-    a. at this point the RTL needs to actually find the address of the library function
+2. Jumping to the GOT table we observe what is stored at the location we jumped to. At first it is another memory address pointing back to the PLT table. If the function has been called before the GOT will already contain the mapping to the library function     
+    a. at this point the RTL needs to actually find the address of the library function     
     b. with the help of offsets pushed onto the stack the RTL can find what address the program needs
 
 # Other Vulnerabilities in the Data Segment
@@ -174,7 +174,7 @@ C defines the `setjmp()` macro, `longjmp()` function, and jmp_buf type, which ca
 Some common memory management errors include initialization errors, failing to check return values, dereferencing null or invalid pointers, referencing freed memory, freeing the same memory multiple times, memory leaks, and zero-length allocations
 
 1. __Initialization Errors__      
-The `malloc()` function is commonly used to allocate blocks of memory. Tha value is not zeroed when at allocation, it is when using `calloc()` to allocate however
+The `malloc()` function is commonly used to allocate blocks of memory. The value is not zeroed when at allocation, it is when using `calloc()` to allocate however
 
 2. __Failing to Check Return Values__     
 You need to always check the return value of `malloc()` as you could have exhausted all memory and cannot allocate any more. Available memory is usually bounded by the sum of the amount of physical memory and the swap space allocated to the operating system

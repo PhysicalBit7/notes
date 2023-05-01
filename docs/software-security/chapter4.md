@@ -516,13 +516,13 @@ Can be useful when prioritizing risks and evaluating the effectiveness of potent
 # Start of Final
 
 # Control Flow Technology
-After architecture and design we begin the software implementation or the "programming" portion, after implementation is compilation. Control Flow is what our program does at runtime, how we programmed it. The Integrity in Control Flow Integrity is simply ensuring that our program does not deviate from the behavior. It can only be modified by authorized users. Hackers should not be able to change the program at runtime
+After architecture and design we begin the software implementation or the "programming" portion, after implementation is compilation. Control flow is what our program does at runtime, how we programmed it. The "Integrity" in control flow integrity is simply ensuring that our program does not deviate from intended behavior. It can only be modified by authorized users. Hackers should not be able to change the program at runtime
 
 {: .note}
 The compiler really should detect attacks. We try to stop attack probability at both compilation and runtime
 
 ## Behavior-Based Detection
-Idea: Observe the program's behavior, is it doing what we expect it to? If not, it might be compromised. Can be challenging to define "expected behavior", to detect deviations from expectation efficiently, and to avoid _compromise of the detector_(a hacker could turn this off or cause other erroneous behavior). In a Unix/Linux system, you could erase the log files that are made when doing something as sudo, removing all trace of an attackers activity (rootkit). This is a compromise of the hardware itself, your detector becomes completely useless
+Idea: Observe the program's behavior, is it doing what we expect it to? If not, it might be compromised. It can be challenging to define "expected behavior", to detect deviations from expectation efficiently, and to avoid _compromise of the detector_(a hacker could turn this off or cause other erroneous behavior). In a Unix/Linux system, you could erase the log files that are made when doing something as sudo, removing all trace of an attackers activity (rootkit). This is a compromise of the hardware itself, your detector becomes completely useless
 
 In short we are analyzing the program we built and making sure that the program acts how we want it to
 
@@ -550,7 +550,7 @@ Modular CFI can eliminate 95.75% of ROP gadgets on x86-64 versions of SPEC2006 b
 Refresher on dynamically linked libraries. When an executable program uses a dynamically linked library, it only includes a reference to the library's functions and data, rather than including the entire library's code. This allows multiple programs to share the same library code in memory, reducing the overall memory usage of the system and making it more efficient
 
 ## Indirect/Direct Calls
-If you can change your executable code then we need to monitor, is the code is immutable, then we should not worry about monitoring. These are also called direct calls.  _We usually assume that binary code cannot be modified_, this is actually quite popular in Unix environments. Programs often involve jumping to different areas of code. How does a function know where to jump back to when done executing? We use the `ret` variable on the stack. Buffer overflows can overwrite the `ret` variable ad make a program jump wherever. These are called indirect jumps. Indirect jumps __need to be monitored__
+If you can change your executable code then we need to monitor it. If the code is immutable, then we should not worry about monitoring. Direct calls are immutable, the instructions are built into the program image.  _We usually assume that binary code cannot be modified_, which is actually quite popular in Unix environments. Programs often involve jumping to different areas of code. How does a function know where to jump back to when done executing? We use the `ret` variable on the stack. Buffer overflows can overwrite the `ret` variable and make a program jump to wherever they want. These are called indirect jumps. Indirect jumps __need to be monitored__
 
 Hackers usually take advantage of the data in your program. They may not be able to change the code but they can change the data possibly controlling where your code jumps to. Data is put into registers on the CPU instructing what your code does. Hackers can possibly change that data
 
@@ -597,7 +597,7 @@ You may think that hackers could identify/modify enforced labels but this wont w
 CFI defeats control flow-modifying attacks but it cannot control manipulation of the control-flow that is allowed by the labels/graphs(labels being changed). It also cannot control data leaks or corruptions such as overflow
 
 # Static Analysis (Code Auditing)
-Analyzing software code without actually executing it. Useful before compilation or deployment. Try and cover all paths by traversing the source code. This is in comparison to running your code and testing using penetration testing. _You analyze your source code with another analyzing software_, you are not running your code
+Involves analyzing software code without actually executing it. Useful before compilation or deployment. Try and cover all paths by traversing the source code. This is in comparison to running your code and then testing it using penetration testing. _You can analyze your source code with another analyzing software_, you are not running your code
 
 Can be expensive and difficult but can aid in a fix. The analyzing program can find issues with syntax, buffer overflow, or other vulnerabilities and let you know to fix them. Will not find all issues usually, to complex. The simplest form of this is having a peer review your source code
 
@@ -614,7 +614,7 @@ __Drawbacks__
 Static analysis does happen to encourage better development, you can avoid mistakes in the first place. Programmers will begin to manifest certain assumptions they make. Don't have blurry lines
 
 ## The Halting Problem
-Problem that seeks to determine whether a program will eventually halt, or run forever. Can we prove that for any program P and inputs to it that P will terminate? It is impossible to solve the halting problem for all possible programs and inputs, it is undecidable
+Problem that seeks to determine whether a program will eventually halt, or run forever. Can we prove that for any program P and any inputs Q, that P will terminate? It is impossible to solve the halting problem for all possible programs and inputs, it is undecidable
 
 The halting problem and array bounds checking are approximately equal. While there is no general algorithm that can determine whether any program will halt or run forever there are methods such as static or dynamic analysis that can determine out of bounds errors. However, it is computationally expensive and has been proven to be similar to the halting problem in complexity meaning that for all cases it is difficult to determine if buffer overflows will occur. There are programs however that will stop you immediately from accessing memory outside of an array, but C does not do such a thing
 
@@ -680,7 +680,7 @@ Unlike static analysis, we are actually running your program. It assesses securi
 
 Pen testers, usually carried out by a separate team within/not within your organization, usually employ ingenuity and automated tools to explore a system's attack surface, looking for weaknesses. Not carried out by the actual developers, they are biased towards their code. Pen testers are given varied levels of access
 
-__Benefits__ include that penetrations are certain and reproducible, they demonstrated by tests. Static analysis can raise false alarms where pen testing cannot. There is also evidence presented that the vulnerabilities are real and have gone unfixed, results in clear improvement to security
+__Benefits__ include that penetrations are certain and reproducible, they are demonstrated by tests. Static analysis can raise false alarms where pen testing cannot. There is also evidence presented that the vulnerabilities are real and have gone unfixed, results in clear improvement to security
 
 __Drawbacks__ can include assumptions made about the absence of issues after pen testing. This does not mean you have reached security, there may be some still lurking. Changes to a system also necessitate a retest of the system. Small changes can propagate to other components making larger vulnerabilities. Changes are often common unfortunately
 
