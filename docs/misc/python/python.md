@@ -3,9 +3,9 @@ layout: default
 title: Command List
 description: Command List
 has_toc: false
-nav_order: 7
+nav_order: 8
 parent: Python
-permalink: /python-language/python
+permalink: /misc/python-language/python
 ---
 
 # Python Cheat Sheet

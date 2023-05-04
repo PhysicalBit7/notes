@@ -5,7 +5,8 @@ description: Chapter 6 and 7 storing data
 has_toc: false
 nav_order: 5
 parent: Python
-permalink: /python-language/chapter6-7
+grand_parent: Miscellaneous
+permalink: /misc/python-language/chapter6-7
 ---
 
 # Chapter 6

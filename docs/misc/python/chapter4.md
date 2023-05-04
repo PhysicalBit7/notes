@@ -5,7 +5,8 @@ description: Chapter 4 code reuse
 has_toc: false
 nav_order: 3
 parent: Python
-permalink: /python-language/chapter4
+grand_parent: Miscellaneous
+permalink: /misc/python-language/chapter4
 ---
 
 # Chapter 4

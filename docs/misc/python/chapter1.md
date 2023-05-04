@@ -5,7 +5,8 @@ description: Chapter 1 The Basics
 has_toc: false
 nav_order: 1
 parent: Python
-permalink: /python-language/chapter1
+grand_parent: Miscellaneous
+permalink: /misc/python-language/chapter1
 ---
 
 # Chapter 1
@@ -35,7 +36,7 @@ When you install Python an _interpreter_ is also installed. It is what is actual
 
 In Python there is no _compile into an executable_ phase
 
-__**Example**__         
+__Example__         
 Explained in subsequent sections      
 ```python
 from datetime import datetime

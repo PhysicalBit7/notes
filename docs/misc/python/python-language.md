@@ -4,8 +4,9 @@ title: Python
 description: Introduction to Python
 has_children: true
 has_toc: false
-nav_order: 8
-permalink: /python-language
+nav_order: 1
+parent: Miscellaneous
+permalink: /misc/python-language
 ---
 # Introduction to Python
 

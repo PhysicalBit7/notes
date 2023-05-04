@@ -23,20 +23,22 @@ permalink: /software-security/Chapter1
 ---
 
 ## What is Computer Security?
-Computer security is the protection of the items you value, called the _assets_ of a computer or computer system. There are many types of assets, involving hardware, software, data, people, processes, or combinations of these.
-- Computer objects of value
-  - Hardware, software, and data - these represent intellectual endeavor or property
-  - Computer systems have value and deserve security protection
+Computer security is the protection of the items you value, called the _assets_ of a computer or computer system. There are many types of assets, involving hardware, software, data, people, processes, or combinations of these   
+
+__Computer objects of value__     
+- Hardware, software, and data - these represent intellectual endeavor or property
+- Computer systems have value and deserve security protection
   
 Computer assets of different levels of value. Some hardware/software is easily replaceable; disk drives, networking gear, operating system, etc. Data such as documents, photos, and individual applications are unique and irreplaceable.
 
-### Threat and Vulnerability
-- A __vulnerability__ is a weakness in the system, for example, in procedures, design, or implementation, that might be exploited to cause loss or harm
-  - A system may be vulnerable to unauthorized data manipulation because the system does not verify a user's identity before allowing data access
-  - Summarized, a vulnerability is a weakness that could be exploited to cause harm
-- A __threat__ to a computing system is a set of circumstances that has the potential to cause loss or harm
-  - There are many threats to a computer system, including human-initiated and computer-initiated ones
-  - _Threats usually exploit vulnerabilities_
+### Threats and Vulnerabilities
+A __vulnerability__ is a weakness in the system, for example, in procedures, design, or implementation, that might be exploited to cause loss or harm     
+- A system may be vulnerable to unauthorized data manipulation because the system does not verify a user's identity before allowing data access
+- Summarized, a vulnerability is a weakness that could be exploited to cause harm
+
+A __threat__ to a computing system is a set of circumstances that has the potential to cause loss or harm     
+- There are many threats to a computer system, including human-initiated and computer-initiated ones
+- _Threats usually exploit vulnerabilities_
 
 ---
 #### Summarized

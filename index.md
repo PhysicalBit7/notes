@@ -33,8 +33,8 @@ img {
       </div>
       <div class="text">
         <h4><b>About Me</b></h4>
-        <p>Hello, my name is Tanner Patrom, I am currently a computer science graduate student at <a href="https://www.astate.edu/">Arkansas State University</a> where I aim to acquire an emphasis in High Performance Computing. I have also worked full time as a Network Technician for 3 years.</p>
-        <p>This website serves as my portfolio and is also geared toward being a collection of notes from my studies at school and other hobbies. It has been a goal of mine to centralize all of my university/work notes, as well as other resources I may have used along the way, and publish them online for use in my life and possibly others.</p>
+        <p>Hello, my name is Tanner Patrom, I am currently a computer science graduate student at <a href="https://www.astate.edu/">Arkansas State University</a> where I aim to acquire a Masters in Computer Science with an emphasis in High Performance Computing. I have also worked at this University full time as a Network Technician for 3 years.</p>
+        <p>This website serves to showcase applications that I have built as well being a collection of notes from my studies at school and work.</p>
       </div>
     </div>
 
@@ -45,8 +45,7 @@ img {
 
 ## Areas of Interest
 - High Performance Computing
-- Database Architecture
-- Scripting
+- CPU Parallelism
 
 
 

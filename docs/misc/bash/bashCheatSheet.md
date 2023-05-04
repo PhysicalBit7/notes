@@ -5,7 +5,8 @@ description: Bash
 has_toc: false
 nav_order: 1
 parent: Bash
-permalink: /bash/bashCheatSheet
+grand_parent: Miscellaneous
+permalink: /misc/bash/bashCheatSheet
 ---
 
 # Bash Command List
@@ -14,7 +15,7 @@ A cheat sheet for bash commands, forked for studying purposes.
 
 ### Resources
 {: .no_toc}
-- [Repo](https://github.com/RehanSaeed/Bash-Cheat-Sheet)
+1. [Repo](https://github.com/RehanSaeed/Bash-Cheat-Sheet)
 
 ---
 
@@ -290,6 +291,7 @@ tar -c|--create -z|--gzip -f|--file=foo.tgz /bar              # Compress directo
 
 ## Decompressing Files
 
+
 ### unzip
 
 ```bash
@@ -308,6 +310,12 @@ gunzip -k|--keep foo.gz # Unzip foo.gz into current directory
 ```bash
 tar -x|--extract -z|--gzip -f|--file=foo.tar.gz # Un-compress foo.tar.gz into current directory
 tar -x|--extract -f|--file=foo.tar              # Un-combine foo.tar into current directory
+
+# Simple examples
+tar --extract --file filename     # Modern GNU tar options. This works for files compressed with gzip and bzip too
+tar -xf filename                  # Same as above. Leading "-" is optional
+tar --list --file filename        # Used to list the contents before unpacking
+tar -tf filename                  # Same as above. Leading "-" is optional
 ```
 
 ## Disk Usage

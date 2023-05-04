@@ -3,10 +3,10 @@ layout: default
 title: Poetry
 description: Poetry notes
 has_toc: false
-nav_order: 2
-parent: Libraries
-grand_parent: Python
-permalink: /python-language/libraries/asyncio
+nav_order: 7
+parent: Python
+grand_parent: Miscellaneous
+permalink: /misc/python-language/libraries/poetry
 ---
 
 # Poetry

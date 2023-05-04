@@ -38,21 +38,22 @@ _Dictionary definition_: trust is assured reliance on the character, ability, st
 ---
 
 ### Measurement of Trust
-**Trust** is a belief that does not necessarily require observed behavior in the past, that is distinct from trustworthiness, which is a verified objective of trust through observed evidence
+1. **Trust** 
+Is a belief that does not necessarily require observed behavior in the past, that is distinct from trustworthiness, which is a verified objective of trust through observed evidence
 
-**Distrust**       
+2. **Distrust**       
 Is not simply the complement of trust
 
-**Untrust**      
+3. **Untrust**      
 Is defined as the state in which a trustee cannot reach the cooperation threshold in terms of its capability
 
-**Undistrust**       
+4. **Undistrust**       
 Means the lack of trust indicating when a trustor cannot sufficiently make a decision for whether he or she distrusts a trustee
 
-**Mistrust**       
+5. **Mistrust**       
 Derives from misinformation, often called misplaced trust, where a trustee does not have the intention to betray a trustor
 
-**Misdistrust**      
+6. **Misdistrust**      
 Is defines as distrusting or ignoring an entity that is trustworthy
 
 ## Trust in Security

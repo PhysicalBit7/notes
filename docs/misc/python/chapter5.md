@@ -5,7 +5,8 @@ description: Chapter 5 Webapp
 has_toc: false
 nav_order: 4
 parent: Python
-permalink: /python-language/chapter5
+grand_parent: Miscellaneous
+permalink: /misc/python-language/chapter5
 ---
 
 # Chapter 5

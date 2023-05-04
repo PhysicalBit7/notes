@@ -5,10 +5,11 @@ description: Chapter 2-3 Data Structures
 has_toc: false
 nav_order: 2
 parent: Python
-permalink: /python-language/chapter2-3
+grand_parent: Miscellaneous
+permalink: /misc/python-language/chapter2-3
 ---
 
-# Chapter 2
+# Chapter 2 & 3
 {: .no_toc }
 
 <details closed markdown="block">

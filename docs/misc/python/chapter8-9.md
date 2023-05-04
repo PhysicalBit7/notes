@@ -5,7 +5,8 @@ description: Chapter 8 and 9
 has_toc: false
 nav_order: 6
 parent: Python
-permalink: /python-language/chapter8-9
+grand_parent: Miscellaneous
+permalink: /misc/python-language/chapter8-9
 ---
 
 # Chapter 8

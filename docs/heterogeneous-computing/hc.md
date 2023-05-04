@@ -12,3 +12,4 @@ Summer 2023
 
 ---
 ## Table of Contents
+- [CPU Computing](Chapter1.md)
