@@ -24,25 +24,123 @@ permalink: /operating-systems/linux/processes
 
 <!-- prettier-ignore-end -->
 
-## Introduction
+# Introduction
 
-A **process** is an executing instance of a **program**, which is object code stored on some media. There can be multiple processes of the same program running at the same time .
+A **process** is an executing instance of a **program**, which is object code stored on some media. There can be multiple processes of the same program running at the same time 
 
-A process includes resources like open files, processor state, a memory address space, one or more threads of execution, and a data section containing global variables .
+A process includes resources like open files, processor state, a memory address space, one or more threads of execution, and a data section containing global variables 
 
-**Threads** (threads of execution) are the parts of a process that contain the program counter, process stack, and processor registers. The kernel schedules threads rather than processes. "Linux does not differentiate between threads and processes. To Linux a thread is just a special kind of process" .
+**Threads** (threads of execution) are the parts of a process that contain the program counter, process stack, and processor registers. The kernel schedules threads rather than processes. "Linux does not differentiate between threads and processes. To Linux a thread is just a special kind of process" 
 
 Processes use a virtual processor and virtual memory. The virtual processor gives the illusion that a process is the only process running on a processor, despite potentially thousands of other processes sharing the processor. Virtual memory is another illusion. As far as a process is aware, it has exclusive access to memory, but in reality the kernel is managing memory access.
 
-Threads share memory with each other, but each one has their own virtual processor .
+Threads share memory with each other, but each one has their own virtual processor 
 
 ## The lifecycle of a process
 
-A process is created using the `fork()` system call. The new process that's created, the child process, inherits from the parent process that was active when `fork()` was called. The parent process resumes execution after the call to `fork()`, and the child starts execution at the same position. Internally `fork()` uses the `clone()` system call .
+A process is created using the `fork()` system call. The new process that's created, the child process, inherits from the parent process that was active when `fork()` was called. The parent process resumes execution after the call to `fork()`, and the child starts execution at the same position. Internally `fork()` uses the `clone()` system call 
 
-The `exec()` system call family "creates a new address space and loads a new program into it" .
+The `exec()` system call family "creates a new address space and loads a new program into it" 
 
-The `exit()` system call terminates a process and frees its resources. An exited process becomes a zombie process representing a terminated process until the parent process calls `wait()` or `waitpid()` .
+The `exit()` system call terminates a process and frees its resources. An exited process becomes a zombie process representing a terminated process until the parent process calls `wait()` or `waitpid()` 
+
+### fork()
+A UNIX `fork()` system call
+
+```c
+#include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[]){
+        printf("hello world (pid:%d)\n", (int) getpid());
+        // Note that the parent process gets returned the child PID, while the child gets a return value of 0
+        int rc = fork();
+        if (rc < 0){
+                //fork failed
+                fprintf(stderr, "for failed\n");
+                exit(1);
+        }else if (rc == 0){
+                // child (new process)
+                printf("hello, I am child (pid:%d)\n", (int) getpid());
+        }else{
+                // parent goes down this path (main)
+                printf("hello, I am parent of %d (pid:%d)\n", rc, (int) getpid());
+        }
+        return 0;
+}
+```
+
+You should see output similar to the following
+
+```bash
+prompt> ./p1
+hello world (pid:29146)
+hello, I am parent of 29147 (pid:29146)
+hello, I am child (pid:29147)
+prompt>
+```
+
+Assuming we run on a single CPU either the child or parent will begin execution (causing the output to switch). We need to implement `wait()` in order to better control this
+
+### wait()
+A UNIX `wait()` system call
+
+Sometimes it is quite useful for a parent to wait for a child process to finish what it has been doing, accomplished with `wait()` or it's more complete sibling `waitpid()`
+
+We will insert the following line at the beginning of the else statement
+
+```c
+int rc_wait = wait(NULL);
+printf("hello, I am parent of %d (rc_wait:%d) (pid:%d)\n",
+            rc, rc_wait, (int) getpid());
+```
+
+### exec()
+The `exec()` system call is useful when you want to run a program that is different from the calling program. Given the name and some executable `exec()` loads code (and static data) from that executable and overwrites its current code segment (and current static data) with it. The heap and stack and other parts of the memory space of the program are re-initialized
+
+{: .important}
+`exec()` does not create a new process, rather, it transforms the currently running program into a different running program. After `exec()` its almost like `fork.c` from above never ran in the child. A successful call to `exec()` never returns
+
+```c
+#include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+        printf("hello world (pid:%d)\n", (int) getpid());
+        int rc = fork();
+        if (rc < 0){
+                //fork failed
+                fprintf(stderr, "for failed\n");
+                exit(1);
+        }else if (rc == 0){
+                // child (new process)
+                printf("hello, I am child (pid:%d)\n", (int) getpid());
+                char *myargs[3];
+                myargs[0] = strdup("wc");   // program: "wc" (word count)
+                myargs[1] = strdup("fork.c"); // argument: file to count
+                myargs[2] = NULL;           // marks end of array
+                execvp(myargs[0], myargs);  // runs word count
+                printf("this shouldn’t print out");
+        }else{
+                // parent goes down this path (main)
+               int rc_wait = wait(NULL);
+                printf("hello, I am parent of %d (rc_wait:%d) (pid:%d)\n",
+                        rc, rc_wait, (int) getpid());       
+        }
+        return 0;
+}
+```
+
+### Why `fork()` and `exec()`
+The use of these two system calls is essential in how the shell actually functions when doing normal business. You type a command (i.e., the name of an executable program, plus any arguments) into it; in most cases, the shell then figures out where in the file system the executable resides, calls `fork()` to create a new child process to run the command, calls some variant of `exec()` to run the command, and then waits for the command to complete by calling `wait()`. When the child completes, the shell returns from `wait()` and prints out a prompt again, ready for your next command
+
+This allows commands such as `prompt> wc p3.c > newfile.txt` to work. When `fork()` is called, the child process can be changed from the parent process in order for file output to be changed from standard output to the file `newfile.txt`
+
 
 ## The task structure
 

@@ -10,6 +10,7 @@ permalink: /computer-architecture
 
 # Computer Architecture
 {:.no_toc}
+A collection of notes from "Structured Computer Organization" 6th edition Tanenbaum and Austin
 
 
 ---
