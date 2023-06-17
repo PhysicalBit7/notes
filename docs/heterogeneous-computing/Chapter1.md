@@ -1,6 +1,6 @@
 ---
 layout: default
-title: CPU Computing
+title: Introduction
 description: Chapter 1 notes
 has_toc: false
 nav_order: 1
@@ -39,6 +39,7 @@ To refresh, a clock cycle is the basic unit of measurement in a CPU. It is used 
 1. __Control Unit__ - generates signals to control the flow of data and instructions within the CPU and between the CPU and other parts of the computer system. It is responsible for fetching instructions from memory, decoding them, and then executing them by controlling the arithmetic logic unit (ALU) and other parts of the CPU
 2. __Processor__ - normally called the ALU, is responsible for carrying out mathematical operations such as addition, subtraction, multiplication, and division, as well as logical operations such as AND, OR, and NOT. The ALU operates on binary data. It receives data from the CPUs registers and performs  the requested operation of the data. The result is then stored back in the CPUs registers, where it can be accessed by other parts of the CPU or sent back to memory. The ALU is made of hardware to be as fast as possible 
 
+{: .important}
 The _bandwidth_ between key components weighs heavily on performance. It ultimately dictates system performance in massively parallel systems processing massive amounts of data. There are some tricks like buffering, reordering, and caching that defy poor bandwidth in some cases
 
 # Types of Parallelism
@@ -98,6 +99,11 @@ Instructions are scheduled by the compiler. These instructions are "bundled" tog
 Each instruction in the VLIW instruction word is statically scheduled, which means that the compiler determines the order in which the instructions are executed and includes that information in the instruction word. This is in contrast to dynamic scheduling, which allows the processor to determine the order of execution at run time. A compiler is known as a static scheduler because it performs instruction scheduling at compile-time, before the program is executed
 
 VLIW helps to reduce hardware complexity as everything is figured out at compile time, as opposed to being dynamically calculated at runtime. __Both VLIW and superscalar execution aim to figure out dependencies and configure instructions to be executed in the most efficient way possible__
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/hetero-computing/difference.png"  width="60%" height="30%">
+  <p align="center"> Key Figure</p>
+</p>
 
 ### ILP: Explicitly Parallel Instruction Computing(EPIC)
 EPIC combines the features of VLIW with the features of superscalar execution. The compiler and CPU work together

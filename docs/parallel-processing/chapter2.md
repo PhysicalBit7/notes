@@ -48,13 +48,13 @@ _The speed of a pipeline is limited by the largest atomic task or stage_
 A simple way to alleviate these bottlenecks are to use multiple pipelines, super pipelined processors issue multiple instructions in the same cycle, effectively differentiating itself from a scalar processor as it can only get to a point where it can complete one instruction per cycle
 
 {: .note}
-Super-pipelined processors complete multiple instructions in the same cycle(superscalar execution)
+Super-pipelined processors have duplicated tasks in the pipeline while superscalar processor have a completely replicated pipeline. See key figure [here](../heterogeneous-computing/Chapter1.md/#ilp-very-long-instruction-wordvliw)
 
 <p align="center">
   <img src="{{site.baseurl}}/assets/parallel-processing/superscalar.png"  width="60%" height="30%">
 </p>
 
-Stage 4 above is duplicated into u and v in order to stop a single instruction from taking two clock cycles to finish, we can start another job. At the end of the pipeline we finish a job every cycle
+Stage 4 above is duplicated into u and v in order to stop a single instruction from taking two clock cycles to finish, we can start another job. At the end of the pipeline we finish a job every cycle. This is a superpipelined processor
 
 <p align="center">
   <img src="{{site.baseurl}}/assets/parallel-processing/scalarvssuper.png"  width="60%" height="30%">
@@ -182,3 +182,172 @@ Again, most systems today implement a von Neumann architecture. Memory can sever
 2. Bandwidth - the rate at which data can be pumped from the memory to the processor
 
 We want to achieve low latency and high bandwidth
+
+## Improving Effective Memory Latency Using Cache
+It is important to understand that fetches to DRAM are very slow and impact performance heavily. We can improve our situation by adding in caches. Caches are a smaller and faster memory between the processor and the DRAM
+
+Locality is the general principle driving caching performance. It refers to the principle that accessing a certain memory location tends to be correlated with accessing nearby memory locations in the same region. __Temporal locality__, also known as temporal locality of reference, refers to the tendency of a program to access the same memory location repeatedly over a short period of time. This occurs when a variable or instruction is referenced multiple times in a loop or within a short time span
+
+__Spatial locality__, also known as spatial locality of reference, refers to the tendency of a program to access memory locations that are near each other in space. It occurs when a program accesses a memory location, and subsequent accesses are likely to be made to nearby memory locations. Spatial locality is somewhat tied to bandwidth performance. If more data can be sent across a line then we can get more spatial data
+
+Speed can also be affected by the size of the cache block but it does not change the latency of the system. In practice, such wide buses are often expensive to construct
+
+When programming you have to be aware in the manner that you utilize/access data. Access memory in such a fashion that you know you are utilizing cache in a more efficient manner. You can do this by exploiting locality logic. We have to be aware of the ratio of the number of operations to the number of memory accesses
+
+Memory layouts and appropriated computation organization can make a significant impact on the spatial and temporal locality
+
+## Alternative Approaches for Hiding Memory Latency
+1. Spatial and temporal locality - amortize memory latency and increase effective memory bandwidth. We access a whole bunch of pages in one go, amortizing the latency across various accesses
+2. Multi-threading - multiple threads of execution enable computation and communication to be overlapped with each other and keep the processor from idling. Out of order instruction helps as well
+3. Prefetching - acquire data from memory in advance. We anticipate which pages we are going to browse ahead of time and issue requests for them in advance
+
+{: .note}
+There is a high requirement for bandwidth as you want to get as much data in as few fetches as possible. Our biggest goal is reducing latency either directly or indirectly
+
+## Tradeoffs of Multi-threading and Prefetching
+Memory bandwidth refers to the rate at which data can be transferred between the memory and the processing units (such as CPU cores) in a system. For the following reasons multi-threading and prefetching can show to be dependent on the available memory bandwidth
+
+1. Multi-threading -  In a multithreaded system, multiple threads can run concurrently, sharing the same memory resources. Each thread may have its own set of instructions and data that it needs to access from memory. When multiple threads are executing simultaneously, they may compete for memory bandwidth. If the memory bandwidth is limited, it can result in contention and delays for memory access, which can reduce the overall performance of the multithreaded system
+
+2. Prefetching - Prefetching is a technique used to proactively fetch data from memory into cache or registers before it is actually needed by the processor. Prefetching can help hide memory latency by bringing data closer to the processing units in anticipation of their usage. However, prefetching relies on available memory bandwidth to transfer the prefetched data efficiently. If the memory bandwidth is limited, the rate at which data can be prefetched may be restricted, potentially reducing the effectiveness of prefetching and its ability to hide memory latency
+
+{: .note}
+Both of these techniques place additional demands on memory bandwidth. For instance, a 32 KB cache divided among 32 threads will see 1 KB of cache being given to each thread. The smaller cache size results in more cache misses, less data is held in memory. However, one process with 32 KB of cache will result in many more cache hits as there is more being saved in the cache. You end up placing pressure on the memory bandwidth. __Multithreaded systems become bandwidth bound instead of latency bound__. These processes aim to reduce latency and in turn become bound to memory bandwidth
+
+All of these techniques aim to reduce memory problems introduced by the von Nuemann architecture
+
+# Flynn's Classical Taxonomy
+Flynn's taxonomy distinguishes multi-processor computer architectures according to how they can be classified along the two independent dimensions of _instruction_ and _data_
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/parallel-processing/flynns.png"  width="50%" height="50%">
+</p>
+
+## Single Instruction Stream, Single Data Stream
+Typical of programmers not trained in parallel processing. A serial (non-parallel) computer sees that a single instruction stream is being acted on by the CPU during any one clock cycle and only one data stream is being used as input during any one clock cycle
+
+## Single Instruction Stream, Multiple Data Stream
+A type of parallel computer. There is a single instruction stream, all processing units execute the same instruction at any given clock cycle but each processing unit can operate on a different data element. Used in updating technology that uses pixels. One instruction is used but all of the pixels are updated at once. A single control unit controls initiating the instruction to be executed by multiple processing element
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/parallel-processing/simd.png"  width="50%" height="50%">
+</p>
+
+## Multiple Instruction Stream, Single Data Stream
+Few actual examples of this class of parallel computer have ever existed. There could be some use cases with multiple frequency filters operating on a single signal stream or multiple cryptography algorithms attempting to crack a single coded message
+
+This works similar to an assembly line where there are multiple instruction streams acting upon a single data stream coming down the conveyor belt
+
+## Multiple Instruction Stream, Multiple Data Stream
+Currently the most common type of parallel computer. Every processor could be executing a different instruction stream, as well as every processor could be working with a different data stream. There is a variant called SPMD(Single Program Multiple Data)
+
+Execution can be synchronous or asynchronous. __Synchronous__ execution are when  tasks are performed one after another in a sequential manner. When a task is initiated, the program waits until that task is completed before moving on to the next task. Each task must finish before the program can proceed to the next step. This means that the program is blocked or "synchronized" during the execution of each task. __Asynchronous__ execution is when tasks are initiated and continue to run in the background without blocking the program's flow. When an asynchronous task is started, the program doesn't wait for it to finish before moving on to the next task. Instead, the program can proceed to perform other operations or tasks while the asynchronous task runs independently. The program can check for the completion of the asynchronous task later, if needed
+
+Can also be deterministic or non-deterministic. Just meaning if the results are predictable or not
+
+# Communication Models
+
+## Shared-Address-Space Platforms
+In this communication model there is support for a common data space that is accessible to all processors. Data segments within a system are visible to all processing elements. There are two types of architectures used in this logical model; NUMA and UMA
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/parallel-processing/sharedAddress.png"  width="50%" height="50%">
+</p>
+
+__NUMA and UMA Shared-Address-Space Platforms__     
+The distinction between NUMA and UMA platforms is important from the point of view of algorithm design, how we program in these environments. NUMA machines require locality from underlying algorithms for performance
+
+In NUMA machines there is much more danger for stale or duplicated data within memory/cache
+
+## Global Memory Space
+A global memory space allows for ease of programming as it is most familiar to us. We do have to worry about certain issues such as race conditions. Programming paradigms that exist in this logic are threads(POSIX and NT) and directives(OpenMP)
+
+## Shared-Address-Space vs. Shared Memory Machines
+It is important to note the difference between the terms shared address space and shared memory. We refer to the first as a programming abstraction while to other is a physical machine attribute. It is possible to provide a shared address space using a physically distributed memory(DSM). In that particular model you would have multiple machines communicating over some commodity network but logically they share memory with one another
+
+1. __Logical View__ - the (non)shared address space. This is the view from the perspective of the programmer
+2. __Physical Organization__ - the actual layout of the system. NUMA, UMA, etc. Shared memory computers == UMA. Distributed memory computers -- NUMA
+
+## Message-Passing Platforms
+The logical machine view where each processing node has its own exclusive address space. In order to interact with one another __message passing__ will be used in order to accomplish interactions, synchronization, and data and work transfers. Some APIs used are MPI(message passing interface) and PVM(parallel virtual machine)
+
+# PRAM
+PRAM is an ideal parallel computing model standing for parallel random access machine. The ideals are mad up as follows
+1. There are _p_ processors that share a common clock but may execute different instructions in each cycle
+2. A global memory exists of unbounded size
+3. All processors access the same address space uniformly
+
+Concurrent read accesses are okay but control needs to be exhibited if there are concurrent write accesses
+
+## PRAM subclasses
+1. __Exclusive-read, exclusive-write (EREW) PRAM__
+- At one time only one guy can read and one guy can write
+- Exclusive memory accesses
+- No concurrent read or write operations
+- Weakest model with minimum concurrency, you have _p_ processors but they can only work one by one
+2. __Concurrent-read, exclusive write (CREW) PRAM__
+- Reasonable as reading a single data item at the same time is okay, writing at the same time is troublesome however
+- Multiple read accesses are allowed to a memory location
+- Multiple write access are serialized
+3. __Exclusive-read, concurrent-write (ERCW) PRAM__
+- Multiple read accesses are serialized
+- Multiple write accesses are allowed to a memory location
+- Not used very often in systems
+4. __Concurrent-read, concurrent-write (CRCW) PRAM__
+- Allow multiple read/write accesses
+- Most powerful model, everyone does things at the same time but we have to control
+
+### Common Protocols to Resolve Concurrent Writes
+- _Common_ - the concurrent write is allowed if all the values to write are identical
+- _Arbitrary_ - an arbitrary processor is allowed to proceed with the write operation and the rest fail
+- _Priority_ - all processors are organized into a predefined prioritized list, and the processor with the highest priority succeeds and the rest fail
+- _Sum_ - the sum of all the quantities is written
+
+# Interconnection Networks
+Interconnection networks are the termed used most commonly with NUMA/UMA systems, where there are a number of processing nodes within the same computer. These networks provide mechanism for data transfer
+
+- Static networks - point to point communication links among processing nodes
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/parallel-processing/static.png"  width="40%" height="30%">
+</p>
+
+- Dynamic networks - communication links are connected to one another dynamically by the switches to establish paths among processing nodes and memory banks
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/parallel-processing/dynamic.png"  width="40%" height="30%">
+</p>
+
+> The __degree__ is a term used to sum the total number of ports
+
+__Network Interface Card__ - Provides the connectivity between the nodes and the network
+
+## Network Topologies
+1. Static Networks
+- Completely-connected
+- Stars
+- Linear Arrays
+- Meshes, _k-d_ meshes, hypercubes
+- Tree, fat tree
+
+2. Dynamic Networks
+- __Buses__ - cheap shared medium, similar to hubs. The cost of the network is scaled linearly as the number of nodes increase. The distance between any two nodes is constant. It is ideal for broadcasting communication. It is bounded however as only two nodes could be communicating at once. Caches are used to reduce the load on the bus bandwidth
+- __Crossbars__ - a grid of switches or switching nodes. Separate nodes and processing elements can communicate at the same time. See figure 1 below. Scalable in terms of performance, but not scalable in terms of cost. Is the opposite of a bus
+- __Multistages(Omega)__ - intermediate networks. See figure 2. Famous implementation is the omega network
+- Dynamic trees
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/parallel-processing/crossbar.png"  width="50%" height="50%">
+  <p align="center">Figure 1: 1 and 2 can communicate at the same time as 3 and 4</p>
+</p>
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/parallel-processing/multistage.png"  width="50%" height="50%">
+  <p align="center">Figure 2</p>
+</p>
+
+> The first half maps to an even number, the second half maps to an odd number
+
+
+
+
