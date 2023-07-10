@@ -28,11 +28,19 @@ Instruction level parallelism has a great advantage in that it is reasonably _tr
 In your application logic you can create threads that share the functional units of a single processor in an overlapping fashion. Multithreading shares most of the processor core among a set of threads, duplicating only private state, such as the registers and program counter
 
 ## Hardware approaches to Multithreading
-Each thread has its own register sets/files. Every clock cycle(_fine grained multithreading_) you can switch from one thread to another. Execution can be interleaved, instructions from other threads can be executed when one thread stalls, even if the stall is only for cycles
+Multithreading allows multiple threads to share the functional units of a single processor in an overlapping fashion. Each thread has its own register sets/files, holding private only variables that are crucial for it to be able to run. Remember that from the processors perspective a software thread is appears exactly the same as a complete process. 
 
-Overall we are increasing the speed of both threads but from one threads perspective it could appear as if it is being slowed down by the other
+There are multiple forms of multithreading. In _fine-grained multithreading_ every clock cycle you switch from one thread context to another. Execution is interleaved. Instructions from other threads can be executed when one thread stalls, even if the stall is only for a couple cycles. Primary disadvantage is that the overall time for a single thread to complete is increased as we are giving up the processor even if a memory stall does not occur. As a whole we are decreasing the time it takes for all threads to complete, however from one threads perspective it could appear as if it is being slowed down because of the constant switches
 
-In _coarse grained multithreading_ we only switch in between costly memory stalls. _Simultaneous multithreading(SMT)_ is a variation of fine-grained multithreading, register renaming and dynamic scheduling allow multiple instructions from independent threads to be executed without regard to the dependencies among them. For every clock cycle, instructions can be made up from different threads and executed
+In _coarse grained multithreading_ we only switch in between costly memory stalls
+
+_Simultaneous multithreading(SMT)_ is a variation of fine-grained multithreading, register renaming and dynamic scheduling allow multiple instructions from independent threads to be executed without regard to the dependencies among them. For every clock cycle, instructions can be made up from different threads and executed. In summary, multiple threads can be executed simultaneously on a single chip. The OS actually see's each "logical core" as a separate, independent core, scheduling threads to execute on it. Different parts of a threads execution sequence is interleaved with other threads execution sequence, utilizing more of the processing units that would otherwise not be used
+
+Each logical processor in an SMT-enabled core has its own register set and control resources, but they typically share the execution units and caches of the physical core. This sharing of resources enables efficient utilization of the core's resources and reduces the need for replication of certain components. SMT is not to be confused with actually having multiple separate cores, we are simply increasing the utilization of a single core
+
+# OpenMP
+A library that provides an API in order to implement parallel code in C, C++, or Fortran. Implements a set of compiler directives, library routines and environment variables that influence run-time behavior
+
 
 ## Near Resource Computing
 An interesting thought is that while CPUs become more powerful, I/O device speed increases as well. You could see printer controllers become more powerful or something we already can see are graphics cards becoming more powerful. Each may specialize or do a job very effectively(better than the CPU) and tasks could be offloaded from the CPU to these domain-specific components. Data could also be thought to be processed locally instead of making its way through different components to reach the CPU
@@ -56,7 +64,7 @@ __PCI as Memory Mapped I/O__ - for Intel microprocessors a PCI device usually wi
 </p>
 
 ## PCIe
-PCIe (Peripheral Component Interconnect Express) is a high-speed serial expansion bus standard used to connect various peripheral devices, such as graphics cards, network cards, storage controllers, and other add-on cards, to a computer's motherboard.
+PCIe (Peripheral Component Interconnect Express) is a high-speed serial expansion bus standard used to connect various peripheral devices, such as graphics cards, network cards, storage controllers, and other add-on cards, to a computer's motherboard
 
 PCIe is the successor to the older PCI (Peripheral Component Interconnect) and AGP (Accelerated Graphics Port) standards. It was introduced in 2004 and has become the predominant interface for connecting expansion cards in modern computers.
 
@@ -117,4 +125,10 @@ __What is OpenCAPI?__
 </p>
 
 {: .note}
-Know that the front side bus can be thought of as the facilitator of the CPU. The FSB acted as the primary data bus that facilitated communication between the CPU and other components of the computer system. It carried data, instructions, and control signals between the CPU and various subsystems, including the memory, input/output devices, and the Northbridge chipset
+Know that the front side bus can be thought of as the facilitator of the CPU. The FSB acted as the primary data bus that facilitated communication between the CPU and other components of the computer system. It carried data, instructions, and control signals between the CPU and various subsystems, including the memory, input/output devices, and the northbridge chipset
+
+## NUMA 
+NUMA stands for non-uniform memory access. Eventually the northbridge memory controller was moved into the CPU itself, the CPU could now access CPU memory directly and did not have to share the northbridge or I/O hub. Multiple CPUs can be added to a system, now with their own memory components
+
+{: .important}
+Eventually the PCIe switch(northbridge and southbridge) were implemented on the CPU itself

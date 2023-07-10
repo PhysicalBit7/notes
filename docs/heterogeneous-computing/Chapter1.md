@@ -68,7 +68,7 @@ In general, RISC processors are designed to execute simple instructions quickly 
 ## Instruction-Level Parallelism
 Instruction-Level parallelism takes place on hardware. It is important to understand that an assembly instruction and a machine instruction have a 1-to-1 relationship. Know that compile time is static, CPU time is dynamic
 
-The following are ways to exploit ILP
+The following are ways to exploit ILP:
 
 ### ILP: Instruction Pipelining
 Pipelining attempts to keep every part of a processor busy with some instruction by dividing incoming instructions into a series of sequential steps performed by different processor units with different parts of instructions processed in parallel. There exists a pipelining process whose job is to manage pipelining, there is increased latency because of its management
@@ -105,10 +105,15 @@ VLIW helps to reduce hardware complexity as everything is figured out at compile
   <p align="center"> Key Figure</p>
 </p>
 
+### ILP: SIMD and Vector Processing
+SIMD is a type of parallelism where a single instruction is applied to multiple data elements in parallel. In SIMD architectures, a processor executes the same instruction on multiple data elements simultaneously, using dedicated SIMD registers. These registers can hold multiple data values, such as integers or floating-point numbers, and the same operation is applied to all the data elements in parallel
+
+Vector processing is a broader term that encompasses SIMD and extends it further. In vector processing, operations are performed on arrays or vectors of data elements, rather than individual elements.
+
 ### ILP: Explicitly Parallel Instruction Computing(EPIC)
 EPIC combines the features of VLIW with the features of superscalar execution. The compiler and CPU work together
 
-In EPIC, the compiler analyzes a program's instructions and identifies those that can be executed in parallel. The compiler then groups these instructions into bundles, called instruction packets, which can be executed simultaneously by multiple execution units. This allows the processor to execute multiple instructions in parallel, increasing performance and efficiency. EPIC is different from RISC and CISC in that it places more emphasis on the compiler to analyze and optimize the code for parallel execution
+In EPIC, the compiler analyzes a program's instructions and identifies those that can be executed in parallel. The compiler then groups these instructions into bundles, called instruction packets, which can be executed simultaneously by multiple execution units. This allows the processor to execute multiple instructions in parallel, increasing performance and efficiency. EPIC is a type of CPU architecture but is different from RISC and CISC in that it places more emphasis on the compiler to analyze and optimize the code for parallel execution
 
 {: .important}
 EPIC includes a software prefetch instruction used for data prefetch. Prefetch instructions are inserted by the compiler, the programmer does not worry about it

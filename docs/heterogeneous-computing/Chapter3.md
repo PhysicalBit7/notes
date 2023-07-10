@@ -33,7 +33,7 @@ GPU computing can be defined as using all processors in the system for the thing
   <img src="{{site.baseurl}}/assets/hetero-computing/languages.png"  width="50%" height="30%">
 </p>
 
-## Application Design Patterns    
+# Application Design Patterns    
 Within a trivial application you would process serial tasks on the CPU and parallel tasks on the GPU, copying input data to GPU, performing parallel processing, and copying the results back
 
 One step further would see us maximizing the overlap of data transfers and computation, minimizing communication required between processors, and using one CPU thread to manage each GPU
