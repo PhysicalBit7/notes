@@ -3,7 +3,7 @@ layout: default
 title: CPU Computing
 description: Chapter 2 notes
 has_toc: false
-nav_order: 1
+nav_order: 2
 parent: Heterogeneous Computing
 permalink: /heterogenous-computing/Chapter2
 ---

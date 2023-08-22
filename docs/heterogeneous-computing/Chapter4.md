@@ -3,7 +3,7 @@ layout: default
 title: GPU Architecture
 description: Chapter 4 notes
 has_toc: false
-nav_order: 1
+nav_order: 4
 parent: Heterogeneous Computing
 permalink: /heterogenous-computing/Chapter4
 ---

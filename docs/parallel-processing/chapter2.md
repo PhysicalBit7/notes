@@ -3,7 +3,7 @@ layout: default
 title: Parallelism Architectures 
 description: Chapter 2 notes
 has_toc: false
-nav_order: 1
+nav_order: 2
 parent: Parallel Processing
 permalink: /parallel-processing/chapter2
 ---
@@ -272,7 +272,7 @@ It is important to note the difference between the terms shared address space an
 The logical machine view where each processing node has its own exclusive address space. In order to interact with one another __message passing__ will be used in order to accomplish interactions, synchronization, and data and work transfers. Some APIs used are MPI(message passing interface) and PVM(parallel virtual machine)
 
 # PRAM
-PRAM is an ideal parallel computing model standing for parallel random access machine. The ideals are mad up as follows
+PRAM is an ideal parallel computing model standing for parallel random access machine. The ideals are made up as follows
 1. There are _p_ processors that share a common clock but may execute different instructions in each cycle
 2. A global memory exists of unbounded size
 3. All processors access the same address space uniformly
@@ -304,7 +304,7 @@ Concurrent read accesses are okay but control needs to be exhibited if there are
 - _Sum_ - the sum of all the quantities is written
 
 # Interconnection Networks
-Interconnection networks are the termed used most commonly with NUMA/UMA systems, where there are a number of processing nodes within the same computer. These networks provide mechanism for data transfer
+Interconnection networks are the term used most commonly with NUMA/UMA systems, where there are a number of processing nodes within the same computer. These networks provide mechanism for data transfer
 
 - Static networks - point to point communication links among processing nodes
 
@@ -324,14 +324,16 @@ __Network Interface Card__ - Provides the connectivity between the nodes and the
 
 ## Network Topologies
 1. Static Networks
-- Completely-connected
-- Stars
-- Linear Arrays
-- Meshes, _k-d_ meshes, hypercubes
+- __Completely-connected__ - each processor is connected to every other processor, it can quickly become costly when there are a lot of links. There is, however, no blocking
+- __Star Connected Network__ - every node is connected to a common node at the center, the distance between every node is O(1). They are really just static counterparts to buses. The central node becomes a bottleneck however
+- __Linear Arrays__ - there are many types of arrays. 1D linear and 1D torus(wraparound circular array), 2D mesh, 3D cube
+- __Meshes, _k-d_ meshes, hypercubes__
 - Tree, fat tree
 
+> (Ch2-5)Evaluating static networks. You can measure the maximum distance between two nodes with the diameter. The _arc connectivity_ is defined as the number of connections that must be dropped before you have two separate networks. The bisection width is also the minimum number of links that must be removed to partition the network into two equal halves
+
 2. Dynamic Networks
-- __Buses__ - cheap shared medium, similar to hubs. The cost of the network is scaled linearly as the number of nodes increase. The distance between any two nodes is constant. It is ideal for broadcasting communication. It is bounded however as only two nodes could be communicating at once. Caches are used to reduce the load on the bus bandwidth
+- __Buses__ - cheap shared medium, similar to hubs. The cost of the network is scaled linearly as the number of nodes increase. The distance between any two nodes is constant. It is ideal for broadcasting communication. _It is bounded by the bandwidth of the bus_. __Caches__ are used to reduce the load on the bus bandwidth
 - __Crossbars__ - a grid of switches or switching nodes. Separate nodes and processing elements can communicate at the same time. See figure 1 below. Scalable in terms of performance, but not scalable in terms of cost. Is the opposite of a bus
 - __Multistages(Omega)__ - intermediate networks. See figure 2. Famous implementation is the omega network
 - Dynamic trees
@@ -347,6 +349,142 @@ __Network Interface Card__ - Provides the connectivity between the nodes and the
 </p>
 
 > The first half maps to an even number, the second half maps to an odd number
+
+## Linear Arrays, Meshes, and k-d Meshes
+A _linear array_ of processing elements is exactly as the name implies. A _1-D torus_ is a linear array with a wrap around connection from the beginning element to the last. Both of these concepts scale up dimensions
+
+The term k-d meshes simply an mesh of k nodes along d dimensions
+
+## Hypercubes
+A hypercube is a type of interconnection network used to connect processing elements (nodes or processors) in a parallel computing system. To establish connections between nodes, the hypercube follows a binary addressing scheme. Each node has a unique binary address, and two nodes are connected if their binary addresses differ in only one bit position
+
+The number of dimensions in a hypercube is determined by log2(p) where p is the number of nodes
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/parallel-processing/hypercube.png"  width="50%" height="50%">
+</p>
+
+4-D hypercube with 16 nodes aka. log2(16) = 4
+
+## Tree Based Networks
+There exists one path between processing elements or nodes. These trees can be static with other nodes sitting in between them, or they can be dynamic with switching elements between the nodes
+
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/parallel-processing/treeBased.png"  width="50%" height="50%">
+</p>
+
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/parallel-processing/tree.png"  width="50%" height="50%">
+</p>
+
+Routing between nodes on different sides of the tree requires traversal all the way up to the root node and back down. Ultimately we want a fat tree as that would limit the depth of our search
+
+# Evaluating Static Interconnection Networks
+There are a few metrics to evaluate static interconnection networks
+1. __Diameter__ - the longest distance between two nodes
+- Linear Array = (p - 1)
+- Mesh = 2(sqrt(p) - 1)
+- Hypercube = log(p)
+- Completely Connected = O(1)
+
+2. __Connectivity__ - the multiplicity of paths between any two processing nodes. This is usually expressed as _arc connectivity_ where we evaluate the number of paths that must be cut in order to completely isolate a node, making two separate networks
+
+3. __Bisection Width__ - the minimum number of links that must be removed to partition the network into two equal halves
+- Linear Array = 1
+- Mesh = sqrt(p)
+- Hypercube = p/2
+- Completely Connected = p^2/4
+
+4. __Cost__ - the number of communication links or switches
+
+
+# Evaluating Dynamic Interconnection Networks
+The same metrics apply while simply evaluating dynamic networks
+
+# Cache Coherence
+While the interconnects give us a means of data transfer, shared memory spaces still require maintaining correct data within a cache. There could very well be multiple copies of the same data flowing throughout a system
+
+## False Sharing
+False sharing in cache coherence is a performance issue that can occur in multiprocessor systems when multiple threads or cores access different variables that happen to reside on the same cache line. This leads to unnecessary cache invalidations and updates, reducing overall performance due to contention for shared cache resources.
+
+When a processor or core modifies a variable that resides in a cache line, the entire cache line is marked as "dirty," indicating that it has been modified and needs to be eventually written back to memory. If another processor or core wants to access a different variable in the same cache line, it will unnecessarily invalidate the cache line of the first processor and cause it to write back the modified data to memory, even though the second processor does not actually need that data
+
+## Maintaining Coherence Using Invalidate Protocols
+Each copy of a data item is associated with a state such as invalid, dirty, or shared
+
+- In a shared state there are multiple valid copies of the data item, an invalidate would have to be generated on an update
+- In a dirty state only one copy exists and no invalidates need to be generated
+- In an invalid state, the data is invalid and a read generates a data request
+
+## Snoopy Cache Systems
+Used on broadcast interconnection networks such as a bus or a ring. Using this see's a set of tags associated with the cache. There is also a dedicated piece of hardware that keeps eyes on the memory bus. Traffic stays local to a processor for dirty items and for shared reads. If processors read and update data at the same time, a coherence request is made known on the bus
+
+Snoopy cache systems rely on a "snooping" approach, where each cache controller monitors (or "snoops") the bus communication between processors to detect and react to memory operations performed by other processors.
+
+### Directory Based Systems
+Sometimes broadcasts to all processors in a Snoopy Cache system is inefficient. There is a modification that where coherence requests are sent only to those processors that need it. This is done using a directory which maintains a presence vector for each data item along with its global state. Only demanding processors get the data, data at other processors can remain invalid. Directory based systems are centralized
+
+In a directory-based cache coherence system, the main memory is divided into blocks, and each block is associated with a directory entry. The directory entry maintains information about which caches (processors) have copies of that particular memory block and the state of those copies (e.g., shared, exclusive, invalid, etc.)
+
+## DSM/SVM
+Distributed Shared Memory or Shared Virtual Memory. On approach is utilizing the page based access control where we leverage the virtual memory support. Main memory is then managed as a fully associative cache on the virtual address space and there is an embedded coherence protocol in the page fault handler 
+
+There is also and object-based access control that is more flexible and there is no false sharing 
+
+__Problems with Page-based DSM__ - There are high overheads of protocol invocation and processing. The process is done in software on a general-purpose uniprocessor. Page faults do invoke an interrupt on the CPU where a handler is invoked
+
+Also, if spatial locality is not very good a lot of useless data will be sent along within the page
+
+# Communication Costs in Parallel Machines
+Along with idling and contention, communication is a very real cost in parallel systems. The cost of communication is dependant on a variety of features including the network topology and the associated software protocols
+
+Many of these costs mimic those that are present in network that is the internet
+
+## Message Passing Costs
+The total cost is the sum of the time to prepare a message and the time to traverse the network. Measurements include the startup time, per-hop time, and the per-word transfer time
+
+## Store and Forward
+Nodes must receive the entirety of a packet before sending it onto the next node
+
+## Cut Through Routing
+Messages are broken into _flits_, flow control digits, which are fixed size units. These flits do not contain the overheads of packets. A tracer is first sent to establish a connection, following are all flits which are using the same path. Intermediate nodes do not wait for the entire message to be sent before forwarding it. Less memory is used at intermediate nodes as well as bandwidth. Cut through routing is a refined version of store and forward
+
+{: .note}
+However, if there are only two nodes, cut through routing turns into store and forward. Also, if the message is really small there is a similar cost
+
+The control circuitry must operate at the flit rate, if the flit is too small -> operate at a very high speed. If the flit size is large -> internal buffer sizes increase and so does the latency. Long messages hold up short messages
+
+Worm-hole routing is a form of congestion control where each node takes the burden of saving data in buffers instead of one node saving it all. Deadlocks can happen however as you hold resources while asking for other resources
+
+### Optimizations
+There are some techniques that can be used to optimize cut through routing
+1. __Communicate in bulk__ - aggregate small messages into a single large message to amortize the startup latency across a larger message
+2. __Minimize the volume of data__ - minimize the overhead paid in terms of per-word transfer time
+3. __Minimize distance of data transfer__ - minimize the number of hops
+
+# Communication Costs in Shared-Address-Space Machines
+There can be many difficulties as a programmer within this model. Issues such as:
+- Memory layout - controlled by the system
+- Cache Thrashing - we can minimize by reducing the working size
+- Overhead in invalidate and update operations
+- Spatial locality - difficult to model, cache lines are longer
+- Prefetching - can reduce access overhead, however this is typically done by the compiler or the underlying program
+- False sharing
+- Contention 
+
+# Mapping Techniques for Graphs
+We can determine through different mapping strategies the degradation in the performance of an algorithm. It is important to understand the hardware layout of a system in order to better map resources onto the system
+
+There are three parameters to mapping techniques, the hardware and data are notated by G and G'
+1. __Congestion__ - more than one edge on E is mapped to E'
+2. __Dilation__ - an edge in E may be mapped onto multiple contiguous edges in E'
+3. __Expansion__ - the sets V and V' may contain a different number of vertices
+
+## Mapping a Linear Array into a Hypercube
+
+
 
 
 

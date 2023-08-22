@@ -3,7 +3,7 @@ layout: default
 title: CUDA Programming
 description: Chapter 5 notes
 has_toc: false
-nav_order: 1
+nav_order: 5
 parent: Heterogeneous Computing
 permalink: /heterogenous-computing/Chapter5
 ---

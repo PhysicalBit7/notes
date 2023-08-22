@@ -3,7 +3,7 @@ layout: default
 title: GPU Ecosystem
 description: Chapter 3 notes
 has_toc: false
-nav_order: 1
+nav_order: 3
 parent: Heterogeneous Computing
 permalink: /heterogenous-computing/Chapter3
 ---
