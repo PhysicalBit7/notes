@@ -7,7 +7,7 @@ nav_order: 2
 parent: Heterogeneous Computing
 permalink: /heterogenous-computing/Chapter2
 ---
-# Multithreading" Exploiting Thread-Level Parallelism
+# Multithreading Exploiting Thread-Level Parallelism
 {: .no_toc }
 
 <details closed markdown="block">
